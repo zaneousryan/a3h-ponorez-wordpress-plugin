@@ -29,6 +29,14 @@ License: GPLv2 or later
 defined('ABSPATH') or die("No script kiddies please!");
 
 /**
+ * For full WSDL/SOAP service documentation, see http://www.ponorez.com/Agency%20Service%20Specifications.pdf
+ */
+
+define('PR_PUBLIC_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation_test/services/2012-05-10/PublicService?wsdl');
+define('PR_PROVIDER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation_test/services/2012-05-10/SupplierService?wsdl');
+define('PR_WHOLESALER_WSDL', 'https://www.hawaiifun.org/reservation_test/services/2012-05-10/AgencyService?wsdl');
+
+/**
  * Main PonoRez interface class
  *
  * @class PonoRez
@@ -45,9 +53,26 @@ final class PonoRez {
      */
     protected $_config = null;
 
+
+    /**
+     * @var SoapClient An instance of the Public Service WSDL
+     */
+    protected $_publicService = null;
+
     public function __construct () {
         // Load private configuration.
-        $this->_config = json_decode(file_get_contents("private.json"));
+        $this->_config = json_decode(file_get_contents(realpath(dirname(__FILE__) . "/private.json")));
+    }
+
+    /**
+     * @return SoapClient A public service soap client
+     * @TODO Check for exceptions.
+     */
+    public function publicService () {
+        if (is_null($this->_publicService)) {
+            $this->_publicService = new SoapClient(PR_PUBLIC_SERVICE_WSDL);
+        }
+        return $this->_publicService;
     }
     
     /**
@@ -71,3 +96,28 @@ function PR() {
         return PonoRez::instance();
 }
 
+// Scratch function/shortcode for testing.
+function pr_get_suppliers_sc ($atts = array(), $content = null, $tag)
+{
+    $pr = PR();
+    $psc = $pr->publicService();
+
+    // Get list of available suppliers.
+    $result = $psc->getCategories();
+    $categories = $result->return;
+
+    $rval = "<ul>\n";
+
+    // Also islandInfos has links and description
+    foreach ($categories as $cat) {
+        $rval .= sprintf("<li><img src=\"%s\" /> %d - %s</li>\n",
+                         $cat->imageUrl,
+                         $cat->id,
+                         $cat->name);
+    }
+
+    $rval .= "</ul>\n";
+
+    return $rval;
+}
+add_shortcode('pr_get_suppliers', 'pr_get_suppliers_sc');
