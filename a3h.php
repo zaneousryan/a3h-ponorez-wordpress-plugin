@@ -34,7 +34,7 @@ defined('ABSPATH') or die("No script kiddies please!");
 
 define('PR_PUBLIC_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation_test/services/2012-05-10/PublicService?wsdl');
 define('PR_PROVIDER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation_test/services/2012-05-10/SupplierService?wsdl');
-define('PR_WHOLESALER_WSDL', 'https://www.hawaiifun.org/reservation_test/services/2012-05-10/AgencyService?wsdl');
+define('PR_WHOLESALER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation_test/services/2012-05-10/AgencyService?wsdl');
 
 /**
  * Main PonoRez interface class
@@ -59,6 +59,16 @@ final class PonoRez {
      */
     protected $_publicService = null;
 
+    /**
+     * @var SoapClient An instance of the Agency Provider Service WSDL
+     */
+    protected $_providerService = null;
+
+    /**
+     * @var SoapClient An instance of the Activity Wholesaler Service WSDL
+     */
+    protected $_wholesalerService = null;
+    
     public function __construct () {
         // Load private configuration.
         $this->_config = json_decode(file_get_contents(realpath(dirname(__FILE__) . "/private.json")));
@@ -73,6 +83,40 @@ final class PonoRez {
             $this->_publicService = new SoapClient(PR_PUBLIC_SERVICE_WSDL);
         }
         return $this->_publicService;
+    }
+
+    /**
+     * @return SoapClient An agency provider service soap client
+     * @TODO Check for exceptions.
+     */
+    public function providerService () {
+        if (is_null($this->_providerService)) {
+            $this->_providerService = new SoapClient(PR_PROVIDER_SERVICE_WSDL);
+        }
+        return $this->_providerService;
+    }
+
+    /**
+     * @return SoapClient An activity wholesaler service soap client
+     * @TODO Check for exceptions.
+     */
+    public function wholesalerService () {
+        if (is_null($this->_wholesalerService)) {
+            $this->_wholesalerService = new SoapClient(PR_WHOLESALER_SERVICE_WSDL);
+        }
+        return $this->_wholesalerService;
+    }
+
+    /**
+     * @return SoapVar A ServiceLogin object
+     */
+    public function serviceLogin () {
+        return array("username" => $this->_config->ponorez->username,
+                     "password" => $this->_config->ponorez->password);
+    }
+
+    public function config () {
+        return $this->_config;
     }
     
     /**
@@ -96,14 +140,53 @@ function PR() {
         return PonoRez::instance();
 }
 
-// Scratch function/shortcode for testing.
-function pr_get_suppliers_sc ($atts = array(), $content = null, $tag)
+/**
+ * Bootstrap function for admin pages.
+ */
+function pr_bootstrap_admin () {
+    require_once('lib/class-ponorezadminconfig.php');
+
+    $prc = new PonoRezAdminConfig ();
+    $prc->init();
+}
+// @TODO This is probably the wrong action.
+add_action('init', 'pr_bootstrap_admin');
+
+/**
+ * Shortcode to test login information.
+ */
+function pr_test_login_sc ($atts = array(), $content = null, $tag)
 {
     $pr = PR();
-    $psc = $pr->publicService();
+    $psc = $pr->providerService();
 
+    $sl = $pr->serviceLogin();
+    $result = $psc->testLogin(array('serviceLogin' => $pr->serviceLogin()));
+    
+    if (true == $result->return) {
+        $rval = "<strong>Login succeeded.</strong>\n";
+    }
+    else {
+        $rval= "<strong>Login failed.</strong>\n";
+
+        $rval .= sprintf("<pre>\n%s</pre>\n",
+                         $result->out_status);
+    }
+
+    return $rval;
+}
+add_shortcode('pr_test_login', 'pr_test_login_sc');
+
+// Scratch functions/shortcodes for testing.
+function pr_get_categories_sc ($atts = array(), $content = null, $tag)
+{
+    $pr = PR();
+    $psc = $pr->providerService();
+
+    $sl = $pr->serviceLogin();
+    
     // Get list of available suppliers.
-    $result = $psc->getCategories();
+    $result = $psc->getCategories(array('serviceLogin' => $sl));
     $categories = $result->return;
 
     $rval = "<ul>\n";
@@ -120,4 +203,32 @@ function pr_get_suppliers_sc ($atts = array(), $content = null, $tag)
 
     return $rval;
 }
+add_shortcode('pr_get_categories', 'pr_get_categories_sc');
+
+function pr_get_suppliers_sc ($atts = array(), $content = null, $tag)
+{
+    $pr = PR();
+    $psc = $pr->providerService();
+
+    $sl = $pr->serviceLogin();
+    
+    // Get list of available suppliers.
+    $result = $psc->getActivities(array('serviceLogin' => $sl));
+    $activities = $result->return;
+
+    $rval = "<ul>\n";
+
+    // Also islandInfos has links and description
+    foreach ($activities as $act) {
+        $rval .= sprintf("<li>%d - %s on %s</li>\n",
+                         $act->id,
+                         $act->name,
+                         $act->island);
+    }
+
+    $rval .= "</ul>\n";
+
+    return $rval;
+}
 add_shortcode('pr_get_suppliers', 'pr_get_suppliers_sc');
+
