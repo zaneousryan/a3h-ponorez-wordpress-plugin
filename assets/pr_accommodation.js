@@ -14,7 +14,7 @@ var Accommodation = (function() {
     var hotelInfosOfActivity = dataOfActivityById[activityId].hotelInfos;
     var localResidenceHotelInfo = null;
     var localResidenceHotelId = null;
-    $.each(hotelInfosOfActivity, function() {
+    jQuery.each(hotelInfosOfActivity, function() {
       if (this.special == 'localResidence')
       {
         localResidenceHotelInfo = this;
@@ -25,14 +25,14 @@ var Accommodation = (function() {
 
     if (localResidenceHotelInfo != null)
     {
-      $hotelSelect.append($("<option />").attr('value', localResidenceHotelInfo.id).text(''));
+      $hotelSelect.append(jQuery("<option />").attr('value', localResidenceHotelInfo.id).text(''));
     }
     for (var i = 0; i < hotelInfosOfActivity.length; ++i)
     {
       var hotelInfo = hotelInfosOfActivity[i];
       if (hotelInfo.id == localResidenceHotelId) continue;
 
-      $hotelSelect.append($("<option />").attr('value', hotelInfo.id).text(hotelInfo.name));
+      $hotelSelect.append(jQuery("<option />").attr('value', hotelInfo.id).text(hotelInfo.name));
     }
 
     if (routeSelectionContextData)
@@ -55,7 +55,7 @@ var Accommodation = (function() {
       // supplierId is assumed to match activityId; that is, we won't be called with the same activityId
       // but different supplierId.
 
-      var $hotelSelect = $(params.hotelSelectSelector);
+      var $hotelSelect = jQuery(params.hotelSelectSelector);
 
       // 1.
       // Ensure that activityDeferredById[activityId] exists and is either resolved or pending;
@@ -64,7 +64,7 @@ var Accommodation = (function() {
 
       if (!activityDeferredById[params.activityId] || activityDeferredById[params.activityId].state() == 'rejected')
       {
-        var activityDeferred = $.Deferred();
+        var activityDeferred = jQuery.Deferred();
 
         var lackRouteData = !routeDataBySupplierId[params.supplierId];
         var postData = { supplierid: params.supplierId, activityid: params.activityId, wantroutedata: lackRouteData };
@@ -73,7 +73,7 @@ var Accommodation = (function() {
         // Wait for completion no more than 30 seconds:
         setTimeout(function() { assumedTimeout = true; activityDeferred.reject(); }, 30 * 1000);
 
-        $.post(baseurl + 'externalservlet?action=GETTRANSPORTATIONDATA_JSONP', postData, null, 'jsonp')
+        jQuery.post(baseurl + 'externalservlet?action=GETTRANSPORTATIONDATA_JSONP', postData, null, 'jsonp')
         .done(function(response) {
           if (assumedTimeout)
           {
@@ -106,7 +106,7 @@ var Accommodation = (function() {
           if (lackRouteData)
           {
             routeData = {};
-            $.each(responseRouteData, function(routeId) {
+            jQuery.each(responseRouteData, function(routeId) {
               var dataOfRoute = this;
               routeData[routeId] = { hotelLinkMap: dataOfRoute.hotelLinkMap, hotelInfoMap: dataOfRoute.hotelInfoMap };
             });
@@ -128,7 +128,7 @@ var Accommodation = (function() {
       if (activityDeferredById[params.activityId].state() == 'pending')
       {
         $hotelSelect.empty();
-        $hotelSelect.append($("<option />").text('-- Loading --'));
+        $hotelSelect.append(jQuery("<option />").text('-- Loading --'));
         $hotelSelect.prop('disabled', true);
       }
 
@@ -147,10 +147,10 @@ var Accommodation = (function() {
 
       var contextData = params.routeSelectionContextData;
 
-      $(contextData.routesContainerSelector).toggle(false);
-      $.each(contextData.routeSelectorMap, function(transportationRouteId, routeSelector) {
+      jQuery(contextData.routesContainerSelector).toggle(false);
+      jQuery.each(contextData.routeSelectorMap, function(transportationRouteId, routeSelector) {
         if (!routeSelector) return;
-        $(routeSelector).toggle(false);
+        jQuery(routeSelector).toggle(false);
       });
 
       if (!params.hotelId) return;
@@ -159,7 +159,7 @@ var Accommodation = (function() {
       var routeData = routeDataBySupplierId[params.supplierId];
 
       var haveRouteSelection = false;
-      $.each(dataOfActivity.routeInfos, function(index, routeInfo) {
+      jQuery.each(dataOfActivity.routeInfos, function(index, routeInfo) {
         if (params.agencyId != 0 && !routeInfo.agencyEnabled) return;
 
         if (routeData[routeInfo.id])
@@ -172,21 +172,21 @@ var Accommodation = (function() {
           if (routeInfoForHotel)
           {
             if (routeInfoForHotel.notServicing) return;
-            routeInfo = $.extend({}, routeInfo, routeInfoForHotel);
+            routeInfo = jQuery.extend({}, routeInfo, routeInfoForHotel);
           }
         }
 
         var routeElementSelector = contextData.routeSelectorMap[routeInfo.id];
         if (routeElementSelector)
         {
-          $(routeElementSelector).toggle(true);
+          jQuery(routeElementSelector).toggle(true);
           haveRouteSelection = true;
         }
       });
 
       if (haveRouteSelection)
       {
-        $(contextData.routesContainerSelector).toggle(true);
+        jQuery(contextData.routesContainerSelector).toggle(true);
       }
     }
   };

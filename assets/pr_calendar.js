@@ -1,4 +1,193 @@
+// Functions loaded to enhance jQuery UI Datepicker
 // Note: This code was originally found in https://www.hawaiifun.org/reservation/common/calendar_js.jsp?jsversion=20151110
+(function( $, undefined ) {
+
+  $.fn.datepicker_async = function(options) {
+    this.each(function() {
+      var $target = $(this);
+      var inst;
+
+      options = $.extend({}, options, { onChangeMonthYear: prepareMonth });
+
+      $target.datepicker(options);
+      inst = getDatepickerInstance($target);
+
+      var initialDate = $target.datepicker('getDate');
+      if (initialDate == null) initialDate = Date();
+      prepareMonth(initialDate.getFullYear(), 1 + initialDate.getMonth(), inst);
+    });
+
+    return this;
+  };
+
+  function prepareMonth(year, month, inst)
+  {
+    inst.asyncPrepareMonthPromise = null;
+    setCalendarMask(inst, null);
+
+    if (!inst.settings.onPrepareMonthBegin)
+    {
+      return;
+    }
+
+    var promise = inst.settings.onPrepareMonthBegin(year, month, inst);
+    if (promise)
+    {
+      inst.asyncPrepareMonthPromise = promise;
+      setCalendarMask(inst, 'loading');
+
+      // The mask we created earlier will be deleted because the datepicker HTML
+      // will be completely recreated *after* the onChangeMonthYear callback
+      // returns. So we'll reapply the mask with a timer.
+      // (Note that this issue doesn't exist when the calendar is being created.)
+      var reapplyMaskFunc = function() {
+        applyCalendarMask(inst);
+      };
+      var applyMaskTimeout = setTimeout(reapplyMaskFunc, 0);
+
+      // Masking with a timer works reliably but creates flicker. So we also try
+      // a less reliable method to get control immediately after the datepicker HTML
+      // is regenerated: binding to a 'click' event that is be the most often used
+      // (or even the only) method of switching month.
+      // (Note that this doesn't work in IE7/8 as the 'click' event is not bubbled.)
+      $(getDatepickerElement(inst)).one('click', reapplyMaskFunc);
+
+      promise.done(function() {
+        clearTimeout(applyMaskTimeout);
+        $(getDatepickerElement(inst)).off('click', reapplyMaskFunc);
+
+        if (inst.asyncPrepareMonthPromise != promise) return;
+        inst.asyncPrepareMonthPromise = null;
+
+        setCalendarMask(inst, null);
+        $(getDatepickerElement(inst)).datepicker('refresh');
+      });
+      promise.fail(function() {
+        clearTimeout(applyMaskTimeout);
+        $(getDatepickerElement(inst)).off('click', reapplyMaskFunc);
+
+        if (inst.asyncPrepareMonthPromise != promise) return;
+        inst.asyncPrepareMonthPromise = null;
+
+        setCalendarMask(inst, 'failed');
+      });
+    }
+  }
+
+  function setCalendarMask(inst, mask)
+  {
+    inst.asyncRequestedMask = mask;
+    applyCalendarMask(inst);
+  }
+
+  function applyCalendarMask(inst)
+  {
+    // We try to prevent unnecessary mask re-application by checking
+    // if the currently existing mask matches the requested mask.
+    var appliedMask = getExistingCalendarMask(inst);
+
+    if (appliedMask && appliedMask != inst.asyncRequestedMask)
+    {
+      unmaskCalendar(inst);
+    }
+
+    if (inst.asyncRequestedMask && inst.asyncRequestedMask != appliedMask)
+    {
+      switch (inst.asyncRequestedMask)
+      {
+        case 'loading':
+        maskCalendarLoading(inst);
+        break;
+        case 'failed':
+        maskCalendarFailed(inst);
+        break;
+      }
+    }
+  }
+
+  function unmaskCalendar(inst)
+  {
+    $(getDatepickerElement(inst)).find(".datepicker-async-mask").remove();
+    $(getDatepickerElement(inst)).find("table.ui-datepicker-calendar tbody").css( { visibility: 'inherit' });
+  }
+
+  function maskCalendarLoading(inst)
+  {
+    $(getDatepickerElement(inst)).find("table.ui-datepicker-calendar").each(function() {
+      var $calendar = $(this).find("tbody");
+      $calendar.css({ visibility: 'hidden' });
+
+      var $mask = $("<div></div>")
+          .addClass('datepicker-async-mask').data('mask', 'loading')
+          .css({ position: isPositionFixed($calendar) ? 'fixed' : 'absolute' })
+          .insertAfter($(this));
+      $("<div>Loading...</div>")
+        .css({ marginTop: '3.5em', width: '100%', textAlign: 'center' })
+        .appendTo($mask);
+      coverWithMask($calendar, $mask);
+    });
+  }
+
+  function maskCalendarFailed(inst)
+  {
+    $(getDatepickerElement(inst)).find("table.ui-datepicker-calendar").each(function() {
+      var $calendar = $(this).find("tbody");
+      $calendar.css({ visibility: 'hidden' });
+
+      var $mask = $("<div></div>")
+          .addClass('datepicker-async-mask').data('mask', 'failed')
+          .css({ position: isPositionFixed($calendar) ? 'fixed' : 'absolute' })
+          .insertAfter($(this));
+      $("<div>Failed to load</div>")
+        .css({ marginTop: '3.5em', width: '100%', textAlign: 'center' })
+        .appendTo($mask);
+      coverWithMask($calendar, $mask);
+    });
+  }
+
+  function getExistingCalendarMask(inst)
+  {
+    return $(getDatepickerElement(inst)).find(".datepicker-async-mask").data('mask');
+  }
+
+  function isPositionFixed($element)
+  {
+    var isFixed = false;
+    $element.parents().each(function() {
+      isFixed |= $(this).css("position") === "fixed";
+      return !isFixed;
+    });
+
+    return isFixed;
+  }
+
+  function coverWithMask($target, $mask)
+  {
+    var targetOffset = $target.offset();
+    var maskOriginalOffset = $mask.offset();
+    $mask.css({
+      width: $target.width() + 'px',
+      height: $target.height() + 'px',
+      marginLeft: targetOffset.left - maskOriginalOffset.left,
+      marginTop: targetOffset.top - maskOriginalOffset.top
+    });
+  }
+
+  function getDatepickerInstance($target)
+  {
+    return $target.data('datepicker');
+    // Widget factory would use 'ui-datepicker', but as of 1.10.2 datepicker
+    // is not a factory's widget.
+  }
+
+  function getDatepickerElement(inst)
+  {
+    return inst.input;
+    // Widget factory would use '.element'.
+  }
+
+})(jQuery);
+
 function reservationcalendar_getBaseUrlWithReservation()
 {
   var url = 'https://www.hawaiifun.org/reservation/';
