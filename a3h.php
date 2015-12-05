@@ -149,8 +149,18 @@ function pr_bootstrap_admin () {
     $prc = new PonoRezAdminConfig ();
     $prc->init();
 }
-// @TODO This is probably the wrong action.
 add_action('init', 'pr_bootstrap_admin');
+
+/**
+ * Bootstrap function for public pages.
+ */
+function pr_bootstrap_public () {
+    require_once('lib/class-ponoreztemplate.php');
+
+    $prt = new PonoRezTemplate ();
+    $prt->init();
+}
+add_action('init', 'pr_bootstrap_public');
 
 /**
  * Shortcode to test login information.

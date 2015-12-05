@@ -57,7 +57,7 @@ final class PonoRezAdminConfig {
         <td><?php echo $act->description; ?></td>
         <td><?php echo $act->notes; ?></td>
         <td><?php echo $act->times; ?></td>
-        <td><code>[pr_activity <?php echo $act->id; ?>]</code></td>
+        <td><code>[pr_activity id=<?php echo $act->id; ?>]</code></td>
       </tr>
       <?php endforeach; ?>
     </tbody>
