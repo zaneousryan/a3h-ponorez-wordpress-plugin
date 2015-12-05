@@ -111,8 +111,8 @@ final class PonoRez {
      * @return SoapVar A ServiceLogin object
      */
     public function serviceLogin () {
-        return array("username" => $this->_config->ponorez->username,
-                     "password" => $this->_config->ponorez->password);
+        return array("username" => get_option('pr_username'),
+                     "password" => get_option('pr_password'));
     }
 
     public function config () {
