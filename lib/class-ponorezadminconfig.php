@@ -19,24 +19,19 @@ final class PonoRezAdminConfig {
    ?>
 <div class="wrap"><div id="icon-tools" class="icon32"></div>
   <h2>PonoRez Account Configuration</h2>
-  <form method="post" action="options.php">
+  <form id="prLoginForm">
     <?php 
-        settings_fields('pr-settings');
-        do_settings_sections('pr-settings'); 
+          //settings_fields('pr-settings');
+          //do_settings_sections('pr-settings'); 
        ?>
-    <table class="form-table">
-      <tr valign="top">
-        <th scope="row">Username</th>
-        <td>
-          <input type="text" name="pr_username" value="<?php echo esc_attr(get_option('pr_username')); ?>" />
-        </td>
-        <th scope="row">Password</th>
-        <td>
-          <input type="password" name="pr_password" value="<?php echo esc_attr(get_option('pr_password')); ?>" />
-        </td>
-      </tr>
-    </table>
-    <?php submit_button(); ?>
+    <label for="pr_username"><b>Username:</b></label>
+    <input id="pr_username" type="text" name="pr_username" value="<?php echo esc_attr(get_option('pr_username')); ?>" />
+    <label for="pr_password"><b>Password:</b></label>
+    <input id="pr_password" type="password" name="pr_password" value="<?php echo esc_attr(get_option('pr_password')); ?>" />
+    <button id="loginButton" class="button button-primary">
+      Save Changes
+    </button>
+    <div id="loginResult"></div>
   </form>
   <h2>Available Activities</h2>
   <table class="wp-list-table widefat">
@@ -68,6 +63,29 @@ final class PonoRezAdminConfig {
     </tbody>
   </table>
 </div>
+<script>
+  jQuery(document).ready(function () {
+    jQuery('#prLoginForm').submit(function(event) {
+      var formData = {
+        action      : 'pr_store_login',
+        pr_username : jQuery('#pr_username').val(),
+        pr_password : jQuery('#pr_password').val()
+      };
+      var resultDiv = jQuery('#loginResult');
+
+      event.preventDefault();
+      
+      jQuery.post(ajaxurl, formData, function (result) {
+        if (true == result['success']) {
+          resultDiv.html('Information saved.');
+        }
+        else {
+          resultDiv.html('Error: ' + result.message);
+        }
+      });
+    });
+  });
+</script>
 <?php
     }
 
@@ -86,9 +104,46 @@ final class PonoRezAdminConfig {
         );
     }
 
+    /**
+     * Test the login information and store it. Return good information.
+     */
+    public function ajaxStoreLogin () {
+        // Submitted parameters
+        $username = $_POST['pr_username'];
+        $password = $_POST['pr_password'];
+
+        $psc = PR()->providerService();
+        $testResult = $psc->testLogin(array('serviceLogin' => array('username' => $username,
+                                                                    'password' => $password)));
+
+        // Return values kept here.
+        $ajaxResult = array();
+        
+        if (true == $testResult->return) {
+            update_option('pr_username', $username);
+            update_option('pr_password', $password);
+
+            $ajaxResult['success'] = true;
+        }
+        else {
+            $ajaxResult['success'] = false;
+            $ajaxResult['message'] = $testResult->out_status;
+        }
+
+	header( "Content-Type: application/json" );
+        
+        echo json_encode($ajaxResult);
+
+        wp_die();
+    }
+    
     public function init () {
         add_action('admin_menu', array($this, 'addSettingsMenu'));
         add_action('admin_init', array($this, 'registerSettings'));
+
+        // Setup JavaScript
+        wp_enqueue_script( 'jquery-form' );
+        add_action('wp_ajax_pr_store_login', array($this, 'ajaxStoreLogin'));
     }
 }
 
