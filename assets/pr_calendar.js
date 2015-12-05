@@ -1,13 +1,4 @@
-document.writeln('<link href="'+ reservationcalendar_getBaseUrlWithReservation() + 'common/jquery/css/ui-lightness-1.10.3.css'+'" rel="stylesheet" />'
-               + '<link href="'+ reservationcalendar_getBaseUrlWithReservation() + 'common/datepicker_availability.css'+'" rel="stylesheet" />');
-  // Note: this method of attaching stylesheets will cause them to appear *after*
-  // the existing stylesheets and thus override them in certain circumstances.
-  // If we ever need our CSS to override jQuery UI styles we need to change
-  // the way CSS is injected here: add <link> nodes in DOM, then delete-clone-reinsert
-  // existing <link rel="stylesheet"> nodes so that they appear after jQuery UI
-  // link nodes. (Just inserting the new nodes before existing ones won't work
-  // in IE, even in IE9.)
-
+// Note: This code was originally found in https://www.hawaiifun.org/reservation/common/calendar_js.jsp?jsversion=20151110
 function reservationcalendar_getBaseUrlWithReservation()
 {
   var url = 'https://www.hawaiifun.org/reservation/';
