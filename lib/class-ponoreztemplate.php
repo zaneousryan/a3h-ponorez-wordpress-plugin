@@ -58,10 +58,49 @@ EOT;
 
         return $rval;
     }
+
+    public function prGuestTypesShortcode($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'id' => null
+        ), $atts);
+
+        try {
+            $psc = PR()->providerService();
+            $serviceCreds = PR()->serviceLogin();
+
+            $result = $psc->getActivityGuestTypes(array('serviceLogin' => $serviceCreds,
+                                                        'activityId' => $this->_currentActivity->id,
+                                                        'supplierId' => $this->_currentActivity->supplierId,
+                                                        'date' => date('YYYY-MM-DD')));
+        }
+        catch (SoapFault $e) {
+            $rval = sprintf("<pre>\n%s\n---\n%s\n</pre>\n",
+                            $e->faultcode,
+                            $e->faultstring);
+
+            return $rval;
+        }
+        
+        $rval = '';
+        foreach ($result->return as $guestType) {
+            $html = sprintf("%s <select id='guests_a%d_t%d'>",
+                            $guestType->name,
+                            $this->_currentActivity->id,
+                            $guestType->id);
+
+            $html .= "</select>";
+            $rval .= "\n\n$html";
+        }
+
+        $this->_soapDebug = print_r($result, true);
+
+        return $rval;
+    }
     
     public function registerShortcodes() {
         add_shortcode('pr_activity', array($this, 'prActivityShortcode'));
         add_shortcode('pr_datepicker', array($this, 'prDatepickerShortcode'));
+        add_shortcode('pr_guest_types', array($this, 'prGuestTypesShortcode'));
     }
     
     public function loadScripts () {
