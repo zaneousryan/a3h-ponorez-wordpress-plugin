@@ -26,19 +26,18 @@ final class PonoRezTemplate {
         $a = shortcode_atts(array(
             'id' => null
         ), $atts);
+        $rval = '';
 
-        if (0 < (int)$a['id']) {
-            $this->setCurrentActivity((int)$a['id']);
+        try {
+            if (0 < (int)$a['id']) {
+                $this->setCurrentActivity((int)$a['id']);
+            }
         }
-        
-        $rval = sprintf('Working with activity %d - %s and default template "%s"',
-                        $a['id'],
-                        $this->_currentActivity->name,
-                        $this->defaultTemplate);
+        catch (SoapFault $e) {
+            $rval .= sprintf("<br>\n<pre>\n%s\n</pre>",
+                             $this->_soapDebug);
 
-        $rval .= sprintf("<br>\n<pre>\n%s\n</pre>",
-                         $this->_soapDebug);
-
+        }
 
         $template_string = file_get_contents($this->defaultTemplate);
         
@@ -71,7 +70,7 @@ EOT;
             $result = $psc->getActivityGuestTypes(array('serviceLogin' => $serviceCreds,
                                                         'activityId' => $this->_currentActivity->id,
                                                         'supplierId' => $this->_currentActivity->supplierId,
-                                                        'date' => date('YYYY-MM-DD')));
+                                                        'date' => new SoapVar(date('YYYY-MM-DD'), XSD_DATE)));
         }
         catch (SoapFault $e) {
             $rval = sprintf("<pre>\n%s\n---\n%s\n</pre>\n",
@@ -96,11 +95,55 @@ EOT;
 
         return $rval;
     }
+
+    public function prHotelSelectShortcode ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'id' => null
+        ), $atts);
+
+        $rval_template = <<<EOT
+<select id="hotel_aAAAA" ></select>
+<script type="text/javascript">accommodation_loadHotels({ supplierId: SSSS, activityId:  AAAA, agencyId: 0, hotelSelectSelector: "#hotel_aAAAA" });</script>
+EOT;
+
+        $rval = str_replace(array('AAAA', 'SSSS'),
+                            array($this->_currentActivity->id,
+                                  $this->_currentActivity->supplierId),
+                            $rval_template);
+
+        return $rval;
+    }
+
+    public function prHotelRoomShortcode ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'id' => null
+        ), $atts);
+
+        $rval = sprintf('<input type="text" id="room_a%d" size="3" />',
+                        $this->_currentActivity->id);
+        
+        return $rval;
+    }
     
+    // @TODO How do we get the guest types for this?
+    public function prCheckAvailabilityShortcode ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'id' => null
+        ), $atts);
+
+        $rval = sprintf('<input type="button" class="checkAvailability" activity-id="%d" value="Check availability" />',
+                        $this->_currentActivity->id);
+        
+        return $rval;
+    }
+
     public function registerShortcodes() {
         add_shortcode('pr_activity', array($this, 'prActivityShortcode'));
         add_shortcode('pr_datepicker', array($this, 'prDatepickerShortcode'));
         add_shortcode('pr_guest_types', array($this, 'prGuestTypesShortcode'));
+        add_shortcode('pr_hotel_select', array($this, 'prHotelSelectShortcode'));
+        add_shortcode('pr_hotel_room', array($this, 'prHotelRoomShortcode'));
+        add_shortcode('pr_check_availability', array($this, 'prCheckAvailabilityShortcode'));
     }
     
     public function loadScripts () {
@@ -115,7 +158,8 @@ EOT;
                           array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker', 'pr_accommodation'));
         wp_enqueue_script('pr_functions', 'https://www.hawaiifun.org/reservation/external/functions.js?jsversion=20151110',
                           array('jquery', 'pr_calendar'), null);
-                          
+        wp_enqueue_script('pr_functions_extra', plugins_url('assets/pr_functions.js', dirname(__FILE__)),
+                          array('jquery', 'pr_functions'));
 
         // Add calendar-specific stylesheets.
         wp_enqueue_style('pr_lightness_css', 'https://www.hawaiifun.org/reservation/common/jquery/css/ui-lightness-1.10.3.css',

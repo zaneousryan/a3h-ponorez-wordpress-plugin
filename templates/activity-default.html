@@ -1,5 +1,4 @@
 <form>
-
   <!-- Activity date and date picker -->
   Activity Date
   [pr_datepicker]
@@ -8,49 +7,44 @@
   <!-- Select number and type of guests. How do we get guest types? -->
 
   [pr_guest_types]
-    Adult
-    <select id='guests_a8581_t653'>
-      <option value='0'>0</option>
-      <option value='1'>1</option>
-      <option value='2'>2</option>
-      <option value='3'>3</option>
-      <option value='4'>4</option>
-      <option value='5'>5</option>
-      <option value='6'>6</option>
-      <option value='7'>7</option>
-      <option value='8'>8</option>
-      <option value='9'>9</option>
-      <option value='10'>10</option>
-      <option value='11'>11</option>
-      <option value='12'>12</option>
-      <option value='13'>13</option>
-      <option value='14'>14</option>
-      <option value='15'>15</option>
-      <option value='16'>16</option>
-      <option value='17'>17</option>
-      <option value='18'>18</option>
-      <option value='19'>19</option>
-      <option value='20'>20</option>
-    </select>
+  <!-- @TODO Fix guest-type selector. Do we need to configure it or is there a SOAP call I'm missing? -->
+  Adult
+  <select class='guestCount8571' guest-type-id='653' id='guests_a8571_t653'>
+    <option value='0'>0</option>
+    <option value='1'>1</option>
+    <option value='2'>2</option>
+    <option value='3'>3</option>
+    <option value='4'>4</option>
+    <option value='5'>5</option>
+    <option value='6'>6</option>
+    <option value='7'>7</option>
+    <option value='8'>8</option>
+    <option value='9'>9</option>
+    <option value='10'>10</option>
+    <option value='11'>11</option>
+    <option value='12'>12</option>
+    <option value='13'>13</option>
+    <option value='14'>14</option>
+    <option value='15'>15</option>
+    <option value='16'>16</option>
+    <option value='17'>17</option>
+    <option value='18'>18</option>
+    <option value='19'>19</option>
+    <option value='20'>20</option>
+  </select>
 
-    <br />
-    
-    <!-- Hotel inputs. Get hotel list from service. Cache it? -->
+  <br />
+  
+  <!-- Hotel inputs. Get hotel list from service. Cache it? -->
   <p></p>
-  Hotel: &nbsp;
-  <select id="hotel_a8581" ></select>
-  &nbsp;&nbsp;
-  Room: &nbsp;
-  <input type="text" id="room_a8581" size="3" />
-
-  <script type="text/javascript">accommodation_loadHotels({ supplierId: 339, activityId:  8581, agencyId: 0, hotelSelectSelector: "#hotel_a8581" });</script>
-
+  Hotel:&nbsp;[pr_hotel_select]
+  <br />
+  Room:&nbsp;[pr_hotel_room]
   <br />
 
   <!-- Check availability -->
-    <input type="button" value="Check availability" onclick="reservation2('8581', 8581, document.getElementById('date_a8581').value, '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); addGuests(653, document.getElementById('guests_a8581_t653').value); setUpgradesFixed(); setHotel($('#hotel_a8581').val()); setRoom($('#room_a8581').val()); setAccommodationFixed();  availability_popup(); return false;" />
+  [pr_check_availability]
 
-
-    <!-- Close form -->
-    
+  <!-- Close form -->
+  
 </form>
