@@ -1,38 +1,21 @@
 <form>
+  <h2>[pr_activity_name]</h2>
+
+  <p>[pr_activity_description]</p>
+  
   <!-- Activity date and date picker -->
-  Activity Date
-  [pr_datepicker]
+  Activity Date: [pr_datepicker]
 
   <br />
   <!-- Select number and type of guests. How do we get guest types? -->
 
-  [pr_guest_types]
+  [pr_guest_type_list]
   <!-- @TODO Fix guest-type selector. Do we need to configure it or is there a SOAP call I'm missing? -->
-  Adult
-  <select class='guestCount8571' guest-type-id='653' id='guests_a8571_t653'>
-    <option value='0'>0</option>
-    <option value='1'>1</option>
-    <option value='2'>2</option>
-    <option value='3'>3</option>
-    <option value='4'>4</option>
-    <option value='5'>5</option>
-    <option value='6'>6</option>
-    <option value='7'>7</option>
-    <option value='8'>8</option>
-    <option value='9'>9</option>
-    <option value='10'>10</option>
-    <option value='11'>11</option>
-    <option value='12'>12</option>
-    <option value='13'>13</option>
-    <option value='14'>14</option>
-    <option value='15'>15</option>
-    <option value='16'>16</option>
-    <option value='17'>17</option>
-    <option value='18'>18</option>
-    <option value='19'>19</option>
-    <option value='20'>20</option>
-  </select>
-
+  Adult: [pr_guest_type guest-type-id=653 max=20]
+  <br />
+  Children: [pr_guest_type guest-type-id=2982 max=20]
+  <br />
+  
   <br />
   
   <!-- Hotel inputs. Get hotel list from service. Cache it? -->
