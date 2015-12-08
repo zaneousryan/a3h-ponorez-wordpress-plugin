@@ -33,6 +33,7 @@ final class PonoRezAdminConfig {
     </button>
     <div id="loginResult"></div>
   </form>
+  <?php if ($activities): ?>
   <h2>Available Activities</h2>
   <table class="wp-list-table widefat">
     <thead>
@@ -62,6 +63,7 @@ final class PonoRezAdminConfig {
       <?php endforeach; ?>
     </tbody>
   </table>
+  <?php endif; ?>
 </div>
 <script>
   jQuery(document).ready(function () {
