@@ -155,6 +155,7 @@ add_action('init', 'pr_bootstrap_admin');
  * Bootstrap function for public pages.
  */
 function pr_bootstrap_public () {
+    // require_once('lib/class-ponorezrest.php');
     require_once('lib/class-ponoreztemplate.php');
 
     $prt = new PonoRezTemplate ();

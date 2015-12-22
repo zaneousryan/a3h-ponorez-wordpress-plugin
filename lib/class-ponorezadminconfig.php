@@ -4,9 +4,8 @@
  */
 
 final class PonoRezAdminConfig {
-
-    /* Build the default admin page. */
-    static public function adminConfigPage () {
+    /* Plain old HTML table for listing activities. Intended to be updated via an AJAX call. */
+    static public function prActivityList () {
         $psc = PR()->providerService();
         $serviceCreds = PR()->serviceLogin();
         $activities = array();
@@ -16,24 +15,7 @@ final class PonoRezAdminConfig {
             $activities = $psc->getActivities(array('serviceLogin' => $serviceCreds))
                         ->return;
         }
-   ?>
-<div class="wrap"><div id="icon-tools" class="icon32"></div>
-  <h2>PonoRez Account Configuration</h2>
-  <form id="prLoginForm">
-    <?php 
-          //settings_fields('pr-settings');
-          //do_settings_sections('pr-settings'); 
-       ?>
-    <label for="pr_username"><b>Username:</b></label>
-    <input id="pr_username" type="text" name="pr_username" value="<?php echo esc_attr(get_option('pr_username')); ?>" />
-    <label for="pr_password"><b>Password:</b></label>
-    <input id="pr_password" type="password" name="pr_password" value="<?php echo esc_attr(get_option('pr_password')); ?>" />
-    <button id="loginButton" class="button button-primary">
-      Save Changes
-    </button>
-    <div id="loginResult"></div>
-  </form>
-  <?php if ($activities): ?>
+        if ($activities): ?>
   <h2>Available Activities</h2>
   <table class="wp-list-table widefat">
     <thead>
@@ -63,29 +45,95 @@ final class PonoRezAdminConfig {
       <?php endforeach; ?>
     </tbody>
   </table>
-  <?php endif; ?>
+  <?php else: ?>
+  <p>Enter login information above to see your activity list.</p>
+  <?php endif; 
+
+        wp_die();                                            
+    }
+
+    /* Get a list of available templates. */
+    static public function getTemplateList () {
+        $templateDir = realpath(dirname(__FILE__) . '/../') . '/templates/';
+
+        $fileList = glob($templateDir . '/*.html');
+        $output = array();
+
+        foreach ($fileList as $f) {
+            $output[] = pathinfo($f, PATHINFO_FILENAME);
+        }
+
+        return $output;
+        
+    }
+    
+    /* Build the default admin page. */
+    static public function adminConfigPage () {
+        $psc = PR()->providerService();
+        $serviceCreds = PR()->serviceLogin();
+
+        // Set up our various calendar styles
+        $selectedStyle = get_option('pr_default_style');
+        $styles = array('blacktie', 'blitzer', 'cupertino', 'darkhive', 'dotluv', 'eggplant', 'excitedbike',
+                        'flick', 'hotsneakers', 'humanity', 'lefrog', 'mintchocolate', 'overcast', 'peppergrinder',
+                        'redmond', 'smoothness', 'southstreet', 'start', 'sunny', 'swankypurse',
+                        'trontastic', 'uidark', 'uilightdefault', 'vadar');
+
+        // Get our default template
+        $defaultTemplate = get_option('pr_default_template');
+        
+   ?>
+<div class="wrap"><div id="icon-tools" class="icon32"></div>
+  <h2>PonoRez Account Configuration</h2>
+  <form method="POST" action="options.php">
+    <?php 
+       settings_fields('pr-settings');
+       do_settings_sections('pr-settings'); 
+       ?>
+    <label for="pr_username"><b>Username:</b></label>
+    <input id="pr_username" type="text" name="pr_username" value="<?php echo esc_attr(get_option('pr_username')); ?>" />
+    <label for="pr_password"><b>Password:</b></label>
+    <input id="pr_password" type="password" name="pr_password" value="<?php echo esc_attr(get_option('pr_password')); ?>" />
+    <br />
+    <label for="pr_default_style"><b>Default Style:</b></label>
+    <select id="pr_default_style" name="pr_default_style">
+      <?php foreach ($styles as $style): ?>
+      <?php printf('<option value="%s"%s>%s</option>',
+                                       $style,
+                                       ($selectedStyle === $style) ? ' SELECTED' : '',
+                                       $style);
+            ?>
+      <?php endforeach; ?>
+    </select>
+    <br />
+    <label for="pr_default_template"><b>Default Template:</b></label>
+    <select id="pr_default_template" name="pr_default_template">
+      <?php foreach (self::getTemplateList() as $template): ?>
+      <?php printf('<option value="%s"%s>%s</option>',
+            $template,
+            ($defaultTemplate === $template) ? ' SELECTED' : '',
+            $template); ?>
+      <?php endforeach; ?>
+    </select>
+    <br />
+    <?php submit_button(); ?>
+  </form>
+  <div id="prActivityTable">
+    <p>Enter login information above to see your activity list.</p>
+  </div>
 </div>
 <script>
-  jQuery(document).ready(function () {
-    jQuery('#prLoginForm').submit(function(event) {
-      var formData = {
-        action      : 'pr_store_login',
-        pr_username : jQuery('#pr_username').val(),
-        pr_password : jQuery('#pr_password').val()
-      };
-      var resultDiv = jQuery('#loginResult');
+  function prUpdateActivityList () {
+    var formData = { action : 'pr_activity_list' };
 
-      event.preventDefault();
-      
-      jQuery.post(ajaxurl, formData, function (result) {
-        if (true == result['success']) {
-          resultDiv.html('Information saved.');
-        }
-        else {
-          resultDiv.html('Error: ' + result.message);
-        }
-      });
-    });
+    jQuery.get(ajaxurl, formData, function (result) {
+      jQuery('#prActivityTable').html(result);
+    });        
+  }
+ 
+  jQuery(document).ready(function () {
+    // Update the activity list right when the document is ready.
+    prUpdateActivityList();
   });
 </script>
 <?php
@@ -94,6 +142,8 @@ final class PonoRezAdminConfig {
     public function registerSettings () {
         register_setting('pr-settings', 'pr_username');
         register_setting('pr-settings', 'pr_password');
+        register_setting('pr-settings', 'pr_default_style');
+        register_setting('pr-settings', 'pr_default_template');
     }
 
     public function addSettingsMenu () {
@@ -144,8 +194,9 @@ final class PonoRezAdminConfig {
         add_action('admin_init', array($this, 'registerSettings'));
 
         // Setup JavaScript
-        wp_enqueue_script( 'jquery-form' );
+        //wp_enqueue_script( 'jquery-form' );
         add_action('wp_ajax_pr_store_login', array($this, 'ajaxStoreLogin'));
+        add_action('wp_ajax_pr_activity_list', array($this, 'prActivityList'));
     }
 }
 
