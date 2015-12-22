@@ -22,6 +22,26 @@ final class PonoRezTemplate {
         $this->_currentActivity = $result->return;
     }
 
+    public function prLoadActivityShortcode ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'id' => null
+        ), $atts);
+        $rval = '';
+
+        try {
+            if (0 < (int)$a['id']) {
+                $this->setCurrentActivity((int)$a['id']);
+            }
+        }
+        catch (SoapFault $e) {
+            $rval .= sprintf("<br>\n<pre>\n%s\n</pre>",
+                             $this->_soapDebug);
+
+        }
+
+        return $rval;
+    }
+    
     public function prActivityShortcode ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
             'id' => null
@@ -86,7 +106,7 @@ EOT;
             $result = $psc->getActivityGuestTypes(array('serviceLogin' => $serviceCreds,
                                                         'activityId' => $this->_currentActivity->id,
                                                         'supplierId' => $this->_currentActivity->supplierId,
-                                                        'date' => new SoapVar(date('YYYY-MM-DD'), XSD_DATE)));
+                                                        'date' => new SoapVar(date('Y-m-d'), XSD_DATE)));
         }
         catch (SoapFault $e) {
             $rval = sprintf("<h3>[SOAP FAULT] Could not load guest types</h3>\n<pre>\n%s\n---\n%s\n</pre>\n",
@@ -95,14 +115,26 @@ EOT;
 
             return $rval;
         }
+
+        // $rest = new PonoRezRest ();
+        // $result = $rest->getGuestTypes($this->_currentActivity, new DateTime());
+
+        // $rval = sprintf("<pre>\n%s\n</pre>",
+        //                 print_r($result, true));
         
         $rval = '';
-        foreach ($result->return as $guestType) {
-            $html = sprintf("%s <select id='guests_a%d_t%d'>",
+        foreach ($result as $guestType) {
+            $html = sprintf('%s <select class="guestCount%d" guest-type-id="%d" id="guests_a%d_t%d">',
                             $guestType->name,
                             $this->_currentActivity->id,
+                            $guestType->id,
+                            $this->_currentActivity->id,
                             $guestType->id);
-
+            
+            for ($i = 0; $i <= $guestType->availabilityPerGuest; $i++) {
+                $html .= sprintf('<option value="%d">%d</option>', $i, $i);
+            }
+            
             $html .= "</select>";
             $rval .= "\n\n$html";
         }
@@ -164,7 +196,6 @@ EOT;
         return $rval;
     }
     
-    // @TODO How do we get the guest types for this?
     public function prCheckAvailabilityShortcode ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
             'id' => null
@@ -186,6 +217,7 @@ EOT;
         add_shortcode('pr_hotel_select', array($this, 'prHotelSelectShortcode'));
         add_shortcode('pr_hotel_room', array($this, 'prHotelRoomShortcode'));
         add_shortcode('pr_check_availability', array($this, 'prCheckAvailabilityShortcode'));
+        add_shortcode('pr_load_activity', array($this, 'prLoadActivityShortcode'));
     }
     
     public function loadScripts () {
@@ -203,9 +235,11 @@ EOT;
         wp_enqueue_script('pr_functions_extra', plugins_url('assets/pr_functions.js', dirname(__FILE__)),
                           array('jquery', 'pr_functions'));
 
-        // Add calendar-specific stylesheets.
-        wp_enqueue_style('pr_lightness_css', 'https://www.hawaiifun.org/reservation/common/jquery/css/ui-lightness-1.10.3.css',
-                         false, null);
+        // Add calendar-specific stylesheets. Note that this can be set by options.
+        $defaultStyle = get_option('pr_default_style');
+        $styleUrl = sprintf('http://www.ponorez.com/Calendar/%s/jquery-ui.css',
+                            strtoupper($defaultStyle));
+        wp_enqueue_style('pr_calendar_css', $styleUrl, false, null);
         wp_enqueue_style('pr_datepicker_css', 'https://www.hawaiifun.org/reservation/common/datepicker_availability.css');
     }
 

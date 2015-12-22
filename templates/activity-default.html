@@ -5,29 +5,17 @@
   
   <!-- Activity date and date picker -->
   Activity Date: [pr_datepicker]
-
-  <br />
-  <!-- Select number and type of guests. How do we get guest types? -->
-
+  <br>
+  <!-- Select number and type of guests. -->
+  <h3>Select Number of Guests</h3>
   [pr_guest_type_list]
-  <!-- @TODO Fix guest-type selector. Do we need to configure it or is there a SOAP call I'm missing? -->
-  Adult: [pr_guest_type guest-type-id=653 max=20]
-  <br />
-  Children: [pr_guest_type guest-type-id=2982 max=20]
-  <br />
-  
-  <br />
   
   <!-- Hotel inputs. Get hotel list from service. Cache it? -->
-  <p></p>
   Hotel:&nbsp;[pr_hotel_select]
-  <br />
   Room:&nbsp;[pr_hotel_room]
-  <br />
 
   <!-- Check availability -->
   [pr_check_availability]
 
   <!-- Close form -->
-  
 </form>
