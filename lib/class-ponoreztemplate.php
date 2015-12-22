@@ -237,8 +237,12 @@ EOT;
 
         // Add calendar-specific stylesheets. Note that this can be set by options.
         $defaultStyle = get_option('pr_default_style');
-        $styleUrl = sprintf('http://www.ponorez.com/Calendar/%s/jquery-ui.css',
-                            strtoupper($defaultStyle));
+        if (!$defaultStyle) {
+            $styleUrl = 'https://www.hawaiifun.org/reservation/common/jquery/css/ui-lightness-1.10.3.css';
+        }
+        else {
+            $styleUrl = sprintf('http://www.ponorez.com/Calendar/%s/jquery-ui.css', strtoupper($defaultStyle));
+        }
         wp_enqueue_style('pr_calendar_css', $styleUrl, false, null);
         wp_enqueue_style('pr_datepicker_css', 'https://www.hawaiifun.org/reservation/common/datepicker_availability.css');
     }
@@ -247,6 +251,12 @@ EOT;
         $this->loadScripts();
         $this->registerShortcodes();
 
-        $this->defaultTemplate = realpath(dirname(__FILE__) . '/../') . '/templates/activity-default.html';
+        $defaultTemplate = get_option('pr_default_template');
+
+        if (!$defaultTemplate) {
+            $defaultTemplate = 'activity-default';
+        }
+
+        $this->defaultTemplate = realpath(dirname(__FILE__) . '/../') . '/templates/' . $defaultTemplate . '.html';
     }
 }
