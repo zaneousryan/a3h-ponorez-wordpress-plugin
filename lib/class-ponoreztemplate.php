@@ -201,8 +201,17 @@ EOT;
             'id' => null
         ), $atts);
 
-        $rval = sprintf('<input type="button" class="checkAvailability" activity-id="%d" value="Check availability" />',
-                        $this->_currentActivity->id);
+        $defaultStyle = get_option('pr_default_style');
+
+        if (!$defaultStyle) {
+            $rval = sprintf('<input type="button" class="checkAvailability" activity-id="%d" value="Check availability" />',
+                            $this->_currentActivity->id);
+        }
+        else {
+            $rval = sprintf('<input type="image" class="checkAvailability" activity-id="%d" src="http://www.ponorez.com/buttons/%sBN.jpg" />',
+                            $this->_currentActivity->id,
+                            strtoupper($defaultStyle));
+        }
         
         return $rval;
     }
