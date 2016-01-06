@@ -40,7 +40,7 @@ final class PonoRezAdminConfig {
         <td><?php echo $act->description; ?></td>
         <td><?php echo $act->notes; ?></td>
         <td><?php echo $act->times; ?></td>
-        <td><code>[pr_activity id=<?php echo $act->id; ?>]</code></td>
+        <td><code>[pr_activity&nbsp;id=<?php echo $act->id; ?>]</code></td>
       </tr>
       <?php endforeach; ?>
     </tbody>
@@ -148,8 +148,8 @@ final class PonoRezAdminConfig {
 
     public function addSettingsMenu () {
         add_menu_page( 
-            'A3H PonoRez for WordPress',
-            'A3H PonoRez for WordPress',
+            'A3H Pono Rez for WordPress',
+            'A3H Pono Rez for WordPress',
             'manage_options', 
             'a3h_ponorez', 
             array('PonoRezAdminConfig', 'adminConfigPage')

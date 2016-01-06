@@ -3,14 +3,14 @@
  * @package A3H
  */
 /*
-Plugin Name: A3H PonoRez Reservation Interface for WordPress
-Description: 
-Version: 0.1
+Plugin Name: A3H Pono Rez Reservation Interface for WordPress
+Description: Add A3H Pono Rez interfaces, reservations, and tours to your WordPress site. 
+Version: 1.0
 Author: Erik L. Arneson
 Author URI: http://www.arnesonium.com/
 License: GPLv2 or later
 
-    Copyright 2015 Activities & Attractions Association of Hawaii, Inc.
+    Copyright 2015-16 Activities & Attractions Association of Hawaii, Inc.
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -32,12 +32,12 @@ defined('ABSPATH') or die("No script kiddies please!");
  * For full WSDL/SOAP service documentation, see http://www.ponorez.com/Agency%20Service%20Specifications.pdf
  */
 
-define('PR_PUBLIC_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation_test/services/2012-05-10/PublicService?wsdl');
-define('PR_PROVIDER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation_test/services/2012-05-10/SupplierService?wsdl');
-define('PR_WHOLESALER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation_test/services/2012-05-10/AgencyService?wsdl');
+define('PR_PUBLIC_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/PublicService?wsdl');
+define('PR_PROVIDER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/SupplierService?wsdl');
+define('PR_WHOLESALER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/AgencyService?wsdl');
 
 /**
- * Main PonoRez interface class
+ * Main Pono Rez interface class
  *
  * @class PonoRez
  */
