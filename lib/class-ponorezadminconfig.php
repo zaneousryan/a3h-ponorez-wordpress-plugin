@@ -74,13 +74,14 @@ final class PonoRezAdminConfig {
 
         // Set up our various calendar styles
         $selectedStyle = get_option('pr_default_style');
-        $styles = array('blacktie', 'blitzer', 'cupertino', 'darkhive', 'dotluv', 'eggplant', 'excitedbike',
-                        'flick', 'hotsneakers', 'humanity', 'lefrog', 'mintchocolate', 'overcast', 'peppergrinder',
-                        'redmond', 'smoothness', 'southstreet', 'start', 'sunny', 'swankypurse',
-                        'trontastic', 'uidark', 'uilightdefault', 'vadar');
+        $styles = array('black-tie', 'blitzer', 'cupertino', 'dark-hive', 'dot-luv', 'eggplant', 'excite-bike',
+                        'flick', 'hot-sneaks', 'humanity', 'le-frog', 'mint-choc', 'overcast', 'pepper-grinder',
+                        'redmond', 'smoothness', 'south-street', 'start', 'sunny', 'swanky-purse',
+                        'trontastic', 'ui-darkness', 'ui-lightness', 'vadar');
 
         // Get our default template
         $defaultTemplate = get_option('pr_default_template');
+        $timeout = get_option('pr_cache_timeout');
         
    ?>
 <div class="wrap"><div id="icon-tools" class="icon32"></div>
@@ -94,6 +95,14 @@ final class PonoRezAdminConfig {
     <input id="pr_username" type="text" name="pr_username" value="<?php echo esc_attr(get_option('pr_username')); ?>" />
     <label for="pr_password"><b>Password:</b></label>
     <input id="pr_password" type="password" name="pr_password" value="<?php echo esc_attr(get_option('pr_password')); ?>" />
+    <br />
+    <label for="pr_cache_timeout"><b>Cache Timeout:</b></label>
+    <select id="pr_cache_timeout" name="pr_cache_timeout">
+      <option value="3600"<?php echo (3600 == $timeout) ? ' SELECTED' : '' ?>>1 Hour</option>
+      <option value="21600"<?php echo (21600 == $timeout) ? ' SELECTED' : '' ?>>6 Hours</option>
+      <option value="86400"<?php echo (86400 == $timeout) ? ' SELECTED' : '' ?>>1 Day</option>
+    </select>
+    <em>This value determines how often information is retrieved from the Pono Rez servers.</em>
     <br />
     <label for="pr_default_style"><b>Default Style:</b></label>
     <select id="pr_default_style" name="pr_default_style">
@@ -144,6 +153,7 @@ final class PonoRezAdminConfig {
         register_setting('pr-settings', 'pr_password');
         register_setting('pr-settings', 'pr_default_style');
         register_setting('pr-settings', 'pr_default_template');
+        register_setting('pr-settings', 'pr_cache_timeout');
     }
 
     public function addSettingsMenu () {

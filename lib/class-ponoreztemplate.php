@@ -152,7 +152,7 @@ EOT;
         //                 print_r($result, true));
         
         $rval = '';
-        foreach ($result as $guestType) {
+        foreach ($result->return as $guestType) {
             $html = sprintf('%s <select class="guestCount%d" guest-type-id="%d" id="guests_a%d_t%d">',
                             $guestType->name,
                             $this->_currentActivity->id,
@@ -165,7 +165,7 @@ EOT;
             }
             
             $html .= "</select>";
-            $rval .= "\n\n$html";
+            $rval .= "\n$html\n";
         }
 
         $this->_soapDebug = print_r($result, true);
@@ -232,14 +232,18 @@ EOT;
 
         $defaultStyle = get_option('pr_default_style');
 
+        // This might look lazy but Pono Rez is going to give me funny button names every time.
+        $dsTrimmed = str_replace('-', '', $defaultStyle);
+
         if (!$defaultStyle) {
             $rval = sprintf('<input type="button" class="checkAvailability" activity-id="%d" value="Check availability" />',
                             $this->_currentActivity->id);
         }
         else {
-            $rval = sprintf('<input type="image" class="checkAvailability" activity-id="%d" src="http://www.ponorez.com/buttons/%sBN.jpg" />',
+            $rval = sprintf('<input type="image" class="checkAvailability" activity-id="%d" src="%s/%sbn.jpg" />',
                             $this->_currentActivity->id,
-                            strtoupper($defaultStyle));
+                            plugins_url('assets/images/buttons', dirname(__FILE__)),
+                            $dsTrimmed);
         }
         
         return $rval;
@@ -276,13 +280,14 @@ EOT;
         // Add calendar-specific stylesheets. Note that this can be set by options.
         $defaultStyle = get_option('pr_default_style');
         if (!$defaultStyle) {
-            $styleUrl = 'https://www.hawaiifun.org/reservation/common/jquery/css/ui-lightness-1.10.3.css';
+            $defaultStyle = 'ui-lightness';
         }
-        else {
-            $styleUrl = sprintf('http://www.ponorez.com/Calendar/%s/jquery-ui.css', strtoupper($defaultStyle));
-        }
+        $styleUrl = sprintf('%s/%s/jquery-ui.css',
+                            plugins_url('assets/css/themes', dirname(__FILE__)),
+                            $defaultStyle);
+
         wp_enqueue_style('pr_calendar_css', $styleUrl, false, null);
-        wp_enqueue_style('pr_datepicker_css', 'https://www.hawaiifun.org/reservation/common/datepicker_availability.css');
+        wp_enqueue_style('pr_datepicker_css', plugins_url('assets/css/datepicker_availability.css', dirname(__FILE__)));
     }
 
     public function init () {
