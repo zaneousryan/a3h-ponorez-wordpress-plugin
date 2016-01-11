@@ -9,6 +9,31 @@ final class PonoRezTemplate {
     protected $_currentActivity;
 
     protected $_soapDebug = null;
+
+    protected function _transientTag($scName, $id) {
+        $nonAlnum = array('.', '/', '-', '_', ' ');
+        $templateString = str_replace($nonAlnum, '', basename($this->defaultTemplate));
+        
+        return sprintf("%s_i%d_%s",
+                       $scName, $id, $templateString);
+    }
+
+    // Execute a SOAP call, but check for cached version in WP transients first.
+    // $f is a function that should return a string.
+    protected function _withTransient ($scName, $id, $f) {
+        $tag = $this->_transientTag($scName, $id);
+
+        $rval = get_transient($tag);
+
+        if (false === $rval) {
+            $rval = $f();
+
+            // @TODO Customize cache expiration in settings.
+            set_transient($tag, $rval, 60 * 60);
+        }
+
+        return $rval;
+    }
     
     public function setCurrentActivity ($activityId) {
         $psc = PR()->providerService();
@@ -44,10 +69,12 @@ final class PonoRezTemplate {
     
     public function prActivityShortcode ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
-            'id' => null
+            'id' => null,
+            'template' => $this->defaultTemplate
         ), $atts);
-        $rval = '';
 
+        $rval = '';
+        
         try {
             if (0 < (int)$a['id']) {
                 $this->setCurrentActivity((int)$a['id']);
@@ -59,9 +86,11 @@ final class PonoRezTemplate {
 
         }
 
-        $template_string = file_get_contents($this->defaultTemplate);
+        return $rval . $this->_withTransient('pr_activity', $a['id'], function () use ($a) {
+            $template_string = file_get_contents($a['template']);
         
-        return $rval . do_shortcode($template_string);
+            return do_shortcode($template_string);
+        });
     }
 
     public function prActivityNameShortcode ($atts = array(), $content = null, $tag) {
@@ -241,7 +270,7 @@ EOT;
                           array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker', 'pr_accommodation'));
         wp_enqueue_script('pr_functions', 'https://www.hawaiifun.org/reservation/external/functions.js?jsversion=20151110',
                           array('jquery', 'pr_calendar'), null);
-        wp_enqueue_script('pr_functions_extra', plugins_url('assets/pr_functions.js', dirname(__FILE__)),
+        wp_enqueue_script('pr_document', plugins_url('assets/pr_document.js', dirname(__FILE__)),
                           array('jquery', 'pr_functions'));
 
         // Add calendar-specific stylesheets. Note that this can be set by options.
