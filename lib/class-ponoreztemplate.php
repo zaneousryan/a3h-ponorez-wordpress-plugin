@@ -22,14 +22,19 @@ final class PonoRezTemplate {
     // $f is a function that should return a string.
     protected function _withTransient ($scName, $id, $f) {
         $tag = $this->_transientTag($scName, $id);
+        $timeout = get_option('pr_cache_timeout');
+
+        if (!$timeout) {
+            $timeout = 3600;
+            set_option('pr_cache_timeout', $timeout);
+        }
 
         $rval = get_transient($tag);
 
         if (false === $rval) {
             $rval = $f();
 
-            // @TODO Customize cache expiration in settings.
-            set_transient($tag, $rval, 60 * 60);
+            set_transient($tag, $rval, $timeout);
         }
 
         return $rval;
@@ -115,10 +120,12 @@ final class PonoRezTemplate {
         ), $atts);
 
         $rval_template = <<<EOT
-<input id="date_aXXXX" onclick="calendar(XXXX, 'date_aXXXX', false);" readOnly size="15"> <a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:calendar(XXXX, 'date_aXXXX', false);"><img class="activityDatePicker" height="22" src="https://www.hawaiifun.org/reservation/company/show-calendar.gif" width="24" border="0"></a>
+<input id="date_aXXXX" onclick="calendar(XXXX, 'date_aXXXX', false);" readOnly size="15"> <a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:calendar(XXXX, 'date_aXXXX', false);"><img class="activityDatePicker" height="22" src="PPPP/show-calendar.gif" width="24" border="0"></a>
 EOT;
 
         $rval = str_replace('XXXX', $this->_currentActivity->id, $rval_template);
+        $rval = str_replace('PPPP', plugins_url('assets/images', dirname(__FILE__)), $rval);
+                            
 
         return $rval;
     }
