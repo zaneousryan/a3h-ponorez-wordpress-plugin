@@ -3,7 +3,7 @@ Contributors: arnesonium
 Tags: a3h, vacation, pono rez, rentals, reservations, booking calendar, booking, booking plugin, reservation calendar, booking system
 Requires at least: 4.0
 Tested up to: 4.4.1
-Stable tag: v1.0
+Stable tag: v1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,6 +22,11 @@ This plugin allows Pono Rez users to integrate information about
 activities into their WordPress websites using templates and
 shortcodes. It requires an active Pono Rez account to use properly.
 
+The Pono Rez system provides a SOAP interface, which is hosted on
+https://www.hawaiifun.org/. The interface is documented on the Pono
+Rez website at
+http://www.ponorez.com/Agency%20Service%20Specifications.pdf. 
+
 == Installation ==
 
 To install this plugin, follow these directions:
@@ -39,6 +44,11 @@ To install this plugin, follow these directions:
 == Screenshots ==
 
 == Changelog ==
+= 1.1 =
+* Provide more information about SOAP service hosting.
+* Include all JavaScript, CSS, and image files in the plugin.
+* Use WordPress transients to cache activity templates.
+
 = 1.0 =
 * First public release.
 
