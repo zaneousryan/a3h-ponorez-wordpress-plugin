@@ -1,6 +1,8 @@
 <?php
 /**
  * Handle activity groups.
+ *
+ * This class tries hard to make as few SOAP calls as possible. 
  */
 
 final class PonoRezGroup {
@@ -12,8 +14,8 @@ final class PonoRezGroup {
     public $guestTypeIds;
     public $activityPrices;
 
-    // private elements
-    private $psc;
+    // protected elements
+    protected $psc;
 
     /**
      * Create an activity group and prepare it for use on the frontend.
@@ -57,7 +59,7 @@ final class PonoRezGroup {
     }
     
     // Collect pricing information from SOAP.
-    private function _buildPricing () {
+    protected function _buildPricing () {
         // We need SOAP for this.
         $this->psc = PR()->providerService();
         $serviceCreds = PR()->serviceLogin();

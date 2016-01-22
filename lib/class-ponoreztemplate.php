@@ -7,6 +7,7 @@ final class PonoRezTemplate {
     public $defaultTemplate;
 
     protected $_currentActivity;
+    protected $_currentActivityGroup;
 
     protected $_soapDebug = null;
 
@@ -50,6 +51,25 @@ final class PonoRezTemplate {
         $this->_soapDebug = print_r($result, true);
         
         $this->_currentActivity = $result->return;
+    }
+
+    public function setCurrentActivityGroup ($groupName) {
+        $groups = get_option('pr_activity_groups');
+        $psc = PR()->providerService();
+        $serviceCreds = PR()->serviceLogin();
+
+        $activityIds = $groups[$groupName];
+        $activities = array();
+
+        // Create our activity objects.
+        foreach ($activityIds as $id) {
+            $result = $psc->getActivity(array('serviceLogin' => $serviceCreds,
+                                              'activityId' => $activityId));
+
+            $activities[] = $result->return;
+        }
+
+        $this->_currentActivityGroup = new PonoRezGroup($groupName, $activities);
     }
 
     public function prLoadActivityShortcode ($atts = array(), $content = null, $tag) {
