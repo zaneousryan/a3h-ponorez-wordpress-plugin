@@ -141,11 +141,27 @@ function PR() {
 }
 
 /**
+ * Look at an array of arrays for a value.
+ */
+function pr_key_in_array($value, $array) {
+    if (!$array) return false;
+    
+    foreach ($array as $k => $v) {
+        if (in_array($value, $v)) {
+            return $k;
+        }
+    }
+    return false;
+}
+
+/**
  * Bootstrap function for admin pages.
  */
 function pr_bootstrap_admin () {
     require_once('lib/class-ponorezadminconfig.php');
 
+    wp_enqueue_script('pr_admin', plugins_url('assets/pr_admin.js', __FILE__), array('jquery'));
+    
     $prc = new PonoRezAdminConfig ();
     $prc->init();
 }
@@ -156,6 +172,7 @@ add_action('init', 'pr_bootstrap_admin');
  */
 function pr_bootstrap_public () {
     // require_once('lib/class-ponorezrest.php');
+    require_once('lib/class-ponorezgroup.php');
     require_once('lib/class-ponoreztemplate.php');
 
     $prt = new PonoRezTemplate ();

@@ -9,6 +9,7 @@ final class PonoRezAdminConfig {
         $psc = PR()->providerService();
         $serviceCreds = PR()->serviceLogin();
         $activities = array();
+        $groups = get_option('pr_activity_groups');
         
         // Look up the info if we have the login.
         if ($serviceCreds['username']) {
@@ -26,25 +27,33 @@ final class PonoRezAdminConfig {
         <th>Description</th>
         <th>Notes</th>
         <th>Times</th>
+        <th>Group</th>
+        <th>Order</th>
         <th>Shortcode</th>
       </tr>
     </thead>
     <tbody id="the-list">
-      <?php foreach ($activities as $act): ?>
+      <?php foreach ($activities as $act):
+       $groupName = pr_key_in_array($act->id, $groups); ?>
       <tr>
         <th class="check-column" scope="row">
-          <input type="checkbox" name="pr_activity_id_<?php echo $act->id; ?>" />
+          <input type="checkbox" class="pr_activity_id" pr-activity-id="<?php echo $act->id; ?>" name="pr_activity_id_<?php echo $act->id; ?>" />
         </th>
         <td><strong><?php echo $act->name; ?></strong></td>
         <td><?php echo $act->island; ?></td>
         <td><?php echo $act->description; ?></td>
         <td><?php echo $act->notes; ?></td>
         <td><?php echo $act->times; ?></td>
+        <td><?php if ($groupName) echo $groupName; ?></td>
+        <td><input type="text" size="3"></td>
         <td><code>[pr_activity&nbsp;id=<?php echo $act->id; ?>]</code></td>
       </tr>
       <?php endforeach; ?>
     </tbody>
   </table>
+  <input type="text" id="pr_group_name" name="pr_group_name" placeholder="New group name">
+  <button type="button" id="pr_add_group" class="button button-primary">Add Group</button>
+  <button type="button" id="pr_refresh" class="button">Refresh List</button>
   <?php else: ?>
   <p>Enter login information above to see your activity list.</p>
   <?php endif; 
@@ -131,20 +140,6 @@ final class PonoRezAdminConfig {
     <p>Enter login information above to see your activity list.</p>
   </div>
 </div>
-<script>
-  function prUpdateActivityList () {
-    var formData = { action : 'pr_activity_list' };
-
-    jQuery.get(ajaxurl, formData, function (result) {
-      jQuery('#prActivityTable').html(result);
-    });        
-  }
- 
-  jQuery(document).ready(function () {
-    // Update the activity list right when the document is ready.
-    prUpdateActivityList();
-  });
-</script>
 <?php
     }
 
@@ -154,6 +149,7 @@ final class PonoRezAdminConfig {
         register_setting('pr-settings', 'pr_default_style');
         register_setting('pr-settings', 'pr_default_template');
         register_setting('pr-settings', 'pr_cache_timeout');
+        register_setting('pr-settings', 'pr_activity_groups');
     }
 
     public function addSettingsMenu () {
@@ -192,13 +188,43 @@ final class PonoRezAdminConfig {
             $ajaxResult['message'] = $testResult->out_status;
         }
 
-	header( "Content-Type: application/json" );
+        header( "Content-Type: application/json" );
         
         echo json_encode($ajaxResult);
 
         wp_die();
     }
-    
+
+    /**
+     * Store group information submitted by form.
+     */
+    public function ajaxStoreGroup () {
+        $groups = get_option('pr_activity_groups');
+
+        if (!$groups) {
+            $groups == array();
+        }
+
+        $groupName = $_GET['groupname'];
+        $activityIds = $_GET['idlist'];
+
+        $groups[$groupName] = $activityIds;
+
+        update_option('pr_activity_groups', $groups);
+
+        $ajaxResult = array(
+            'groupName' => $groupName,
+            'activityIds' => $activityIds
+        );
+        
+        header( "Content-Type: application/json" );
+        
+        echo json_encode($ajaxResult);
+
+        wp_die();
+
+    }
+
     public function init () {
         add_action('admin_menu', array($this, 'addSettingsMenu'));
         add_action('admin_init', array($this, 'registerSettings'));
@@ -207,6 +233,7 @@ final class PonoRezAdminConfig {
         //wp_enqueue_script( 'jquery-form' );
         add_action('wp_ajax_pr_store_login', array($this, 'ajaxStoreLogin'));
         add_action('wp_ajax_pr_activity_list', array($this, 'prActivityList'));
+        add_action('wp_ajax_pr_store_group', array($this, 'ajaxStoreGroup'));
     }
 }
 
