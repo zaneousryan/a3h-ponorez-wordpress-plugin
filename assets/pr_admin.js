@@ -36,6 +36,12 @@ function prUpdateActivityList () {
 
   jQuery.get(ajaxurl, formData, function (result) {
     jQuery('#prActivityTable').html(result);
+  });        
+}
+
+jQuery(document).ready(function () {
+  // Update the activity list right when the document is ready.
+  prUpdateActivityList();
 
     // Bind our group button.
     jQuery(document).on('click', '#pr_add_group', function (event) {
@@ -47,10 +53,4 @@ function prUpdateActivityList () {
       prUpdateActivityList();
     });
     
-  });        
-}
-
-jQuery(document).ready(function () {
-  // Update the activity list right when the document is ready.
-  prUpdateActivityList();
 });
