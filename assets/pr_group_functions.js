@@ -235,25 +235,32 @@ function selectActivity(group, selectedcheckbox) {
     });
 }
 
+/**
+  This function has been modified from the Pono Rez standard in order
+  to handle multiple control policy checkboxes.
+ */
 function booknow(group) {
-    if (!jQuery('#' + group.cancellationpolicycontrolid).is(':checked')) {
-        alert('Please check cancellation policy');
-        return false;
-    }
-    var activityid = getSelectedActivityId(group, true);
-    if (activityid == null) return false;
+  // Collect checkboxes. They must all be checked!
+  var unchecked = jQuery('.' + group.cancellationpolicycontrolid + ':not(:checked)');
+  if (0 < unchecked.length) {
+    alert('Please check cancellation policy');
+    return false;
+  }
+  
+  var activityid = getSelectedActivityId(group, true);
+  if (activityid == null) return false;
 
-    var activitydate = getActivityDate(group, true);
-    if (activitydate == null) return false;
+  var activitydate = getActivityDate(group, true);
+  if (activitydate == null) return false;
 
-    reservation(group.supplierid, activityid, activitydate, '', 0.0);
-    jQuery.each(group.guesttypeids, function(key, value) {
-        var guesttypeid = value;
-        var guestscount = jQuery('#' + group.guesttypecontrolids[guesttypeid]).val();
-        addGuests(guesttypeid, guestscount);
-    });
-    setHotel(getHotelId(group)); setRoom(getRoom(group)); setTransportationRoute(getTransportationRouteId(group)); setAccommodationFixed();
-    setpromotionalcode(getPromotionalCode(group));
-    availability_popup();
-    return true;
+  reservation(group.supplierid, activityid, activitydate, '', 0.0);
+  jQuery.each(group.guesttypeids, function(key, value) {
+    var guesttypeid = value;
+    var guestscount = jQuery('#' + group.guesttypecontrolids[guesttypeid]).val();
+    addGuests(guesttypeid, guestscount);
+  });
+  setHotel(getHotelId(group)); setRoom(getRoom(group)); setTransportationRoute(getTransportationRouteId(group)); setAccommodationFixed();
+  setpromotionalcode(getPromotionalCode(group));
+  availability_popup();
+  return true;
 }

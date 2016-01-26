@@ -11,6 +11,9 @@ final class PonoRezTemplate {
 
     protected $_soapDebug = null;
 
+    // Used only for cancellation policy checkboxes.
+    protected $_cancellationPolicyCount = 0;
+
     protected function _transientTag($scName, $id) {
         $nonAlnum = array('.', '/', '-', '_', ' ');
         $templateString = str_replace($nonAlnum, '', basename($this->defaultTemplate));
@@ -390,24 +393,69 @@ EOT;
 
         return $rval;
     }
+
+    public function prPolicyCheckboxShortcode ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'name' => null,
+            'class' => ''
+        ), $atts);
+
+        if (null == $this->_currentActivityGroup) {
+            return '';
+        }
+
+        return sprintf('<input type="checkbox" class="%s" id="%s_%d" value="yes">',
+                       implode(' ', array($this->_currentActivityGroup->cancellationPolicyControlId(),
+                                          $a['class'])),
+                       $this->_currentActivityGroup->cancellationPolicyControlId(),
+                       $this->_cancellationPolicyCount++);
+    }
+                               
+    public function prBookNowShortcode ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'name' => null,
+            'style' => get_option('pr_default_style'),
+            'class' => ''
+        ), $atts);
+
+        // This might look lazy but Pono Rez is going to give me funny button names every time.
+        $dsTrimmed = str_replace('-', '', $a['style']);
+
+        if (!$dsTrimmed) {
+            $rval = sprintf('<input type="button" class="pr_book_now" value="Check availability" onclick="booknow(g_%s);" />',
+                            $this->_currentActivityGroup->groupName);
+        }
+        else {
+            // '<input type="image" class="checkAvailability" activity-id="%d" src="%s/%sbn.jpg" />',
+            $rval = sprintf('<input type="image" class="pr_book_now%s" src="%s/%sbn.jpg" onclick="booknow(g_%s);" value="Book Now" />',
+                            ('' != $a['class']) ? ' ' . $a['class'] : '',
+                            plugins_url('assets/images/buttons', dirname(__FILE__)),
+                            $dsTrimmed,
+                            $this->_currentActivityGroup->groupName);
+        }
+        
+        return $rval;
+    }
     
     public function registerShortcodes() {
         // Single activity shortcodes.
-        add_shortcode('pr_activity', array($this, 'prActivityShortcode'));
-        add_shortcode('pr_activity_name', array($this, 'prActivityNameShortcode'));
-        add_shortcode('pr_activity_description', array($this, 'prActivityDescriptionShortcode'));
-        add_shortcode('pr_datepicker', array($this, 'prDatepickerShortcode'));
-        add_shortcode('pr_guest_type_list', array($this, 'prGuestTypeListShortcode'));
-        add_shortcode('pr_guest_type', array($this, 'prGuestTypeShortcode'));
-        add_shortcode('pr_hotel_select', array($this, 'prHotelSelectShortcode'));
-        add_shortcode('pr_hotel_room', array($this, 'prHotelRoomShortcode'));
-        add_shortcode('pr_check_availability', array($this, 'prCheckAvailabilityShortcode'));
-        add_shortcode('pr_load_activity', array($this, 'prLoadActivityShortcode'));
+        add_shortcode('pr_activity',              array($this, 'prActivityShortcode'));
+        add_shortcode('pr_activity_name',         array($this, 'prActivityNameShortcode'));
+        add_shortcode('pr_activity_description',  array($this, 'prActivityDescriptionShortcode'));
+        add_shortcode('pr_datepicker',            array($this, 'prDatepickerShortcode'));
+        add_shortcode('pr_guest_type_list',       array($this, 'prGuestTypeListShortcode'));
+        add_shortcode('pr_guest_type',            array($this, 'prGuestTypeShortcode'));
+        add_shortcode('pr_hotel_select',          array($this, 'prHotelSelectShortcode'));
+        add_shortcode('pr_hotel_room',            array($this, 'prHotelRoomShortcode'));
+        add_shortcode('pr_check_availability',    array($this, 'prCheckAvailabilityShortcode'));
+        add_shortcode('pr_load_activity',         array($this, 'prLoadActivityShortcode'));
 
         // Group shortcodes.
-        add_shortcode('pr_group', array($this, 'prGroupShortcode'));
-        add_shortcode('pr_group_times', array($this, 'prGroupTimesShortcode'));
-        add_shortcode('pr_total_price', array($this, 'prTotalPriceShortcode'));
+        add_shortcode('pr_group',            array($this, 'prGroupShortcode'));
+        add_shortcode('pr_group_times',      array($this, 'prGroupTimesShortcode'));
+        add_shortcode('pr_total_price',      array($this, 'prTotalPriceShortcode'));
+        add_shortcode('pr_policy_checkbox',  array($this, 'prPolicyCheckboxShortcode'));
+        add_shortcode('pr_book_now',         array($this, 'prBookNowShortcode'));
     }
     
     public function loadScripts () {
