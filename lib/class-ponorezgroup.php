@@ -43,6 +43,7 @@ final class PonoRezGroup {
             'guesttypeids' => $this->guestTypeIds,
             'activityprices' => $this->activityPrices,
             'datecontrolid' => $this->dateControlId(),
+            'pricecontrolid' => $this->priceControlId(),
             'activitycheckboxcontrolids' => $this->activityCheckboxControlIds(),
             'activitydescriptioncontrolids' => $this->activityDescriptionControlIds(),
             'activitynotavailablemessagecontrolids' => $this->activityNotAvailableMessageControlIds(),

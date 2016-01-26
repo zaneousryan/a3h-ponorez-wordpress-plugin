@@ -376,6 +376,20 @@ EOT;
 
         return $rval;
     }
+
+    public function prTotalPriceShortcode ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'name' => null
+        ), $atts);
+        $rval = '';
+
+        if (null != $this->_currentActivityGroup) {
+            $rval = sprintf('<span id="%s"></span>',
+                            $this->_currentActivityGroup->priceControlId());
+        }
+
+        return $rval;
+    }
     
     public function registerShortcodes() {
         // Single activity shortcodes.
@@ -393,6 +407,7 @@ EOT;
         // Group shortcodes.
         add_shortcode('pr_group', array($this, 'prGroupShortcode'));
         add_shortcode('pr_group_times', array($this, 'prGroupTimesShortcode'));
+        add_shortcode('pr_total_price', array($this, 'prTotalPriceShortcode'));
     }
     
     public function loadScripts () {
