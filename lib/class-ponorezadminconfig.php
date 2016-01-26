@@ -16,6 +16,35 @@ final class PonoRezAdminConfig {
             $activities = $psc->getActivities(array('serviceLogin' => $serviceCreds))
                         ->return;
         }
+
+        // List our groups.
+        if ($groups): ?>
+  <h2>Activity Groups</h2>
+  <table class="wp-list-table widefat">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Activities</th>
+        <th>Shortcode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($groups as $groupName => $activityIds): ?>
+      <tr>
+        <th class="check-column" scope="row">
+          <input type="checkbox" class="pr_group_name" pr-group-name="<?php echo $groupName; ?>" name="pr_group_name_<?php echo $groupName; ?>" />
+        </th>
+        <td><?php echo $groupName; ?></td>
+        <td><?php echo implode(', ', $activityIds); ?></td>
+        <td><code>[pr_group&nbsp;name="<?php echo $groupName; ?>"]</code></td>
+      </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+
+            <? endif;
+        
         if ($activities): ?>
   <h2>Available Activities</h2>
   <table class="wp-list-table widefat">
