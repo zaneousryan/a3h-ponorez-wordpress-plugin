@@ -6,8 +6,8 @@
 final class PonoRezTemplate {
     public $defaultTemplate;
 
-    protected $_currentActivity;
-    protected $_currentActivityGroup;
+    protected $_currentActivity = null;
+    protected $_currentActivityGroup = null;
 
     protected $_soapDebug = null;
 
@@ -58,18 +58,25 @@ final class PonoRezTemplate {
         $psc = PR()->providerService();
         $serviceCreds = PR()->serviceLogin();
 
+        if (!$groups[$groupName]) {
+            return null;
+        }
+        
         $activityIds = $groups[$groupName];
         $activities = array();
 
         // Create our activity objects.
         foreach ($activityIds as $id) {
             $result = $psc->getActivity(array('serviceLogin' => $serviceCreds,
-                                              'activityId' => $activityId));
+                                              'activityId' => $id));
 
             $activities[] = $result->return;
         }
 
         $this->_currentActivityGroup = new PonoRezGroup($groupName, $activities);
+
+        // We also set our current activity to the first one in the group.
+        $this->_currentActivity = $activities[0];
     }
 
     public function prLoadActivityShortcode ($atts = array(), $content = null, $tag) {
@@ -117,7 +124,7 @@ final class PonoRezTemplate {
             return do_shortcode($template_string);
         });
     }
-
+    
     public function prActivityNameShortcode ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
             'id' => null
@@ -136,18 +143,38 @@ final class PonoRezTemplate {
     
     public function prDatepickerShortcode ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
-            'id' => null
+            'id' => null,
+            'group' => 'on',
+            'icon' => 'on'
         ), $atts);
 
-        $rval_template = <<<EOT
-<input id="date_aXXXX" onclick="calendar(XXXX, 'date_aXXXX', false);" readOnly size="15"> <a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:calendar(XXXX, 'date_aXXXX', false);"><img class="activityDatePicker" height="22" src="PPPP/show-calendar.gif" width="24" border="0"></a>
+        // If there's no group, or group is turned off, use the single activity style.
+        if ('off' === $a['group'] || null === $this->_currentActivityGroup) {
+            $rval_template = <<<EOT
+<input id="XXXX" onclick="calendar(XXXX, 'date_aXXXX', false);" readOnly size="15"> <a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:calendar(XXXX, 'date_aXXXX', false);">
 EOT;
 
-        $rval = str_replace('XXXX', $this->_currentActivity->id, $rval_template);
-        $rval = str_replace('PPPP', plugins_url('assets/images', dirname(__FILE__)), $rval);
-                            
+            $rval = str_replace('XXXX', 'date_a' . $this->_currentActivity->id, $rval_template);
+            $rval = str_replace('PPPP', plugins_url('assets/images', dirname(__FILE__)), $rval);
+        }
+        else {
+            // Activity Group code.
+            $rval_template = <<<EOT
+<input id="XXXX" onclick="showCalendar(GGGG);" onchange="showPriceAndAvailability(GGGG);" readOnly size="18">
+<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showCalendar(GGGG);" style="vertical-align: middle;">
+EOT;
+            $rval = str_replace('XXXX', $this->_currentActivityGroup->dateControlId(), $rval_template);
+            $rval = str_replace('GGGG', 'g_' . $this->_currentActivityGroup->groupName, $rval);
+        }
 
-        return $rval;
+        // Only include the calendar icon if it's asked for.
+        if ('on' === $a['icon']) {
+            $rval .= sprintf('<img class="activityDatePicker" height="22" src="%s/show-calendar.gif" width="24" border="0">',
+                             plugins_url('assets/images', dirname(__FILE__)));
+        }
+
+        // Close with a closing A tag, because of the optional calendar.
+        return $rval . '</a>';
     }
 
     public function prGuestTypeListShortcode($atts = array(), $content = null, $tag) {
@@ -172,19 +199,19 @@ EOT;
             return $rval;
         }
 
-        // $rest = new PonoRezRest ();
-        // $result = $rest->getGuestTypes($this->_currentActivity, new DateTime());
-
-        // $rval = sprintf("<pre>\n%s\n</pre>",
-        //                 print_r($result, true));
+        // Build our HTML id tag. This differs if we are in a group setting.
+        $htmlIdTagPart = sprintf('a%d', $this->_currentActivity->id);
+        if (null != $this->_currentActivityGroup) {
+            $htmlIdTagPart = $this->_currentActivityGroup->groupName;
+        }
         
         $rval = '';
         foreach ($result->return as $guestType) {
-            $html = sprintf('%s <select class="guestCount%d" guest-type-id="%d" id="guests_a%d_t%d">',
+            $html = sprintf('%s <select class="guestCount%d" guest-type-id="%d" id="guests_%s_t%d">',
                             $guestType->name,
                             $this->_currentActivity->id,
                             $guestType->id,
-                            $this->_currentActivity->id,
+                            $htmlIdTagPart,
                             $guestType->id);
             
             for ($i = 0; $i <= $guestType->availabilityPerGuest; $i++) {
@@ -276,7 +303,82 @@ EOT;
         return $rval;
     }
 
+    public function prGroupShortcode ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'name' => null,
+            'template' => $this->defaultTemplate
+        ), $atts);
+
+        $rval = '';
+        
+        try {
+            if (null != $a['name']) {
+                $this->setCurrentActivityGroup($a['name']);
+            }
+        }
+        catch (SoapFault $e) {
+            $rval .= sprintf("<br>\n<pre>\n%s\n</pre>",
+                             $this->_soapDebug);
+
+        }
+
+        // Load our required group functions.
+        wp_enqueue_script('pr_group_functions');
+        
+        // Now we assemble the JavaScript. @TODO This should be cached.
+        $javaScript = $this->_currentActivityGroup->toJson(true);
+
+        return sprintf("<script>\n%s\n</script>", $javaScript);
+    }
+
+    // This shortcode can accept a short template using open and closing tags.
+    public function prGroupTimesShortcode ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'notavailable' => '(Not Available)',
+            'template' => $this->defaultTemplate
+        ), $atts);
+
+        $rval = '';
+
+        $g = $this->_currentActivityGroup;
+
+        // Load our template.
+        if (null == $content) {
+            $template =<<<EOT
+<checkbox>
+<times>
+<not available><br>
+EOT;
+        } else {
+            $template = $content;
+        }
+        
+        // Template elements. @TODO Fix the group1 bits.
+        $checkboxTemplate = '<input id="%s" type="checkbox" onclick="selectActivity(g_%s, this); showPriceAndAvailability(g_%s);">';
+        $naTemplate = '<span class="pr_not_available_message" id="%s" style="display: none;">%s</span>';
+
+        // Activity data.
+        $cbIds = $g->activityCheckboxControlIds();
+        $naIds = $g->activityNotAvailableMessageControlIds();
+        
+        foreach ($g->activities as $activity) {
+            $tmp = str_replace(
+                '<checkbox>',
+                sprintf($checkboxTemplate,
+                        $cbIds[$activity->id],
+                        $g->groupName, $g->groupName),
+                $template
+            );
+            $tmp = str_replace('<times>', $activity->times, $tmp);
+            $tmp = str_replace('<not available>', sprintf($naTemplate, $naIds[$activity->id], $a['notavailable']), $tmp);
+            $rval .= $tmp;
+        }
+
+        return $rval;
+    }
+    
     public function registerShortcodes() {
+        // Single activity shortcodes.
         add_shortcode('pr_activity', array($this, 'prActivityShortcode'));
         add_shortcode('pr_activity_name', array($this, 'prActivityNameShortcode'));
         add_shortcode('pr_activity_description', array($this, 'prActivityDescriptionShortcode'));
@@ -287,6 +389,10 @@ EOT;
         add_shortcode('pr_hotel_room', array($this, 'prHotelRoomShortcode'));
         add_shortcode('pr_check_availability', array($this, 'prCheckAvailabilityShortcode'));
         add_shortcode('pr_load_activity', array($this, 'prLoadActivityShortcode'));
+
+        // Group shortcodes.
+        add_shortcode('pr_group', array($this, 'prGroupShortcode'));
+        add_shortcode('pr_group_times', array($this, 'prGroupTimesShortcode'));
     }
     
     public function loadScripts () {
@@ -303,6 +409,10 @@ EOT;
                           array('jquery', 'pr_calendar'), null);
         wp_enqueue_script('pr_document', plugins_url('assets/pr_document.js', dirname(__FILE__)),
                           array('jquery', 'pr_functions'));
+
+        // Not automatically loaded.
+        wp_register_script('pr_group_functions', plugins_url('assets/pr_group_functions.js', dirname(__FILE__)),
+                          array('jquery', 'pr_functions'), null);
 
         // Add calendar-specific stylesheets. Note that this can be set by options.
         $defaultStyle = get_option('pr_default_style');

@@ -40,7 +40,7 @@ final class PonoRezGroup {
         $rawStruct = array(
             'supplierid' => $this->supplierId,
             'activityids' => $this->activityIds,
-            'guesttypeids' => $this->guesttypeids,
+            'guesttypeids' => $this->guestTypeIds,
             'activityprices' => $this->activityPrices,
             'datecontrolid' => $this->dateControlId(),
             'activitycheckboxcontrolids' => $this->activityCheckboxControlIds(),
@@ -52,7 +52,7 @@ final class PonoRezGroup {
 
         // Full JS encoding includes setting it to a variable.
         if (true == $asVar) {
-            return sprintf('var %s = %s;', $this->groupName, json_encode($rawStruct));
+            return sprintf('var g_%s = %s;', $this->groupName, json_encode($rawStruct));
         }
 
         return json_encode($rawStruct);
@@ -67,18 +67,20 @@ final class PonoRezGroup {
         // Collect guest information.
         $pricing = array();
         $gtids = array();
-        foreach ($activities as $a) {
+        foreach ($this->activities as $a) {
             $this->activityIds[] = $a->id;
 
-            $tmpGTs = $psc->getActivityGuestTypes(array('serviceLogin' => $serviceCreds,
+            $result = $this->psc->getActivityGuestTypes(array('serviceLogin' => $serviceCreds,
                                                         'activityId' => $a->id,
                                                         'supplierId' => $a->supplierId,
                                                         'date' => new SoapVar(date('Y-m-d'), XSD_DATE)));
 
+            //            print_r($result);
+            
             // Build guest pricing info.
-            foreach ($tmpGTs as $guest) {
+            foreach ($result->return as $guest) {
                 $gtids[] = $guest->id;
-                $pricing[$a->id][$guest->id] = $guest->price;
+                $pricing[$a->id][$guest->id] = sprintf("%.02f", $guest->price);
             }
         }
 

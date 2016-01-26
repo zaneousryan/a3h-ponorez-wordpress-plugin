@@ -285,7 +285,10 @@ function reservationcalendar_getBaseUrlWithReservation()
     var minAvailabilityStr = typeof(minAvailability) == 'undefined' ? '' : JSON.stringify(minAvailability);
     var activityIdStr = $.makeArray(activityId).join('|');
 
-    if ($field.length == 0) return;
+    if ($field.length == 0) {
+      console.log('showAvailabilityCalendar2: No data for field ' + fieldId);
+      return;
+    }
 
     if ($anchor.length == 0) $anchor = $field;
     if (typeof(numberOfMonths) == 'undefined') numberOfMonths = 1;
