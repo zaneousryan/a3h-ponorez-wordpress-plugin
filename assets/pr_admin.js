@@ -2,6 +2,22 @@
 * Functions for the Admin panel interface.
 */
 
+function prDeleteGroups () {
+  var groupNames = jQuery('.pr_group_name:checked').map(function (i, e) {
+    return jQuery(e).attr('pr-group-name');
+  });
+
+  if (0 == groupNames.length) return false;
+
+  jQuery.get(
+    ajaxurl,
+    { action: 'pr_delete_groups',
+      groups: groupNames.toArray() },
+    function (event) {
+      prUpdateActivityList();
+    });
+}
+
 // Collect checkboxes and group info.
 function prAddGroup () {
   // Selecting just the checked boxes and collecting their IDs.
@@ -22,12 +38,18 @@ function prAddGroup () {
   }
 
   // Call the AJAX function that adds stuff.
-  jQuery.get(ajaxurl,
-             { action : 'pr_store_group',
-               idlist : idList.toArray(),
-               groupname : groupName }, function (event) {
-    prUpdateActivityList();
-  });
+  jQuery.get(
+    ajaxurl,
+    { action : 'pr_store_group',
+      idlist : idList.toArray(),
+      groupname : groupName },
+    function (event) {
+      if (true == event['success']) {
+        prUpdateActivityList();
+      } else {
+        console.log(event['message']);
+      }
+    });
 }
 
 // Update the list of activities and groups.
@@ -43,14 +65,19 @@ jQuery(document).ready(function () {
   // Update the activity list right when the document is ready.
   prUpdateActivityList();
 
-    // Bind our group button.
-    jQuery(document).on('click', '#pr_add_group', function (event) {
-      prAddGroup();
-    });
+  // Bind our group button.
+  jQuery(document).on('click', '#pr_add_group', function (event) {
+    prAddGroup();
+  });
 
-    // Bind our refresh button.
-    jQuery(document).on('click', '#pr_refresh', function (event) {
-      prUpdateActivityList();
-    });
-    
+  // Bind our refresh button.
+  jQuery(document).on('click', '#pr_refresh', function (event) {
+    prUpdateActivityList();
+  });
+
+  // Bind our group delete button.
+  jQuery(document).on('click', '#pr_delete_groups', function (event) {
+    prDeleteGroups();
+  });
+  
 });

@@ -42,6 +42,7 @@ final class PonoRezAdminConfig {
       <?php endforeach; ?>
     </tbody>
   </table>
+  <button type="button" id="pr_delete_groups" class="button">Delete Groups</button>
 
             <? endif;
         
@@ -162,6 +163,7 @@ final class PonoRezAdminConfig {
             $template); ?>
       <?php endforeach; ?>
     </select>
+    <em>This option is only used for single activity pages, NOT for activity groups.</em>
     <br />
     <?php submit_button(); ?>
   </form>
@@ -225,6 +227,42 @@ final class PonoRezAdminConfig {
     }
 
     /**
+     * Delete groups.
+     */
+    public function ajaxDeleteGroups () {
+        $groups = get_option('pr_activity_groups');
+
+        if (!$groups) {
+            $groups == array();
+        }
+
+        $groupsToDelete = $_GET['groups'];
+        $deleteCount = 0;
+
+        foreach ($groupsToDelete as $gn) {
+            if ($groups[$gn]) {
+                unset($groups[$gn]);
+                $deleteCount++;
+            }
+        }
+
+        // If we've deleted things, save our modified array.
+        if (0 < $deleteCount) {
+            update_option('pr_activity_groups', $groups);
+        }
+        
+        $ajaxResult = array(
+            'success' => true,
+            'deleteCount' => $deleteCount
+        );
+        header( "Content-Type: application/json" );
+        
+        echo json_encode($ajaxResult);
+
+        wp_die();
+    }
+    
+    /**
      * Store group information submitted by form.
      */
     public function ajaxStoreGroup () {
@@ -237,14 +275,32 @@ final class PonoRezAdminConfig {
         $groupName = $_GET['groupname'];
         $activityIds = $_GET['idlist'];
 
-        $groups[$groupName] = $activityIds;
+        // Sanitize the group name. All lower case, numbers and letters only. Must start with a letter.
+        $groupName = preg_replace('/\W+/', '', strtolower($groupName));
+        if ('' === $groupName) {
+            $groupName = 'g' . date('Ymd');
+        }
 
-        update_option('pr_activity_groups', $groups);
+        // If there is no groupName or groupIds, we fail now.
+        if (!$groupName || 0 >= count($activityIds)) {
+            $ajaxResult = array(
+                'success' => false,
+                'message' => sprintf('Cannot add %d activities to group "%s".',
+                                     count($activityIds),
+                                     $groupName)
+            );
+        } else {
+            // Store our new group.
+            $groups[$groupName] = $activityIds;
+        
+            update_option('pr_activity_groups', $groups);
 
-        $ajaxResult = array(
-            'groupName' => $groupName,
-            'activityIds' => $activityIds
-        );
+            $ajaxResult = array(
+                'success' => true,
+                'groupName' => $groupName,
+                'activityIds' => $activityIds
+            );
+        }
         
         header( "Content-Type: application/json" );
         
@@ -263,6 +319,7 @@ final class PonoRezAdminConfig {
         add_action('wp_ajax_pr_store_login', array($this, 'ajaxStoreLogin'));
         add_action('wp_ajax_pr_activity_list', array($this, 'prActivityList'));
         add_action('wp_ajax_pr_store_group', array($this, 'ajaxStoreGroup'));
+        add_action('wp_ajax_pr_delete_groups', array($this, 'ajaxDeleteGroups'));
     }
 }
 
