@@ -210,7 +210,7 @@ EOT;
         
         $rval = '';
         foreach ($result->return as $guestType) {
-            $html = sprintf('%s <select class="guestCount%d" guest-type-id="%d" id="guests_%s_t%d">',
+            $html = sprintf('%s <select class="pr_guest_count guestCount%d" guest-type-id="%d" id="guests_%s_t%d">',
                             $guestType->name,
                             $this->_currentActivity->id,
                             $guestType->id,
@@ -332,6 +332,22 @@ EOT;
         $javaScript = $this->_currentActivityGroup->toJson(true);
 
         return sprintf("<script>\n%s\n</script>", $javaScript);
+    }
+
+    public function prGroupTransportation ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'name' => null,
+            'template' => $this->defaultTemplate
+        ), $atts);
+
+        $rval = '';
+
+        // @TODO Turn this into JavaScript and incorporate it into prGroupShortcode?
+
+        $routes = $this->_currentActivityGroup->routeSelectorMap();
+
+        return sprintf("<pre>\n%s\n</pre>\n", print_r($routes, true));
+
     }
 
     // This shortcode can accept a short template using open and closing tags.
@@ -456,6 +472,7 @@ EOT;
         add_shortcode('pr_total_price',      array($this, 'prTotalPriceShortcode'));
         add_shortcode('pr_policy_checkbox',  array($this, 'prPolicyCheckboxShortcode'));
         add_shortcode('pr_book_now',         array($this, 'prBookNowShortcode'));
+        add_shortcode('pr_trans', array($this, 'prGroupTransportation'));
     }
     
     public function loadScripts () {

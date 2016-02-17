@@ -27,6 +27,7 @@ final class PonoRezGroup {
         $this->groupName = $name;
         $this->supplierId = $activities[0]->supplierId;
         $this->activities = $activities;
+        $this->psc = PR()->providerService();
 
         $this->_buildPricing();
     }
@@ -48,6 +49,7 @@ final class PonoRezGroup {
             'activitydescriptioncontrolids' => $this->activityDescriptionControlIds(),
             'activitynotavailablemessagecontrolids' => $this->activityNotAvailableMessageControlIds(),
             'guesttypecontrolids' => $this->guestTypeControlIds(),
+            'hotelcontrolid' => $this->hotelControlId(),
             'cancellationpolicycontrolid' => $this->cancellationPolicyControlId()
         );
 
@@ -97,6 +99,11 @@ final class PonoRezGroup {
         return sprintf('price_%s', $this->groupName);
     }
 
+    // This actually will try to match the non-group shortcode.
+    public function hotelControlId () {
+        return sprintf('hotel_a%d', $this->activities[0]->id);
+    }
+
     public function activityCheckboxControlIds () {
         $ret = array();
 
@@ -140,4 +147,42 @@ final class PonoRezGroup {
     public function cancellationPolicyControlId () {
         return sprintf('cancellationpolicy_%s', $this->groupName);
     }
+
+    // Building transportation information
+    public function transportationRoutesContainerId () {
+        return sprintf('#transportationRoutesContainer_a%d_%s',
+                       $this->supplierId,
+                       $this->groupName);
+    }
+
+    // In this one, we get the transportation route IDs with SOAP,
+    // then build selector names for them.
+    public function routeSelectorMap () {
+        $serviceCreds = PR()->serviceLogin();
+        //$service = PR()->publicService();
+        $service = PR()->providerService();
+
+        // Note that transportation routes aren't available in the Agency service for some reason.
+        $result = $service->getActivityTransportationOptions(array(
+            'serviceLogin' => $serviceCreds,
+            'supplierId' => $this->supplierId,
+            'activityId' => $this->activities[0]->id,
+            'date' => new SoapVar(date('Y-m-d'), XSD_DATE)
+        ));
+
+        $map = array();
+
+        // @DEBUG
+        printf("<pre>\n%s\n</pre>\n", print_r($result, true));
+
+        
+        foreach ($result->return as $route) {
+            $map[$route->id] = sprintf('#transportationRouteContainer_a%d_%d',
+                                       $this->supplierId,
+                                       $route->id);
+        }
+        
+        return $map;
+    }
+                       
 }
