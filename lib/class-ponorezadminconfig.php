@@ -44,9 +44,9 @@ final class PonoRezAdminConfig {
   </table>
   <button type="button" id="pr_delete_groups" class="button">Delete Groups</button>
 
-            <? endif;
+ <?php endif;
         
-        if ($activities): ?>
+ if (0 < count($activities)): ?>
   <h2>Available Activities</h2>
   <table class="wp-list-table widefat">
     <thead>
