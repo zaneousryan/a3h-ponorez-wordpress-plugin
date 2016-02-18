@@ -14,36 +14,6 @@ final class PonoRezTemplate {
     // Used only for cancellation policy checkboxes.
     protected $_cancellationPolicyCount = 0;
 
-    protected function _transientTag($scName, $id) {
-        $nonAlnum = array('.', '/', '-', '_', ' ');
-        $templateString = str_replace($nonAlnum, '', basename($this->defaultTemplate));
-        
-        return sprintf("%s_i%d_%s",
-                       $scName, $id, $templateString);
-    }
-
-    // Execute a SOAP call, but check for cached version in WP transients first.
-    // $f is a function that should return a string.
-    protected function _withTransient ($scName, $id, $f) {
-        $tag = $this->_transientTag($scName, $id);
-        $timeout = get_option('pr_cache_timeout');
-
-        if (!$timeout) {
-            $timeout = 3600;
-            set_option('pr_cache_timeout', $timeout);
-        }
-
-        $rval = get_transient($tag);
-
-        if (false === $rval) {
-            $rval = $f();
-
-            set_transient($tag, $rval, $timeout);
-        }
-
-        return $rval;
-    }
-    
     public function setCurrentActivity ($activityId) {
         $psc = PR()->providerService();
         $serviceCreds = PR()->serviceLogin();
@@ -121,7 +91,7 @@ final class PonoRezTemplate {
 
         }
 
-        return $rval . $this->_withTransient('pr_activity', $a['id'], function () use ($a) {
+        return $rval . PR()->withTransient('pr_activity', $a['id'] . basename($this->defaultTemplate), function () use ($a) {
             $template_string = file_get_contents($a['template']);
         
             return do_shortcode($template_string);
@@ -347,8 +317,12 @@ EOT;
         // Load our required group functions.
         wp_enqueue_script('pr_group_functions');
         
-        // Now we assemble the JavaScript. @TODO This should be cached.
-        $javaScript = $this->_currentActivityGroup->toJson(true);
+        // Now we assemble the JavaScript.
+        $cag = $this->_currentActivityGroup;
+        
+        $javaScript = PR()->withTransient('pr_group', $cag->groupName, function () use ($cag) {
+            return $cag->toJson(true);
+        });
 
         return sprintf("<script>\n%s\n</script>", $javaScript);
     }

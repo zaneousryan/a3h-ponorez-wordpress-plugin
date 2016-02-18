@@ -129,6 +129,49 @@ final class PonoRez {
         }
         return self::$_instance;
     }
+
+    protected function _transientTag($scName, $id) {
+        $nonAlnum = array('.', '/', '-', '_', ' ');
+        
+        return join('_', array('pr',
+                               str_replace($nonAlnum, '', $scName),
+                               str_replace($nonAlnum, '', $id)));
+    }
+    
+    /**
+     * Cache the output of a function as a transient.
+     *
+     * @param string $scName The name of the shortcode calling the function.
+     * @param string $tag A variable tag used to store the transient.
+     * @param function $f The anonymous function whose output will be cached.
+     */
+    public function withTransient ($scName, $tag, $f) {
+        $transientTag = $this->_transientTag($scName, $tag);
+        $timeout = get_option('pr_cache_timeout');
+
+        if (!$timeout) {
+            $timeout = 3600;
+            set_option('pr_cache_timeout', $timeout);
+        }
+
+        $rval = get_transient($transientTag);
+
+        if (false === $rval) {
+            // Catch exceptions here.
+            // @TODO Better error reporting.
+            try {
+                $rval = $f();
+            }
+            catch (SoapFault $e) {
+                printf("<br>\n<pre>\n%s\n</pre>", $e->getMessage());
+            }
+
+            set_transient($transientTag, $rval, $timeout);
+        }
+
+        return $rval;
+    }
+
 }
 
 /**
