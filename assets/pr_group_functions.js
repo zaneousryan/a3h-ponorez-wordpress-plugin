@@ -264,3 +264,4 @@ function booknow(group) {
   availability_popup();
   return true;
 }
+

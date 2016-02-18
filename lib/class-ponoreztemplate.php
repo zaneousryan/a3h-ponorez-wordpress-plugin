@@ -254,23 +254,42 @@ EOT;
     }
     
     public function prHotelSelectShortcode ($atts = array(), $content = null, $tag) {
-        $a = shortcode_atts(array(
-            'id' => null
-        ), $atts);
-
-        $rval_template = <<<EOT
-<select id="hotel_aAAAA" ></select>
+        $tmp = <<<EOT
+<select class="pr_hotel_select" id="hotel_aAAAA"></select>
 <script type="text/javascript">accommodation_loadHotels({ supplierId: SSSS, activityId:  AAAA, agencyId: 0, hotelSelectSelector: "#hotel_aAAAA" });</script>
 EOT;
+        
+        $a = shortcode_atts(array(
+            'id' => null,
+            'template' => $tmp,
+            'group' => false
+        ), $atts);
+
+        $rval_template = $a['template'];
 
         $rval = str_replace(array('AAAA', 'SSSS'),
                             array($this->_currentActivity->id,
                                   $this->_currentActivity->supplierId),
                             $rval_template);
 
+        if (true == $a['group']) {
+            $rval = str_replace('GGGG', $this->_currentActivityGroup->groupName, $rval);
+        }
+
         return $rval;
     }
 
+    // With groups, the hotel selection has to trigger a lot of stuff.
+    public function prGroupHotelSelectShortcode ($atts = array(), $content = null, $tag) {
+        $atts['template'] = <<<EOT
+<select class="pr_hotel_select" id="hotel_aAAAA" onchange="accommodation_setupTransportationRoutes({supplierId: SSSS, activityId: AAAA, agencyId: 0, hotelId: this.value, routeSelectionContextData: g_GGGG.transportation }); showPriceAndAvailability(g_GGGG);"></select>
+<script type="text/javascript">accommodation_loadHotels({ supplierId: SSSS, activityId:  AAAA, agencyId: 0, hotelSelectSelector: "#hotel_aAAAA" });</script>
+EOT;
+        $atts['group'] = true;
+        
+        return $this->prHotelSelectShortcode($atts, $content, $tag);
+    }
+    
     public function prHotelRoomShortcode ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
             'id' => null
@@ -337,16 +356,54 @@ EOT;
     public function prGroupTransportation ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
             'name' => null,
+            'message' => 'No transportation.',
             'template' => $this->defaultTemplate
         ), $atts);
 
         $rval = '';
 
         // @TODO Turn this into JavaScript and incorporate it into prGroupShortcode?
+        /*
+<div id="transportationRoutesContainer_a7748" style="display: none;">Select a Transportation Route:</p>
+<div><label><input name="transportationroute_a7748" type="radio" value="" />No Transportation; We will be Driving out to the Ranch.</label></div>
+<div id="transportationRouteContainer_a7748_355"><label><input name="transportationroute_a7748" type="radio" value="355" />Transporation (an additional $15.71 pp)</label></div>
+</div>
+        */
+        $map = $this->_currentActivityGroup->transportationMap();
 
-        $routes = $this->_currentActivityGroup->routeSelectorMap();
+        // Why so many substr() calls? Because everything has a # at the beginning.
+        $rval = sprintf('<div id="%s" style="display:none;"><strong>Select a transportation route:</strong><br>',
+                        substr($map['routesContainerSelector'], 1));
 
-        return sprintf("<pre>\n%s\n</pre>\n", print_r($routes, true));
+        $routeNameTag = sprintf('transportationroute_a%d', $this->_currentActivityGroup->activities[0]->id);
+
+        $rval .= sprintf('<div><label><input name="%s" type="radio" value="" /> %s</label></div>',
+                         $routeNameTag,
+                         $a['message']);
+
+        // We might need to use a SOAP call to import more data, such as route names.
+        $serviceCreds = PR()->serviceLogin();
+        $service = PR()->providerService();
+
+        // @TODO These should be cached.
+        foreach ($map['routeSelectorMap'] as $id => $route) {
+            $result = $service->getTransportationRoute(array(
+                'serviceLogin' => $serviceCreds,
+                'supplierId' => $this->_currentActivityGroup->supplierId,
+                'transportationRouteId' => $id
+            ));
+
+
+            $tmp = sprintf('<div id="%s"><label><input name="%s" type="radio" value="%d" /> %s</label></div>',
+                           $route,
+                           $routeNameTag,
+                           $id,
+                           $result->return->name);
+
+            $rval .= "\n" . $tmp;
+        }
+        
+        return $rval . "</div>";
 
     }
 
@@ -473,6 +530,8 @@ EOT;
         add_shortcode('pr_policy_checkbox',  array($this, 'prPolicyCheckboxShortcode'));
         add_shortcode('pr_book_now',         array($this, 'prBookNowShortcode'));
         add_shortcode('pr_trans', array($this, 'prGroupTransportation'));
+        add_shortcode('pr_group_hotel_select',          array($this, 'prGroupHotelSelectShortcode'));
+        add_shortcode('pr_group_transportation',          array($this, 'prGroupTransportation'));
     }
     
     public function loadScripts () {

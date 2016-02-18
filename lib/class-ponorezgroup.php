@@ -16,6 +16,7 @@ final class PonoRezGroup {
 
     // protected elements
     protected $psc;
+    protected $_transportationMap = null;
 
     /**
      * Create an activity group and prepare it for use on the frontend.
@@ -50,8 +51,12 @@ final class PonoRezGroup {
             'activitynotavailablemessagecontrolids' => $this->activityNotAvailableMessageControlIds(),
             'guesttypecontrolids' => $this->guestTypeControlIds(),
             'hotelcontrolid' => $this->hotelControlId(),
-            'cancellationpolicycontrolid' => $this->cancellationPolicyControlId()
+            'cancellationpolicycontrolid' => $this->cancellationPolicyControlId(),
+            'transportation' => $this->transportationMap()
         );
+
+        // Now we build transportation information.
+        
 
         // Full JS encoding includes setting it to a variable.
         if (true == $asVar) {
@@ -89,6 +94,53 @@ final class PonoRezGroup {
 
         $this->guestTypeIds = array_unique($gtids);
         $this->activityPrices = $pricing;
+    }
+
+    public function transportationMap () {
+        if (null == $this->_transportationMap) {
+            $this->_transportationMap = $this->_buildTransportationMap();
+        }
+
+        return $this->_transportationMap;
+    }
+    
+    // Collect transportation information from SOAP.
+    protected function _buildTransportationMap () {
+        $serviceCreds = PR()->serviceLogin();
+        $service = PR()->providerService();
+
+        // Note that transportation routes aren't available in the Agency service for some reason.
+        $result = $service->getActivityTransportationOptions(array(
+            'serviceLogin' => $serviceCreds,
+            'supplierId' => $this->supplierId,
+            'activityId' => $this->activities[0]->id,
+            'date' => new SoapVar(date('Y-m-28'), XSD_DATE)
+        ));
+
+        $map = array();
+
+        // This part is tricky. 'out_transportationOptions' will
+        // contain a number of TransportationOption objects. Each of
+        // those has a member, 'idCode', which will have a code that
+        // is not entirely a transportation ID. My samples showed
+        // 'A:801', so the assumption is that it will be a letter,
+        // colon, and number. The number is used to build JavaScript
+        // code for the PR functions to use.
+        foreach ($result->out_transportationOptions as $option) {
+            $key = substr($option->idCode, strpos($option->idCode, ':') + 1);
+            
+            $map[$key] = sprintf('#transportationRouteContainer_a%d_%d',
+                                 $this->activities[0]->id, $key);
+        }
+
+        // The map needs contain the following elements.
+        //  routesContainerSelector: "#transportationRoutesContainer_a7648",
+        //  routeSelectorMap: 
+        $rval['routesContainerSelector'] = sprintf('#transportationRoutesContainer_a%d',
+                                                   $this->activities[0]->id);
+        $rval['routeSelectorMap'] = $map;
+        
+        return $rval;
     }
 
     public function dateControlId () {
@@ -155,34 +207,10 @@ final class PonoRezGroup {
                        $this->groupName);
     }
 
+    
     // In this one, we get the transportation route IDs with SOAP,
     // then build selector names for them.
     public function routeSelectorMap () {
-        $serviceCreds = PR()->serviceLogin();
-        //$service = PR()->publicService();
-        $service = PR()->providerService();
-
-        // Note that transportation routes aren't available in the Agency service for some reason.
-        $result = $service->getActivityTransportationOptions(array(
-            'serviceLogin' => $serviceCreds,
-            'supplierId' => $this->supplierId,
-            'activityId' => $this->activities[0]->id,
-            'date' => new SoapVar(date('Y-m-d'), XSD_DATE)
-        ));
-
-        $map = array();
-
-        // @DEBUG
-        printf("<pre>\n%s\n</pre>\n", print_r($result, true));
-
-        
-        foreach ($result->return as $route) {
-            $map[$route->id] = sprintf('#transportationRouteContainer_a%d_%d',
-                                       $this->supplierId,
-                                       $route->id);
-        }
-        
-        return $map;
     }
                        
 }
