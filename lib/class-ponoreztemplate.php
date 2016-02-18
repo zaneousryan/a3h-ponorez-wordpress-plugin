@@ -514,17 +514,17 @@ EOT;
         // both of those, so we'll use the built-in. That means we
         // need our own version of calendar_js.jsp that only includes
         // the custom functions. It is included with this plugin.
-        wp_enqueue_script('pr_accommodation', plugins_url('assets/pr_accommodation.js', dirname(__FILE__)),
+        wp_enqueue_script('pr_accommodation', plugins_url('assets/pr_accommodation.min.js', dirname(__FILE__)),
                           array('jquery'));
-        wp_enqueue_script('pr_calendar', plugins_url('assets/pr_calendar.js', dirname(__FILE__)),
+        wp_enqueue_script('pr_calendar', plugins_url('assets/pr_calendar.min.js', dirname(__FILE__)),
                           array('jquery', 'jquery-ui-core', 'jquery-ui-datepicker', 'pr_accommodation'));
-        wp_enqueue_script('pr_functions', plugins_url('assets/pr_functions.js', dirname(__FILE__)),
+        wp_enqueue_script('pr_functions', plugins_url('assets/pr_functions.min.js', dirname(__FILE__)),
                           array('jquery', 'pr_calendar'), null);
-        wp_enqueue_script('pr_document', plugins_url('assets/pr_document.js', dirname(__FILE__)),
+        wp_enqueue_script('pr_document', plugins_url('assets/pr_document.min.js', dirname(__FILE__)),
                           array('jquery', 'pr_functions'));
 
         // Not automatically loaded.
-        wp_register_script('pr_group_functions', plugins_url('assets/pr_group_functions.js', dirname(__FILE__)),
+        wp_register_script('pr_group_functions', plugins_url('assets/pr_group_functions.min.js', dirname(__FILE__)),
                           array('jquery', 'pr_functions'), null);
 
         // Add calendar-specific stylesheets. Note that this can be set by options.
