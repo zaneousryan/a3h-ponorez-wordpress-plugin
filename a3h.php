@@ -49,12 +49,6 @@ final class PonoRez {
     protected static $_instance = null;
 
     /**
-     * @var array Configuration values
-     */
-    protected $_config = null;
-
-
-    /**
      * @var SoapClient An instance of the Public Service WSDL
      */
     protected $_publicService = null;
@@ -69,11 +63,6 @@ final class PonoRez {
      */
     protected $_wholesalerService = null;
     
-    public function __construct () {
-        // Load private configuration.
-        $this->_config = json_decode(file_get_contents(realpath(dirname(__FILE__) . "/private.json")));
-    }
-
     /**
      * @return SoapClient A public service soap client
      * @TODO Check for exceptions.
@@ -115,10 +104,6 @@ final class PonoRez {
                      "password" => get_option('pr_password'));
     }
 
-    public function config () {
-        return $this->_config;
-    }
-    
     /**
      * @return PonoRez - Singleton instance
      * @see PR()
