@@ -311,11 +311,17 @@ final class PonoRezAdminConfig {
     }
 
     public function init () {
+        if (is_ajax() || !is_admin()) {
+            return;
+        }
+
+        wp_enqueue_script('pr_admin', plugins_url('assets/pr_admin.min.js', dirname(__FILE__)), array('jquery'));
+
         add_action('admin_menu', array($this, 'addSettingsMenu'));
         add_action('admin_init', array($this, 'registerSettings'));
 
+        
         // Setup JavaScript
-        //wp_enqueue_script( 'jquery-form' );
         add_action('wp_ajax_pr_store_login', array($this, 'ajaxStoreLogin'));
         add_action('wp_ajax_pr_activity_list', array($this, 'prActivityList'));
         add_action('wp_ajax_pr_store_group', array($this, 'ajaxStoreGroup'));

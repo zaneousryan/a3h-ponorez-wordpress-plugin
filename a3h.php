@@ -203,12 +203,10 @@ function pr_key_in_array($value, $array) {
 function pr_bootstrap_admin () {
     require_once('lib/class-ponorezadminconfig.php');
 
-    wp_enqueue_script('pr_admin', plugins_url('assets/pr_admin.min.js', __FILE__), array('jquery'));
-    
     $prc = new PonoRezAdminConfig ();
     $prc->init();
 }
-add_action('admin_init', 'pr_bootstrap_admin');
+add_action('init', 'pr_bootstrap_admin');
 
 /**
  * Bootstrap function for public pages.
