@@ -115,7 +115,7 @@ final class PonoRezGroup {
             'supplierId' => $this->supplierId,
             'activityId' => $this->activities[0]->id,
             // @TODO I can't get transportation options for the current day for some reason.
-            'date' => new SoapVar(date('Y-m-28'), XSD_DATE)
+            'date' => new SoapVar(date('Y-m-d', strtotime('+2 days')), XSD_DATE)
         ));
 
         $map = array();
