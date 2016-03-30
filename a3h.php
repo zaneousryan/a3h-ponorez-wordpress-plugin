@@ -208,7 +208,7 @@ function pr_bootstrap_admin () {
     $prc = new PonoRezAdminConfig ();
     $prc->init();
 }
-add_action('init', 'pr_bootstrap_admin');
+add_action('admin_init', 'pr_bootstrap_admin');
 
 /**
  * Bootstrap function for public pages.
