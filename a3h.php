@@ -187,6 +187,7 @@ function pr_key_in_array($value, $array) {
  */
 function pr_bootstrap_admin () {
     require_once('lib/class-ponorezadminconfig.php');
+    require_once('lib/class-ponorezactivitylist.php');
 
     $prc = new PonoRezAdminConfig ();
     $prc->init();

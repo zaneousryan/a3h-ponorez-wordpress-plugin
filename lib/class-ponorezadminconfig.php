@@ -13,8 +13,9 @@ final class PonoRezAdminConfig {
         
         // Look up the info if we have the login.
         if ($serviceCreds['username']) {
-            $activities = $psc->getActivities(array('serviceLogin' => $serviceCreds))
-                        ->return;
+            $activityList = new PonoRezActivityList ($psc, $serviceCreds);
+
+            $activities = $activityList->displayItems(array('filter' => 'valley movie sites'));
         }
 
         // List our groups.
@@ -47,7 +48,11 @@ final class PonoRezAdminConfig {
  <?php endif;
         
  if (0 < count($activities)): ?>
-  <h2>Available Activities</h2>
+  <h2 style="float:left;width:40%">Available Activities</h2>
+  <div style="float:right;width:40%;">
+    Page <?php echo $activityList->currentPage ?> of <?php echo $activityList->maxPage ?>
+    <input style="width:50%" type="text" id="activity-filter" placeholder="Filter list" />
+  </div>
   <table class="wp-list-table widefat">
     <thead>
       <tr>
