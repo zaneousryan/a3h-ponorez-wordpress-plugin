@@ -55,9 +55,6 @@ final class PonoRezGroup {
             'transportation' => $this->transportationMap()
         );
 
-        // Now we build transportation information.
-        
-
         // Full JS encoding includes setting it to a variable.
         if (true == $asVar) {
             return sprintf('var g_%s = %s;', $this->groupName, json_encode($rawStruct));
@@ -207,7 +204,6 @@ final class PonoRezGroup {
                        $this->supplierId,
                        $this->groupName);
     }
-
     
     // In this one, we get the transportation route IDs with SOAP,
     // then build selector names for them.
