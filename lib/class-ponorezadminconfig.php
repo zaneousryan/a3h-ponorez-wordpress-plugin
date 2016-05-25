@@ -10,12 +10,15 @@ final class PonoRezAdminConfig {
         $serviceCreds = PR()->serviceLogin();
         $activities = array();
         $groups = get_option('pr_activity_groups');
-        
+
         // Look up the info if we have the login.
         if ($serviceCreds['username']) {
             $activityList = new PonoRezActivityList ($psc, $serviceCreds);
 
-            $activities = $activityList->displayItems(array('filter' => 'valley movie sites'));
+            $activities = $activityList->displayItems(array('filter' => @$_GET['pra_filter'],
+                                                            'page'   => @$_GET['pra_page'],
+                                                            'count'  => @$_GET['pra_count']));
+
         }
 
         // List our groups.
@@ -51,7 +54,8 @@ final class PonoRezAdminConfig {
   <h2 style="float:left;width:40%">Available Activities</h2>
   <div style="float:right;width:40%;">
     Page <?php echo $activityList->currentPage ?> of <?php echo $activityList->maxPage ?>
-    <input style="width:50%" type="text" id="activity-filter" placeholder="Filter list" />
+    <input style="width:50%" type="text" id="pra_activity_filter" placeholder="Filter list" />
+    <button id="pra_filter_go">Go</button>
   </div>
   <table class="wp-list-table widefat">
     <thead>
@@ -331,7 +335,8 @@ final class PonoRezAdminConfig {
         }
 
         // Non-Ajax admin stuff.
-        wp_enqueue_script('pr_admin', plugins_url('assets/pr_admin.min.js', dirname(__FILE__)), array('jquery'));
+        //wp_enqueue_script('pr_admin', plugins_url('assets/pr_admin.min.js', dirname(__FILE__)), array('jquery'));
+        wp_enqueue_script('pr_admin', plugins_url('assets/original/pr_admin.js', dirname(__FILE__)), array('jquery'));
         add_action('admin_menu', array($this, 'addSettingsMenu'));
         add_action('admin_init', array($this, 'registerSettings'));
     }

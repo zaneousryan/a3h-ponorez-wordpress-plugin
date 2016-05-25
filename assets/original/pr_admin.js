@@ -53,9 +53,16 @@ function prAddGroup () {
 }
 
 // Update the list of activities and groups.
-function prUpdateActivityList () {
-  var formData = { action : 'pr_activity_list' };
+function prUpdateActivityList (filter) {
+  if (!filter)
+    filter = new Object();
+  
+  var formData = filter;
 
+  formData.action = 'pr_activity_list';
+
+  console.log('Executing action: ' + JSON.stringify(formData));
+  
   jQuery.get(ajaxurl, formData, function (result) {
     jQuery('#prActivityTable').html(result);
   });        
@@ -78,6 +85,15 @@ jQuery(document).ready(function () {
   // Bind our group delete button.
   jQuery(document).on('click', '#pr_delete_groups', function (event) {
     prDeleteGroups();
+  });
+
+  // Bind our filter and pagination buttons/links
+
+  jQuery(document).on('click', '#pra_filter_go', function (event) {
+    var filter = jQuery('#pra_activity_filter').val();
+    var args = { pra_filter : filter };
+
+    prUpdateActivityList(args);
   });
   
 });

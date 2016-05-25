@@ -2,7 +2,10 @@
 /**
  * Handle huge activity lists
  *
- * This helper class does SOAP calls to fetch the activity list, then provides methods to filter by search term, perform pagination, and other useful tools. It should also do caching, because the activity list can be really huge.
+ * This helper class does SOAP calls to fetch the activity list, then
+ * provides methods to filter by search term, perform pagination, and
+ * other useful tools. It should also do caching, because the activity
+ * list can be really huge.
  *
  * @package PonoRezActivityList
  * @version 1.0
@@ -19,6 +22,9 @@ final class PonoRezActivityList {
     public $currentPage = 0;
     public $maxPage = 0;
 
+    /**
+     * Create an activity list object
+     */
     public function __construct($psc, $serviceCreds) {
         $this->psc = $psc;
         $this->_serviceCreds = $serviceCreds;
@@ -74,13 +80,14 @@ final class PonoRezActivityList {
                                                       $a->island,
                                                       $a->description,
                                                       $a->notes,
+                                                      $a->times,
                                                       $a->directions)));
 
             // For each keyword, check the srchText variable. If not
             // found, do a 'continue 2' to break out of this loop and
             // on to the next activity.
             foreach ($keywords as $kw) {
-                if (FALSE == strpos($srchText, $kw)) {
+                if (FALSE === strpos($srchText, $kw)) {
                     continue 2;
                 }
             }
@@ -97,7 +104,7 @@ final class PonoRezActivityList {
      * Returns a number of items per page.
      */
     private function _getPageNumber (&$list, $pageNo, $itemsPerPage = 20) {
-        $startIdx = $pageNo * $itemsPerPage + 1;
+        $startIdx = ($pageNo - 1) * $itemsPerPage;
 
         return array_slice($list, $startIdx, $itemsPerPage);
     }
