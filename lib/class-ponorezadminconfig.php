@@ -47,6 +47,7 @@ final class PonoRezAdminConfig {
   </table>
   <button type="button" id="pr_delete_groups" class="button">Delete Groups</button>
   <br>
+  <?php endif; ?>
   <h2 style="float:left;width:40%">Available Activities</h2>
   <div style="float:right;width:40%;">
     <a id="pra_prev_page" data-page="<?php echo $activityList->prevPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">&lt; Prev</a>
@@ -55,8 +56,7 @@ final class PonoRezAdminConfig {
     <input style="width:50%" type="text" id="pra_activity_filter" placeholder="Filter list" value="<?php echo @$_GET['pra_filter']?>" />
     <button id="pra_filter_go">Go</button>
   </div>
- <?php endif;
- if (0 < count($activities)): ?>
+  <?php if (0 < count($activities)): ?>
   <table class="wp-list-table widefat">
     <thead>
       <tr>
