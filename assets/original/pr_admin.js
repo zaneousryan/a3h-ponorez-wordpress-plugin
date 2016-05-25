@@ -61,8 +61,7 @@ function prUpdateActivityList (filter) {
 
   formData.action = 'pr_activity_list';
 
-  console.log('Executing action: ' + JSON.stringify(formData));
-  
+  //console.log('Executing action: ' + JSON.stringify(formData));
   jQuery.get(ajaxurl, formData, function (result) {
     jQuery('#prActivityTable').html(result);
   });        
@@ -95,5 +94,22 @@ jQuery(document).ready(function () {
 
     prUpdateActivityList(args);
   });
-  
+
+  jQuery(document).on('click', '#pra_prev_page', function (event) {
+    var filter = jQuery('#pra_activity_filter').val();
+    var args = { pra_filter : filter,
+                 pra_page : jQuery('#pra_prev_page').attr('data-page'),
+                 pra_count : jQuery('#pra_prev_page').attr('data-count') };
+
+    prUpdateActivityList(args);
+  });
+
+  jQuery(document).on('click', '#pra_next_page', function (event) {
+    var filter = jQuery('#pra_activity_filter').val();
+    var args = { pra_filter : filter,
+                 pra_page : jQuery('#pra_next_page').attr('data-page'),
+                 pra_count : jQuery('#pra_next_page').attr('data-count') };
+
+    prUpdateActivityList(args);
+  });
 });

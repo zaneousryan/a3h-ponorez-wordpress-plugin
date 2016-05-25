@@ -20,6 +20,7 @@ final class PonoRezActivityList {
     // Public variables used to hold good information.
     public $totalCount = 0;
     public $currentPage = 0;
+    public $resultsPerPage = 20;
     public $maxPage = 0;
 
     /**
@@ -30,6 +31,25 @@ final class PonoRezActivityList {
         $this->_serviceCreds = $serviceCreds;
     }
 
+    public function prevPage () {
+        $prev = $this->currentPage - 1;
+
+        if ($prev <= 0)
+            $prev = 1;
+
+        return $prev;
+    }
+
+    public function nextPage () {
+        $next = $this->currentPage + 1;
+
+        if ($next > $this->maxPage)
+            $next = $this->maxPage;
+
+        return $next;
+    }
+              
+    
     /**
      * Get a list of items to display based on options
      *
@@ -45,7 +65,7 @@ final class PonoRezActivityList {
         if (!isset($options['count']))
             $options['count'] = 20;
 
-        if (isset($options['filter'])) {
+        if (isset($options['filter']) && 0 < strlen($options['filter'])) {
             $aList = $this->_filterByKeyword($options['filter']);
         }
         else {
@@ -55,6 +75,7 @@ final class PonoRezActivityList {
         // Internal records are good for us.
         $this->totalCount = count($aList);
         $this->currentPage = $options['page'];
+        $this->resultsPerPage = $options['count'];
         $this->maxPage = round(($this->totalCount / $options['count']) + 0.5, 0);
 
         return $this->_getPageNumber($aList, $options['page'], $options['count']);

@@ -18,7 +18,6 @@ final class PonoRezAdminConfig {
             $activities = $activityList->displayItems(array('filter' => @$_GET['pra_filter'],
                                                             'page'   => @$_GET['pra_page'],
                                                             'count'  => @$_GET['pra_count']));
-
         }
 
         // List our groups.
@@ -47,16 +46,17 @@ final class PonoRezAdminConfig {
     </tbody>
   </table>
   <button type="button" id="pr_delete_groups" class="button">Delete Groups</button>
-
- <?php endif;
-        
- if (0 < count($activities)): ?>
+  <br>
   <h2 style="float:left;width:40%">Available Activities</h2>
   <div style="float:right;width:40%;">
-    Page <?php echo $activityList->currentPage ?> of <?php echo $activityList->maxPage ?>
-    <input style="width:50%" type="text" id="pra_activity_filter" placeholder="Filter list" />
+    <a id="pra_prev_page" data-page="<?php echo $activityList->prevPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">&lt; Prev</a>
+    |&nbsp;Page <?php echo $activityList->currentPage ?> of <?php echo $activityList->maxPage ?>&nbsp|
+    <a id="pra_next_page" data-page="<?php echo $activityList->nextPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">Next &gt;</a>
+    <input style="width:50%" type="text" id="pra_activity_filter" placeholder="Filter list" value="<?php echo @$_GET['pra_filter']?>" />
     <button id="pra_filter_go">Go</button>
   </div>
+ <?php endif;
+ if (0 < count($activities)): ?>
   <table class="wp-list-table widefat">
     <thead>
       <tr>
@@ -94,7 +94,8 @@ final class PonoRezAdminConfig {
   <button type="button" id="pr_add_group" class="button button-primary">Add Group</button>
   <button type="button" id="pr_refresh" class="button">Refresh List</button>
   <?php else: ?>
-  <p>Enter login information above to see your activity list.</p>
+  <br>
+<p><em>No activities found.</em></p>
   <?php endif; 
 
         wp_die();                                            
