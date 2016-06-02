@@ -153,6 +153,43 @@ EOT;
         return $rval . '</a>';
     }
 
+    /**
+     * Manually specify the guest ID and other info.
+     * @TODO Test this
+     */
+    public function prGuestShortcode ($atts = array()) {
+        $a = shortcode_atts(array(
+            'id' => 0,
+            'name' => '',
+            'min' => 0,
+            'max' => 20
+        ), $atts);
+        $html = '';
+
+        // Build our HTML id tag. This differs if we are in a group setting.
+        $htmlIdTagPart = sprintf('a%d', $this->_currentActivity->id);
+        if (null != $this->_currentActivityGroup) {
+            $htmlIdTagPart = $this->_currentActivityGroup->groupName;
+        }
+        
+        // This shortcode doesn't use SOAP. That makes it fast but
+        // also potentially a flaming disaster.
+        $html .= sprintf('%s <select class="pr_guest_count guestCount%d" guest-type-id="%d" id="guests_%s_t%d">',
+                         $a['name'],
+                         $this->_currentActivity->id,
+                         $a['id'],
+                         $htmlIdTagPart,
+                         $a['id']);
+        
+        for ($i = $a['min']; $i <= $a['max']; $i++) {
+            $html .= sprintf('<option value="%d">%d</option>', $i, $i);
+        }
+            
+        $html .= "</select>";
+
+        return $html;
+    }
+    
     public function prGuestTypeListShortcode($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
             'id' => null,
@@ -527,6 +564,7 @@ EOT;
         add_shortcode('pr_hotel_room',           array($this, 'prHotelRoomShortcode'));
         add_shortcode('pr_check_availability',   array($this, 'prCheckAvailabilityShortcode'));
         add_shortcode('pr_load_activity',        array($this, 'prLoadActivityShortcode'));
+        add_shortcode('pr_guest',        array($this, 'prGuestShortcode'));
 
         // Group shortcodes. Some of the single activity codes work with this, too.
         add_shortcode('pr_group',                array($this, 'prGroupShortcode'));

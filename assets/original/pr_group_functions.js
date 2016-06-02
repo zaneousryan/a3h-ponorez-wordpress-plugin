@@ -102,27 +102,43 @@ function purchase(data) {
 function showCalendar(group) {
   var minavailability = { guests: {} };
   var failure = false;
+  var totalGuestCount = 0;
+  
   jQuery.each(group.guesttypeids, function(key, value) {
     if (failure) return;
     var guesttypeid = value;
-    var guestscount = getGuestsCount(group, guesttypeid, true);
+    var guestscount = getGuestsCount(group, guesttypeid, false);
 
-    if (guestscount == null) {
-      failure = true;
-    } else {
+    if (null != guestscount) {
+      totalGuestCount += guestscount;
       minavailability.guests[guesttypeid] = guestscount;
     }
   });
+
+  // Debug
+  //console.log('Guest availability: ' + JSON.stringify(minavailability));
   
-  if (!failure) {
+  if (0 == totalGuestCount) {
+    alert('Please select guest count for all guest types');
+    //return null;
+  }
+  else {
     // Show calendar (only if all guest type counts are correct)
     calendar(group.activityids, group.datecontrolid, false, minavailability, new Date().getDate()<25?1:2);
   }
 }
 
 function formatMoney(n) {
-    var c = 2, d = ".", t = ",", s = n < 0 ? "-" : "", i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
-    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+  var c = 2,
+      d = ".",
+      t = ",",
+      s = n < 0 ? "-" : "",
+      i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+      j = (j = i.length) > 3 ? j % 3 : 0;
+  
+  return s + (j ? i.substr(0, j) + t : "")
+    + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t)
+    + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 }
 
 function showPriceAndAvailability(group) {
