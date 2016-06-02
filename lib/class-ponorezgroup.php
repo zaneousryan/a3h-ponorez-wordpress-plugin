@@ -124,11 +124,13 @@ final class PonoRezGroup {
         // 'A:801', so the assumption is that it will be a letter,
         // colon, and number. The number is used to build JavaScript
         // code for the PR functions to use.
-        foreach ($result->out_transportationOptions as $option) {
-            $key = substr($option->idCode, strpos($option->idCode, ':') + 1);
+        if (isset($result->out_transportationOptions)) {
+            foreach ($result->out_transportationOptions as $option) {
+                $key = substr($option->idCode, strpos($option->idCode, ':') + 1);
             
-            $map[$key] = sprintf('#transportationRouteContainer_a%d_%d',
-                                 $this->activities[0]->id, $key);
+                $map[$key] = sprintf('#transportationRouteContainer_a%d_%d',
+                                     $this->activities[0]->id, $key);
+            }
         }
 
         // The map needs contain the following elements.
