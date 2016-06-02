@@ -155,8 +155,10 @@ EOT;
 
     /**
      * Manually specify the guest ID and other info.
-     * @TODO Test this
-     */
+     *
+     * This shortcode automatically prints out an interface for each
+     * guest type. It tries to get smart about guest type maximums to
+     * get around limitations in the SOAP interface. */
     public function prGuestShortcode ($atts = array()) {
         $a = shortcode_atts(array(
             'id' => 0,
@@ -249,7 +251,9 @@ EOT;
         return $rval;
     }
 
-    // @TODO For this to be done automatically, we might need to configure it in the DB.
+    /* This shortcode automatically prints out an interface for each
+     * guest type. It tries to get smart about guest type maximums to
+     * get around limitations in the SOAP interface. */
     public function prGuestTypeShortcode ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
             'id' => null,
@@ -437,7 +441,14 @@ EOT;
 
     }
 
-    // This shortcode can accept a short template using open and closing tags.
+    /**
+     * Display a list of checkboxes for multiple activities in a group
+     *
+     * This is typically used to display multiple times for one
+     * "activity". In PonoRez, multiple times are implemented as
+     * multiple activities which are then grouped together external to
+     * the PonoRez system.
+     */
     public function prGroupTimesShortcode ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
             'notavailable' => '(Not Available)',
