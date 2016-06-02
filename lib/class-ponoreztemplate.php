@@ -185,14 +185,21 @@ EOT;
         
         $rval = '';
         foreach ($result->return as $guestType) {
-            $html = sprintf('%s <select class="pr_guest_count guestCount%d" guest-type-id="%d" id="guests_%s_t%d">',
+            // If no guest types are available, then default to the 'max' setting.
+            $max = (0 >= $guestType->availabilityPerGuest) ? $a['max'] : $guestType->availabilityPerGuest;
+            $html = '';
+
+            // Debug
+            //$html .= sprintf("<!-- aPG: %d  max: %d -->\n", $guestType->availabilityPerGuest, $max);
+            
+            $html .= sprintf('%s <select class="pr_guest_count guestCount%d" guest-type-id="%d" id="guests_%s_t%d">',
                             $guestType->name,
                             $this->_currentActivity->id,
                             $guestType->id,
                             $htmlIdTagPart,
                             $guestType->id);
-            
-            for ($i = 0; $i <= $guestType->availabilityPerGuest; $i++) {
+
+            for ($i = 0; $i <= $max; $i++) {
                 $html .= sprintf('<option value="%d">%d</option>', $i, $i);
             }
             
@@ -213,7 +220,9 @@ EOT;
             'max' => 20
         ), $atts);
 
-        $rval = sprintf('<select class="guestCount%d" guest-type-id="%d" id="guests_a%d_t%d">',
+        $rval = '';
+
+        $rval .= sprintf('<select class="guestCount%d" guest-type-id="%d" id="guests_a%d_t%d">',
                         $this->_currentActivity->id,
                         $a['guest-type-id'],
                         $this->_currentActivity->id,
