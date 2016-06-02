@@ -50,9 +50,9 @@ final class PonoRezAdminConfig {
   <?php endif; ?>
   <h2 style="float:left;width:40%">Available Activities</h2>
   <div style="float:right;width:40%;">
-    <a id="pra_prev_page" data-page="<?php echo $activityList->prevPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">&lt; Prev</a>
+    <a href="#" id="pra_prev_page" data-page="<?php echo $activityList->prevPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">&lt; Prev</a>
     |&nbsp;Page <?php echo $activityList->currentPage ?> of <?php echo $activityList->maxPage ?>&nbsp|
-    <a id="pra_next_page" data-page="<?php echo $activityList->nextPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">Next &gt;</a>
+    <a href="#" id="pra_next_page" data-page="<?php echo $activityList->nextPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">Next &gt;</a>
     <input style="width:50%" type="text" id="pra_activity_filter" placeholder="Filter list" value="<?php echo @$_GET['pra_filter']?>" />
     <button id="pra_filter_go">Go</button>
   </div>

@@ -101,6 +101,7 @@ jQuery(document).ready(function () {
                  pra_page : jQuery('#pra_prev_page').attr('data-page'),
                  pra_count : jQuery('#pra_prev_page').attr('data-count') };
 
+    event.preventDefault();
     prUpdateActivityList(args);
   });
 
@@ -110,6 +111,7 @@ jQuery(document).ready(function () {
                  pra_page : jQuery('#pra_next_page').attr('data-page'),
                  pra_count : jQuery('#pra_next_page').attr('data-count') };
 
+    event.preventDefault();
     prUpdateActivityList(args);
   });
 });
