@@ -103,7 +103,10 @@ final class PonoRezTemplate {
             'id' => null
         ), $atts);
 
-        return $this->_currentActivity->name;
+        if (isset($this->_currentActivity))
+            return $this->_currentActivity->name;
+
+        return '';
     }
 
     public function prActivityDescriptionShortcode ($atts = array(), $content = null, $tag) {
@@ -152,7 +155,9 @@ EOT;
 
     public function prGuestTypeListShortcode($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
-            'id' => null
+            'id' => null,
+            'min' => 0,
+            'max' => 20
         ), $atts);
 
         try {
@@ -355,26 +360,31 @@ EOT;
                          $routeNameTag,
                          $a['message']);
 
-        // We might need to use a SOAP call to import more data, such as route names.
-        $serviceCreds = PR()->serviceLogin();
-        $service = PR()->providerService();
+        try {
+            // We might need to use a SOAP call to import more data, such as route names.
+            $serviceCreds = PR()->serviceLogin();
+            $service = PR()->providerService();
 
-        // @TODO These should be cached.
-        foreach ($map['routeSelectorMap'] as $id => $route) {
-            $result = $service->getTransportationRoute(array(
-                'serviceLogin' => $serviceCreds,
-                'supplierId' => $this->_currentActivityGroup->supplierId,
-                'transportationRouteId' => $id
-            ));
+            // @TODO These should be cached.
+            foreach ($map['routeSelectorMap'] as $id => $route) {
+                $result = $service->getTransportationRoute(array(
+                    'serviceLogin' => $serviceCreds,
+                    'supplierId' => $this->_currentActivityGroup->supplierId,
+                    'transportationRouteId' => $id
+                ));
 
 
-            $tmp = sprintf('<div id="%s"><label><input name="%s" type="radio" value="%d" /> %s</label></div>',
-                           $route,
-                           $routeNameTag,
-                           $id,
-                           $result->return->name);
+                $tmp = sprintf('<div id="%s"><label><input name="%s" type="radio" value="%d" /> %s</label></div>',
+                               $route,
+                               $routeNameTag,
+                               $id,
+                               $result->return->name);
 
-            $rval .= "\n" . $tmp;
+                $rval .= "\n" . $tmp;
+            }
+        }
+        catch (Exception $e) {
+            $rval = sprintf("<pre>%s\n</pre>\n", $e->getMessage());
         }
         
         return $rval . "</div>";
@@ -410,6 +420,9 @@ EOT;
         // Activity data.
         $cbIds = $g->activityCheckboxControlIds();
         $naIds = $g->activityNotAvailableMessageControlIds();
+
+        // Debug
+        //$rval = sprintf("<PRE>\n%s\n</PRE>\n", print_r($g->activities, true));
         
         foreach ($g->activities as $activity) {
             $tmp = str_replace(
@@ -419,7 +432,10 @@ EOT;
                         $g->groupName, $g->groupName),
                 $template
             );
-            $tmp = str_replace('<times>', $activity->times, $tmp);
+
+            $times = ('' == $activity->times) ? $activity->name : $activity->times;
+            
+            $tmp = str_replace('<times>', $times, $tmp);
             $tmp = str_replace('<not available>', sprintf($naTemplate, $naIds[$activity->id], $a['notavailable']), $tmp);
             $rval .= $tmp;
         }
