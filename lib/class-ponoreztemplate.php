@@ -511,26 +511,26 @@ EOT;
     
     public function registerShortcodes() {
         // Single activity shortcodes.
-        add_shortcode('pr_activity',              array($this, 'prActivityShortcode'));
-        add_shortcode('pr_activity_name',         array($this, 'prActivityNameShortcode'));
-        add_shortcode('pr_activity_description',  array($this, 'prActivityDescriptionShortcode'));
-        add_shortcode('pr_datepicker',            array($this, 'prDatepickerShortcode'));
-        add_shortcode('pr_guest_type_list',       array($this, 'prGuestTypeListShortcode'));
-        add_shortcode('pr_guest_type',            array($this, 'prGuestTypeShortcode'));
-        add_shortcode('pr_hotel_select',          array($this, 'prHotelSelectShortcode'));
-        add_shortcode('pr_hotel_room',            array($this, 'prHotelRoomShortcode'));
-        add_shortcode('pr_check_availability',    array($this, 'prCheckAvailabilityShortcode'));
-        add_shortcode('pr_load_activity',         array($this, 'prLoadActivityShortcode'));
+        add_shortcode('pr_activity',             array($this, 'prActivityShortcode'));
+        add_shortcode('pr_activity_name',        array($this, 'prActivityNameShortcode'));
+        add_shortcode('pr_activity_description', array($this, 'prActivityDescriptionShortcode'));
+        add_shortcode('pr_datepicker',           array($this, 'prDatepickerShortcode'));
+        add_shortcode('pr_guest_type_list',      array($this, 'prGuestTypeListShortcode'));
+        add_shortcode('pr_guest_type',           array($this, 'prGuestTypeShortcode'));
+        add_shortcode('pr_hotel_select',         array($this, 'prHotelSelectShortcode'));
+        add_shortcode('pr_hotel_room',           array($this, 'prHotelRoomShortcode'));
+        add_shortcode('pr_check_availability',   array($this, 'prCheckAvailabilityShortcode'));
+        add_shortcode('pr_load_activity',        array($this, 'prLoadActivityShortcode'));
 
-        // Group shortcodes.
-        add_shortcode('pr_group',            array($this, 'prGroupShortcode'));
-        add_shortcode('pr_group_times',      array($this, 'prGroupTimesShortcode'));
-        add_shortcode('pr_total_price',      array($this, 'prTotalPriceShortcode'));
-        add_shortcode('pr_policy_checkbox',  array($this, 'prPolicyCheckboxShortcode'));
-        add_shortcode('pr_book_now',         array($this, 'prBookNowShortcode'));
-        add_shortcode('pr_trans', array($this, 'prGroupTransportation'));
-        add_shortcode('pr_group_hotel_select',          array($this, 'prGroupHotelSelectShortcode'));
-        add_shortcode('pr_group_transportation',          array($this, 'prGroupTransportation'));
+        // Group shortcodes. Some of the single activity codes work with this, too.
+        add_shortcode('pr_group',                array($this, 'prGroupShortcode'));
+        add_shortcode('pr_group_times',          array($this, 'prGroupTimesShortcode'));
+        add_shortcode('pr_total_price',          array($this, 'prTotalPriceShortcode'));
+        add_shortcode('pr_policy_checkbox',      array($this, 'prPolicyCheckboxShortcode'));
+        add_shortcode('pr_book_now',             array($this, 'prBookNowShortcode'));
+        add_shortcode('pr_trans',                array($this, 'prGroupTransportation'));
+        add_shortcode('pr_group_hotel_select',   array($this, 'prGroupHotelSelectShortcode'));
+        add_shortcode('pr_group_transportation', array($this, 'prGroupTransportation'));
     }
     
     public function loadScripts () {
