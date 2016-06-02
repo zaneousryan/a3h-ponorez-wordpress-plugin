@@ -404,6 +404,7 @@ EOT;
     public function prGroupTimesShortcode ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
             'notavailable' => '(Not Available)',
+            'smarttimes' => false,
             'template' => $this->defaultTemplate
         ), $atts);
 
@@ -443,6 +444,11 @@ EOT;
             );
 
             $times = ('' == $activity->times) ? $activity->name : $activity->times;
+
+            // If 'smarttimes' is enabled, try to pull an actual time out of the $times string.
+            if ($a['smarttimes'] && 1 == preg_match('/\b([0-9]+:[0-9]+[ap]m)\b/', $times, $matches)) {
+                $times = $matches[1];
+            }
             
             $tmp = str_replace('<times>', $times, $tmp);
             $tmp = str_replace('<not available>', sprintf($naTemplate, $naIds[$activity->id], $a['notavailable']), $tmp);
