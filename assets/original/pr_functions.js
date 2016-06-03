@@ -376,7 +376,10 @@ function availability_iframe() {
 
   try {
     if (window.A3HE) {
-      window.A3HE.open({ url: baseurl + 'externalservlet?action=' + action + '&iframe=1' + query + external_additionalQueryParams() });
+      var a3heUrl = baseurl + 'externalservlet?action=' + action + '&iframe=1' + query + external_additionalQueryParams();
+
+      //console.log('A3H URL: ' + a3heUrl);
+      window.A3HE.open({ url: a3heUrl });
       return;
     }
   } catch(e) {}
