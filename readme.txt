@@ -2,7 +2,7 @@
 Contributors: arnesonium
 Tags: a3h, vacation, pono rez, rentals, reservations, booking calendar, booking, booking plugin, reservation calendar, booking system
 Requires at least: 4.0
-Tested up to: 4.4.1
+Tested up to: 4.5.2
 Stable tag: v1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,10 +22,12 @@ This plugin allows Pono Rez users to integrate information about
 activities into their WordPress websites using templates and
 shortcodes. It requires an active Pono Rez account to use properly.
 
+Documentation for this plugin can be found in the [GitHub wiki page](https://github.com/pymander/a3h-ponorez-wordpress-plugin/wiki).
+
 The Pono Rez system provides a SOAP interface, which is hosted on
-https://www.hawaiifun.org/. The interface is documented on the Pono
+<https://www.hawaiifun.org/>. The interface is documented on the Pono
 Rez website at
-http://www.ponorez.com/Agency%20Service%20Specifications.pdf. 
+<http://www.ponorez.com/Agency%20Service%20Specifications.pdf>. 
 
 == Installation ==
 
@@ -44,6 +46,13 @@ To install this plugin, follow these directions:
 == Screenshots ==
 
 == Changelog ==
+= 2.0 =
+* Support for activity groups (major change!)
+* Revamping/overhauling JavaScript
+* Minified PonoRez JavaScript
+* Many major enhancements on the admin panel
+* Smarter error handling for many shortcodes
+
 = 1.1 =
 * Provide more information about SOAP service hosting.
 * Include all JavaScript, CSS, and image files in the plugin.
@@ -59,10 +68,17 @@ To install this plugin, follow these directions:
 
 == Usage ==
 
+Documentation for this plugin can be found in the [GitHub wiki page](https://github.com/pymander/a3h-ponorez-wordpress-plugin/wiki).
+
+Templates only work for single-activity pages, which aren't used that
+often. You are probably looking for how to use activity groups. Check
+the [example page in the wiki](https://github.com/pymander/a3h-ponorez-wordpress-plugin/wiki/ActivityGroupExample) 
+for good details on how to do that.
+
 Templates should be added to the `templates` subdirectory in this
 plugin. They can contain shortcodes.
 
-These two shortcodes load an activity from the Pono Rez database.
+These two shortcodes load a single activity from the Pono Rez database.
 
 * **\[pr_activity id=XXX\]** - Load activity id XXX and use it to fill out the default template.
 * **\[pr_load_activity id=XXX\]** - Used to load activity XXX without filling out and using a template.
