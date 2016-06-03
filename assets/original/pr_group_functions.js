@@ -142,51 +142,59 @@ function formatMoney(n) {
 }
 
 function showPriceAndAvailability(group) {
-    var activityid = getSelectedActivityId(group, false);
-    var activitydate = getActivityDate(group, false);
-    var minavailability = { guests: {} };
-    var transportationrouteid = getTransportationRouteId(group);
-    var price = 0.0;
-    var failure = false;
+  var activityid = getSelectedActivityId(group, false);
+  var activitydate = getActivityDate(group, false);
+  var minavailability = { guests: {} };
+  var transportationrouteid = getTransportationRouteId(group);
+  var price = 0.0;
+  var failure = false;
+  var totalGuestCount = 0;
+  
+  jQuery.each(group.guesttypeids, function(key, value) {
+    if (failure) return;
+    var guesttypeid = value;
+    var guestscount = getGuestsCount(group, guesttypeid, false);
     
-    jQuery.each(group.guesttypeids, function(key, value) {
-        if (failure) return;
-        var guesttypeid = value;
-        var guestscount = getGuestsCount(group, guesttypeid, false);
-        if (guestscount == null) {
-            failure = true;
-        } else {
-            if (activityid != null) {
-                var guesttypeprice = group.activityprices[activityid][guesttypeid];
-                price += guestscount * guesttypeprice;
-                if (transportationrouteid == 355)
-                {
-                    price += guestscount * 15.71;
-                }
-            }
-            minavailability.guests[guesttypeid] = guestscount;
-        }
-    });
-    
-    // Show total price (only if activity is selected and all guest type counts are correct)
-    if (activityid != null && !failure) {
-        jQuery('#' + group.pricecontrolid).html('$' + formatMoney(price));
+    if (guestscount == null) {
+      //failure = true;
+      guestscount = 0;
     } else {
-        jQuery('#' + group.pricecontrolid).html('');
+      if (activityid != null) {
+        var guesttypeprice = group.activityprices[activityid][guesttypeid];
+        price += guestscount * guesttypeprice;
+        if (transportationrouteid == 355)
+        {
+          price += guestscount * 15.71;
+        }
+      }
+      minavailability.guests[guesttypeid] = guestscount;
+      totalGuestCount += guestscount;
     }
+  });
 
-    if (activitydate != null && !failure) {
-        checkAvailability(function(data) {
-            jQuery.each(group.activityids, function(key, value) {
-                // Enable or disable activities based on availability (only if activity date is selected and all guest types are correct)
-                var activityid = value;
-                if (!data[activityid]) jQuery('#' + group.activitycheckboxcontrolids[activityid]).attr('checked', false);
-                jQuery('#' + group.activitycheckboxcontrolids[activityid]).prop('disabled', !data[activityid]);
-                jQuery('#' + group.activitydescriptioncontrolids[activityid]).css('color', data[activityid] ? 'black' : 'gray');
-                jQuery('#' + group.activitynotavailablemessagecontrolids[activityid]).toggle(!data[activityid]);
-            });
-        }, group.activityids, activitydate, minavailability);
-    }
+  // At this point, if guest count is 0, it's a failure. -- @ELA
+  if (0 == totalGuestCount)
+    failure = true;
+  
+  // Show total price (only if activity is selected and all guest type counts are correct)
+  if (activityid != null && !failure) {
+    jQuery('#' + group.pricecontrolid).html('$' + formatMoney(price));
+  } else {
+    jQuery('#' + group.pricecontrolid).html('');
+  }
+
+  if (activitydate != null && !failure) {
+    checkAvailability(function(data) {
+      jQuery.each(group.activityids, function(key, value) {
+        // Enable or disable activities based on availability (only if activity date is selected and all guest types are correct)
+        var activityid = value;
+        if (!data[activityid]) jQuery('#' + group.activitycheckboxcontrolids[activityid]).attr('checked', false);
+        jQuery('#' + group.activitycheckboxcontrolids[activityid]).prop('disabled', !data[activityid]);
+        jQuery('#' + group.activitydescriptioncontrolids[activityid]).css('color', data[activityid] ? 'black' : 'gray');
+        jQuery('#' + group.activitynotavailablemessagecontrolids[activityid]).toggle(!data[activityid]);
+      });
+    }, group.activityids, activitydate, minavailability);
+  }
 }
 
 function getSelectedActivityId(group, showWarningIfNoActivitySelected) {

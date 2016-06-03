@@ -85,6 +85,8 @@ var googleanalyticsaccount = '';
 var guestCountMap;
 var mode2Setup;
 var upgradeCountMap;
+
+// (What does the next comment mean??? - @ELA)
 // Deprecated but still supported:
 var seats1;
 var seats2;
@@ -430,7 +432,7 @@ function external_validateActivityInfo()
     var guestCount = guestCountMap[guestTypeId];
     if (!checkpositivenumber(guestCount))
     {
-      haveMode2Errors = true;
+      //haveMode2Errors = true;
       continue;
     }
     if (parseInt(guestCount) != 0)
@@ -438,18 +440,26 @@ function external_validateActivityInfo()
       activeMode2GuestsTypes++;
     }
   }
+
+  if (0 == activeMode2GuestsTypes)
+    haveMode2Errors = true;
+  
   // seats1 etc. are deprecated
-  if (haveMode2Errors || !checkpositivenumber(seats1) || !checkpositivenumber(seats2) || !checkpositivenumber(seats3) || !checkpositivenumber(seats4) || !checkpositivenumber(seats5) ||
-      (activeMode2GuestsTypes == 0 && parseInt(seats1) == 0 && parseInt(seats2) == 0 && parseInt(seats3) == 0 && parseInt(seats4) == 0 && parseInt(seats5) == 0))
+  if (haveMode2Errors || !checkpositivenumber(seats1) || !checkpositivenumber(seats2) || !checkpositivenumber(seats3)
+      || !checkpositivenumber(seats4) || !checkpositivenumber(seats5)
+      || (activeMode2GuestsTypes == 0 && parseInt(seats1) == 0 && parseInt(seats2) == 0
+          && parseInt(seats3) == 0 && parseInt(seats4) == 0 && parseInt(seats5) == 0))
   {
 	  alert('Please enter valid guests number(s)');
 	  return false;
   }
+  
   if (activeMode2GuestsTypes > 5)
   {
     alert('Sorry, you can\'t order seats for more than 5 different guest types');
     return false;
   }
+  
   for (var upgradeId in upgradeCountMap)
   {
     if (!upgradeCountMap.hasOwnProperty(upgradeId)) continue;
