@@ -114,6 +114,9 @@ final class PonoRezTemplate {
             'id' => null
         ), $atts);
 
+        if (!$this->_currentActivity)
+            return 'No activity selected';
+
         return $this->_currentActivity->description;
     }
     
@@ -124,6 +127,10 @@ final class PonoRezTemplate {
             'icon' => 'on'
         ), $atts);
 
+        // Just trying to be smart.
+        if (!$this->_currentActivity && !$this->_currentActivityGroup)
+            return 'No activity selected';
+        
         // If there's no group, or group is turned off, use the single activity style.
         if ('off' === $a['group'] || null === $this->_currentActivityGroup) {
             $rval_template = <<<EOT
@@ -186,8 +193,9 @@ EOT;
         for ($i = $a['min']; $i <= $a['max']; $i++) {
             $html .= sprintf('<option value="%d">%d</option>', $i, $i);
         }
-            
-        $html .= "</select>";
+
+        // Not sure that BR belongs there.
+        $html .= "</select>\n<br>\n";
 
         return $html;
     }
@@ -199,6 +207,9 @@ EOT;
             'max' => 20
         ), $atts);
 
+        if (!$this->_currentActivity)
+            return 'No activity selected.';
+        
         try {
             $psc = PR()->providerService();
             $serviceCreds = PR()->serviceLogin();
