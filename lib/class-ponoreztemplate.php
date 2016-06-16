@@ -223,7 +223,21 @@ EOT;
         }
         
         $rval = '';
-        foreach ($result->return as $guestType) {
+
+        // Workaround a bug in the A3H SOAP interface. If there's only
+        // one guest type, it returns a single object instead of an
+        // array of guest types. Gotta love inconsistent interfaces,
+        // don't you?
+        $guestTypeList = $result->return;
+        if (!is_array($result->return)) {
+            $guestTypeList = array($result->return);
+        }
+        
+        foreach ($guestTypeList as $guestType) {
+            // Because the A3H SOAP interface can't be trusted sometimes.
+            if (!$guestType)
+                continue;
+            
             // If no guest types are available, then default to the 'max' setting.
             $max = (0 >= $guestType->availabilityPerGuest) ? $a['max'] : $guestType->availabilityPerGuest;
             $html = '';
