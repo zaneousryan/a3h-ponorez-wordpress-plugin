@@ -132,12 +132,13 @@ final class PonoRezTemplate {
             return 'No activity selected';
         
         // If there's no group, or group is turned off, use the single activity style.
+        // <input id="date_a8455" onclick="calendar(8455, 'date_a8455', false);" readOnly size="15" />
         if ('off' === $a['group'] || null === $this->_currentActivityGroup) {
             $rval_template = <<<EOT
-<input id="XXXX" onclick="calendar(XXXX, 'date_aXXXX', false);" readOnly size="15"> <a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:calendar(XXXX, 'date_aXXXX', false);">
+<input id="date_aXXXX" onclick="calendar(XXXX, 'date_aXXXX', false);" readOnly size="15"> <a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:calendar(XXXX, 'date_aXXXX', false);">
 EOT;
 
-            $rval = str_replace('XXXX', 'date_a' . $this->_currentActivity->id, $rval_template);
+            $rval = str_replace('XXXX', $this->_currentActivity->id, $rval_template);
             $rval = str_replace('PPPP', plugins_url('assets/images', dirname(__FILE__)), $rval);
         }
         else {
