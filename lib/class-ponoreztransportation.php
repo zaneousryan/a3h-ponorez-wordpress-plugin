@@ -27,6 +27,25 @@ final class PonoRezTransportation {
     }
 
     /**
+     * Grab the transportation ID from its "idCode"
+     *
+     * See documentation on 'type TransportationOption' for more
+     * information. The idCode usually looks like A:301, where the "A"
+     * is for some internal function and the "301" is the
+     * transportation route ID.
+     *
+     * @param string $idCode
+     * @return int Transportation route ID
+     */
+    public function idFromIdCode ($idCode) {
+        return substr($idCode, strpos($idCode, ':') + 1);
+    }
+
+    public function cmpIdCode ($id, $idCode) {
+        return (substr($idCode, strpos($idCode, ':') + 1) == $id);
+    }
+    
+    /**
      * Accessor for the transportation map
      *
      * This function builds the transportation map if needed.
@@ -40,21 +59,70 @@ final class PonoRezTransportation {
 
         return $this->_transportationMap;
     }
+
+    /**
+     * List transportation options.
+     *
+     * This might trigger a SOAP call.
+     *
+     * @return TransportationRouteInfo array Undocumented SOAP class array
+     */
+    public function getTransportationOptions () {
+        if (null == $this->_transportationOptions) {
+            $this->_transportationOptions = $this->_getTransportationOptionsSoap();
+        }
+
+        return $this->_transportationOptions;
+    }
+
+    /**
+     * Return the name of a route by id
+     *
+     * Pass in a route ID, and get the name. For some reason, the
+     * transportation options don't contain the simple name of the
+     * option. That requires a separate SOAP call. Painful, isn't it?
+     */
+    public function routeNameById ($id) {
+        $serviceCreds = PR()->serviceLogin();
+        $service = PR()->providerService();
+        $name = '';
+
+        // I don't know if this is correct behavior, but if the SOAP
+        // call fails, then we grab info from the option map, which
+        // has a "description" field.
+        try {
+            $result = $service->getTransportationRoute(array(
+                'serviceLogin' => $serviceCreds,
+                'supplierId' => $this->_supplierId,
+                'transportationRouteId' => $id
+            ));
+
+            $name = $result->return->name;
+        }
+        catch (Exception $e) {
+            // Don't report the error. Look for another way.
+            foreach ($this->getTransportationOptions() as $option) {
+                if ($this->cmpIdCode($id, $option->idCode)) {
+                    $name = $option->description;
+                    break;
+                }
+            }
+        }
+
+        return $name;
+    }
     
     /**
      * Collect transportation information from PR SOAP service
-     *
-     * This function builds the internal transportation map using the
-     * PR SOAP service. This map will eventually then be turned into
-     * JavaScript code for the frontend.
      *
      * At the moment it doesn't catch SOAP exceptions, leaving that to
      * be done by a caller function. I do not know if that is the
      * best behavior.
      *
+     * @TODO I can't get transportation options for the current day for some reason.
      * @TODO Catch SOAP exceptions?
      */
-    protected function _buildTransportationMap () {
+    protected function _getTransportationOptionsSoap() {
         $serviceCreds = PR()->serviceLogin();
         $service = PR()->providerService();
 
@@ -63,12 +131,22 @@ final class PonoRezTransportation {
             'serviceLogin' => $serviceCreds,
             'supplierId' => $this->_supplierId,
             'activityId' => $this->_activityId,
-            // @TODO I can't get transportation options for the current day for some reason.
             'date' => new SoapVar(date('Y-m-d', strtotime('+2 days')), XSD_DATE)
         ));
 
-        $map = array();
-
+        return $result->out_transportationOptions;
+    }
+    
+    /**
+     * Build transportation map from SOAP data
+     *
+     * This function builds the internal transportation map using the
+     * PR SOAP service. This map will eventually then be turned into
+     * JavaScript code for the frontend.
+     */
+    protected function _buildTransportationMap () {
+        $transportationOptions = $this->getTransportationOptions();
+        
         // This part is tricky. 'out_transportationOptions' will
         // contain a number of TransportationOption objects. Each of
         // those has a member, 'idCode', which will have a code that
@@ -76,9 +154,9 @@ final class PonoRezTransportation {
         // 'A:801', so the assumption is that it will be a letter,
         // colon, and number. The number is used to build JavaScript
         // code for the PR functions to use.
-        if (isset($result->out_transportationOptions)) {
-            foreach ($result->out_transportationOptions as $option) {
-                $key = substr($option->idCode, strpos($option->idCode, ':') + 1);
+        if (isset($transportationOptions)) {
+            foreach ($transportationOptions as $option) {
+                $key = $this->idFromIdCode($option->idCode);
             
                 $map[$key] = sprintf('#transportationRouteContainer_a%d_%d',
                                      $this->_activityId, $key);

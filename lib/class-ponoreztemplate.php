@@ -408,6 +408,55 @@ EOT;
         return sprintf("<script>\n%s\n</script>", $javaScript);
     }
 
+    /**
+     * Set up transportation for a single activity.
+     *
+     * Requires JS like this:
+     * var routeSelection_a8455_contextData = {
+     *   routesContainerSelector: "#transportationRoutesContainer_a8455",
+     *   routeSelectorMap: {
+     *     '355': "#transportationRouteContainer_a8455_355",
+     *     'null': null
+     *   }
+     * };
+     *
+     */
+    public function prTransportationShortcode ($atts = array(), $content = null, $tag) {
+        $a = shortcode_atts(array(
+            'name' => null,
+            'message' => 'No transportation.',
+            'template' => $this->defaultTemplate
+        ), $atts);
+
+        $trans = new PonoRezTransportation($this->_currentActivity->supplierId, $this->_currentActivity->id);
+        $map = $trans->getTransportationMap();
+
+        $javaScript = sprintf("var routeSelection_a%d_contextData = %s;",
+                              $this->_currentActivity->id,
+                              json_encode($map));
+
+        
+        $rval = sprintf('<div id="%s" style="display:none;"><strong>Select a transportation route:</strong><br>',
+                        substr($map['routesContainerSelector'], 1));
+
+        $routeNameTag = sprintf('transportationroute_a%d', $this->_currentActivity->id);
+
+        foreach ($trans->getTransportationOptions() as $option) {
+            $id = $trans->idFromIdCode($option->idCode);
+            
+            $tmp = sprintf('<div id="%s"><label><input name="%s" type="radio" value="%d" /> %s</label></div>',
+                           $map['routeSelectorMap'][$id],
+                           $routeNameTag,
+                           $id,
+                           $trans->routeNameById($id));
+
+            $rval .= "\n" . $tmp;
+        }
+        
+        
+        return $rval . "</div>";
+    }
+    
     public function prGroupTransportation ($atts = array(), $content = null, $tag) {
         $a = shortcode_atts(array(
             'name' => null,
@@ -601,7 +650,8 @@ EOT;
         add_shortcode('pr_hotel_room',           array($this, 'prHotelRoomShortcode'));
         add_shortcode('pr_check_availability',   array($this, 'prCheckAvailabilityShortcode'));
         add_shortcode('pr_load_activity',        array($this, 'prLoadActivityShortcode'));
-        add_shortcode('pr_guest',        array($this, 'prGuestShortcode'));
+        add_shortcode('pr_guest',                array($this, 'prGuestShortcode'));
+        add_shortcode('pr_transportation',       array($this, 'prTransportationShortcode'));
 
         // Group shortcodes. Some of the single activity codes work with this, too.
         add_shortcode('pr_group',                array($this, 'prGroupShortcode'));
