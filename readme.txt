@@ -52,6 +52,8 @@ To install this plugin, follow these directions:
 * Minified PonoRez JavaScript
 * Many major enhancements on the admin panel
 * Smarter error handling for many shortcodes
+* Option to disable results cache (good for development)
+* Single activity transportation routes
 
 = 1.1 =
 * Provide more information about SOAP service hosting.
