@@ -205,6 +205,7 @@ add_action('init', 'pr_bootstrap_admin');
  */
 function pr_bootstrap_public () {
     // require_once('lib/class-ponorezrest.php');
+    require_once('lib/class-ponoreztransportation.php');
     require_once('lib/class-ponorezgroup.php');
     require_once('lib/class-ponoreztemplate.php');
 
