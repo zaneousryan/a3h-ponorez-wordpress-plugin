@@ -191,7 +191,7 @@ final class PonoRezAdminConfig {
         register_setting('pr-settings', 'pr_default_style');
         register_setting('pr-settings', 'pr_default_template');
         register_setting('pr-settings', 'pr_cache_timeout');
-        register_setting('pr-settings', 'pr_activity_groups');
+        register_setting('pr-settings-groups', 'pr_activity_groups');
     }
 
     public function addSettingsMenu () {
