@@ -133,14 +133,18 @@ final class PonoRez {
     public function withTransient ($scName, $tag, $f) {
         $transientTag = $this->_transientTag($scName, $tag);
         $timeout = get_option('pr_cache_timeout');
+        $rval = false;
 
-        if (!$timeout) {
+        if (!$timeout && 0 != $timeout) {
             $timeout = 3600;
             set_option('pr_cache_timeout', $timeout);
         }
 
-        $rval = get_transient($transientTag);
-
+        // When $timeout is 0, the cache is disabled.
+        if (0 > $timeout) {
+            $rval = get_transient($transientTag);
+        }
+            
         if (false === $rval) {
             // Catch exceptions here.
             // @TODO Better error reporting.
@@ -151,7 +155,9 @@ final class PonoRez {
                 printf("<br>\n<pre>\n%s\n</pre>", $e->getMessage());
             }
 
-            set_transient($transientTag, $rval, $timeout);
+            if (0 != $timeout) {
+                set_transient($transientTag, $rval, $timeout);
+            }
         }
 
         return $rval;

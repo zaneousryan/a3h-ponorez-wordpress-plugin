@@ -147,6 +147,7 @@ final class PonoRezAdminConfig {
     <br />
     <label for="pr_cache_timeout"><b>Cache Timeout:</b></label>
     <select id="pr_cache_timeout" name="pr_cache_timeout">
+      <option value="0"<?php echo (0 == $timeout) ? ' SELECTED' : '' ?>>Disabled</option>
       <option value="3600"<?php echo (3600 == $timeout) ? ' SELECTED' : '' ?>>1 Hour</option>
       <option value="21600"<?php echo (21600 == $timeout) ? ' SELECTED' : '' ?>>6 Hours</option>
       <option value="86400"<?php echo (86400 == $timeout) ? ' SELECTED' : '' ?>>1 Day</option>
