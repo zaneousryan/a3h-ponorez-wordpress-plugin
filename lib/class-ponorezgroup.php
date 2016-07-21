@@ -76,14 +76,17 @@ final class PonoRezGroup {
             $this->activityIds[] = $a->id;
 
             $result = $this->psc->getActivityGuestTypes(array('serviceLogin' => $serviceCreds,
-                                                        'activityId' => $a->id,
-                                                        'supplierId' => $a->supplierId,
-                                                        'date' => new SoapVar(date('Y-m-d'), XSD_DATE)));
+                                                              'activityId' => $a->id,
+                                                              'supplierId' => $a->supplierId,
+                                                              'date' => new SoapVar(date('Y-m-d'), XSD_DATE)));
 
-            //            print_r($result);
+            $guestTypeList = $result->return;
+            if (!is_array($result->return)) {
+                $guestTypeList = array($result->return);
+            }
             
             // Build guest pricing info.
-            foreach ($result->return as $guest) {
+            foreach ($guestTypeList as $guest) {
                 $gtids[] = $guest->id;
                 $pricing[$a->id][$guest->id] = sprintf("%.02f", $guest->price);
             }
