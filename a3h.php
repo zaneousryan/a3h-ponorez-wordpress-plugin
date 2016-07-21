@@ -5,7 +5,7 @@
 /*
 Plugin Name: A3H Pono Rez Reservation Interface for WordPress
 Description: Add A3H Pono Rez interfaces, reservations, and tours to your WordPress site. 
-Version: 1.9.3
+Version: 1.9.4
 Author: Erik L. Arneson
 Author URI: http://www.arnesonium.com/
 License: GPLv2 or later
