@@ -178,6 +178,16 @@ final class PonoRezAdminConfig {
     <br />
     <?php submit_button(); ?>
   </form>
+  <div id="prUsageInstructions">
+    <h2>Using this Plugin</h2>
+    <p>
+      Loading and displaying a single activity is simple. Use the <code>pr_activity</code> shortcode as displayed in
+      the <strong>Available Activities</strong> below. A group of activities takes a little more work. For a sample
+      template of how an activity group can be used, check
+      out <a href="https://github.com/pymander/a3h-ponorez-wordpress-plugin/wiki/ActivityGroupExample">the Activity Group
+        Example in our wiki</a>.
+    </p>
+  </div>
   <div id="prActivityTable">
     <p>Enter login information above to see your activity list.</p>
   </div>
