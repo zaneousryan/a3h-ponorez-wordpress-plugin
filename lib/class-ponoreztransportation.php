@@ -12,6 +12,7 @@
 final class PonoRezTransportation {
     protected $_transportationMap = null;
     protected $_transportationOptions = null;
+    protected $_transportationOptionsSoap = null;
     protected $_supplierId;
     protected $_activityId;
 
@@ -22,6 +23,14 @@ final class PonoRezTransportation {
      * @param int $activityId
      */
     public function __construct ($supplierId, $activityId) {
+        if (null == $supplierId) {
+            throw new Exception ("Cannot create PonoRezTransportation with invalid supplierId ($supplierId)");
+        }
+
+        if (null == $activityId) {
+            throw new Exception ("Cannot create PonoRezTransportation with invalid activityId ($activityId)");
+        }
+        
         $this->_supplierId = $supplierId;
         $this->_activityId = $activityId;
     }
@@ -69,7 +78,7 @@ final class PonoRezTransportation {
      */
     public function getTransportationOptions () {
         if (null == $this->_transportationOptions) {
-            $this->_transportationOptions = $this->_getTransportationOptionsSoap();
+            $this->_transportationOptions = $this->_getTransportationOptions();
         }
 
         return $this->_transportationOptions;
@@ -123,20 +132,65 @@ final class PonoRezTransportation {
      * @TODO Catch SOAP exceptions?
      */
     protected function _getTransportationOptionsSoap() {
+        if (null !== $this->_transportationOptionsSoap)
+            return $this->_transportationOptionsSoap;
+        
         $serviceCreds = PR()->serviceLogin();
         $service = PR()->providerService();
 
         // Note that transportation routes aren't available in the Agency service for some reason.
+        //$this->_transportationOptionsSoap
         $result = $service->getActivityTransportationOptions(array(
             'serviceLogin' => $serviceCreds,
-            'supplierId' => $this->_supplierId,
-            'activityId' => $this->_activityId,
-            'date' => new SoapVar(date('Y-m-d', strtotime('+2 days')), XSD_DATE)
+            'supplierId'   => $this->_supplierId,
+            'activityId'   => $this->_activityId,
+            'date'         => new SoapVar(date('Y-m-d', strtotime('+20 days')), XSD_DATE)
         ));
 
-        return $result->out_transportationOptions;
+        return ($this->_transportationOptionsSoap = $result);
     }
-    
+
+    protected function _getTransportationOptions () {
+        if (null !== $this->_transportationOptions)
+            return $this->_transportationOptions;
+        
+        $tMapItems = $this->_getTransportationMappingItems();
+
+        // Each record in $tMapItems looks like this:
+        //
+        // [0] => stdClass Object
+        //     (
+        //         [stayingAtHotelId] => 898
+        //         [transportationRouteId] => 355
+        //         [transportationOptionIdCode] => C:133611
+        //     )
+        //
+        // Our goal is to extract the unique set of transportationRouteId values and get the names for them.
+
+        $tIds = array();
+        foreach ($tMapItems as $item) {
+            array_push($tIds, $item->transportationRouteId);
+        }
+        $tIds = array_unique($tIds);
+
+        $this->_transportationOptions = array();
+        foreach ($tIds as $id) {
+            $this->_transportationOptions[$id] = $this->routeNameById($id);
+        }
+
+        return $this->_transportationOptions;
+        
+    }
+
+    protected function _getTransportationMappingItems () {
+        $toSoap = $this->_getTransportationOptionsSoap();
+
+        if (isset($toSoap->out_transportationMappingItems))
+            return $toSoap->out_transportationMappingItems;
+
+        return array();
+    }
+
     /**
      * Build transportation map from SOAP data
      *
@@ -145,22 +199,14 @@ final class PonoRezTransportation {
      * JavaScript code for the frontend.
      */
     protected function _buildTransportationMap () {
-        $transportationOptions = $this->getTransportationOptions();
-        
-        // This part is tricky. 'out_transportationOptions' will
-        // contain a number of TransportationOption objects. Each of
-        // those has a member, 'idCode', which will have a code that
-        // is not entirely a transportation ID. My samples showed
-        // 'A:801', so the assumption is that it will be a letter,
-        // colon, and number. The number is used to build JavaScript
-        // code for the PR functions to use.
-        if (isset($transportationOptions)) {
-            foreach ($transportationOptions as $option) {
-                $key = $this->idFromIdCode($option->idCode);
-            
-                $map[$key] = sprintf('#transportationRouteContainer_a%d_%d',
-                                     $this->_activityId, $key);
-            }
+        $tMapItems = $this->_getTransportationMappingItems();
+
+        $tIds = $this->getTransportationOptions();
+
+        $map = array();
+        foreach ($tIds as $id => $itemName) {
+            $map[$id] = sprintf('#transportationRouteContainer_a%d_%d',
+                                $this->_activityId, $id);
         }
 
         // The map needs contain the following elements.

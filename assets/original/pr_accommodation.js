@@ -147,46 +147,55 @@ var Accommodation = (function() {
 
       var contextData = params.routeSelectionContextData;
 
-      jQuery(contextData.routesContainerSelector).toggle(false);
+      jQuery(contextData.routesContainerSelector).hide();
       jQuery.each(contextData.routeSelectorMap, function(transportationRouteId, routeSelector) {
-        if (!routeSelector) return;
-        jQuery(routeSelector).toggle(false);
+        if (!routeSelector)
+          return;
+        jQuery(routeSelector).hide();
       });
 
-      if (!params.hotelId) return;
+      if (!params.hotelId)
+        return;
 
       var dataOfActivity = dataOfActivityById[params.activityId];
       var routeData = routeDataBySupplierId[params.supplierId];
 
+      // @DEBUG
+      //console.log('dataOfActivity: ' + JSON.stringify(dataOfActivity));
+      //console.log('routeData: ' + JSON.stringify(routeData));
+  
       var haveRouteSelection = false;
       jQuery.each(dataOfActivity.routeInfos, function(index, routeInfo) {
-        if (params.agencyId != 0 && !routeInfo.agencyEnabled) return;
+        if (params.agencyId != 0 && !routeInfo.agencyEnabled)
+          return;
 
         if (routeData[routeInfo.id])
         {
           // If this supplier ever has any custom information on this route...
-
           var pickupHotelId = routeData[routeInfo.id].hotelLinkMap[params.hotelId] || params.hotelId;
 
           var routeInfoForHotel = routeData[routeInfo.id].hotelInfoMap[pickupHotelId];
           if (routeInfoForHotel)
           {
-            if (routeInfoForHotel.notServicing) return;
+            if (routeInfoForHotel.notServicing)
+              return;
             routeInfo = jQuery.extend({}, routeInfo, routeInfoForHotel);
           }
         }
 
+        console.log(' > ELA looking for routeInfo.id: ' + routeInfo.id);
         var routeElementSelector = contextData.routeSelectorMap[routeInfo.id];
         if (routeElementSelector)
         {
-          jQuery(routeElementSelector).toggle(true);
+          console.log(' > ELA showing selector: ' + routeElementSelector);
+          jQuery(routeElementSelector).show();
           haveRouteSelection = true;
         }
       });
 
       if (haveRouteSelection)
       {
-        jQuery(contextData.routesContainerSelector).toggle(true);
+        jQuery(contextData.routesContainerSelector).show();
       }
     }
   };

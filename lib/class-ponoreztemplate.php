@@ -305,14 +305,14 @@ EOT;
     }
     
     public function prHotelSelectShortcode ($atts = array(), $content = null, $tag) {
-        $tmp = <<<EOT
-<select class="pr_hotel_select" id="hotel_aAAAA"></select>
+        $defaultTemplate = <<<EOT
+<select class="pr_hotel_select" id="hotel_aAAAA" onchange="console.log('ELA was here');accommodation_setupTransportationRoutes({ supplierId: SSSS, activityId: AAAA, agencyId: 0, hotelId: this.value, routeSelectionContextData: routeSelection_aAAAA_contextData })"></select>
 <script type="text/javascript">accommodation_loadHotels({ supplierId: SSSS, activityId:  AAAA, agencyId: 0, hotelSelectSelector: "#hotel_aAAAA" });</script>
 EOT;
         
         $a = shortcode_atts(array(
             'id' => null,
-            'template' => $tmp,
+            'template' => $defaultTemplate,
             'group' => false
         ), $atts);
 
@@ -425,7 +425,8 @@ EOT;
         $a = shortcode_atts(array(
             'name' => null,
             'message' => 'No transportation.',
-            'template' => $this->defaultTemplate
+            'template' => $this->defaultTemplate,
+            'hidden' => true
         ), $atts);
 
         $trans = new PonoRezTransportation($this->_currentActivity->supplierId, $this->_currentActivity->id);
@@ -435,20 +436,29 @@ EOT;
                               $this->_currentActivity->id,
                               json_encode($map));
 
+        $rval = sprintf("<script type=\"text/javascript\">%s</script>\n",
+                        $javaScript);
         
-        $rval = sprintf('<div id="%s" style="display:none;"><strong>Select a transportation route:</strong><br>',
-                        substr($map['routesContainerSelector'], 1));
+        // If we're hidden, set our style.
+        $displayStyle = '';
+        if (true == $a['hidden'])
+            $displayStyle = 'display:none;';
+        
+        $rval .= sprintf("<div id=\"%s\" style=\"%s\"><strong>Select a transportation route:</strong><br>\n",
+                         substr($map['routesContainerSelector'], 1),
+                         $displayStyle);
 
+        $rval .= sprintf("<div><label><input type=\"radio\" name=\"transportationroute_a%d\" value=\"\" /> No Transportation</label></div>\n",
+                         $this->_currentActivity->id);
+        
         $routeNameTag = sprintf('transportationroute_a%d', $this->_currentActivity->id);
-
-        foreach ($trans->getTransportationOptions() as $option) {
-            $id = $trans->idFromIdCode($option->idCode);
-            
+       
+        foreach ($trans->getTransportationOptions() as $id => $routeName) {
             $tmp = sprintf('<div id="%s"><label><input name="%s" type="radio" value="%d" /> %s</label></div>',
                            $map['routeSelectorMap'][$id],
                            $routeNameTag,
                            $id,
-                           $trans->routeNameById($id));
+                           $routeName);
 
             $rval .= "\n" . $tmp;
         }
