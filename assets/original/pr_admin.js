@@ -52,6 +52,37 @@ function prAddGroup () {
     });
 }
 
+// Quick add a group. This does as much error checking as possible in the browser before submitting.
+function prQuickAddGroup () {
+  var groupName = jQuery('#pr_quickadd_name').val(),
+      activityIds = jQuery('#pr_quickadd_ids').val().split(',');
+  
+  // Check our inputs.
+  if (0 == activityIds.length) {
+    alert('Please select activities first.');
+    return;
+  }
+
+  if (!groupName) {
+    alert('Please enter a group name first.');
+    return;
+  }
+
+  // Call the AJAX function that adds stuff.
+  jQuery.get(
+    ajaxurl,
+    { action    : 'pr_store_group',
+      idlist    : activityIds,
+      groupname : groupName },
+    function (event) {
+      if (true == event['success']) {
+        prUpdateActivityList();
+      } else {
+        console.log(event['message']);
+      }
+    });
+}
+
 // Update the list of activities and groups.
 function prUpdateActivityList (filter) {
   if (!filter)
@@ -74,6 +105,11 @@ jQuery(document).ready(function () {
   // Bind our group button.
   jQuery(document).on('click', '#pr_add_group', function (event) {
     prAddGroup();
+  });
+
+  // Bind the quick add button.
+  jQuery(document).on('click', '#pr_quickadd_button', function (event) {
+    prQuickAddGroup();
   });
 
   // Bind our refresh button.

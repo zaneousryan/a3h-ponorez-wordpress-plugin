@@ -48,7 +48,15 @@ final class PonoRezAdminConfig {
   <button type="button" id="pr_delete_groups" class="button">Delete Groups</button>
   <br>
   <?php endif; ?>
-  <h2 style="float:left;width:40%">Available Activities</h2>
+  <h2>Available Activities</h2>
+  <form id="pr_group_quickadd">
+    <p>
+      Quickly add activity groups with this form. Enter the list of activity IDs separated by commas and click "Quick Add".
+    </p>
+    <input type="text" size="10" class="pr_quickadd_input" id="pr_quickadd_name" name="pr_quickadd_name" placeholder="Enter group name">
+    <input type="text" size="40" class="pr_quickadd_input" id="pr_quickadd_ids"  name="pr_quickadd_ids"  placeholder="Enter activity IDs">
+    <button type="button" id="pr_quickadd_button" class="button button-primary">Add Group</button>
+  </form>
   <div style="float:right;width:40%;">
     <a href="#" id="pra_prev_page" data-page="<?php echo $activityList->prevPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">&lt; Prev</a>
     |&nbsp;Page <?php echo $activityList->currentPage ?> of <?php echo $activityList->maxPage ?>&nbsp|
