@@ -36,6 +36,34 @@ define('PR_PUBLIC_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services
 define('PR_PROVIDER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/SupplierService?wsdl');
 define('PR_WHOLESALER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/AgencyService?wsdl');
 
+
+/**
+ * The A3H plugin uses anonymous functions. That means we need PHP 5.3 or higher.
+ */
+register_activation_hook( __FILE__, 'pr_activate');
+
+/**
+  * Plugin Activation hook function to check for Minimum PHP and WordPress versions. 
+  * This was adapted from this page:
+  * https://wordpress.stackexchange.com/questions/76007/best-way-to-abort-plugin-in-case-of-insufficient-php-version
+  *
+  * @param string $wp Minimum version of WordPress required for this plugin
+  * @param string $php Minimum version of PHP required for this plugin
+  */
+function pr_activate( $wp = '4.0', $php = '5.3.0' ) {
+    global $wp_version;
+    if ( version_compare( PHP_VERSION, $php, '<' ) )
+        $flag = 'PHP';
+    elseif
+        ( version_compare( $wp_version, $wp, '<' ) )
+        $flag = 'WordPress';
+    else
+        return;
+    $version = 'PHP' == $flag ? $php : $wp;
+    deactivate_plugins( basename( __FILE__ ) );
+    wp_die('<p>The <strong>A3H Pono Rez Reservation Interface</strong> plugin requires '.$flag.'  version '.$version.' or greater.</p>','Plugin Activation Error',  array( 'response'=>200, 'back_link'=>TRUE ) );
+}
+
 /**
  * Main Pono Rez interface class
  *
