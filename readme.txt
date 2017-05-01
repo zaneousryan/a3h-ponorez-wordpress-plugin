@@ -2,8 +2,8 @@
 Contributors: arnesonium
 Tags: a3h, vacation, pono rez, rentals, reservations, booking calendar, booking, booking plugin, reservation calendar, booking system
 Requires at least: 4.0
-Tested up to: 4.5.3
-Stable tag: v2.0
+Tested up to: 4.7.4
+Stable tag: v2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,10 @@ To install this plugin, follow these directions:
 == Screenshots ==
 
 == Changelog ==
+= 2.1 =
+* Faster activity group creation
+* Smart PHP version checking
+
 = 2.0 =
 * Support for activity groups (major change!)
 * Revamping/overhauling JavaScript
