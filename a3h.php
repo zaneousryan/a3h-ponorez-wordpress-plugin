@@ -3,14 +3,14 @@
  * @package A3H
  */
 /*
-Plugin Name: A3H Pono Rez Reservation Interface for WordPress
-Description: Add A3H Pono Rez interfaces, reservations, and tours to your WordPress site. 
-Version: 2.1.0
-Author: Erik L. Arneson
-Author URI: http://www.arnesonium.com/
+Plugin Name: PonoRez Booking System
+Description: Add PonoRez booking forms to your website through shortcodes.
+Version: 3.5.5
+Author: PonoRez
+Author URI: http://www.ponorezsolutions.com
 License: GPLv2 or later
 
-    Copyright 2015-16 Activities & Attractions Association of Hawaii, Inc.
+    Copyright 2015-19 Activities & Attractions Association of Hawaii, Inc.
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -26,43 +26,12 @@ License: GPLv2 or later
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-defined('ABSPATH') or die("No script kiddies please!");
+defined( 'ABSPATH' )or die( "No script kiddies please!" );
 
-/**
- * For full WSDL/SOAP service documentation, see http://www.ponorez.com/Agency%20Service%20Specifications.pdf
- */
-
-define('PR_PUBLIC_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/PublicService?wsdl');
-define('PR_PROVIDER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/SupplierService?wsdl');
-define('PR_WHOLESALER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/AgencyService?wsdl');
-
-
-/**
- * The A3H plugin uses anonymous functions. That means we need PHP 5.3 or higher.
- */
-register_activation_hook( __FILE__, 'pr_activate');
-
-/**
-  * Plugin Activation hook function to check for Minimum PHP and WordPress versions. 
-  * This was adapted from this page:
-  * https://wordpress.stackexchange.com/questions/76007/best-way-to-abort-plugin-in-case-of-insufficient-php-version
-  *
-  * @param string $wp Minimum version of WordPress required for this plugin
-  * @param string $php Minimum version of PHP required for this plugin
-  */
-function pr_activate( $wp = '4.0', $php = '5.3.0' ) {
-    global $wp_version;
-    if ( version_compare( PHP_VERSION, $php, '<' ) )
-        $flag = 'PHP';
-    elseif
-        ( version_compare( $wp_version, $wp, '<' ) )
-        $flag = 'WordPress';
-    else
-        return;
-    $version = 'PHP' == $flag ? $php : $wp;
-    deactivate_plugins( basename( __FILE__ ) );
-    wp_die('<p>The <strong>A3H Pono Rez Reservation Interface</strong> plugin requires '.$flag.'  version '.$version.' or greater.</p>','Plugin Activation Error',  array( 'response'=>200, 'back_link'=>TRUE ) );
-}
+//For full WSDL/SOAP service documentation, see http://www.ponorez.com/Agency%20Service%20Specifications.pdf
+define( 'PR_PUBLIC_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/PublicService?wsdl' );
+define( 'PR_PROVIDER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/SupplierService?wsdl' );
+define( 'PR_WHOLESALER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/AgencyService?wsdl' );
 
 /**
  * Main Pono Rez interface class
@@ -70,201 +39,296 @@ function pr_activate( $wp = '4.0', $php = '5.3.0' ) {
  * @class PonoRez
  */
 final class PonoRez {
-    /**
-     * @var PonoRez The single instance of the class
-     * @since 2.1
-     */
-    protected static $_instance = null;
+	
+	/**
+	 * @var PonoRez single instance of this class
+	 */
+	protected static $_instance = null;
 
-    /**
-     * @var SoapClient An instance of the Public Service WSDL
-     */
-    protected $_publicService = null;
+	/**
+	 * @var SoapClient instance of the Public Service WSDL
+	 */
+	protected $_publicService = null;
 
-    /**
-     * @var SoapClient An instance of the Agency Provider Service WSDL
-     */
-    protected $_providerService = null;
+	/**
+	 * @var SoapClient instance of the Agency Provider Service WSDL
+	 */
+	protected $_providerService = null;
 
-    /**
-     * @var SoapClient An instance of the Activity Wholesaler Service WSDL
-     */
-    protected $_wholesalerService = null;
-    
-    /**
-     * @return SoapClient A public service soap client
-     * @TODO Check for exceptions.
-     */
-    public function publicService () {
-        if (is_null($this->_publicService)) {
-            $this->_publicService = new SoapClient(PR_PUBLIC_SERVICE_WSDL);
-        }
-        return $this->_publicService;
-    }
+	/**
+	 * @var SoapClient instance of the Activity Wholesaler Service WSDL
+	 */
+	protected $_wholesalerService = null;
 
-    /**
-     * @return SoapClient An agency provider service soap client
-     * @TODO Check for exceptions.
-     */
-    public function providerService () {
-        if (is_null($this->_providerService)) {
-            $this->_providerService = new SoapClient(PR_PROVIDER_SERVICE_WSDL);
-        }
-        return $this->_providerService;
-    }
+	/**
+	 * @return SoapClient 
+	 */
+	public function publicService() {
+		
+		if ( is_null( $this->_publicService ) ) {
+			
+			$this->_publicService = new SoapClient( PR_PUBLIC_SERVICE_WSDL );
+		}
+		
+		return $this->_publicService;
+		
+	}
 
-    /**
-     * @return SoapClient An activity wholesaler service soap client
-     * @TODO Check for exceptions.
-     */
-    public function wholesalerService () {
-        if (is_null($this->_wholesalerService)) {
-            $this->_wholesalerService = new SoapClient(PR_WHOLESALER_SERVICE_WSDL);
-        }
-        return $this->_wholesalerService;
-    }
+	/**
+	 * @return SoapClient agency provider service soap client
+	 */
+	public function providerService() {
+		
+		if ( is_null( $this->_providerService ) ) {
+			
+			$this->_providerService = new SoapClient( PR_PROVIDER_SERVICE_WSDL );
+			
+		}
+		
+		return $this->_providerService;
+		
+	}
 
-    /**
-     * @return SoapVar A ServiceLogin object
-     */
-    public function serviceLogin () {
-        return array("username" => get_option('pr_username'),
-                     "password" => get_option('pr_password'));
-    }
+	/**
+	 * @return SoapClient activity wholesaler service soap client
+	 */
+	public function wholesalerService() {
+		
+		if ( is_null( $this->_wholesalerService ) ) {
+			
+			$this->_wholesalerService = new SoapClient( PR_WHOLESALER_SERVICE_WSDL );
+			
+		}
+		
+		return $this->_wholesalerService;
+		
+	}
 
-    /**
-     * @return PonoRez - Singleton instance
-     * @see PR()
-     */
-    public static function instance () {
-        if (is_null(self::$_instance)) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
+	/**
+	 * @return SoapVar ServiceLogin object
+	 */
+	public function serviceLogin() {
+		
+		return array( "username" => get_option( 'pr_username' ), "password" => get_option( 'pr_password' ) );
+		
+	}
 
-    protected function _transientTag($scName, $id) {
-        $nonAlnum = array('.', '/', '-', '_', ' ');
-        
-        return join('_', array('pr',
-                               str_replace($nonAlnum, '', $scName),
-                               str_replace($nonAlnum, '', $id)));
-    }
-    
-    /**
-     * Cache the output of a function as a transient.
-     *
-     * @param string $scName The name of the shortcode calling the function.
-     * @param string $tag A variable tag used to store the transient.
-     * @param function $f The anonymous function whose output will be cached.
-     */
-    public function withTransient ($scName, $tag, $f) {
-        $transientTag = $this->_transientTag($scName, $tag);
-        $timeout = get_option('pr_cache_timeout');
-        $rval = false;
+	/**
+	 * @return PonoRez Singleton instance
+	 * @see PR()
+	 */
+	public static function instance() {
+		
+		if ( is_null( self::$_instance ) ) {
+			
+			self::$_instance = new self();
+			
+		}
+		
+		return self::$_instance;
+		
+	}
 
-        if (!$timeout && 0 != $timeout) {
-            $timeout = 3600;
-            set_option('pr_cache_timeout', $timeout);
-        }
+	protected function _transientTag( $scName, $id ) {
+		
+		$nonAlnum = array( '.', '/', '-', '_', ' ' );
 
-        // When $timeout is 0, the cache is disabled.
-        if (0 > $timeout) {
-            $rval = get_transient($transientTag);
-        }
-            
-        if (false === $rval) {
-            // Catch exceptions here.
-            // @TODO Better error reporting.
-            try {
-                $rval = $f();
-            }
-            catch (SoapFault $e) {
-                printf("<br>\n<pre>\n%s\n</pre>", $e->getMessage());
-            }
+		return join( '_', array( 'pr', str_replace( $nonAlnum, '', $scName ), str_replace( $nonAlnum, '', $id ) ) );
+		
+	}
 
-            if (0 != $timeout) {
-                set_transient($transientTag, $rval, $timeout);
-            }
-        }
+	/**
+	 * Cache the output of a function as a transient.
+	 *
+	 * @param string $scName The name of the shortcode calling the function.
+	 * @param string $tag A variable tag used to store the transient.
+	 * @param function $f The anonymous function whose output will be cached.
+	 */
+	public function withTransient( $scName, $tag, $f ) {
+		
+		$transientTag = $this->_transientTag( $scName, $tag );
+		$timeout = get_option( 'pr_cache_timeout' );
+		$rval = false;
 
-        return $rval;
-    }
+		if ( !$timeout && 0 != $timeout ) {
+			
+			$timeout = 3600;
+			set_option( 'pr_cache_timeout', $timeout );
+			
+		}
+
+		// Disable cache when $timeout is set to 0.
+		if ( 0 > $timeout ) {
+			
+			$rval = get_transient( $transientTag );
+			
+		}
+
+		if ( false === $rval ) {
+			
+			// Catch exceptions
+			try {
+				
+				$rval = $f();
+				
+			} catch ( SoapFault $e ) {
+				
+				printf( "<br>\n<pre>\n%s\n</pre>", $e->getMessage() );
+				
+			}
+
+			if ( 0 != $timeout ) {
+				
+				set_transient( $transientTag, $rval, $timeout );
+				
+			}
+			
+		}
+
+		return $rval;
+		
+	}
 
 }
 
 /**
- * Returns the main instance of the PonoRez object.
+ * Returns main instance of PonoRez object.
  *
  * @return PonoRez
  */
 function PR() {
-        return PonoRez::instance();
+	
+	return PonoRez::instance();
+	
 }
 
 /**
  * Look at an array of arrays for a value.
  */
-function pr_key_in_array($value, $array) {
-    if (!$array) return false;
-    
-    foreach ($array as $k => $v) {
-        if (in_array($value, $v)) {
-            return $k;
-        }
-    }
-    return false;
+function pr_key_in_array( $value, $array ) {
+	
+	if ( !$array ) return false;
+
+	foreach ( $array as $k => $v ) {
+		
+		if ( in_array( $value, $v ) ) {
+			
+			return $k;
+			
+		}
+		
+	}
+	
+	return false;
+	
 }
 
 /**
  * Bootstrap function for admin pages.
  */
-function pr_bootstrap_admin () {
-    require_once('lib/class-ponorezadminconfig.php');
-    require_once('lib/class-ponorezactivitylist.php');
+function pr_bootstrap_admin() {
+	
+	require_once( 'includes/class-ponorez-admin-config.php' );
+	require_once( 'includes/class-ponorez-activities-list.php' );
 
-    $prc = new PonoRezAdminConfig ();
-    $prc->init();
+	$prc = new PonoRezAdminConfig();
+	$prc->init();
+	
 }
-add_action('init', 'pr_bootstrap_admin');
+add_action( 'init', 'pr_bootstrap_admin' );
 
 /**
  * Bootstrap function for public pages.
  */
-function pr_bootstrap_public () {
-    // require_once('lib/class-ponorezrest.php');
-    require_once('lib/class-ponoreztransportation.php');
-    require_once('lib/class-ponorezgroup.php');
-    require_once('lib/class-ponoreztemplate.php');
+function pr_bootstrap_public() {
+	
+	// require_once('includes/class-ponorez-rest.php');
+	require_once( 'includes/class-ponorez-transportation.php' );
+	require_once( 'includes/class-ponorez-group.php' );
+	require_once( 'includes/class-ponorez-template.php' );
 
-    $prt = new PonoRezTemplate ();
-    $prt->init();
+	$prt = new PonoRezTemplate();
+	$prt->init();
+	
 }
-add_action('init', 'pr_bootstrap_public');
+add_action( 'init', 'pr_bootstrap_public' );
 
 /**
  * Shortcode to test login information.
  */
-function pr_test_login_sc ($atts = array(), $content = null, $tag)
-{
-    $pr = PR();
-    $psc = $pr->providerService();
+function pr_test_login_sc( $atts = array(), $content = null, $tag ) {
+		
+	$pr = PR();
+	$psc = $pr->providerService();
+	$sl = $pr->serviceLogin();
+	$result = $psc->testLogin( array( 'serviceLogin' => $pr->serviceLogin() ) );
 
-    $sl = $pr->serviceLogin();
-    $result = $psc->testLogin(array('serviceLogin' => $pr->serviceLogin()));
-    
-    if (true == $result->return) {
-        $rval = "<strong>Login succeeded.</strong>\n";
-    }
-    else {
-        $rval= "<strong>Login failed.</strong>\n";
+	if ( true == $result->return ) {
+		
+		$rval = "<strong>Login succeeded.</strong>\n";
+		
+	} else {
+		
+		$rval = "<strong>Login failed.</strong>\n";
+		$rval .= sprintf( "<pre>\n%s</pre>\n", $result->out_status );
+		
+	}
 
-        $rval .= sprintf("<pre>\n%s</pre>\n",
-                         $result->out_status);
-    }
-
-    return $rval;
+	return $rval;
 }
-add_shortcode('pr_test_login', 'pr_test_login_sc');
+
+add_shortcode( 'pr_test_login', 'pr_test_login_sc' );
+
+function ponorezLoginTest( $atts = array(), $content = null, $tag ) {
+	
+	$pr = PR();
+	$psc = $pr->providerService();
+	$sl = $pr->serviceLogin();
+	$result = $psc->testLogin( array( 'serviceLogin' => $pr->serviceLogin() ) );
+
+	if ( true == $result->return ) {
+		
+		$rval = '<div style="margin: 0 20px 20px 0;" class="notice notice-success is-dismissible"><p><strong>You have successfully connected to your PonoRez account.</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
+		
+	} else {
+		
+		$rval = '<div style="margin: 0 20px 20px 0;" class="notice notice-error is-dismissible"><p><strong>Login failed. Please check your PonoRez account credetials!</strong></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>';
+		
+	}
+
+	return $rval;
+}
+
+add_shortcode( 'PonorezLoginTest', 'ponorezLoginTest' );
+
+function ponorezActivitiesLoader( $atts = array(), $content = null, $tag ) {
+	
+	$pr = PR();
+	$psc = $pr->providerService();
+	$sl = $pr->serviceLogin();
+	$result = $psc->testLogin( array( 'serviceLogin' => $pr->serviceLogin() ) );
+
+	if ( true == $result->return ) {
+		
+		$rval = '<div id="prActivityTable"><h3 style="color: #0085ba;">Retrieving activities list from PonoRez. Please wait...</h3></div>';
+		
+	} else {
+		
+		$rval = '<div id="prActivityTable"><h3 style="color: #ff0000;">Login failed. Please check your PonoRez account credetials!</h3></div>';
+		
+	}
+
+	return $rval;
+}
+
+add_shortcode( 'PonorezActivitiesLoader', 'ponorezActivitiesLoader' );
+
+// Enable Plugin Auto-Update Functionality
+require 'vendors/plugin-update-checker/plugin-update-checker.php';
+$MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'http://ponorezsolutions.com/plugin-updater/?action=get_metadata&slug=ponorez-booking-system-for-wordpress-plugin',
+	__FILE__, 
+	'ponorez-booking-system-for-wordpress-plugin'
+);
 
 // End a3h.php

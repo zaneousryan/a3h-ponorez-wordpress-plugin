@@ -1,68 +1,103 @@
-=== A3H Pono Rez Reservation Interface for WordPress ===
-Contributors: arnesonium
-Tags: a3h, vacation, pono rez, rentals, reservations, booking calendar, booking, booking plugin, reservation calendar, booking system
+=== PonoRez Booking System ===
+Contributors: ponorez
+Tags: a3h, vacation, ponorez, pono rez, online reservation system, reservation systems, rentals, reservations, booking calendar, booking, booking plugin, reservation calendar, booking system
 Requires at least: 4.0
-Tested up to: 4.7.4
-Stable tag: v2.1.0
+Tested up to:  5.2.2
+Stable tag: v3.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add A3H Pono Rez interfaces, reservations, and tours to your WordPress site.
+Add PonoRez interfaces, reservations, and tours to your WordPress site through shortcodes. Plugin development was based on Erik L. Arneson's plugin <strong>"A3H Pono Rez Reservation Interface for WordPress"</strong>.
 
 == Description ==
 
-[Pono Rez](http://ponorez.com/) is a web based Central Reservation System (CRS) targeting
-Tours & Attractions. The system comes equipped with a slick Ecommerce
-solution, customization tools and API messaging. In addition to the
-scheduling of Tours, Retail Store, Gift Certificates & Transportation
-are standard modules. The system complies with Payment Card Industry
-data security standards & credit card standards.
+[PonoRez](http://ponorezsolutions.com/) is a web based Central Reservation System (CRS) targeting Tours & Attractions. The system comes equipped with a slick Ecommerce solution, customization tools and API messaging. In addition to the scheduling of Tours, Retail Store, Gift Certificates & Transportation are standard modules. The system complies with Payment Card Industry data security standards & credit card standards.
 
-This plugin allows Pono Rez users to integrate information about
-activities into their WordPress websites using templates and
-shortcodes. It requires an active Pono Rez account to use properly.
+This plugin allows PonoRez users to integrate booking forms for their activities into their WordPress websites using shortcodes. It requires an active PonoRez account to use properly.
 
-Documentation for this plugin can be found in the [GitHub wiki page](https://github.com/pymander/a3h-ponorez-wordpress-plugin/wiki).
-
-The Pono Rez system provides a SOAP interface, which is hosted on
-<https://www.hawaiifun.org/>. The interface is documented on the Pono
-Rez website at
-<http://www.ponorez.com/Agency%20Service%20Specifications.pdf>. 
+The PonoRez system provides a SOAP interface, which is hosted on <https://www.hawaiifun.org/>. The interface is documented on the [PonoRez website](http://www.ponorez.com/Agency%20Service%20Specifications.pdf).
 
 == Installation ==
 
 To install this plugin, follow these directions:
 
-1. Download the latest zip file.
-1. Next, load up your WordPress blog’s dashboard, and go to **Plugins > Add New**.
-1. Upload the zip file.
-1. Click **Activate**.
-1. Go to the **A3H Pono Rez for WordPress** admin panel.
-1. Enter your Pono Rez username and password.
-1. Click **Save Changes**.
+1. Download the zip file.
+2. Login into your WordPress dashboard and go to **Plugins > Add New**.
+3. Upload the zip file.
+4. Click **Activate**.
+5. Go to the **PonoRez** admin panel.
+6. Enter your PonoRez username and password.
+7. Click **Save Changes**.
 
 == Frequently Asked Questions ==
 
 == Screenshots ==
 
 == Changelog ==
-= 2.1 =
-* Faster activity group creation
-* Smart PHP version checking
+
+= 3.5.5 =
+* Fixed bug on group activities on Linux servers.
+
+= 3.5.4 =
+* Added ability to have upgrades on groups popup.
+
+= 3.5.3 =
+* Added ability to have upgrades on single activity popup.
+
+= 3.5.2 =
+* Fixed guest look up in single activity smart calendar.
+
+= 3.5.1 =
+* Fixed upgrade bug.
+* Fixed price recalculating group bug.
+
+= 3.5.0 =
+* Added upgrades usage option.
+* Added smart calendar for single activity bookings.
+
+= 3.4.2 =
+* Fixed a bug that was not allowing Google Analytics to work on groups.
+* Added price recalculation when passenger count or time changes.
+* Added promotional codes to be hard coded in for campaign landing pages.
+
+= 3.4.1 =
+* Fixed a bug that was causing rendering issues for activity groups forms displayed in modal overlay.
+
+= 3.4.0 =
+* Added plugin auto-update functionality.
+* Fixed HTML bug for overlay form templates.
+* Fixed PROMO CODE filed bug that was preventing the CODE to properly being passed to the check-out.
+
+= 3.3.1 =
+* Added support for reseting to 0 the regular guest type fields on check / uncheck states of the private tour guest type.
+
+= 3.3.0 =
+* Added support for private tours guest types.
+* Added support for hiding / showing the regular guest type fiels on check / uncheck states of the private tour guest type.
+
+= 3.2.0 =
+* Added support for multiple instances of single activity booking shortcode on the same page.
+* Added support for multiple instances of activities group booking shortcode on the same page.
+
+= 3.1.0 =
+* Fixed bugs related to Google Analytics tracking ID support.
+* Added <strong>HOW TO USE</strong> section
+* Increased the limit of configurable guest types to 20.
+
+= 3.0 =
+* Complete overhaul of the plugin core.
+* Added support for individual booking forms configuration through plugin parameters.
+* Added support for transportation usage.
+* Added support for promo codes usage.
+* Added support for definining color theme of the booking forms through colorpicker and discarded the usage of jQuery UI themes.
+* Added support for configuring the book now button text from the plugin settings.
 
 = 2.0 =
-* Support for activity groups (major change!)
-* Revamping/overhauling JavaScript
-* Minified PonoRez JavaScript
-* Many major enhancements on the admin panel
-* Smarter error handling for many shortcodes
-* Option to disable results cache (good for development)
-* Single activity transportation routes
-
-= 1.1 =
-* Provide more information about SOAP service hosting.
-* Include all JavaScript, CSS, and image files in the plugin.
-* Use WordPress transients to cache activity templates.
+* Plugin core was updated to support modal overlay display of booking forms.
+* Added support for group templates selection from plugin settings.
+* Added configurable guest types.
+* Added Google Analytics tracking ID support.
+* Fixed bugs related to accommodation fields usage.
 
 = 1.0 =
 * First public release.
@@ -71,35 +106,3 @@ To install this plugin, follow these directions:
 * Development pre-release.
 
 == Upgrade Notice ==
-
-== Usage ==
-
-Documentation for this plugin can be found in the [GitHub wiki page](https://github.com/pymander/a3h-ponorez-wordpress-plugin/wiki).
-
-Templates only work for single-activity pages, which aren't used that
-often. You are probably looking for how to use activity groups. Check
-the [example page in the wiki](https://github.com/pymander/a3h-ponorez-wordpress-plugin/wiki/ActivityGroupExample) 
-for good details on how to do that.
-
-Templates should be added to the `templates` subdirectory in this
-plugin. They can contain shortcodes.
-
-These two shortcodes load a single activity from the Pono Rez database.
-
-* **\[pr_activity id=XXX\]** - Load activity id XXX and use it to fill out the default template.
-* **\[pr_load_activity id=XXX\]** - Used to load activity XXX without filling out and using a template.
-
-These shortcodes are used to request specific attributes for the
-currently loaded activity.
-
-* **\[pr_activity_name\]**
-* **\[pr_activity_description\]**
-* **\[pr_datepicker\]**
-* **\[pr_guest_type_list\]**
-* **\[pr_guest_type\]**
-* **\[pr_hotel_select\]**
-* **\[pr_hotel_room\]**
-* **\[pr_check_availability\]** - Print out the "Check Availability" button.
-
-
-
