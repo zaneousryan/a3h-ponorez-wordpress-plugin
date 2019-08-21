@@ -62,7 +62,7 @@
 
 				<h3 class="hndle"><span>Enable Promotional Codes</span></h3>
 				<p>By checking this option you will globally enable the usage of <strong style="color: #0073aa;">Promotional Codes</strong> options in your booking forms.</p>
-				<p>Please note that the promotinal codes option can be configured through the use of the shortcode parameter <strong>allowdiscounts=""</strong>.</p>
+				<p>Please note that the promotinal codes option can be configured through the use of the shortcode parameter <strong>allowdiscounts=''</strong>.</p>
 				<p>For more information on how to configure it please refer to the <strong>Activity Shortcodes</strong> and <strong>Group Shortcodes</strong> sections of this page.</p>
 
 				<h2 class="hndle" style="font-size: 1.7em; padding-bottom: 12px; padding-top: 12px; border-bottom: 1px solid #e1e1e1; border-top: 1px solid #e1e1e1; margin-bottom: 12px;"><span>Available Activities</span></h2>
@@ -149,14 +149,14 @@
 
 				<h3><strong>allowdiscounts='' parameter</strong></h3>
 
-				<p><strong>allowdiscounts=""</strong> has two possible values <strong>yes</strong> and <strong>no</strong>.</p>
+				<p><strong>allowdiscounts=''</strong> has two possible values <strong>yes</strong> and <strong>no</strong>.</p>
 
 				<ul style="margin-left: 40px; list-style-type: square;">
-					<li><strong>allowdiscounts="yes"</strong> will display the promotional code field in your booking form.<br>
-					<code>Example: [ponorezActivityBooking id="1234" guests="123,234,345" allowdiscounts="yes"]</code></li>
-					<li><strong>allowdiscounts="no"</strong> will disable the promotional code field.<br>
-					<code>Example: [ponorezActivityBooking id="1234" guests="123,234,345" allowdiscounts="no"]</code></li>
-					<li><strong>allowdiscounts=""</strong> missing value will disable the promotional code field.<br>
+					<li><strong>allowdiscounts='yes'</strong> will display the promotional code field in your booking form.<br>
+					<code>Example: [ponorezActivityBooking id="1234" guests="123,234,345" allowdiscounts='yes']</code></li>
+					<li><strong>allowdiscounts='no'</strong> will disable the promotional code field.<br>
+					<code>Example: [ponorezActivityBooking id="1234" guests="123,234,345" allowdiscounts='no']</code></li>
+					<li><strong>allowdiscounts=''</strong> missing value will disable the promotional code field.<br>
 					<code>Example: [ponorezActivityBooking id="1234" guests="123,234,345"]</code></li>
 				</ul>
 				<p>Please note that in order for this parameter to work "<strong>Enable Promotional Codes</strong>" option must be enabled.</p>
@@ -164,7 +164,7 @@
 				<h3><strong>promocode='' parameter</strong></h3>
 				<p>Is limited to promotional codes created inside of the PonoRez system under Webmaster > Website Integration Code > Website Discounts<br>
 				Will hide the promotional code field in your booking form and pre-fill the field with parameter.</p>
-				<code>Example: [ponorezActivityBooking id="1234" guests="123,234,345" allowdiscounts="yes" promocode="Promotional Code"]</code>
+				<code>Example: [ponorezActivityBooking id="1234" guests="123,234,345" allowdiscounts='yes' promocode="Promotional Code"]</code>
 				<p>Please note that in order for this parameter to work "<strong>Enable Promotional Codes</strong>" option must be enabled.</p>
 
 				<h3><strong>title='' parameter</strong></h3>
@@ -223,14 +223,14 @@
 
 				<h3><strong>allowdiscounts='' parameter</strong></h3>
 
-				<p><strong>allowdiscounts=""</strong> has two possible values <strong>yes</strong> and <strong>no</strong>.</p>
+				<p><strong>allowdiscounts=''</strong> has two possible values <strong>yes</strong> and <strong>no</strong>.</p>
 
 				<ul style="margin-left: 40px; list-style-type: square;">
-					<li><strong>allowdiscounts="yes"</strong> will display the promotional code field in your booking form.<br>
-					<code>Example: [ponorezGroupBooking name="groupname" guests="123,234,345" allowdiscounts="yes"]</code></li>
-					<li><strong>allowdiscounts="no"</strong> will disable the promotional code field.<br>
-					<code>Example: [ponorezGroupBooking name="groupname" guests="123,234,345" allowdiscounts="no"]</code></li>
-					<li><strong>allowdiscounts=""</strong> missing value will disable the promotional code field.<br>
+					<li><strong>allowdiscounts='yes'</strong> will display the promotional code field in your booking form.<br>
+					<code>Example: [ponorezGroupBooking name="groupname" guests="123,234,345" allowdiscounts='yes']</code></li>
+					<li><strong>allowdiscounts='no'</strong> will disable the promotional code field.<br>
+					<code>Example: [ponorezGroupBooking name="groupname" guests="123,234,345" allowdiscounts='no']</code></li>
+					<li><strong>allowdiscounts=''</strong> missing value will disable the promotional code field.<br>
 					<code>Example: [ponorezGroupBooking name="groupname" guests="123,234,345"]</code></li>
 				</ul>
 				<p>Please note that in order for this parameter to work "<strong>Enable Promotional Codes</strong>" option must be enabled.</p>
@@ -238,7 +238,7 @@
 				<h3><strong>promocode='' parameter</strong></h3>
 				<p>Is limited to promotional codes created inside of the PonoRez system under Webmaster > Website Integration Code > Website Discounts<br>
 				Will hide the promotional code field in your booking form and pre-fill the field with parameter.</p>
-				<code>Example: [ponorezGroupBooking name="groupname" guests="123,234,345" allowdiscounts="yes" promocode="Promotional Code"]</code>
+				<code>Example: [ponorezGroupBooking name="groupname" guests="123,234,345" allowdiscounts='yes' promocode="Promotional Code"]</code>
 				<p>Please note that in order for this parameter to work "<strong>Enable Promotional Codes</strong>" option must be enabled.</p>
 
 				<h3><strong>title='' parameter</strong></h3>
