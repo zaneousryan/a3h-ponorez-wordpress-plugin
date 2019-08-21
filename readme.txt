@@ -3,7 +3,7 @@ Contributors: ponorez
 Tags: a3h, vacation, ponorez, pono rez, online reservation system, reservation systems, rentals, reservations, booking calendar, booking, booking plugin, reservation calendar, booking system
 Requires at least: 4.0
 Tested up to:  5.2.2
-Stable tag: v3.5.5
+Stable tag: v3.5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,9 @@ To install this plugin, follow these directions:
 == Screenshots ==
 
 == Changelog ==
+
+= 3.5.6 =
+* Fixed bug on multiple single activities using smart calendar on one page.
 
 = 3.5.5 =
 * Fixed bug on group activities on Linux servers.
