@@ -768,14 +768,14 @@
 
 						echo '<div class="form-row">';
 						echo '<label>Promotional Code</label>';
-						echo '<input class="form-control" type="text" id="promotionalcode_' . $a[ 'name' ] . '" />';
+						echo '<input class="form-control" type="text" id="promotionalcode_' . $myActivityID . '" />';
 						echo '</div>';
 
 					} else {
 
 						echo '<div class="form-row" style="display: none;">';
 						echo '<label>Promotional Code</label>';
-						echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $a[ 'name' ] . '" />';
+						echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $myActivityID . '" />';
 						echo '</div>';
 
 					}
@@ -826,14 +826,14 @@
 
 						echo '<div class="form-row">';
 						echo '<label>Promotional Code</label>';
-						echo '<input class="form-control" type="text" id="promotionalcode_' . $a[ 'name' ] . '" />';
+						echo '<input class="form-control" type="text" id="promotionalcode_' . $myActivityID . '" />';
 						echo '</div>';
 
 					} else {
 
 						echo '<div class="form-row" style="display: none;">';
 						echo '<label>Promotional Code</label>';
-						echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $a[ 'name' ] . '" />';
+						echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $myActivityID . '" />';
 						echo '</div>';
 
 					}
@@ -860,14 +860,14 @@
 
 						echo '<div class="form-row">';
 						echo '<label>Promotional Code</label>';
-						echo '<input class="form-control" type="text" id="promotionalcode_' . $a[ 'name' ] . '" />';
+						echo '<input class="form-control" type="text" id="promotionalcode_' . $myActivityID . '" />';
 						echo '</div>';
 
 					} else {
 
 						echo '<div class="form-row" style="display: none;">';
 						echo '<label>Promotional Code</label>';
-						echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $a[ 'name' ] . '" />';
+						echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $myActivityID . '" />';
 						echo '</div>';
 
 					}
@@ -894,14 +894,14 @@
 
 						echo '<div class="form-row">';
 						echo '<label>Promotional Code</label>';
-						echo '<input class="form-control" type="text" id="promotionalcode_' . $a[ 'name' ] . '" />';
+						echo '<input class="form-control" type="text" id="promotionalcode_' . $myActivityID . '" />';
 						echo '</div>';
 
 					} else {
 
 						echo '<div class="form-row" style="display: none;">';
 						echo '<label>Promotional Code</label>';
-						echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $a[ 'name' ] . '" />';
+						echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $myActivityID . '" />';
 						echo '</div>';
 
 					}
@@ -968,7 +968,7 @@
 	
 	jQuery(document).ready(function() {
 		
-		jQuery("#promotionalcode_<?php echo $a[ 'name' ] ?>").val("<?php echo $promotionalCode; ?>"); 
+		jQuery("#promotionalcode_<?php echo $myActivityID ?>").val("<?php echo $promotionalCode; ?>"); 
 	
 	});
 	
