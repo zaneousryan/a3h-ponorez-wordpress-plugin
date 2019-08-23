@@ -765,7 +765,7 @@
 
 						$accommodationStatusCheck = get_option('accommodationStatus');
 						$couponsStatusCheck = get_option('couponsStatus');
-						$promoCodeFieldJS = 'setpromotionalcode(document.getElementById(\'promotionalcode_a' . $myActivityID . '\').value);';
+						$promoCodeFieldJS = 'setpromotionalcode(document.getElementById(\'promotionalcode_' . $myActivityID . '\').value);';
 
 						if(!empty( $accommodationStatusCheck ) && $accommodationType == 'fixed') {
 
