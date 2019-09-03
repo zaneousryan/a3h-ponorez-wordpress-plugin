@@ -210,7 +210,7 @@
 		if(!empty( $accommodationStatusCheck ) && $accommodationType == 'fixed') {
 
 			//Load Hotels Select
-			echo '<div class="form-row" id="accommodation">';
+			echo '<div class="form-row" id="accommodation5">';
 			echo '<label>Select Accommodation</label>';
 			echo '<label style="font-weight: normal; font-size: 12px; display: block;">Select Hotel</label>';
 			echo do_shortcode('[ponorezGroupAccommodationSelect]');
