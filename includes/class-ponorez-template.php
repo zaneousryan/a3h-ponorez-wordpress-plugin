@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Shortcodes for PonoRez templates
@@ -1804,7 +1805,2014 @@ final class PonoRezTemplate {
     	return $output;		
 		
 	}
+	
+	public function ponorezActivityBooking07( $atts = array(), $content = null, $tag ) { 
+	
+		extract(shortcode_atts(array(
+			'id' => null,
+			'guests' => null,
+			'upgrades' => null,
+			'privateid' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts));
 
+		$myActivityID = $id;
+		$formTitle = $title;
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $accommodation;
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array($guests);
+		$guestTypes = explode(',', $guests);
+		$upgradeTypes = array($upgrades);
+		$upgradeTypes = explode(',', $upgrades);
+		$privateGuests = array($privateid);
+		$privateGuests = explode(',', $privateid);
+		$promotionalCodesStatus = $allowdiscounts;
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_default_template' );
+		
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/inline-07.php' );
+
+			$output = ob_get_clean();
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/overlay-07.php' );
+
+			$output = ob_get_clean();	
+
+		} 
+		
+    	return $output;		
+		
+	}
+	
+	public function ponorezActivityBooking08( $atts = array(), $content = null, $tag ) { 
+	
+		extract(shortcode_atts(array(
+			'id' => null,
+			'guests' => null,
+			'upgrades' => null,
+			'privateid' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts));
+
+		$myActivityID = $id;
+		$formTitle = $title;
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $accommodation;
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array($guests);
+		$guestTypes = explode(',', $guests);
+		$upgradeTypes = array($upgrades);
+		$upgradeTypes = explode(',', $upgrades);
+		$privateGuests = array($privateid);
+		$privateGuests = explode(',', $privateid);
+		$promotionalCodesStatus = $allowdiscounts;
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_default_template' );
+		
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/inline-08.php' );
+
+			$output = ob_get_clean();
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/overlay-08.php' );
+
+			$output = ob_get_clean();	
+
+		} 
+		
+    	return $output;		
+		
+	}
+
+	public function ponorezActivityBooking09( $atts = array(), $content = null, $tag ) { 
+	
+		extract(shortcode_atts(array(
+			'id' => null,
+			'guests' => null,
+			'upgrades' => null,
+			'privateid' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts));
+
+		$myActivityID = $id;
+		$formTitle = $title;
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $accommodation;
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array($guests);
+		$guestTypes = explode(',', $guests);
+		$upgradeTypes = array($upgrades);
+		$upgradeTypes = explode(',', $upgrades);
+		$privateGuests = array($privateid);
+		$privateGuests = explode(',', $privateid);
+		$promotionalCodesStatus = $allowdiscounts;
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_default_template' );
+		
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/inline-09.php' );
+
+			$output = ob_get_clean();
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/overlay-09.php' );
+
+			$output = ob_get_clean();	
+
+		} 
+		
+    	return $output;		
+		
+	}
+
+	public function ponorezActivityBooking10( $atts = array(), $content = null, $tag ) { 
+	
+		extract(shortcode_atts(array(
+			'id' => null,
+			'guests' => null,
+			'upgrades' => null,
+			'privateid' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts));
+
+		$myActivityID = $id;
+		$formTitle = $title;
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $accommodation;
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array($guests);
+		$guestTypes = explode(',', $guests);
+		$upgradeTypes = array($upgrades);
+		$upgradeTypes = explode(',', $upgrades);
+		$privateGuests = array($privateid);
+		$privateGuests = explode(',', $privateid);
+		$promotionalCodesStatus = $allowdiscounts;
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_default_template' );
+		
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/inline-10.php' );
+
+			$output = ob_get_clean();
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/overlay-10.php' );
+
+			$output = ob_get_clean();	
+
+		} 
+		
+    	return $output;		
+		
+	}
+
+	public function ponorezActivityBooking11( $atts = array(), $content = null, $tag ) { 
+	
+		extract(shortcode_atts(array(
+			'id' => null,
+			'guests' => null,
+			'upgrades' => null,
+			'privateid' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts));
+
+		$myActivityID = $id;
+		$formTitle = $title;
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $accommodation;
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array($guests);
+		$guestTypes = explode(',', $guests);
+		$upgradeTypes = array($upgrades);
+		$upgradeTypes = explode(',', $upgrades);
+		$privateGuests = array($privateid);
+		$privateGuests = explode(',', $privateid);
+		$promotionalCodesStatus = $allowdiscounts;
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_default_template' );
+		
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/inline-11.php' );
+
+			$output = ob_get_clean();
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/overlay-11.php' );
+
+			$output = ob_get_clean();	
+
+		} 
+		
+    	return $output;		
+		
+	}
+
+	public function ponorezActivityBooking12( $atts = array(), $content = null, $tag ) { 
+	
+		extract(shortcode_atts(array(
+			'id' => null,
+			'guests' => null,
+			'upgrades' => null,
+			'privateid' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts));
+
+		$myActivityID = $id;
+		$formTitle = $title;
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $accommodation;
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array($guests);
+		$guestTypes = explode(',', $guests);
+		$upgradeTypes = array($upgrades);
+		$upgradeTypes = explode(',', $upgrades);
+		$privateGuests = array($privateid);
+		$privateGuests = explode(',', $privateid);
+		$promotionalCodesStatus = $allowdiscounts;
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_default_template' );
+		
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/inline-12.php' );
+
+			$output = ob_get_clean();
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/overlay-12.php' );
+
+			$output = ob_get_clean();	
+
+		} 
+		
+    	return $output;		
+		
+	}
+
+	public function ponorezActivityBooking13( $atts = array(), $content = null, $tag ) { 
+	
+		extract(shortcode_atts(array(
+			'id' => null,
+			'guests' => null,
+			'upgrades' => null,
+			'privateid' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts));
+
+		$myActivityID = $id;
+		$formTitle = $title;
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $accommodation;
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array($guests);
+		$guestTypes = explode(',', $guests);
+		$upgradeTypes = array($upgrades);
+		$upgradeTypes = explode(',', $upgrades);
+		$privateGuests = array($privateid);
+		$privateGuests = explode(',', $privateid);
+		$promotionalCodesStatus = $allowdiscounts;
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_default_template' );
+		
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/inline-13.php' );
+
+			$output = ob_get_clean();
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/overlay-13.php' );
+
+			$output = ob_get_clean();	
+
+		} 
+		
+    	return $output;		
+		
+	}
+
+	public function ponorezActivityBooking14( $atts = array(), $content = null, $tag ) { 
+	
+		extract(shortcode_atts(array(
+			'id' => null,
+			'guests' => null,
+			'upgrades' => null,
+			'privateid' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts));
+
+		$myActivityID = $id;
+		$formTitle = $title;
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $accommodation;
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array($guests);
+		$guestTypes = explode(',', $guests);
+		$upgradeTypes = array($upgrades);
+		$upgradeTypes = explode(',', $upgrades);
+		$privateGuests = array($privateid);
+		$privateGuests = explode(',', $privateid);
+		$promotionalCodesStatus = $allowdiscounts;
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_default_template' );
+		
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/inline-14.php' );
+
+			$output = ob_get_clean();
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/sub/overlay-14.php' );
+
+			$output = ob_get_clean();	
+
+		} 
+		
+    	return $output;		
+		
+	}
 	
 	//Load Activity Name
     public function ponorezActivityName ($atts = array(), $content = null, $tag) {
@@ -2702,7 +4710,6 @@ EOT;
 		
     	return $output;	
 
-		
 	}
 
 	public function prGroupShortcode02( $atts = array(), $content = null, $tag ) {
@@ -3525,7 +5532,6 @@ EOT;
 		
     	return $output;	
 
-		
 	}
 	
 	public function prGroupShortcode05( $atts = array(), $content = null, $tag ) {
@@ -4074,7 +6080,2198 @@ EOT;
 		
     	return $output;	
 
+	}
+	
+	public function prGroupShortcode07( $atts = array(), $content = null, $tag ) {
 		
+		$a = shortcode_atts( array( 
+			'name' => null, 
+			'guests' => null,
+			'upgrades' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts );
+
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $a['accommodation'];
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array( $a['guests'] );
+		$guestTypes = explode(',', $a['guests']);
+		$upgradeTypes = array( $a['upgrades'] );
+		$upgradeTypes = explode(',', $a['upgrades']);
+		$promotionalCodesStatus = $a['allowdiscounts'];
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_group_default_template' );
+		
+		$rval = '';
+
+		try {
+			
+			if ( null != $a[ 'name' ] ) {
+				
+				$this->setCurrentActivityGroup( $a[ 'name' ] );
+				
+			}
+			
+		} catch ( SoapFault $e ) {
+			
+			$rval .= sprintf( "<br>\n<pre>\n%s\n</pre>", $this->_soapDebug );
+
+		}
+
+		// Load group functions.
+		wp_enqueue_script( 'pr_group_functions' );
+		
+		// Assemble the JavaScript.
+		$cag = $this->_currentActivityGroup;
+
+		$javaScript = PR()->withTransient( 'pr_group', $cag->groupName, function ()use( $cag ) {
+			
+			return $cag->toJson( true );
+			
+		} );
+
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/inline-07.php' );	
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/overlay-07.php' );
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );	
+
+		} 
+		
+    	return $output;	
+
+	}
+
+	public function prGroupShortcode08( $atts = array(), $content = null, $tag ) {
+		
+		$a = shortcode_atts( array( 
+			'name' => null, 
+			'guests' => null,
+			'upgrades' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts );
+
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $a['accommodation'];
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array( $a['guests'] );
+		$guestTypes = explode(',', $a['guests']);
+		$upgradeTypes = array( $a['upgrades'] );
+		$upgradeTypes = explode(',', $a['upgrades']);
+		$promotionalCodesStatus = $a['allowdiscounts'];
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_group_default_template' );
+		
+		$rval = '';
+
+		try {
+			
+			if ( null != $a[ 'name' ] ) {
+				
+				$this->setCurrentActivityGroup( $a[ 'name' ] );
+				
+			}
+			
+		} catch ( SoapFault $e ) {
+			
+			$rval .= sprintf( "<br>\n<pre>\n%s\n</pre>", $this->_soapDebug );
+
+		}
+
+		// Load group functions.
+		wp_enqueue_script( 'pr_group_functions' );
+		
+		// Assemble the JavaScript.
+		$cag = $this->_currentActivityGroup;
+
+		$javaScript = PR()->withTransient( 'pr_group', $cag->groupName, function ()use( $cag ) {
+			
+			return $cag->toJson( true );
+			
+		} );
+
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/inline-08.php' );	
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/overlay-08.php' );
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+
+		} 
+		
+    	return $output;
+		
+	}
+
+	public function prGroupShortcode09( $atts = array(), $content = null, $tag ) {
+		
+		$a = shortcode_atts( array( 
+			'name' => null, 
+			'guests' => null,
+			'upgrades' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts );
+
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $a['accommodation'];
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array( $a['guests'] );
+		$guestTypes = explode(',', $a['guests']);
+		$upgradeTypes = array( $a['upgrades'] );
+		$upgradeTypes = explode(',', $a['upgrades']);
+		$promotionalCodesStatus = $a['allowdiscounts'];
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_group_default_template' );
+		
+		$rval = '';
+
+		try {
+			
+			if ( null != $a[ 'name' ] ) {
+				
+				$this->setCurrentActivityGroup( $a[ 'name' ] );
+				
+			}
+			
+		} catch ( SoapFault $e ) {
+			
+			$rval .= sprintf( "<br>\n<pre>\n%s\n</pre>", $this->_soapDebug );
+
+		}
+
+		// Load group functions.
+		wp_enqueue_script( 'pr_group_functions' );
+		
+		// Assemble the JavaScript.
+		$cag = $this->_currentActivityGroup;
+
+		$javaScript = PR()->withTransient( 'pr_group', $cag->groupName, function ()use( $cag ) {
+			
+			return $cag->toJson( true );
+			
+		} );
+
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/inline-09.php' );	
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/overlay-09.php' );
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+
+		} 
+		
+    	return $output;
+		
+	}
+
+	public function prGroupShortcode10( $atts = array(), $content = null, $tag ) {
+		
+		$a = shortcode_atts( array( 
+			'name' => null, 
+			'guests' => null,
+			'upgrades' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts );
+
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $a['accommodation'];
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array( $a['guests'] );
+		$guestTypes = explode(',', $a['guests']);
+		$upgradeTypes = array( $a['upgrades'] );
+		$upgradeTypes = explode(',', $a['upgrades']);
+		$promotionalCodesStatus = $a['allowdiscounts'];
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_group_default_template' );
+		
+		$rval = '';
+
+		try {
+			
+			if ( null != $a[ 'name' ] ) {
+				
+				$this->setCurrentActivityGroup( $a[ 'name' ] );
+				
+			}
+			
+		} catch ( SoapFault $e ) {
+			
+			$rval .= sprintf( "<br>\n<pre>\n%s\n</pre>", $this->_soapDebug );
+
+		}
+
+		// Load group functions.
+		wp_enqueue_script( 'pr_group_functions' );
+		
+		// Assemble the JavaScript.
+		$cag = $this->_currentActivityGroup;
+
+		$javaScript = PR()->withTransient( 'pr_group', $cag->groupName, function ()use( $cag ) {
+			
+			return $cag->toJson( true );
+			
+		} );
+
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/inline-10.php' );	
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/overlay-10.php' );
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+
+		} 
+		
+    	return $output;	
+
+	}
+	
+	public function prGroupShortcode11( $atts = array(), $content = null, $tag ) {
+		
+		$a = shortcode_atts( array( 
+			'name' => null, 
+			'guests' => null,
+			'upgrades' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts );
+
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $a['accommodation'];
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array( $a['guests'] );
+		$guestTypes = explode(',', $a['guests']);
+		$upgradeTypes = array( $a['upgrades'] );
+		$upgradeTypes = explode(',', $a['upgrades']);
+		$promotionalCodesStatus = $a['allowdiscounts'];
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_group_default_template' );
+		
+		$rval = '';
+
+		try {
+			
+			if ( null != $a[ 'name' ] ) {
+				
+				$this->setCurrentActivityGroup( $a[ 'name' ] );
+				
+			}
+			
+		} catch ( SoapFault $e ) {
+			
+			$rval .= sprintf( "<br>\n<pre>\n%s\n</pre>", $this->_soapDebug );
+
+		}
+
+		// Load group functions.
+		wp_enqueue_script( 'pr_group_functions' );
+		
+		// Assemble the JavaScript.
+		$cag = $this->_currentActivityGroup;
+
+		$javaScript = PR()->withTransient( 'pr_group', $cag->groupName, function ()use( $cag ) {
+			
+			return $cag->toJson( true );
+			
+		} );
+
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/inline-11.php' );	
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/overlay-11.php' );
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+
+		} 
+		
+    	return $output;
+		
+	}
+	
+	public function prGroupShortcode12( $atts = array(), $content = null, $tag ) {
+		
+		$a = shortcode_atts( array( 
+			'name' => null, 
+			'guests' => null,
+			'upgrades' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts );
+
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $a['accommodation'];
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array( $a['guests'] );
+		$guestTypes = explode(',', $a['guests']);
+		$upgradeTypes = array( $a['upgrades'] );
+		$upgradeTypes = explode(',', $a['upgrades']);
+		$promotionalCodesStatus = $a['allowdiscounts'];
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_group_default_template' );
+		
+		$rval = '';
+
+		try {
+			
+			if ( null != $a[ 'name' ] ) {
+				
+				$this->setCurrentActivityGroup( $a[ 'name' ] );
+				
+			}
+			
+		} catch ( SoapFault $e ) {
+			
+			$rval .= sprintf( "<br>\n<pre>\n%s\n</pre>", $this->_soapDebug );
+
+		}
+
+		// Load group functions.
+		wp_enqueue_script( 'pr_group_functions' );
+		
+		// Assemble the JavaScript.
+		$cag = $this->_currentActivityGroup;
+
+		$javaScript = PR()->withTransient( 'pr_group', $cag->groupName, function ()use( $cag ) {
+			
+			return $cag->toJson( true );
+			
+		} );
+
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/inline-12.php' );	
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/overlay-12.php' );
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+
+		} 
+		
+    	return $output;	
+
+	}
+	
+	public function prGroupShortcode13( $atts = array(), $content = null, $tag ) {
+		
+		$a = shortcode_atts( array( 
+			'name' => null, 
+			'guests' => null,
+			'upgrades' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts );
+
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $a['accommodation'];
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array( $a['guests'] );
+		$guestTypes = explode(',', $a['guests']);
+		$upgradeTypes = array( $a['upgrades'] );
+		$upgradeTypes = explode(',', $a['upgrades']);
+		$promotionalCodesStatus = $a['allowdiscounts'];
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_group_default_template' );
+		
+		$rval = '';
+
+		try {
+			
+			if ( null != $a[ 'name' ] ) {
+				
+				$this->setCurrentActivityGroup( $a[ 'name' ] );
+				
+			}
+			
+		} catch ( SoapFault $e ) {
+			
+			$rval .= sprintf( "<br>\n<pre>\n%s\n</pre>", $this->_soapDebug );
+
+		}
+
+		// Load group functions.
+		wp_enqueue_script( 'pr_group_functions' );
+		
+		// Assemble the JavaScript.
+		$cag = $this->_currentActivityGroup;
+
+		$javaScript = PR()->withTransient( 'pr_group', $cag->groupName, function ()use( $cag ) {
+			
+			return $cag->toJson( true );
+			
+		} );
+
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/inline-13.php' );	
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/overlay-13.php' );
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+
+		} 
+		
+    	return $output;
+		
+	}
+	
+	public function prGroupShortcode14( $atts = array(), $content = null, $tag ) {
+		
+		$a = shortcode_atts( array( 
+			'name' => null, 
+			'guests' => null,
+			'upgrades' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts );
+
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $a['accommodation'];
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $a['promocode'];
+		$guestTypes = array( $a['guests'] );
+		$guestTypes = explode(',', $a['guests']);
+		$upgradeTypes = array( $a['upgrades'] );
+		$upgradeTypes = explode(',', $a['upgrades']);
+		$promotionalCodesStatus = $a['allowdiscounts'];
+
+		$guestType1Label = get_option('guestType1');
+		$guestType1ID = get_option('guestType1ID');
+		$guestType1MinGuest = get_option('guestType1Min');
+		$guestType1MaxGuest = get_option('guestType1Max');
+
+		$guestType2Label = get_option('guestType2');
+		$guestType2ID = get_option('guestType2ID');
+		$guestType2MinGuest = get_option('guestType2Min');
+		$guestType2MaxGuest = get_option('guestType2Max');
+
+		$guestType3Label = get_option('guestType3');
+		$guestType3ID = get_option('guestType3ID');
+		$guestType3MinGuest = get_option('guestType3Min');
+		$guestType3MaxGuest = get_option('guestType3Max');
+
+		$guestType4Label = get_option('guestType4');
+		$guestType4ID = get_option('guestType4ID');
+		$guestType4MinGuest = get_option('guestType4Min');
+		$guestType4MaxGuest = get_option('guestType4Max');
+
+		$guestType5Label = get_option('guestType5');
+		$guestType5ID = get_option('guestType5ID');
+		$guestType5MinGuest = get_option('guestType5Min');
+		$guestType5MaxGuest = get_option('guestType5Max');
+
+		$guestType6Label = get_option('guestType6');
+		$guestType6ID = get_option('guestType6ID');
+		$guestType6MinGuest = get_option('guestType6Min');
+		$guestType6MaxGuest = get_option('guestType6Max');
+		
+		$guestType7Label = get_option('guestType7');
+		$guestType7ID = get_option('guestType7ID');
+		$guestType7MinGuest = get_option('guestType7Min');
+		$guestType7MaxGuest = get_option('guestType7Max');
+
+		$guestType8Label = get_option('guestType8');
+		$guestType8ID = get_option('guestType8ID');
+		$guestType8MinGuest = get_option('guestType8Min');
+		$guestType8MaxGuest = get_option('guestType8Max');
+		
+		$guestType9Label = get_option('guestType9');
+		$guestType9ID = get_option('guestType9ID');
+		$guestType9MinGuest = get_option('guestType9Min');
+		$guestType9MaxGuest = get_option('guestType9Max');
+		
+		$guestType10Label = get_option('guestType10');
+		$guestType10ID = get_option('guestType10ID');
+		$guestType10MinGuest = get_option('guestType10Min');
+		$guestType10MaxGuest = get_option('guestType10Max');
+		
+		$guestType11Label = get_option('guestType11');
+		$guestType11ID = get_option('guestType11ID');
+		$guestType11MinGuest = get_option('guestType11Min');
+		$guestType11MaxGuest = get_option('guestType11Max');
+		
+		$guestType12Label = get_option('guestType12');
+		$guestType12ID = get_option('guestType12ID');
+		$guestType12MinGuest = get_option('guestType12Min');
+		$guestType12MaxGuest = get_option('guestType12Max');
+		
+		$guestType13Label = get_option('guestType13');
+		$guestType13ID = get_option('guestType13ID');
+		$guestType13MinGuest = get_option('guestType13Min');
+		$guestType13MaxGuest = get_option('guestType13Max');
+		
+		$guestType14Label = get_option('guestType14');
+		$guestType14ID = get_option('guestType14ID');
+		$guestType14MinGuest = get_option('guestType14Min');
+		$guestType14MaxGuest = get_option('guestType14Max');
+		
+		$guestType15Label = get_option('guestType15');
+		$guestType15ID = get_option('guestType15ID');
+		$guestType15MinGuest = get_option('guestType15Min');
+		$guestType15MaxGuest = get_option('guestType15Max');
+		
+		$guestType16Label = get_option('guestType16');
+		$guestType16ID = get_option('guestType16ID');
+		$guestType16MinGuest = get_option('guestType16Min');
+		$guestType16MaxGuest = get_option('guestType16Max');
+		
+		$guestType17Label = get_option('guestType17');
+		$guestType17ID = get_option('guestType17ID');
+		$guestType17MinGuest = get_option('guestType17Min');
+		$guestType17MaxGuest = get_option('guestType17Max');
+		
+		$guestType18Label = get_option('guestType18');
+		$guestType18ID = get_option('guestType18ID');
+		$guestType18MinGuest = get_option('guestType18Min');
+		$guestType18MaxGuest = get_option('guestType18Max');
+		
+		$guestType19Label = get_option('guestType19');
+		$guestType19ID = get_option('guestType19ID');
+		$guestType19MinGuest = get_option('guestType19Min');
+		$guestType19MaxGuest = get_option('guestType19Max');
+		
+		$guestType20Label = get_option('guestType20');
+		$guestType20ID = get_option('guestType20ID');
+		$guestType20MinGuest = get_option('guestType20Min');
+		$guestType20MaxGuest = get_option('guestType20Max');
+
+		$upgradeType1Label = get_option('upgradeType1');
+		$upgradeType1ID = get_option('upgradeType1ID');
+		$upgradeType1Min = get_option('upgradeType1Min');
+		$upgradeType1Max = get_option('upgradeType1Max');
+
+		$upgradeType2Label = get_option('upgradeType2');
+		$upgradeType2ID = get_option('upgradeType2ID');
+		$upgradeType2Min = get_option('upgradeType2Min');
+		$upgradeType2Max = get_option('upgradeType2Max');
+
+		$upgradeType3Label = get_option('upgradeType3');
+		$upgradeType3ID = get_option('upgradeType3ID');
+		$upgradeType3Min = get_option('upgradeType3Min');
+		$upgradeType3Max = get_option('upgradeType3Max');
+
+		$upgradeType4Label = get_option('upgradeType4');
+		$upgradeType4ID = get_option('upgradeType4ID');
+		$upgradeType4Min = get_option('upgradeType4Min');
+		$upgradeType4Max = get_option('upgradeType4Max');
+
+		$upgradeType5Label = get_option('upgradeType5');
+		$upgradeType5ID = get_option('upgradeType5ID');
+		$upgradeType5Min = get_option('upgradeType5Min');
+		$upgradeType5Max = get_option('upgradeType5Max');
+
+		$upgradeType6Label = get_option('upgradeType6');
+		$upgradeType6ID = get_option('upgradeType6ID');
+		$upgradeType6Min = get_option('upgradeType6Min');
+		$upgradeType6Max = get_option('upgradeType6Max');
+		
+		$upgradeType7Label = get_option('upgradeType7');
+		$upgradeType7ID = get_option('upgradeType7ID');
+		$upgradeType7Min = get_option('upgradeType7Min');
+		$upgradeType7Max = get_option('upgradeType7Max');
+
+		$upgradeType8Label = get_option('upgradeType8');
+		$upgradeType8ID = get_option('upgradeType8ID');
+		$upgradeType8Min = get_option('upgradeType8Min');
+		$upgradeType8Max = get_option('upgradeType8Max');
+		
+		$upgradeType9Label = get_option('upgradeType9');
+		$upgradeType9ID = get_option('upgradeType9ID');
+		$upgradeType9Min = get_option('upgradeType9Min');
+		$upgradeType9Max = get_option('upgradeType9Max');
+		
+		$upgradeType10Label = get_option('upgradeType10');
+		$upgradeType10ID = get_option('upgradeType10ID');
+		$upgradeType10Min = get_option('upgradeType10Min');
+		$upgradeType10Max = get_option('upgradeType10Max');
+		
+		$upgradeType11Label = get_option('upgradeType11');
+		$upgradeType11ID = get_option('upgradeType11ID');
+		$upgradeType11Min = get_option('upgradeType11Min');
+		$upgradeType11Max = get_option('upgradeType11Max');
+		
+		$upgradeType12Label = get_option('upgradeType12');
+		$upgradeType12ID = get_option('upgradeType12ID');
+		$upgradeType12Min = get_option('upgradeType12Min');
+		$upgradeType12Max = get_option('upgradeType12Max');
+		
+		$upgradeType13Label = get_option('upgradeType13');
+		$upgradeType13ID = get_option('upgradeType13ID');
+		$upgradeType13Min = get_option('upgradeType13Min');
+		$upgradeType13Max = get_option('upgradeType13Max');
+		
+		$upgradeType14Label = get_option('upgradeType14');
+		$upgradeType14ID = get_option('upgradeType14ID');
+		$upgradeType14Min = get_option('upgradeType14Min');
+		$upgradeType14Max = get_option('upgradeType14Max');
+		
+		$upgradeType15Label = get_option('upgradeType15');
+		$upgradeType15ID = get_option('upgradeType15ID');
+		$upgradeType15Min = get_option('upgradeType15Min');
+		$upgradeType15Max = get_option('upgradeType15Max');
+		
+		$upgradeType16Label = get_option('upgradeType16');
+		$upgradeType16ID = get_option('upgradeType16ID');
+		$upgradeType16Min = get_option('upgradeType16Min');
+		$upgradeType16Max = get_option('upgradeType16Max');
+		
+		$upgradeType17Label = get_option('upgradeType17');
+		$upgradeType17ID = get_option('upgradeType17ID');
+		$upgradeType17Min = get_option('upgradeType17Min');
+		$upgradeType17Max = get_option('upgradeType17Max');
+		
+		$upgradeType18Label = get_option('upgradeType18');
+		$upgradeType18ID = get_option('upgradeType18ID');
+		$upgradeType18Min = get_option('upgradeType18Min');
+		$upgradeType18Max = get_option('upgradeType18Max');
+		
+		$upgradeType19Label = get_option('upgradeType19');
+		$upgradeType19ID = get_option('upgradeType19ID');
+		$upgradeType19Min = get_option('upgradeType19Min');
+		$upgradeType19Max = get_option('upgradeType19Max');
+		
+		$upgradeType20Label = get_option('upgradeType20');
+		$upgradeType20ID = get_option('upgradeType20ID');
+		$upgradeType20Min = get_option('upgradeType20Min');
+		$upgradeType20Max = get_option('upgradeType20Max');
+		
+		$defaultActivityTemplate = get_option( 'pr_group_default_template' );
+		
+		$rval = '';
+
+		try {
+			
+			if ( null != $a[ 'name' ] ) {
+				
+				$this->setCurrentActivityGroup( $a[ 'name' ] );
+				
+			}
+			
+		} catch ( SoapFault $e ) {
+			
+			$rval .= sprintf( "<br>\n<pre>\n%s\n</pre>", $this->_soapDebug );
+
+		}
+
+		// Load group functions.
+		wp_enqueue_script( 'pr_group_functions' );
+		
+		// Assemble the JavaScript.
+		$cag = $this->_currentActivityGroup;
+
+		$javaScript = PR()->withTransient( 'pr_group', $cag->groupName, function ()use( $cag ) {
+			
+			return $cag->toJson( true );
+			
+		} );
+
+		if ($defaultActivityTemplate == 'inline') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/inline-14.php' );	
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+			
+		} elseif ($defaultActivityTemplate == 'overlay') {
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-group/sub/overlay-14.php' );
+			$output = ob_get_clean();
+			$output .= sprintf( "<script>\n%s\n</script>", $javaScript );
+
+		} 
+		
+    	return $output;	
+
 	}
 
 	// Load minAvailability Select
@@ -4244,6 +8441,14 @@ EOT;
 		add_shortcode( 'ponorezActivityBooking-04', array( $this, 'ponorezActivityBooking04' ) );
 		add_shortcode( 'ponorezActivityBooking-05', array( $this, 'ponorezActivityBooking05' ) );
 		add_shortcode( 'ponorezActivityBooking-06', array( $this, 'ponorezActivityBooking06' ) );
+		add_shortcode( 'ponorezActivityBooking-07', array( $this, 'ponorezActivityBooking07' ) );
+		add_shortcode( 'ponorezActivityBooking-08', array( $this, 'ponorezActivityBooking08' ) );
+		add_shortcode( 'ponorezActivityBooking-09', array( $this, 'ponorezActivityBooking09' ) );
+		add_shortcode( 'ponorezActivityBooking-10', array( $this, 'ponorezActivityBooking10' ) );
+		add_shortcode( 'ponorezActivityBooking-11', array( $this, 'ponorezActivityBooking11' ) );
+		add_shortcode( 'ponorezActivityBooking-12', array( $this, 'ponorezActivityBooking12' ) );
+		add_shortcode( 'ponorezActivityBooking-13', array( $this, 'ponorezActivityBooking13' ) );
+		add_shortcode( 'ponorezActivityBooking-14', array( $this, 'ponorezActivityBooking14' ) );
 		add_shortcode( 'loadPonorezActivity', array( $this, 'loadPonorezActivity' ) );
 		add_shortcode( 'loadPonorezActivityName', array( $this, 'ponorezActivityName' ) );	
 		add_shortcode( 'loadPonorezDatePicker', array( $this, 'ponorezDatePicker' ) );
@@ -4263,6 +8468,14 @@ EOT;
 		add_shortcode( 'ponorezGroupBooking-04', array( $this, 'prGroupShortcode04' ) );
 		add_shortcode( 'ponorezGroupBooking-05', array( $this, 'prGroupShortcode05' ) );
 		add_shortcode( 'ponorezGroupBooking-06', array( $this, 'prGroupShortcode06' ) );
+		add_shortcode( 'ponorezGroupBooking-07', array( $this, 'prGroupShortcode07' ) );
+		add_shortcode( 'ponorezGroupBooking-08', array( $this, 'prGroupShortcode08' ) );
+		add_shortcode( 'ponorezGroupBooking-09', array( $this, 'prGroupShortcode09' ) );
+		add_shortcode( 'ponorezGroupBooking-10', array( $this, 'prGroupShortcode10' ) );
+		add_shortcode( 'ponorezGroupBooking-11', array( $this, 'prGroupShortcode11' ) );
+		add_shortcode( 'ponorezGroupBooking-12', array( $this, 'prGroupShortcode12' ) );
+		add_shortcode( 'ponorezGroupBooking-13', array( $this, 'prGroupShortcode13' ) );
+		add_shortcode( 'ponorezGroupBooking-14', array( $this, 'prGroupShortcode14' ) );
 		add_shortcode( 'loadPonorezMinAvailability', array( $this, 'loadPonorezMinAvailability' ) );	
 		add_shortcode( 'ponorezGroupAccommodationSelect', array( $this, 'ponorezGroupAccommodationSelect' ) );
 		add_shortcode( 'loadPonorezGroupTransportation', array( $this, 'loadPonorezGroupTransportation' ) );

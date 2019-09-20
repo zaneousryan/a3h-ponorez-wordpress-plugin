@@ -172,14 +172,21 @@
 				<code>Example: [ponorezActivityBooking id="1234" guests="345,234,123" title='My Booking Form Title']</code></p>
 
 				<h2><strong>Displaying multiple booking forms on the same page</strong></h2>		
-				<p>Currently this pugin can be used to generate up to 7 booking form on the same page by using the following shortcode variations:</p>
-				<code>[ponorezActivityBooking id="ID" guests=""]</code><br>
+				<p>Currently this pugin can be used to generate up to 14 booking form on the same page by using the following shortcode variations:</p>
 				<code>[ponorezActivityBooking-01 id="1234" guests="345,234,123"]</code><br>
 				<code>[ponorezActivityBooking-02 id="2345" guests="345,234,123"]</code><br>
 				<code>[ponorezActivityBooking-03 id="3456" guests="345,234,123"]</code><br>
 				<code>[ponorezActivityBooking-04 id="4567" guests="345,234,123"]</code><br>
 				<code>[ponorezActivityBooking-05 id="5678" guests="345,234,123"]</code><br>
-				<code>[ponorezActivityBooking-06 id="6789" guests="345,234,123"]</code>
+				<code>[ponorezActivityBooking-06 id="6789" guests="345,234,123"]</code><br>
+				<code>[ponorezActivityBooking-07 id="1234" guests="345,234,123"]</code><br>
+				<code>[ponorezActivityBooking-08 id="2345" guests="345,234,123"]</code><br>
+				<code>[ponorezActivityBooking-09 id="3456" guests="345,234,123"]</code><br>
+				<code>[ponorezActivityBooking-10 id="4567" guests="345,234,123"]</code><br>
+				<code>[ponorezActivityBooking-11 id="5678" guests="345,234,123"]</code><br>
+				<code>[ponorezActivityBooking-12 id="6789" guests="345,234,123"]</code><br>
+				<code>[ponorezActivityBooking-13 id="1234" guests="345,234,123"]</code><br>
+				<code>[ponorezActivityBooking-14 id="2345" guests="345,234,123"]</code>
 
 			</div>
         <?php
@@ -246,14 +253,21 @@
 				<code>Example: [ponorezGroupBooking name="groupname" guests="345,234,123" title='My Group Booking Form Title']</code></p>
 
 				<h2><strong>Displaying multiple booking forms on the same page</strong></h2>		
-				<p>Currently this pugin can be used to generate up to 7 booking form on the same page by using the following shortcode variations:</p>
-				<code>[ponorezGroupBooking id="ID" guests=""]</code><br>
+				<p>Currently this pugin can be used to generate up to 14 booking form on the same page by using the following shortcode variations:</p>
 				<code>[ponorezGroupBooking-01 name="groupname1" guests="123,234,345"]</code><br>
 				<code>[ponorezGroupBooking-02 name="groupname2" guests="345,234,123"]</code><br>
 				<code>[ponorezGroupBooking-03 name="groupname3" guests="234,345,123"]</code><br>
 				<code>[ponorezGroupBooking-04 name="groupname4" guests="123,234,345"]</code><br>
 				<code>[ponorezGroupBooking-05 name="groupname5" guests="234,345,123"]</code><br>
-				<code>[ponorezGroupBooking-06 name="groupname6" guests="345,234,123"]</code>
+				<code>[ponorezGroupBooking-06 name="groupname6" guests="345,234,123"]</code><br>
+				<code>[ponorezGroupBooking-07 name="groupname1" guests="123,234,345"]</code><br>
+				<code>[ponorezGroupBooking-08 name="groupname2" guests="345,234,123"]</code><br>
+				<code>[ponorezGroupBooking-09 name="groupname3" guests="234,345,123"]</code><br>
+				<code>[ponorezGroupBooking-10 name="groupname4" guests="123,234,345"]</code><br>
+				<code>[ponorezGroupBooking-11 name="groupname5" guests="234,345,123"]</code><br>
+				<code>[ponorezGroupBooking-12 name="groupname6" guests="345,234,123"]</code><br>
+				<code>[ponorezGroupBooking-13 name="groupname1" guests="123,234,345"]</code><br>
+				<code>[ponorezGroupBooking-14 name="groupname2" guests="345,234,123"]</code>
 
 			</div>
 

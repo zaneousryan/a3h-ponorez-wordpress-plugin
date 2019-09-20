@@ -336,7 +336,7 @@ function booknow(group, google) {
     
   };
 
-  if(jQuery('#accommodation').length || jQuery('#accommodation1').length || jQuery('#accommodation2').length || jQuery('#accommodation3').length || jQuery('#accommodation4').length || jQuery('#accommodation5').length || jQuery('#accommodation6').length){
+  if(jQuery('#accommodation').length || jQuery('#accommodation1').length || jQuery('#accommodation2').length || jQuery('#accommodation3').length || jQuery('#accommodation4').length || jQuery('#accommodation5').length || jQuery('#accommodation6').length || jQuery('#accommodation7').length || jQuery('#accommodation8').length || jQuery('#accommodation9').length || jQuery('#accommodation10').length || jQuery('#accommodation11').length || jQuery('#accommodation12').length || jQuery('#accommodation13').length || jQuery('#accommodation14').length){
 
     setHotel(getHotelId(group)); setRoom(getRoom(group)); setTransportationRoute(getTransportationRouteId(group)); setAccommodationFixed();
 

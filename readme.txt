@@ -35,6 +35,9 @@ To install this plugin, follow these directions:
 
 == Changelog ==
 
+= 3.5.9 =
+* Added ability to have up to 14 booking forms on a single page.
+
 = 3.5.8 =
 * Fixed bug for promotional codes on multiple single activities.
 
