@@ -410,7 +410,7 @@
 		$setGoogleAnalyticsID = 'setgoogleanalytics(\'' . $googleAnalyticsID . '\');';
 	?>
 		<script>
-			function showMinAvailable5(){
+			function showMinAvailable11(){
 				var activityControl = <?php echo $myActivityID;?>,
 					dateControl = 'date_a<?php echo $myActivityID; ?>',
 					totalGuestCount = 0,
@@ -553,8 +553,8 @@
 		</script>
 		<label>Choose Date</label>
 		<div class="form-row date-selector">
-			<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable5()'>
-				<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable5();">
+			<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable11()'>
+				<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable11();">
 					<i class="fa fa-calendar" aria-hidden="true"></i>
 				</a>
 		</div>
