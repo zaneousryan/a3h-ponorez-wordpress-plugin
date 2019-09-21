@@ -1,4 +1,4 @@
-	    <div class="wrap">
+<div class="wrap">
      
         <h2>How to use PonoRez Booking System for Wordpress</h2>
          
@@ -172,7 +172,7 @@
 				<code>Example: [ponorezActivityBooking id="1234" guests="345,234,123" title='My Booking Form Title']</code></p>
 
 				<h2><strong>Displaying multiple booking forms on the same page</strong></h2>		
-				<p>Currently this pugin can be used to generate up to 14 booking form on the same page by using the following shortcode variations:</p>
+				<p>Currently, this plugin can be used to generate up to 14 booking form on the same page by using the following shortcode variations:</p>
 				<code>[ponorezActivityBooking-01 id="1234" guests="345,234,123"]</code><br>
 				<code>[ponorezActivityBooking-02 id="2345" guests="345,234,123"]</code><br>
 				<code>[ponorezActivityBooking-03 id="3456" guests="345,234,123"]</code><br>
@@ -253,7 +253,7 @@
 				<code>Example: [ponorezGroupBooking name="groupname" guests="345,234,123" title='My Group Booking Form Title']</code></p>
 
 				<h2><strong>Displaying multiple booking forms on the same page</strong></h2>		
-				<p>Currently this pugin can be used to generate up to 14 booking form on the same page by using the following shortcode variations:</p>
+				<p>Currently, this plugin can be used to generate up to 14 booking form on the same page by using the following shortcode variations:</p>
 				<code>[ponorezGroupBooking-01 name="groupname1" guests="123,234,345"]</code><br>
 				<code>[ponorezGroupBooking-02 name="groupname2" guests="345,234,123"]</code><br>
 				<code>[ponorezGroupBooking-03 name="groupname3" guests="234,345,123"]</code><br>
