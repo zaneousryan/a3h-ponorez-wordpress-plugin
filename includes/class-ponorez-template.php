@@ -8487,7 +8487,7 @@ EOT;
 	// Load required scripts
 	public function loadScripts() {
 		
-		// Load HawaiiFun Hostes JS Files
+		// Load HawaiiFun Hosted JS Files
 		wp_enqueue_script( 'pr_calendar', 'https://www.hawaiifun.org/reservation/common/calendar_js.jsp', array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker', 'pr_accommodation' ) );
 		wp_enqueue_script( 'pr_functions', 'https://www.hawaiifun.org/reservation/external/functions.js', array( 'jquery', 'pr_calendar' ), null );
 		//wp_enqueue_script( 'pr_functions2', 'https://www.hawaiifun.org/reservation/external/functions2.js', array( 'jquery', 'pr_calendar' ), null );

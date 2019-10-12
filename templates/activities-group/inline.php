@@ -120,39 +120,39 @@
 
 				$html .= do_shortcode('[loadPonorezUpgradeField id="'.$upgradeType1ID.'" name="'.$upgradeType1Label.'" min="'.$upgradeType1Min.'" max="'.$upgradeType1Max.'"]');
 
-			} elseif (isset($upgradeTypes[1])!= null && $upgrade == $upgradeType2ID) {
+			} elseif (isset($upgradeTypes[1]) != null && $upgrade == $upgradeType2ID) {
 
 				$html .= do_shortcode('[loadPonorezUpgradeField id="'.$upgradeType2ID.'" name="'.$upgradeType2Label.'" min="'.$upgradeType2Min.'" max="'.$upgradeType2Max.'"]');
 
-			} elseif (isset($upgradeTypes[2])!= null && $upgrade == $upgradeType3ID) {
+			} elseif (isset($upgradeTypes[2]) != null && $upgrade == $upgradeType3ID) {
 
 				$html .= do_shortcode('[loadPonorezUpgradeField id="'.$upgradeType3ID.'" name="'.$upgradeType3Label.'" min="'.$upgradeType3Min.'" max="'.$upgradeType3Max.'"]');
 
-			} elseif (isset($upgradeTypes[3])!= null && $upgrade == $upgradeType4ID) {
+			} elseif (isset($upgradeTypes[3]) != null && $upgrade == $upgradeType4ID) {
 
 				$html .= do_shortcode('[loadPonorezUpgradeField id="'.$upgradeType4ID.'" name="'.$upgradeType4Label.'" min="'.$upgradeType4Min.'" max="'.$upgradeType4Max.'"]');
 
-			} elseif (isset($upgradeTypes[4])!= null && $upgrade == $upgradeType5ID) {
+			} elseif (isset($upgradeTypes[4]) != null && $upgrade == $upgradeType5ID) {
 
 				$html .= do_shortcode('[loadPonorezUpgradeField id="'.$upgradeType5ID.'" name="'.$upgradeType5Label.'" min="'.$upgradeType5Min.'" max="'.$upgradeType5Max.'"]');
 
-			} elseif (isset($upgradeTypes[5])!= null && $upgrade == $upgradeType6ID) {
+			} elseif (isset($upgradeTypes[5]) != null && $upgrade == $upgradeType6ID) {
 
 				$html .= do_shortcode('[loadPonorezUpgradeField id="'.$upgradeType6ID.'" name="'.$upgradeType6Label.'" min="'.$upgradeType6Min.'" max="'.$upgradeType6Max.'"]');
 
-			} elseif (isset($upgradeTypes[6])!= null && $upgrade == $upgradeType7ID) {
+			} elseif (isset($upgradeTypes[6]) != null && $upgrade == $upgradeType7ID) {
 
 				$html .= do_shortcode('[loadPonorezUpgradeField id="'.$upgradeType7ID.'" name="'.$upgradeType7Label.'" min="'.$upgradeType7Min.'" max="'.$upgradeType7Max.'"]');
 
-			} elseif (isset($upgradeTypes[7])!= null && $upgrade == $upgradeType8ID) {
+			} elseif (isset($upgradeTypes[7]) != null && $upgrade == $upgradeType8ID) {
 
 				$html .= do_shortcode('[loadPonorezUpgradeField id="'.$upgradeType8ID.'" name="'.$upgradeType8Label.'" min="'.$upgradeType8Min.'" max="'.$upgradeType8Max.'"]');
 
-			} elseif (isset($upgradeTypes[8])!= null && $upgrade == $upgradeType9ID) {
+			} elseif (isset($upgradeTypes[8]) != null && $upgrade == $upgradeType9ID) {
 
 				$html .= do_shortcode('[loadPonorezUpgradeField id="'.$upgradeType9ID.'" name="'.$upgradeType9Label.'" min="'.$upgradeType9Min.'" max="'.$upgradeType9Max.'"]');
 
-			} elseif (isset($upgradeTypes[9])!= null && $upgrade == $upgradeType10ID) {
+			} elseif (isset($upgradeTypes[9]) != null && $upgrade == $upgradeType10ID) {
 
 				$html .= do_shortcode('[loadPonorezUpgradeField id="'.$upgradeType10ID.'" name="'.$upgradeType10Label.'" min="'.$upgradeType10Min.'" max="'.$upgradeType10Max.'"]');
 

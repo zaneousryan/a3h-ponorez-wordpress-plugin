@@ -52,7 +52,6 @@ final class PonoRezAdminConfig {
 		if ( $serviceCreds[ 'username' ] ) {
 			
 			$activityList = new PonoRezActivityList( $psc, $serviceCreds );
-			//$activities = $activityList->displayItems( array( 'filter' => @$_GET[ 'pra_filter' ], 'page' => @$_GET[ 'pra_page' ], 'count' => @$_GET[ 'pra_count' ] ) );
 			$activities = $activityList->displayItems( array( 'filter' => @$_GET[ 'pra_filter' ], 'page' => @$_GET[ 'pra_page' ], 'count' => 100 ) );
 			
 		}

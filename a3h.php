@@ -51,12 +51,12 @@ final class PonoRez {
 	protected $_publicService = null;
 
 	/**
-	 * @var SoapClient instance of the Agency Provider Service WSDL
+	 * @var SoapClient instance of the Supplier Provider Service WSDL
 	 */
 	protected $_providerService = null;
 
 	/**
-	 * @var SoapClient instance of the Activity Wholesaler Service WSDL
+	 * @var SoapClient instance of the Agency Service WSDL
 	 */
 	protected $_wholesalerService = null;
 
@@ -75,7 +75,7 @@ final class PonoRez {
 	}
 
 	/**
-	 * @return SoapClient agency provider service soap client
+	 * @return SoapClient Supplier provider service soap client
 	 */
 	public function providerService() {
 		
@@ -90,7 +90,7 @@ final class PonoRez {
 	}
 
 	/**
-	 * @return SoapClient activity wholesaler service soap client
+	 * @return SoapClient Agency service soap client
 	 */
 	public function wholesalerService() {
 		
