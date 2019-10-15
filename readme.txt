@@ -9,6 +9,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Add PonoRez interfaces, reservations, and tours to your WordPress site through shortcodes. Plugin development was based on Erik L. Arneson's plugin <strong>"A3H Pono Rez Reservation Interface for WordPress"</strong>.
 
+Specific Version for Mac
+
 == Description ==
 
 [PonoRez](http://ponorezsolutions.com/) is a web based Central Reservation System (CRS) targeting Tours & Attractions. The system comes equipped with a slick Ecommerce solution, customization tools and API messaging. In addition to the scheduling of Tours, Retail Store, Gift Certificates & Transportation are standard modules. The system complies with Payment Card Industry data security standards & credit card standards.
