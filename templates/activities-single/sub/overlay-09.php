@@ -676,83 +676,83 @@
 						// Attach active upgrade types to booking function
 						foreach ($upgradeTypes as $upgrade) { 
 
-							if ($upgradeTypes[0] != null && $upgrade == $upgradeTypes[0]) {
+							if (isset($upgradeTypes[0]) && $upgradeTypes[0] != null && $upgrade == $upgradeTypes[0]) {
 
 								$printUG1 = 'addUpgrades(' . $upgradeTypes[0] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[0] .'\').value); ';
 
-							} elseif ($upgradeTypes[1] != null && $upgrade == $upgradeTypes[1]) {
+							} elseif (isset($upgradeTypes[1]) && $upgrade == $upgradeTypes[1]) {
 
 								$printUG2 = 'addUpgrades(' . $upgradeTypes[1] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[1] .'\').value); ';
 
-							} elseif ($upgradeTypes[2] != null && $upgrade == $upgradeTypes[2]) {
+							} elseif (isset($upgradeTypes[2]) && $upgrade == $upgradeTypes[2]) {
 
 								$printUG3 = 'addUpgrades(' . $upgradeTypes[2] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[2] .'\').value); ';
 
-							} elseif ($upgradeTypes[3] != null && $upgrade == $upgradeTypes[3]) {
+							} elseif (isset($upgradeTypes[3]) && $upgrade == $upgradeTypes[3]) {
 
 								$printUG4 = 'addUpgrades(' . $upgradeTypes[3] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[3] .'\').value); ';
 
-							} elseif ($upgradeTypes[4] != null && $upgrade == $upgradeTypes[4]) {
+							} elseif (isset($upgradeTypes[4]) && $upgrade == $upgradeTypes[4]) {
 
 								$printUG5 = 'addUpgrades(' . $upgradeTypes[4] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[4] .'\').value); ';
 
-							} elseif ($upgradeTypes[5] != null && $upgrade == $upgradeTypes[5]) {
+							} elseif (isset($upgradeTypes[5]) && $upgrade == $upgradeTypes[5]) {
 
 								$printUG6 = 'addUpgrades(' . $upgradeTypes[5] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[5] .'\').value); ';	
 
-							} elseif ($upgradeTypes[6] != null && $upgrade == $upgradeTypes[6]) {
+							} elseif (isset($upgradeTypes[6]) && $upgrade == $upgradeTypes[6]) {
 
 								$printUG7 = 'addUpgrades(' . $upgradeTypes[6] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[6] .'\').value); ';	
 
-							} elseif ($upgradeTypes[7] != null && $upgrade == $upgradeTypes[7]) {
+							} elseif (isset($upgradeTypes[7]) && $upgrade == $upgradeTypes[7]) {
 
 								$printUG8 = 'addUpgrades(' . $upgradeTypes[7] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[7] .'\').value); ';	
 
-							} elseif ($upgradeTypes[8] != null && $upgrade == $upgradeTypes[8]) {
+							} elseif (isset($upgradeTypes[8]) && $upgrade == $upgradeTypes[8]) {
 
 								$printUG9 = 'addUpgrades(' . $upgradeTypes[8] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[8] .'\').value); ';	
 
-							} elseif ($upgradeTypes[9] != null && $upgrade == $upgradeTypes[9]) {
+							} elseif (isset($upgradeTypes[9]) && $upgrade == $upgradeTypes[9]) {
 
 								$printUG10 = 'addUpgrades(' . $upgradeTypes[9] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[9] .'\').value); ';	
 
-							} elseif ($upgradeTypes[10] != null && $upgrade == $upgradeTypes[10]) {
+							} elseif (isset($upgradeTypes[10]) && $upgrade == $upgradeTypes[10]) {
 
 								$printUG11 = 'addUpgrades(' . $upgradeTypes[10] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[10] .'\').value); ';	
 
-							} elseif ($upgradeTypes[11] != null && $upgrade == $upgradeTypes[11]) {
+							} elseif (isset($upgradeTypes[11]) && $upgrade == $upgradeTypes[11]) {
 
 								$printUG12 = 'addUpgrades(' . $upgradeTypes[11] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[11] .'\').value); ';	
 
-							} elseif ($upgradeTypes[12] != null && $upgrade == $upgradeTypes[12]) {
+							} elseif (isset($upgradeTypes[12]) && $upgrade == $upgradeTypes[12]) {
 
 								$printUG13 = 'addUpgrades(' . $upgradeTypes[12] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[12] .'\').value); ';	
 
-							} elseif ($upgradeTypes[13] != null && $upgrade == $upgradeTypes[13]) {
+							} elseif (isset($upgradeTypes[13]) && $upgrade == $upgradeTypes[13]) {
 
 								$printUG14 = 'addUpgrades(' . $upgradeTypes[13] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[13] .'\').value); ';	
 
-							} elseif ($upgradeTypes[14] != null && $upgrade == $upgradeTypes[14]) {
+							} elseif (isset($upgradeTypes[14]) && $upgrade == $upgradeTypes[14]) {
 
 								$printUG15 = 'addUpgrades(' . $upgradeTypes[14] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[14] .'\').value); ';	
 
-							} elseif ($upgradeTypes[15] != null && $upgrade == $upgradeTypes[15]) {
+							} elseif (isset($upgradeTypes[15]) && $upgrade == $upgradeTypes[15]) {
 
 								$printUG16 = 'addUpgrades(' . $upgradeTypes[15] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[15] .'\').value); ';	
 
-							} elseif ($upgradeTypes[16] != null && $upgrade == $upgradeTypes[16]) {
+							} elseif (isset($upgradeTypes[16]) && $upgrade == $upgradeTypes[16]) {
 
 								$printUG17 = 'addUpgrades(' . $upgradeTypes[16] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[16] .'\').value); ';	
 
-							} elseif ($upgradeTypes[17] != null && $upgrade == $upgradeTypes[17]) {
+							} elseif (isset($upgradeTypes[17]) && $upgrade == $upgradeTypes[17]) {
 
 								$printUG18 = 'addUpgrades(' . $upgradeTypes[17] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[17] .'\').value); ';	
 
-							} elseif ($upgradeTypes[18] != null && $upgrade == $upgradeTypes[18]) {
+							} elseif (isset($upgradeTypes[18]) && $upgrade == $upgradeTypes[18]) {
 
 								$printUG19 = 'addUpgrades(' . $upgradeTypes[18] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[18] .'\').value); ';	
 
-							} elseif ($upgradeTypes[19] != null && $upgrade == $upgradeTypes[19]) {
+							} elseif (isset($upgradeTypes[19]) && $upgrade == $upgradeTypes[19]) {
 
 								$printUG20 = 'addUpgrades(' . $upgradeTypes[19] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[19] .'\').value); ';	
 
@@ -760,6 +760,7 @@
 
 							}
 						}
+
 						//Load Accommodation and Transportation Fields
 
 						$accommodationStatusCheck = get_option('accommodationStatus');

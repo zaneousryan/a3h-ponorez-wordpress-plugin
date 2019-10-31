@@ -36,7 +36,7 @@ To install this plugin, follow these directions:
 == Changelog ==
 
 = 3.5.10 =
-* Fixed saving and updating plugin functionality bugs.
+* Fixed saving, updating plugin functionality, and upgrades on single activity bugs. 
 
 = 3.5.9 =
 * Added ability to have up to 14 booking forms on a single page.
