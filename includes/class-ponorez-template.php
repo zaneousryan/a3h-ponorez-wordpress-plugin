@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Shortcodes for PonoRez templates
