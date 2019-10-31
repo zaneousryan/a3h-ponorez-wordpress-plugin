@@ -35,7 +35,7 @@ To install this plugin, follow these directions:
 
 == Changelog ==
 
-= 3.5.9 =
+= 3.5.10 =
 * Fixed saving and updating plugin functionality bugs.
 
 = 3.5.9 =
