@@ -420,121 +420,121 @@
 						if (isset($guestTypes[0]) && $guest == $guestType1ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType1ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType1ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType1ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType1ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType2ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType2ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType2ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType2ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType2ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType3ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType3ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType3ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType3ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType3ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType4ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType4ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType4ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType4ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType4ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType5ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType5ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType5ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType5ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType5ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType6ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType6ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType6ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType6ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType6ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType7ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType7ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType7ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType7ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType7ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType8ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType8ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType8ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType8ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType8ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType9ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType9ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType9ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType9ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType9ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType10ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType10ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType10ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType10ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType10ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType11ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType11ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType11ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType11ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType11ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType12ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType12ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType12ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType12ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType12ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType13ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType13ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType13ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType13ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType13ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType14ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType14ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType14ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType14ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType14ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType15ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType15ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType15ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType15ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType15ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType16ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType16ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType16ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType16ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType16ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType17ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType17ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType17ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType17ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType17ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType18ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType18ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType18ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType18ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType18ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType19ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType19ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType19ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType19ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType19ID;?>').value);
 
 							<?php
 						} elseif (isset($guestTypes[0]) && $guest == $guestType20ID) {
 							?>
 								minAvailable.guests[<?php echo $guestType20ID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $guestType20ID;?>').value;
-								totalGuestCount += document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType20ID;?>').value;
+								totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $guestType20ID;?>').value);
 
 							<?php
 						} 

@@ -35,6 +35,9 @@ To install this plugin, follow these directions:
 
 == Changelog ==
 
+= 3.5.11 =
+* Fixed single activity MinAvailability errors. 
+
 = 3.5.10 =
 * Fixed saving, updating plugin functionality, and upgrades on single activity bugs. 
 
