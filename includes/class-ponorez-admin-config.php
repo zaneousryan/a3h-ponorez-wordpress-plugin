@@ -60,13 +60,13 @@ final class PonoRezAdminConfig {
 		
 		<?php if ( $groups ): ?>
 		
-			<div class="wp-tab-panel" id="ponorez-groups-list" style="display: none; max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-groups-list">
 
 				<div id="ponorez-account-settings">
 
-					<div class="inside" style="padding-bottom: 12px;">
+					<div class="inside">
 
-						<h3 class="hndle" style="padding-bottom: 10px;"><span>Activity Groups</span></h3>
+						<h3 class="hndle"><span>Activity Groups</span></h3>
 
 						<table class="wp-list-table widefat">
 							<thead>
@@ -96,7 +96,7 @@ final class PonoRezAdminConfig {
 							</tbody>
 						</table>
 
-						<button type="button" id="pr_delete_groups" class="button button-primary" style="margin-top: 15px;">Delete Groups</button>
+						<button type="button" id="pr_delete_groups" class="button button-primary">Delete Groups</button>
 
 					</div>
 
@@ -105,25 +105,25 @@ final class PonoRezAdminConfig {
 		
 		<?php endif; ?>
 		
-			<div class="wp-tab-panel" id="ponorez-activities-list" style="display: none; max-height: 100%; padding-bottom: 12px; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-activities-list">
 
 				<div id="ponorez-account-settings">
 
-					<h3 class="hndle" style="padding-bottom: 10px;"><span>Available Activities</span></h3>
+					<h3 class="hndle"><span>Available Activities</span></h3>
 
 					<div>
-						<div style="margin-top: 0px; margin-bottom:  15px; float: left; widows: 40;">
+						<div>
 							<input type="text" id="pr_group_name" name="pr_group_name" placeholder="New group name">
 							<button type="button" id="pr_add_group" class="button button-primary">Add Group</button>
 							<button type="button" id="pr_refresh" class="button">Refresh List</button>
 						</div>
 
-						<div style="margin-top: 0px; margin-bottom: 15px; float: right; width: 40%; text-align: right;">
+						<div id="last">
 							<a href="#" id="pra_prev_page" data-page="<?php echo $activityList->prevPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">&lt; Prev</a> |&nbsp;Page
 							<?php echo $activityList->currentPage ?> of
 							<?php echo $activityList->maxPage ?>&nbsp|
 							<a href="#" id="pra_next_page" data-page="<?php echo $activityList->nextPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">Next &gt;</a>
-							<input style="width:50%" type="text" id="pra_activity_filter" placeholder="Filter list" value="<?php echo @$_GET['pra_filter']?>"/>
+							<input type="text" id="pra_activity_filter" placeholder="Filter list" value="<?php echo @$_GET['pra_filter']?>"/>
 							<button class="button" id="pra_filter_go">Go</button>
 						</div>
 					</div>
@@ -231,13 +231,13 @@ final class PonoRezAdminConfig {
 
 		</script>
 		
-		<ul class="wp-tab-bar" style="margin-bottom: 15px;">
-			<li><a href="#ponorez-acount-setup">Ponorez Account Setup</a><span style="margin-left: 12px; color: #999999;">|</span></li>
-			<li><a href="#ponorez-forms-settings">Booking Forms Settings</a><span style="margin-left: 12px; color: #999999;">|</span></li>
-			<li><a href="#ponorez-activities-list">Activities List</a><span style="margin-left: 12px; color: #999999;">|</span></li>
-			<li><a href="#ponorez-groups-list">Groups List</a><span style="margin-left: 12px; color: #999999;">|</span></li>
-			<li><a href="#ponorez-guest-types">Guest Types</a><span style="margin-left: 12px; color: #999999;">|</span></li>
-			<li><a href="#ponorez-upgrades">Upgrade Types</a><span style="margin-left: 12px; color: #999999;">|</span></li>
+		<ul class="wp-tab-bar">
+			<li><a href="#ponorez-account-setup">Ponorez Account Setup</a><span>|</span></li>
+			<li><a href="#ponorez-forms-settings">Booking Forms Settings</a><span>|</span></li>
+			<li><a href="#ponorez-activities-list">Activities List</a><span>|</span></li>
+			<li><a href="#ponorez-groups-list">Groups List</a><span>|</span></li>
+			<li><a href="#ponorez-guest-types">Guest Types</a><span>|</span></li>
+			<li><a href="#ponorez-upgrades">Upgrade Types</a><span>|</span></li>
 			<li><a href="#ponorez-google-analytics">Google Analytics Setup</a></li>
 		</ul>
 		
@@ -248,18 +248,18 @@ final class PonoRezAdminConfig {
 			<?php settings_fields('pr-settings'); ?>
 			<?php do_settings_sections('pr-settings'); ?>
 
-			<div class="wp-tab-panel" id="ponorez-acount-setup" style="max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-account-setup">
 
-				<h3 class="hndle" style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;"><span>PonoRez Account Setup</span></h3>
+				<h3 class="hndle"><span>PonoRez Account Setup</span></h3>
 
-				<label for="pr_username" style="display: block; margin-bottom: 5px;"><strong>Your PonoRez Username:</strong></label>
-				<input style="display: block; margin-bottom: 15px;" id="pr_username" type="text" name="pr_username" value="<?php echo esc_attr(get_option('pr_username')); ?>"/>
-				<label for="pr_password" style="display: block; margin-bottom: 5px;"><strong>Your PonoRez Password:</strong></label>
-				<input style="display: block; margin-bottom: 15px;" id="pr_password" type="password" name="pr_password" value="<?php echo esc_attr(get_option('pr_password')); ?>"/>
+				<label for="pr_username"><strong>Your PonoRez Username:</strong></label>
+				<input id="pr_username" type="text" name="pr_username" value="<?php echo esc_attr(get_option('pr_username')); ?>"/>
+				<label for="pr_password"><strong>Your PonoRez Password:</strong></label>
+				<input id="pr_password" type="password" name="pr_password" value="<?php echo esc_attr(get_option('pr_password')); ?>"/>
 
-				<label for="pr_cache_timeout" style="display: block; margin-bottom: 5px;"><strong>Cache Timeout:</strong></label>
-				<em style="display: block; margin-bottom: 5px;">This value determines how often information is retrieved from the Pono Rez servers.</em>
-				<select style="display: block; margin-bottom: 15px;" id="pr_cache_timeout" name="pr_cache_timeout">
+				<label for="pr_cache_timeout"><strong>Cache Timeout:</strong></label>
+				<em>This value determines how often information is retrieved from the Pono Rez servers.</em>
+				<select id="pr_cache_timeout" name="pr_cache_timeout">
 					<option value="0" <?php echo (0==$timeout) ? ' SELECTED' : '' ?>>Disabled</option>
 					<option value="3600" <?php echo (3600==$timeout) ? ' SELECTED' : '' ?>>1 Hour</option>
 					<option value="21600" <?php echo (21600==$timeout) ? ' SELECTED' : '' ?>>6 Hours</option>
@@ -270,12 +270,12 @@ final class PonoRezAdminConfig {
 
 			</div>
 				
-			<div class="wp-tab-panel" id="ponorez-forms-settings" style="display: none; max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-forms-settings">
 
-				<h3 class="hndle" style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;"><span>Booking Forms Type</span></h3>
+				<h3 class="hndle"><span>Booking Forms Type</span></h3>
 
-				<label for="pr_group_default_template" style="display: block; margin-bottom: 5px;"><strong>Single Activity Booking Form Template:</strong></label>
-				<select style="display: block; margin-bottom: 15px;" id="pr_group_default_template" name="pr_default_template">
+				<label for="pr_group_default_template"><strong>Single Activity Booking Form Template:</strong></label>
+				<select id="pr_group_default_template" name="pr_default_template">
 
 					<?php foreach (self::getTemplateList() as $template): ?>
 					<?php printf('<option value="%s"%s>%s</option>', $template, ($defaultTemplate === $template) ? ' SELECTED' : '', $template); ?>
@@ -283,8 +283,8 @@ final class PonoRezAdminConfig {
 
 				</select>
 
-				<label for="pr_group_default_template" style="display: block; margin-bottom: 5px;"><strong>Activities Group Booking Form Template:</strong></label>
-				<select style="display: block; margin-bottom: 15px;" id="pr_group_default_template" name="pr_group_default_template">
+				<label for="pr_group_default_template"><strong>Activities Group Booking Form Template:</strong></label>
+				<select id="pr_group_default_template" name="pr_group_default_template">
 
 					<?php foreach (self::getGroupTemplateList() as $template): ?>
 					<?php printf('<option value="%s"%s>%s</option>', $template, ($defaultGroupTemplate === $template) ? ' SELECTED' : '', $template); ?>
@@ -292,7 +292,7 @@ final class PonoRezAdminConfig {
 
 				</select>
 
-				<h3 class="hndle" style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;"><span>Calendar and Submit Buttons Style Settings</span></h3>
+				<h3 class="hndle"><span>Calendar and Submit Buttons Style Settings</span></h3>
 				
 				<?php
 					add_action( 'admin_enqueue_scripts', 'softlights_color_picker' );
@@ -319,35 +319,35 @@ final class PonoRezAdminConfig {
 
 				</script>
 				
-				<label for="primaryColor" style="display: block; margin-bottom: 5px;"><strong>Primary Color</strong></label>
+				<label for="primaryColor"><strong>Primary Color</strong></label>
 				<input type="text" class="ponorez-color-picker" id="primaryColor" name="primaryColor" value="<?php echo esc_attr(get_option('primaryColor')); ?>"/>
-				<p style="margin-top: 0px; font-style: italic;">This color will be used as default background color for calendar header and Book Now button.</p>
-				<label for="secondaryColor" style="display: block; margin-bottom: 5px;"><strong>Secondary Color</strong></label>
+				<p>This color will be used as default background color for calendar header and Book Now button.</p>
+				<label for="secondaryColor"><strong>Secondary Color</strong></label>
 				<input type="text" class="ponorez-color-picker" id="secondaryColor" name="secondaryColor" value="<?php echo esc_attr(get_option('secondaryColor')); ?>"/>
-				<p style="margin-top: 0px; font-style: italic;">This color will be used as secondary color for the Book Now button mouse over effect.</p>
-				<label for="textColor" style="display: block; margin-bottom: 5px;"><strong>Text Color</strong></label>
+				<p>This color will be used as secondary color for the Book Now button mouse over effect.</p>
+				<label for="textColor"><strong>Text Color</strong></label>
 				<input type="text" class="ponorez-color-picker" id="textColor" name="textColor" value="<?php echo esc_attr(get_option('textColor')); ?>"/>
-				<p style="margin-top: 0px; font-style: italic;">This color will be used for the Book Now button text color.</p>
+				<p>This color will be used for the Book Now button text color.</p>
 				
-				<label for="bookNowText" style="display: block; margin-bottom: 5px;"><strong>Set Book Now Button text</strong></label>
+				<label for="bookNowText"><strong>Set Book Now Button text</strong></label>
 								
-				<input style="display: block; margin-bottom: 15px;" id="bookNowText" type="text" name="bookNowText" value="<?php echo esc_attr(get_option('bookNowText')); ?>"/>
+				<input id="bookNowText" type="text" name="bookNowText" value="<?php echo esc_attr(get_option('bookNowText')); ?>"/>
 			
-				<h3 class="hndle" style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;"><span>Accommodation and Transportation Options</span></h3>
-				<label for="accommodationStatus" style="display: block; margin-bottom: 5px;"><input type="checkbox" id="accommodationStatus" name="accommodationStatus" value="1" <?php checked( get_option('accommodationStatus'), 1 ); ?> /> <strong>Enable Accommodation and Trasportaton</strong></label>
-				<p style="margin-top: 0px; font-style: italic;">Please note that the accommodation and transportation options are working in conjunction and can be configured through the use of the shortcode parameter  <strong>accommodation=""</strong>.<br /> For more information on how to do this please refer to the <a href="<?php echo admin_url( 'admin.php?page=a3h_ponorez_help', '' ); ?>">Help Section of this plugin.</a></p>
+				<h3 class="hndle"><span>Accommodation and Transportation Options</span></h3>
+				<label for="accommodationStatus"><input type="checkbox" id="accommodationStatus" name="accommodationStatus" value="1" <?php checked( get_option('accommodationStatus'), 1 ); ?> /> <strong>Enable Accommodation and Trasportaton</strong></label>
+				<p>Please note that the accommodation and transportation options are working in conjunction and can be configured through the use of the shortcode parameter  <strong>accommodation=""</strong>.<br /> For more information on how to do this please refer to the <a href="<?php echo admin_url( 'admin.php?page=a3h_ponorez_help', '' ); ?>">Help Section of this plugin.</a></p>
 								
-				<h3 class="hndle" style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;"><span>Other Booking Options</span></h3>
-				<label for="couponsStatus" style="display: block; margin-bottom: 5px;"><input type="checkbox" id="couponsStatus" name="couponsStatus" value="1" <?php checked( get_option('couponsStatus'), 1 ); ?> /> <strong>Enable Promotional Codes</strong></label>
-				<p style="margin-top: 0px; font-style: italic;">By checking this you will enable the global usage of Promo Codes.<br /> To display the promotional field in a booking form you will need to enable it individually through the use of the shortcode parameter <strong>allowdiscounts=""</strong>.<br /> For more information on how to do this please refer to the <a href="<?php echo admin_url( 'admin.php?page=a3h_ponorez_help', '' ); ?>">Help Section of this plugin.</a></p>
+				<h3 class="hndle"><span>Other Booking Options</span></h3>
+				<label for="couponsStatus"><input type="checkbox" id="couponsStatus" name="couponsStatus" value="1" <?php checked( get_option('couponsStatus'), 1 ); ?> /> <strong>Enable Promotional Codes</strong></label>
+				<p>By checking this you will enable the global usage of Promo Codes.<br /> To display the promotional field in a booking form you will need to enable it individually through the use of the shortcode parameter <strong>allowdiscounts=""</strong>.<br /> For more information on how to do this please refer to the <a href="<?php echo admin_url( 'admin.php?page=a3h_ponorez_help', '' ); ?>">Help Section of this plugin.</a></p>
 							
 				<?php submit_button('Save Settings'); ?>
 
 			</div>
 				
-			<div class="wp-tab-panel" id="ponorez-guest-types" style="display: none; max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-guest-types">
 
-				<h3 class="hndle" style="padding-bottom: 10px;"><span>Guest Type Configuration</span> <a class="button button-primary" style="float: right;" id="LoadGuests">Add New Guest Type</a></h3>
+				<h3 class="hndle"><span>Guest Type Configuration</span> <a class="button button-primary" id="LoadGuests">Add New Guest Type</a></h3>
 
 				<?php settings_fields('pr-settings'); ?>
 				<?php do_settings_sections('pr-settings'); ?>
@@ -385,16 +385,16 @@ final class PonoRezAdminConfig {
 					
 						<tr class="<?php print $guestClass1; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType1" type="text" name="guestType1" value="<?php echo esc_attr(get_option('guestType1')); ?>"/>
+								<input id="guestType1" type="text" name="guestType1" value="<?php echo esc_attr(get_option('guestType1')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType1ID" type="text" name="guestType1ID" value="<?php echo esc_attr(get_option('guestType1ID')); ?>"/>
+								<input id="guestType1ID" type="text" name="guestType1ID" value="<?php echo esc_attr(get_option('guestType1ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType1Min" type="text" name="guestType1Min" value="<?php echo esc_attr(get_option('guestType1Min')); ?>"/>
+								<input id="guestType1Min" type="text" name="guestType1Min" value="<?php echo esc_attr(get_option('guestType1Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType1Max" type="text" name="guestType1Max" value="<?php echo esc_attr(get_option('guestType1Max')); ?>"/>
+								<input id="guestType1Max" type="text" name="guestType1Max" value="<?php echo esc_attr(get_option('guestType1Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -416,16 +416,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass2; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType2" type="text" name="guestType2" value="<?php echo esc_attr(get_option('guestType2')); ?>"/>
+								<input id="guestType2" type="text" name="guestType2" value="<?php echo esc_attr(get_option('guestType2')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType2ID" type="text" name="guestType2ID" value="<?php echo esc_attr(get_option('guestType2ID')); ?>"/>
+								<input id="guestType2ID" type="text" name="guestType2ID" value="<?php echo esc_attr(get_option('guestType2ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType2Min" type="text" name="guestType2Min" value="<?php echo esc_attr(get_option('guestType2Min')); ?>"/>
+								<input id="guestType2Min" type="text" name="guestType2Min" value="<?php echo esc_attr(get_option('guestType2Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType2Max" type="text" name="guestType2Max" value="<?php echo esc_attr(get_option('guestType2Max')); ?>"/>
+								<input id="guestType2Max" type="text" name="guestType2Max" value="<?php echo esc_attr(get_option('guestType2Max')); ?>"/>
 							</td>
 						</tr>
 
@@ -447,16 +447,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass3; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType3" type="text" name="guestType3" value="<?php echo esc_attr(get_option('guestType3')); ?>"/>
+								<input id="guestType3" type="text" name="guestType3" value="<?php echo esc_attr(get_option('guestType3')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType3ID" type="text" name="guestType3ID" value="<?php echo esc_attr(get_option('guestType3ID')); ?>"/>
+								<input id="guestType3ID" type="text" name="guestType3ID" value="<?php echo esc_attr(get_option('guestType3ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType3Min" type="text" name="guestType3Min" value="<?php echo esc_attr(get_option('guestType3Min')); ?>"/>
+								<input id="guestType3Min" type="text" name="guestType3Min" value="<?php echo esc_attr(get_option('guestType3Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType3Max" type="text" name="guestType3Max" value="<?php echo esc_attr(get_option('guestType3Max')); ?>"/>
+								<input id="guestType3Max" type="text" name="guestType3Max" value="<?php echo esc_attr(get_option('guestType3Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -478,16 +478,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass4; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType4" type="text" name="guestType4" value="<?php echo esc_attr(get_option('guestType4')); ?>"/>
+								<input id="guestType4" type="text" name="guestType4" value="<?php echo esc_attr(get_option('guestType4')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType4ID" type="text" name="guestType4ID" value="<?php echo esc_attr(get_option('guestType4ID')); ?>"/>
+								<input id="guestType4ID" type="text" name="guestType4ID" value="<?php echo esc_attr(get_option('guestType4ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType4Min" type="text" name="guestType4Min" value="<?php echo esc_attr(get_option('guestType4Min')); ?>"/>
+								<input id="guestType4Min" type="text" name="guestType4Min" value="<?php echo esc_attr(get_option('guestType4Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType4Max" type="text" name="guestType4Max" value="<?php echo esc_attr(get_option('guestType4Max')); ?>"/>
+								<input id="guestType4Max" type="text" name="guestType4Max" value="<?php echo esc_attr(get_option('guestType4Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -509,16 +509,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass5; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType5" type="text" name="guestType5" value="<?php echo esc_attr(get_option('guestType5')); ?>"/>
+								<input id="guestType5" type="text" name="guestType5" value="<?php echo esc_attr(get_option('guestType5')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType5ID" type="text" name="guestType5ID" value="<?php echo esc_attr(get_option('guestType5ID')); ?>"/>
+								<input id="guestType5ID" type="text" name="guestType5ID" value="<?php echo esc_attr(get_option('guestType5ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType5Min" type="text" name="guestType5Min" value="<?php echo esc_attr(get_option('guestType5Min')); ?>"/>
+								<input id="guestType5Min" type="text" name="guestType5Min" value="<?php echo esc_attr(get_option('guestType5Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType5Max" type="text" name="guestType5Max" value="<?php echo esc_attr(get_option('guestType5Max')); ?>"/>
+								<input id="guestType5Max" type="text" name="guestType5Max" value="<?php echo esc_attr(get_option('guestType5Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -540,16 +540,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass6; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType6" type="text" name="guestType6" value="<?php echo esc_attr(get_option('guestType6')); ?>"/>
+								<input id="guestType6" type="text" name="guestType6" value="<?php echo esc_attr(get_option('guestType6')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType6ID" type="text" name="guestType6ID" value="<?php echo esc_attr(get_option('guestType6ID')); ?>"/>
+								<input id="guestType6ID" type="text" name="guestType6ID" value="<?php echo esc_attr(get_option('guestType6ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType6Min" type="text" name="guestType6Min" value="<?php echo esc_attr(get_option('guestType6Min')); ?>"/>
+								<input id="guestType6Min" type="text" name="guestType6Min" value="<?php echo esc_attr(get_option('guestType6Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType6Max" type="text" name="guestType6Max" value="<?php echo esc_attr(get_option('guestType6Max')); ?>"/>
+								<input id="guestType6Max" type="text" name="guestType6Max" value="<?php echo esc_attr(get_option('guestType6Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -571,16 +571,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass7; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType7" type="text" name="guestType7" value="<?php echo esc_attr(get_option('guestType7')); ?>"/>
+								<input id="guestType7" type="text" name="guestType7" value="<?php echo esc_attr(get_option('guestType7')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType7ID" type="text" name="guestType7ID" value="<?php echo esc_attr(get_option('guestType7ID')); ?>"/>
+								<input id="guestType7ID" type="text" name="guestType7ID" value="<?php echo esc_attr(get_option('guestType7ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType7Min" type="text" name="guestType7Min" value="<?php echo esc_attr(get_option('guestType7Min')); ?>"/>
+								<input id="guestType7Min" type="text" name="guestType7Min" value="<?php echo esc_attr(get_option('guestType7Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType7Max" type="text" name="guestType7Max" value="<?php echo esc_attr(get_option('guestType7Max')); ?>"/>
+								<input id="guestType7Max" type="text" name="guestType7Max" value="<?php echo esc_attr(get_option('guestType7Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -602,16 +602,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass8; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType8" type="text" name="guestType8" value="<?php echo esc_attr(get_option('guestType8')); ?>"/>
+								<input id="guestType8" type="text" name="guestType8" value="<?php echo esc_attr(get_option('guestType8')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType8ID" type="text" name="guestType8ID" value="<?php echo esc_attr(get_option('guestType8ID')); ?>"/>
+								<input id="guestType8ID" type="text" name="guestType8ID" value="<?php echo esc_attr(get_option('guestType8ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType8Min" type="text" name="guestType8Min" value="<?php echo esc_attr(get_option('guestType8Min')); ?>"/>
+								<input id="guestType8Min" type="text" name="guestType8Min" value="<?php echo esc_attr(get_option('guestType8Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType8Max" type="text" name="guestType8Max" value="<?php echo esc_attr(get_option('guestType8Max')); ?>"/>
+								<input id="guestType8Max" type="text" name="guestType8Max" value="<?php echo esc_attr(get_option('guestType8Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -633,16 +633,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass9; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType9" type="text" name="guestType9" value="<?php echo esc_attr(get_option('guestType9')); ?>"/>
+								<input id="guestType9" type="text" name="guestType9" value="<?php echo esc_attr(get_option('guestType9')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType9ID" type="text" name="guestType9ID" value="<?php echo esc_attr(get_option('guestType9ID')); ?>"/>
+								<input id="guestType9ID" type="text" name="guestType9ID" value="<?php echo esc_attr(get_option('guestType9ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType9Min" type="text" name="guestType9Min" value="<?php echo esc_attr(get_option('guestType9Min')); ?>"/>
+								<input id="guestType9Min" type="text" name="guestType9Min" value="<?php echo esc_attr(get_option('guestType9Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType9Max" type="text" name="guestType9Max" value="<?php echo esc_attr(get_option('guestType9Max')); ?>"/>
+								<input id="guestType9Max" type="text" name="guestType9Max" value="<?php echo esc_attr(get_option('guestType9Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -664,16 +664,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass10; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType10" type="text" name="guestType10" value="<?php echo esc_attr(get_option('guestType10')); ?>"/>
+								<input id="guestType10" type="text" name="guestType10" value="<?php echo esc_attr(get_option('guestType10')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType10ID" type="text" name="guestType10ID" value="<?php echo esc_attr(get_option('guestType10ID')); ?>"/>
+								<input id="guestType10ID" type="text" name="guestType10ID" value="<?php echo esc_attr(get_option('guestType10ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType10Min" type="text" name="guestType10Min" value="<?php echo esc_attr(get_option('guestType10Min')); ?>"/>
+								<input id="guestType10Min" type="text" name="guestType10Min" value="<?php echo esc_attr(get_option('guestType10Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType10Max" type="text" name="guestType10Max" value="<?php echo esc_attr(get_option('guestType10Max')); ?>"/>
+								<input id="guestType10Max" type="text" name="guestType10Max" value="<?php echo esc_attr(get_option('guestType10Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -695,16 +695,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass11; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType11" type="text" name="guestType11" value="<?php echo esc_attr(get_option('guestType11')); ?>"/>
+								<input id="guestType11" type="text" name="guestType11" value="<?php echo esc_attr(get_option('guestType11')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType11ID" type="text" name="guestType11ID" value="<?php echo esc_attr(get_option('guestType11ID')); ?>"/>
+								<input id="guestType11ID" type="text" name="guestType11ID" value="<?php echo esc_attr(get_option('guestType11ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType11Min" type="text" name="guestType11Min" value="<?php echo esc_attr(get_option('guestType11Min')); ?>"/>
+								<input id="guestType11Min" type="text" name="guestType11Min" value="<?php echo esc_attr(get_option('guestType11Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType11Max" type="text" name="guestType11Max" value="<?php echo esc_attr(get_option('guestType11Max')); ?>"/>
+								<input id="guestType11Max" type="text" name="guestType11Max" value="<?php echo esc_attr(get_option('guestType11Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -726,16 +726,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass12; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType12" type="text" name="guestType12" value="<?php echo esc_attr(get_option('guestType12')); ?>"/>
+								<input id="guestType12" type="text" name="guestType12" value="<?php echo esc_attr(get_option('guestType12')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType12ID" type="text" name="guestType12ID" value="<?php echo esc_attr(get_option('guestType12ID')); ?>"/>
+								<input id="guestType12ID" type="text" name="guestType12ID" value="<?php echo esc_attr(get_option('guestType12ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType12Min" type="text" name="guestType12Min" value="<?php echo esc_attr(get_option('guestType12Min')); ?>"/>
+								<input id="guestType12Min" type="text" name="guestType12Min" value="<?php echo esc_attr(get_option('guestType12Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType12Max" type="text" name="guestType12Max" value="<?php echo esc_attr(get_option('guestType12Max')); ?>"/>
+								<input id="guestType12Max" type="text" name="guestType12Max" value="<?php echo esc_attr(get_option('guestType12Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -757,16 +757,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass13; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType13" type="text" name="guestType13" value="<?php echo esc_attr(get_option('guestType13')); ?>"/>
+								<input id="guestType13" type="text" name="guestType13" value="<?php echo esc_attr(get_option('guestType13')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType13ID" type="text" name="guestType13ID" value="<?php echo esc_attr(get_option('guestType13ID')); ?>"/>
+								<input id="guestType13ID" type="text" name="guestType13ID" value="<?php echo esc_attr(get_option('guestType13ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType13Min" type="text" name="guestType13Min" value="<?php echo esc_attr(get_option('guestType13Min')); ?>"/>
+								<input id="guestType13Min" type="text" name="guestType13Min" value="<?php echo esc_attr(get_option('guestType13Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType13Max" type="text" name="guestType13Max" value="<?php echo esc_attr(get_option('guestType13Max')); ?>"/>
+								<input id="guestType13Max" type="text" name="guestType13Max" value="<?php echo esc_attr(get_option('guestType13Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -788,16 +788,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass14; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType14" type="text" name="guestType14" value="<?php echo esc_attr(get_option('guestType14')); ?>"/>
+								<input id="guestType14" type="text" name="guestType14" value="<?php echo esc_attr(get_option('guestType14')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType14ID" type="text" name="guestType14ID" value="<?php echo esc_attr(get_option('guestType14ID')); ?>"/>
+								<input id="guestType14ID" type="text" name="guestType14ID" value="<?php echo esc_attr(get_option('guestType14ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType14Min" type="text" name="guestType14Min" value="<?php echo esc_attr(get_option('guestType14Min')); ?>"/>
+								<input id="guestType14Min" type="text" name="guestType14Min" value="<?php echo esc_attr(get_option('guestType14Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType14Max" type="text" name="guestType14Max" value="<?php echo esc_attr(get_option('guestType14Max')); ?>"/>
+								<input id="guestType14Max" type="text" name="guestType14Max" value="<?php echo esc_attr(get_option('guestType14Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -819,16 +819,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass15; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType15" type="text" name="guestType15" value="<?php echo esc_attr(get_option('guestType15')); ?>"/>
+								<input id="guestType15" type="text" name="guestType15" value="<?php echo esc_attr(get_option('guestType15')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType15ID" type="text" name="guestType15ID" value="<?php echo esc_attr(get_option('guestType15ID')); ?>"/>
+								<input id="guestType15ID" type="text" name="guestType15ID" value="<?php echo esc_attr(get_option('guestType15ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType15Min" type="text" name="guestType15Min" value="<?php echo esc_attr(get_option('guestType15Min')); ?>"/>
+								<input id="guestType15Min" type="text" name="guestType15Min" value="<?php echo esc_attr(get_option('guestType15Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType15Max" type="text" name="guestType15Max" value="<?php echo esc_attr(get_option('guestType15Max')); ?>"/>
+								<input id="guestType15Max" type="text" name="guestType15Max" value="<?php echo esc_attr(get_option('guestType15Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -850,16 +850,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass16; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType16" type="text" name="guestType16" value="<?php echo esc_attr(get_option('guestType16')); ?>"/>
+								<input id="guestType16" type="text" name="guestType16" value="<?php echo esc_attr(get_option('guestType16')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType16ID" type="text" name="guestType16ID" value="<?php echo esc_attr(get_option('guestType16ID')); ?>"/>
+								<input id="guestType16ID" type="text" name="guestType16ID" value="<?php echo esc_attr(get_option('guestType16ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType16Min" type="text" name="guestType16Min" value="<?php echo esc_attr(get_option('guestType16Min')); ?>"/>
+								<input id="guestType16Min" type="text" name="guestType16Min" value="<?php echo esc_attr(get_option('guestType16Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType16Max" type="text" name="guestType16Max" value="<?php echo esc_attr(get_option('guestType16Max')); ?>"/>
+								<input id="guestType16Max" type="text" name="guestType16Max" value="<?php echo esc_attr(get_option('guestType16Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -881,16 +881,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass17; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType17" type="text" name="guestType17" value="<?php echo esc_attr(get_option('guestType17')); ?>"/>
+								<input id="guestType17" type="text" name="guestType17" value="<?php echo esc_attr(get_option('guestType17')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType17ID" type="text" name="guestType17ID" value="<?php echo esc_attr(get_option('guestType17ID')); ?>"/>
+								<input id="guestType17ID" type="text" name="guestType17ID" value="<?php echo esc_attr(get_option('guestType17ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType17Min" type="text" name="guestType17Min" value="<?php echo esc_attr(get_option('guestType17Min')); ?>"/>
+								<input id="guestType17Min" type="text" name="guestType17Min" value="<?php echo esc_attr(get_option('guestType17Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType17Max" type="text" name="guestType17Max" value="<?php echo esc_attr(get_option('guestType17Max')); ?>"/>
+								<input id="guestType17Max" type="text" name="guestType17Max" value="<?php echo esc_attr(get_option('guestType17Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -912,16 +912,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass18; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType18" type="text" name="guestType18" value="<?php echo esc_attr(get_option('guestType18')); ?>"/>
+								<input id="guestType18" type="text" name="guestType18" value="<?php echo esc_attr(get_option('guestType18')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType18ID" type="text" name="guestType18ID" value="<?php echo esc_attr(get_option('guestType18ID')); ?>"/>
+								<input id="guestType18ID" type="text" name="guestType18ID" value="<?php echo esc_attr(get_option('guestType18ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType18Min" type="text" name="guestType18Min" value="<?php echo esc_attr(get_option('guestType18Min')); ?>"/>
+								<input id="guestType18Min" type="text" name="guestType18Min" value="<?php echo esc_attr(get_option('guestType18Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType18Max" type="text" name="guestType18Max" value="<?php echo esc_attr(get_option('guestType18Max')); ?>"/>
+								<input id="guestType18Max" type="text" name="guestType18Max" value="<?php echo esc_attr(get_option('guestType18Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -943,16 +943,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass19; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType19" type="text" name="guestType19" value="<?php echo esc_attr(get_option('guestType19')); ?>"/>
+								<input id="guestType19" type="text" name="guestType19" value="<?php echo esc_attr(get_option('guestType19')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType19ID" type="text" name="guestType19ID" value="<?php echo esc_attr(get_option('guestType19ID')); ?>"/>
+								<input id="guestType19ID" type="text" name="guestType19ID" value="<?php echo esc_attr(get_option('guestType19ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType19Min" type="text" name="guestType19Min" value="<?php echo esc_attr(get_option('guestType19Min')); ?>"/>
+								<input id="guestType19Min" type="text" name="guestType19Min" value="<?php echo esc_attr(get_option('guestType19Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType19Max" type="text" name="guestType19Max" value="<?php echo esc_attr(get_option('guestType19Max')); ?>"/>
+								<input id="guestType19Max" type="text" name="guestType19Max" value="<?php echo esc_attr(get_option('guestType19Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -974,16 +974,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $guestClass20; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType20" type="text" name="guestType20" value="<?php echo esc_attr(get_option('guestType20')); ?>"/>
+								<input id="guestType20" type="text" name="guestType20" value="<?php echo esc_attr(get_option('guestType20')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType20ID" type="text" name="guestType20ID" value="<?php echo esc_attr(get_option('guestType20ID')); ?>"/>
+								<input id="guestType20ID" type="text" name="guestType20ID" value="<?php echo esc_attr(get_option('guestType20ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType20Min" type="text" name="guestType20Min" value="<?php echo esc_attr(get_option('guestType20Min')); ?>"/>
+								<input id="guestType20Min" type="text" name="guestType20Min" value="<?php echo esc_attr(get_option('guestType20Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType20Max" type="text" name="guestType20Max" value="<?php echo esc_attr(get_option('guestType20Max')); ?>"/>
+								<input id="guestType20Max" type="text" name="guestType20Max" value="<?php echo esc_attr(get_option('guestType20Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1012,9 +1012,9 @@ final class PonoRezAdminConfig {
 
 			</div>
 				
-			<div class="wp-tab-panel" id="ponorez-upgrades" style="display: none; max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-upgrades">
 
-				<h3 class="hndle" style="padding-bottom: 10px;"><span>Upgrades Configuration</span> <a class="button button-primary" style="float: right;" id="LoadUpgrades">Add New Upgrade Type</a></h3>
+				<h3 class="hndle"><span>Upgrades Configuration</span> <a class="button button-primary" id="LoadUpgrades">Add New Upgrade Type</a></h3>
 
 				<?php settings_fields('pr-settings'); ?>
 				<?php do_settings_sections('pr-settings'); ?>
@@ -1052,16 +1052,16 @@ final class PonoRezAdminConfig {
 					
 						<tr class="<?php print $upgradeClass1; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType1" type="text" name="upgradeType1" value="<?php echo esc_attr(get_option('upgradeType1')); ?>"/>
+								<input id="upgradeType1" type="text" name="upgradeType1" value="<?php echo esc_attr(get_option('upgradeType1')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType1ID" type="text" name="upgradeType1ID" value="<?php echo esc_attr(get_option('upgradeType1ID')); ?>"/>
+								<input id="upgradeType1ID" type="text" name="upgradeType1ID" value="<?php echo esc_attr(get_option('upgradeType1ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType1Min" type="text" name="upgradeType1Min" value="<?php echo esc_attr(get_option('upgradeType1Min')); ?>"/>
+								<input id="upgradeType1Min" type="text" name="upgradeType1Min" value="<?php echo esc_attr(get_option('upgradeType1Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType1Max" type="text" name="upgradeType1Max" value="<?php echo esc_attr(get_option('upgradeType1Max')); ?>"/>
+								<input id="upgradeType1Max" type="text" name="upgradeType1Max" value="<?php echo esc_attr(get_option('upgradeType1Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1083,16 +1083,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass2; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType2" type="text" name="upgradeType2" value="<?php echo esc_attr(get_option('upgradeType2')); ?>"/>
+								<input id="upgradeType2" type="text" name="upgradeType2" value="<?php echo esc_attr(get_option('upgradeType2')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType2ID" type="text" name="upgradeType2ID" value="<?php echo esc_attr(get_option('upgradeType2ID')); ?>"/>
+								<input id="upgradeType2ID" type="text" name="upgradeType2ID" value="<?php echo esc_attr(get_option('upgradeType2ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType2Min" type="text" name="upgradeType2Min" value="<?php echo esc_attr(get_option('upgradeType2Min')); ?>"/>
+								<input id="upgradeType2Min" type="text" name="upgradeType2Min" value="<?php echo esc_attr(get_option('upgradeType2Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType2Max" type="text" name="upgradeType2Max" value="<?php echo esc_attr(get_option('upgradeType2Max')); ?>"/>
+								<input id="upgradeType2Max" type="text" name="upgradeType2Max" value="<?php echo esc_attr(get_option('upgradeType2Max')); ?>"/>
 							</td>
 						</tr>
 
@@ -1114,16 +1114,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass3; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType3" type="text" name="upgradeType3" value="<?php echo esc_attr(get_option('upgradeType3')); ?>"/>
+								<input id="upgradeType3" type="text" name="upgradeType3" value="<?php echo esc_attr(get_option('upgradeType3')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType3ID" type="text" name="upgradeType3ID" value="<?php echo esc_attr(get_option('upgradeType3ID')); ?>"/>
+								<input id="upgradeType3ID" type="text" name="upgradeType3ID" value="<?php echo esc_attr(get_option('upgradeType3ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType3Min" type="text" name="upgradeType3Min" value="<?php echo esc_attr(get_option('upgradeType3Min')); ?>"/>
+								<input id="upgradeType3Min" type="text" name="upgradeType3Min" value="<?php echo esc_attr(get_option('upgradeType3Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType3Max" type="text" name="upgradeType3Max" value="<?php echo esc_attr(get_option('upgradeType3Max')); ?>"/>
+								<input id="upgradeType3Max" type="text" name="upgradeType3Max" value="<?php echo esc_attr(get_option('upgradeType3Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1145,16 +1145,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass4; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType4" type="text" name="upgradeType4" value="<?php echo esc_attr(get_option('upgradeType4')); ?>"/>
+								<input id="upgradeType4" type="text" name="upgradeType4" value="<?php echo esc_attr(get_option('upgradeType4')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType4ID" type="text" name="upgradeType4ID" value="<?php echo esc_attr(get_option('upgradeType4ID')); ?>"/>
+								<input id="upgradeType4ID" type="text" name="upgradeType4ID" value="<?php echo esc_attr(get_option('upgradeType4ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType4Min" type="text" name="upgradeType4Min" value="<?php echo esc_attr(get_option('upgradeType4Min')); ?>"/>
+								<input id="upgradeType4Min" type="text" name="upgradeType4Min" value="<?php echo esc_attr(get_option('upgradeType4Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType4Max" type="text" name="upgradeType4Max" value="<?php echo esc_attr(get_option('upgradeType4Max')); ?>"/>
+								<input id="upgradeType4Max" type="text" name="upgradeType4Max" value="<?php echo esc_attr(get_option('upgradeType4Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1176,16 +1176,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass5; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType5" type="text" name="upgradeType5" value="<?php echo esc_attr(get_option('upgradeType5')); ?>"/>
+								<input id="upgradeType5" type="text" name="upgradeType5" value="<?php echo esc_attr(get_option('upgradeType5')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType5ID" type="text" name="upgradeType5ID" value="<?php echo esc_attr(get_option('upgradeType5ID')); ?>"/>
+								<input id="upgradeType5ID" type="text" name="upgradeType5ID" value="<?php echo esc_attr(get_option('upgradeType5ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType5Min" type="text" name="upgradeType5Min" value="<?php echo esc_attr(get_option('upgradeType5Min')); ?>"/>
+								<input id="upgradeType5Min" type="text" name="upgradeType5Min" value="<?php echo esc_attr(get_option('upgradeType5Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType5Max" type="text" name="upgradeType5Max" value="<?php echo esc_attr(get_option('upgradeType5Max')); ?>"/>
+								<input id="upgradeType5Max" type="text" name="upgradeType5Max" value="<?php echo esc_attr(get_option('upgradeType5Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1207,16 +1207,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass6; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType6" type="text" name="upgradeType6" value="<?php echo esc_attr(get_option('upgradeType6')); ?>"/>
+								<input id="upgradeType6" type="text" name="upgradeType6" value="<?php echo esc_attr(get_option('upgradeType6')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType6ID" type="text" name="upgradeType6ID" value="<?php echo esc_attr(get_option('upgradeType6ID')); ?>"/>
+								<input id="upgradeType6ID" type="text" name="upgradeType6ID" value="<?php echo esc_attr(get_option('upgradeType6ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType6Min" type="text" name="upgradeType6Min" value="<?php echo esc_attr(get_option('upgradeType6Min')); ?>"/>
+								<input id="upgradeType6Min" type="text" name="upgradeType6Min" value="<?php echo esc_attr(get_option('upgradeType6Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType6Max" type="text" name="upgradeType6Max" value="<?php echo esc_attr(get_option('upgradeType6Max')); ?>"/>
+								<input id="upgradeType6Max" type="text" name="upgradeType6Max" value="<?php echo esc_attr(get_option('upgradeType6Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1238,16 +1238,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass7; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType7" type="text" name="upgradeType7" value="<?php echo esc_attr(get_option('upgradeType7')); ?>"/>
+								<input id="upgradeType7" type="text" name="upgradeType7" value="<?php echo esc_attr(get_option('upgradeType7')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType7ID" type="text" name="upgradeType7ID" value="<?php echo esc_attr(get_option('upgradeType7ID')); ?>"/>
+								<input id="upgradeType7ID" type="text" name="upgradeType7ID" value="<?php echo esc_attr(get_option('upgradeType7ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType7Min" type="text" name="upgradeType7Min" value="<?php echo esc_attr(get_option('upgradeType7Min')); ?>"/>
+								<input id="upgradeType7Min" type="text" name="upgradeType7Min" value="<?php echo esc_attr(get_option('upgradeType7Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType7Max" type="text" name="upgradeType7Max" value="<?php echo esc_attr(get_option('upgradeType7Max')); ?>"/>
+								<input id="upgradeType7Max" type="text" name="upgradeType7Max" value="<?php echo esc_attr(get_option('upgradeType7Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1269,16 +1269,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass8; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType8" type="text" name="upgradeType8" value="<?php echo esc_attr(get_option('upgradeType8')); ?>"/>
+								<input id="upgradeType8" type="text" name="upgradeType8" value="<?php echo esc_attr(get_option('upgradeType8')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType8ID" type="text" name="upgradeType8ID" value="<?php echo esc_attr(get_option('upgradeType8ID')); ?>"/>
+								<input id="upgradeType8ID" type="text" name="upgradeType8ID" value="<?php echo esc_attr(get_option('upgradeType8ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType8Min" type="text" name="upgradeType8Min" value="<?php echo esc_attr(get_option('upgradeType8Min')); ?>"/>
+								<input id="upgradeType8Min" type="text" name="upgradeType8Min" value="<?php echo esc_attr(get_option('upgradeType8Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType8Max" type="text" name="upgradeType8Max" value="<?php echo esc_attr(get_option('upgradeType8Max')); ?>"/>
+								<input id="upgradeType8Max" type="text" name="upgradeType8Max" value="<?php echo esc_attr(get_option('upgradeType8Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1300,16 +1300,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass9; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType9" type="text" name="upgradeType9" value="<?php echo esc_attr(get_option('upgradeType9')); ?>"/>
+								<input id="upgradeType9" type="text" name="upgradeType9" value="<?php echo esc_attr(get_option('upgradeType9')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType9ID" type="text" name="upgradeType9ID" value="<?php echo esc_attr(get_option('upgradeType9ID')); ?>"/>
+								<input id="upgradeType9ID" type="text" name="upgradeType9ID" value="<?php echo esc_attr(get_option('upgradeType9ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType9Min" type="text" name="upgradeType9Min" value="<?php echo esc_attr(get_option('upgradeType9Min')); ?>"/>
+								<input id="upgradeType9Min" type="text" name="upgradeType9Min" value="<?php echo esc_attr(get_option('upgradeType9Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType9Max" type="text" name="upgradeType9Max" value="<?php echo esc_attr(get_option('upgradeType9Max')); ?>"/>
+								<input id="upgradeType9Max" type="text" name="upgradeType9Max" value="<?php echo esc_attr(get_option('upgradeType9Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1331,16 +1331,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass10; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType10" type="text" name="upgradeType10" value="<?php echo esc_attr(get_option('upgradeType10')); ?>"/>
+								<input id="upgradeType10" type="text" name="upgradeType10" value="<?php echo esc_attr(get_option('upgradeType10')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType10ID" type="text" name="upgradeType10ID" value="<?php echo esc_attr(get_option('upgradeType10ID')); ?>"/>
+								<input id="upgradeType10ID" type="text" name="upgradeType10ID" value="<?php echo esc_attr(get_option('upgradeType10ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType10Min" type="text" name="upgradeType10Min" value="<?php echo esc_attr(get_option('upgradeType10Min')); ?>"/>
+								<input id="upgradeType10Min" type="text" name="upgradeType10Min" value="<?php echo esc_attr(get_option('upgradeType10Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType10Max" type="text" name="upgradeType10Max" value="<?php echo esc_attr(get_option('upgradeType10Max')); ?>"/>
+								<input id="upgradeType10Max" type="text" name="upgradeType10Max" value="<?php echo esc_attr(get_option('upgradeType10Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1362,16 +1362,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass11; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType11" type="text" name="upgradeType11" value="<?php echo esc_attr(get_option('upgradeType11')); ?>"/>
+								<input id="upgradeType11" type="text" name="upgradeType11" value="<?php echo esc_attr(get_option('upgradeType11')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType11ID" type="text" name="upgradeType11ID" value="<?php echo esc_attr(get_option('upgradeType11ID')); ?>"/>
+								<input id="upgradeType11ID" type="text" name="upgradeType11ID" value="<?php echo esc_attr(get_option('upgradeType11ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType11Min" type="text" name="upgradeType11Min" value="<?php echo esc_attr(get_option('upgradeType11Min')); ?>"/>
+								<input id="upgradeType11Min" type="text" name="upgradeType11Min" value="<?php echo esc_attr(get_option('upgradeType11Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType11Max" type="text" name="upgradeType11Max" value="<?php echo esc_attr(get_option('upgradeType11Max')); ?>"/>
+								<input id="upgradeType11Max" type="text" name="upgradeType11Max" value="<?php echo esc_attr(get_option('upgradeType11Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1393,16 +1393,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass12; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType12" type="text" name="upgradeType12" value="<?php echo esc_attr(get_option('upgradeType12')); ?>"/>
+								<input id="upgradeType12" type="text" name="upgradeType12" value="<?php echo esc_attr(get_option('upgradeType12')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType12ID" type="text" name="upgradeType12ID" value="<?php echo esc_attr(get_option('upgradeType12ID')); ?>"/>
+								<input id="upgradeType12ID" type="text" name="upgradeType12ID" value="<?php echo esc_attr(get_option('upgradeType12ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType12Min" type="text" name="upgradeType12Min" value="<?php echo esc_attr(get_option('upgradeType12Min')); ?>"/>
+								<input id="upgradeType12Min" type="text" name="upgradeType12Min" value="<?php echo esc_attr(get_option('upgradeType12Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType12Max" type="text" name="upgradeType12Max" value="<?php echo esc_attr(get_option('upgradeType12Max')); ?>"/>
+								<input id="upgradeType12Max" type="text" name="upgradeType12Max" value="<?php echo esc_attr(get_option('upgradeType12Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1424,16 +1424,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass13; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType13" type="text" name="upgradeType13" value="<?php echo esc_attr(get_option('upgradeType13')); ?>"/>
+								<input id="upgradeType13" type="text" name="upgradeType13" value="<?php echo esc_attr(get_option('upgradeType13')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType13ID" type="text" name="upgradeType13ID" value="<?php echo esc_attr(get_option('upgradeType13ID')); ?>"/>
+								<input id="upgradeType13ID" type="text" name="upgradeType13ID" value="<?php echo esc_attr(get_option('upgradeType13ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType13Min" type="text" name="upgradeType13Min" value="<?php echo esc_attr(get_option('upgradeType13Min')); ?>"/>
+								<input id="upgradeType13Min" type="text" name="upgradeType13Min" value="<?php echo esc_attr(get_option('upgradeType13Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType13Max" type="text" name="upgradeType13Max" value="<?php echo esc_attr(get_option('upgradeType13Max')); ?>"/>
+								<input id="upgradeType13Max" type="text" name="upgradeType13Max" value="<?php echo esc_attr(get_option('upgradeType13Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1455,16 +1455,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass14; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType14" type="text" name="upgradeType14" value="<?php echo esc_attr(get_option('upgradeType14')); ?>"/>
+								<input id="upgradeType14" type="text" name="upgradeType14" value="<?php echo esc_attr(get_option('upgradeType14')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType14ID" type="text" name="upgradeType14ID" value="<?php echo esc_attr(get_option('upgradeType14ID')); ?>"/>
+								<input id="upgradeType14ID" type="text" name="upgradeType14ID" value="<?php echo esc_attr(get_option('upgradeType14ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType14Min" type="text" name="upgradeType14Min" value="<?php echo esc_attr(get_option('upgradeType14Min')); ?>"/>
+								<input id="upgradeType14Min" type="text" name="upgradeType14Min" value="<?php echo esc_attr(get_option('upgradeType14Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType14Max" type="text" name="upgradeType14Max" value="<?php echo esc_attr(get_option('upgradeType14Max')); ?>"/>
+								<input id="upgradeType14Max" type="text" name="upgradeType14Max" value="<?php echo esc_attr(get_option('upgradeType14Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1486,16 +1486,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass15; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType15" type="text" name="upgradeType15" value="<?php echo esc_attr(get_option('upgradeType15')); ?>"/>
+								<input id="upgradeType15" type="text" name="upgradeType15" value="<?php echo esc_attr(get_option('upgradeType15')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType15ID" type="text" name="upgradeType15ID" value="<?php echo esc_attr(get_option('upgradeType15ID')); ?>"/>
+								<input id="upgradeType15ID" type="text" name="upgradeType15ID" value="<?php echo esc_attr(get_option('upgradeType15ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType15Min" type="text" name="upgradeType15Min" value="<?php echo esc_attr(get_option('upgradeType15Min')); ?>"/>
+								<input id="upgradeType15Min" type="text" name="upgradeType15Min" value="<?php echo esc_attr(get_option('upgradeType15Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType15Max" type="text" name="upgradeType15Max" value="<?php echo esc_attr(get_option('upgradeType15Max')); ?>"/>
+								<input id="upgradeType15Max" type="text" name="upgradeType15Max" value="<?php echo esc_attr(get_option('upgradeType15Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1517,16 +1517,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass16; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType16" type="text" name="upgradeType16" value="<?php echo esc_attr(get_option('upgradeType16')); ?>"/>
+								<input id="upgradeType16" type="text" name="upgradeType16" value="<?php echo esc_attr(get_option('upgradeType16')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType16ID" type="text" name="upgradeType16ID" value="<?php echo esc_attr(get_option('upgradeType16ID')); ?>"/>
+								<input id="upgradeType16ID" type="text" name="upgradeType16ID" value="<?php echo esc_attr(get_option('upgradeType16ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType16Min" type="text" name="upgradeType16Min" value="<?php echo esc_attr(get_option('upgradeType16Min')); ?>"/>
+								<input id="upgradeType16Min" type="text" name="upgradeType16Min" value="<?php echo esc_attr(get_option('upgradeType16Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType16Max" type="text" name="upgradeType16Max" value="<?php echo esc_attr(get_option('upgradeType16Max')); ?>"/>
+								<input id="upgradeType16Max" type="text" name="upgradeType16Max" value="<?php echo esc_attr(get_option('upgradeType16Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1548,16 +1548,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass17; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType17" type="text" name="upgradeType17" value="<?php echo esc_attr(get_option('upgradeType17')); ?>"/>
+								<input id="upgradeType17" type="text" name="upgradeType17" value="<?php echo esc_attr(get_option('upgradeType17')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType17ID" type="text" name="upgradeType17ID" value="<?php echo esc_attr(get_option('upgradeType17ID')); ?>"/>
+								<input id="upgradeType17ID" type="text" name="upgradeType17ID" value="<?php echo esc_attr(get_option('upgradeType17ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType17Min" type="text" name="upgradeType17Min" value="<?php echo esc_attr(get_option('upgradeType17Min')); ?>"/>
+								<input id="upgradeType17Min" type="text" name="upgradeType17Min" value="<?php echo esc_attr(get_option('upgradeType17Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType17Max" type="text" name="upgradeType17Max" value="<?php echo esc_attr(get_option('upgradeType17Max')); ?>"/>
+								<input id="upgradeType17Max" type="text" name="upgradeType17Max" value="<?php echo esc_attr(get_option('upgradeType17Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1579,16 +1579,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass18; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType18" type="text" name="upgradeType18" value="<?php echo esc_attr(get_option('upgradeType18')); ?>"/>
+								<input id="upgradeType18" type="text" name="upgradeType18" value="<?php echo esc_attr(get_option('upgradeType18')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType18ID" type="text" name="upgradeType18ID" value="<?php echo esc_attr(get_option('upgradeType18ID')); ?>"/>
+								<input id="upgradeType18ID" type="text" name="upgradeType18ID" value="<?php echo esc_attr(get_option('upgradeType18ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType18Min" type="text" name="upgradeType18Min" value="<?php echo esc_attr(get_option('upgradeType18Min')); ?>"/>
+								<input id="upgradeType18Min" type="text" name="upgradeType18Min" value="<?php echo esc_attr(get_option('upgradeType18Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType18Max" type="text" name="upgradeType18Max" value="<?php echo esc_attr(get_option('upgradeType18Max')); ?>"/>
+								<input id="upgradeType18Max" type="text" name="upgradeType18Max" value="<?php echo esc_attr(get_option('upgradeType18Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1610,16 +1610,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass19; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType19" type="text" name="upgradeType19" value="<?php echo esc_attr(get_option('upgradeType19')); ?>"/>
+								<input id="upgradeType19" type="text" name="upgradeType19" value="<?php echo esc_attr(get_option('upgradeType19')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType19ID" type="text" name="upgradeType19ID" value="<?php echo esc_attr(get_option('upgradeType19ID')); ?>"/>
+								<input id="upgradeType19ID" type="text" name="upgradeType19ID" value="<?php echo esc_attr(get_option('upgradeType19ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType19Min" type="text" name="upgradeType19Min" value="<?php echo esc_attr(get_option('upgradeType19Min')); ?>"/>
+								<input id="upgradeType19Min" type="text" name="upgradeType19Min" value="<?php echo esc_attr(get_option('upgradeType19Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType19Max" type="text" name="upgradeType19Max" value="<?php echo esc_attr(get_option('upgradeType19Max')); ?>"/>
+								<input id="upgradeType19Max" type="text" name="upgradeType19Max" value="<?php echo esc_attr(get_option('upgradeType19Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1641,16 +1641,16 @@ final class PonoRezAdminConfig {
 						
 						<tr class="<?php print $upgradeClass20; ?>">
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType20" type="text" name="upgradeType20" value="<?php echo esc_attr(get_option('upgradeType20')); ?>"/>
+								<input id="upgradeType20" type="text" name="upgradeType20" value="<?php echo esc_attr(get_option('upgradeType20')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType20ID" type="text" name="upgradeType20ID" value="<?php echo esc_attr(get_option('upgradeType20ID')); ?>"/>
+								<input id="upgradeType20ID" type="text" name="upgradeType20ID" value="<?php echo esc_attr(get_option('upgradeType20ID')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType20Min" type="text" name="upgradeType20Min" value="<?php echo esc_attr(get_option('upgradeType20Min')); ?>"/>
+								<input id="upgradeType20Min" type="text" name="upgradeType20Min" value="<?php echo esc_attr(get_option('upgradeType20Min')); ?>"/>
 							</td>
 							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType20Max" type="text" name="upgradeType20Max" value="<?php echo esc_attr(get_option('upgradeType20Max')); ?>"/>
+								<input id="upgradeType20Max" type="text" name="upgradeType20Max" value="<?php echo esc_attr(get_option('upgradeType20Max')); ?>"/>
 							</td>
 						</tr>
 						
@@ -1679,15 +1679,15 @@ final class PonoRezAdminConfig {
 
 			</div>
 				
-			<div class="wp-tab-panel" id="ponorez-google-analytics" style="display: none; max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-google-analytics">
 
-				<h3 class="hndle" style="padding-bottom: 10px;"><span>Google Analytics Setup</span></h3>
+				<h3 class="hndle"><span>Google Analytics Setup</span></h3>
 
 					<?php settings_fields('pr-settings'); ?>
 					<?php do_settings_sections('pr-settings'); ?>
 
-					<label for="googleAnalyticsID" style="display: block; margin-bottom: 5px;"><strong>Your Google Analytics ID:</strong></label>
-					<input style="display: block; margin-bottom: 15px;" id="googleAnalyticsID" type="text" name="googleAnalyticsID" placeholder='UA-123456789' value="<?php echo esc_attr(get_option('googleAnalyticsID')); ?>"/>
+					<label for="googleAnalyticsID"><strong>Your Google Analytics ID:</strong></label>
+					<input id="googleAnalyticsID" type="text" name="googleAnalyticsID" placeholder='UA-123456789' value="<?php echo esc_attr(get_option('googleAnalyticsID')); ?>"/>
 
 					<?php submit_button('Save Google Analytics Tracking ID'); ?>
 
@@ -2046,6 +2046,7 @@ final class PonoRezAdminConfig {
 		}
 
 		// Non-Ajax admin stuff.
+		wp_enqueue_style( 'pr_style', plugins_url( 'assets/css/pr_admin.css', dirname( __FILE__ ) ) );
 		wp_enqueue_script( 'pr_admin', plugins_url( 'assets/js/pr_admin.js', dirname( __FILE__ ) ), array( 'jquery' ) );
         wp_enqueue_style( 'wp-color-picker');
         wp_enqueue_script( 'wp-color-picker');
