@@ -323,12 +323,5 @@ function ponorezActivitiesLoader( $atts = array(), $content = null, $tag ) {
 
 add_shortcode( 'PonorezActivitiesLoader', 'ponorezActivitiesLoader' );
 
-// Enable Plugin Auto-Update Functionality
-require 'vendors/plugin-update-checker/plugin-update-checker.php';
-$MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'http://ponorezsolutions.com/plugin-updater/?action=get_metadata&slug=ponorez-booking-system-for-wordpress-plugin',
-	__FILE__, 
-	'ponorez-booking-system-for-wordpress-plugin'
-);
 
 // End a3h.php
