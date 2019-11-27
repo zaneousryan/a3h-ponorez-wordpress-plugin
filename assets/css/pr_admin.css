@@ -1,0 +1,15 @@
+.wp-tab-panel{display: none; max-height: 100%; margin-right: 20px;}
+#ponorez-account-setup{display: block;}
+#ponorez-activities-list, .inside{padding-bottom: 12px;}
+.hndle {padding-bottom: 10px;}
+#ponorez-account-setup .hndle, #ponorez-forms-settings .hndle{padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;}
+#pr_delete_groups{margin-top: 15px;}
+#ponorez-account-settings div div {margin-top: 0px; margin-bottom: 15px; float: left; width: 40%;}
+#ponorez-account-settings #last{float: right; text-align: right;}
+#pra_activity_filter{width:50%; display: inline-block;}
+.wp-tab-bar{margin-bottom: 15px;}
+.wp-tab-bar li span{margin-left: 12px; color: #999999;}
+label, #ponorez-account-setup em{display: block; margin-bottom: 5px;}
+input, select{display: block; margin-bottom: 15px;}
+#ponorez-forms-settings p{margin-top: 0px; font-style: italic;}
+#LoadGuests, #LoadUpgrades{float: right;}

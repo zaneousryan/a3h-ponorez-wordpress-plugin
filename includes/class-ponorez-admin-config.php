@@ -60,13 +60,13 @@ final class PonoRezAdminConfig {
 		
 		<?php if ( $groups ): ?>
 		
-			<div class="wp-tab-panel" id="ponorez-groups-list" style="display: none; max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-groups-list">
 
 				<div id="ponorez-account-settings">
 
-					<div class="inside" style="padding-bottom: 12px;">
+					<div class="inside">
 
-						<h3 class="hndle" style="padding-bottom: 10px;"><span>Activity Groups</span></h3>
+						<h3 class="hndle"><span>Activity Groups</span></h3>
 
 						<table class="wp-list-table widefat">
 							<thead>
@@ -96,7 +96,7 @@ final class PonoRezAdminConfig {
 							</tbody>
 						</table>
 
-						<button type="button" id="pr_delete_groups" class="button button-primary" style="margin-top: 15px;">Delete Groups</button>
+						<button type="button" id="pr_delete_groups" class="button button-primary">Delete Groups</button>
 
 					</div>
 
@@ -105,25 +105,25 @@ final class PonoRezAdminConfig {
 		
 		<?php endif; ?>
 		
-			<div class="wp-tab-panel" id="ponorez-activities-list" style="display: none; max-height: 100%; padding-bottom: 12px; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-activities-list">
 
 				<div id="ponorez-account-settings">
 
-					<h3 class="hndle" style="padding-bottom: 10px;"><span>Available Activities</span></h3>
+					<h3 class="hndle"><span>Available Activities</span></h3>
 
 					<div>
-						<div style="margin-top: 0px; margin-bottom:  15px; float: left; widows: 40;">
+						<div>
 							<input type="text" id="pr_group_name" name="pr_group_name" placeholder="New group name">
 							<button type="button" id="pr_add_group" class="button button-primary">Add Group</button>
 							<button type="button" id="pr_refresh" class="button">Refresh List</button>
 						</div>
 
-						<div style="margin-top: 0px; margin-bottom: 15px; float: right; width: 40%; text-align: right;">
+						<div id="last">
 							<a href="#" id="pra_prev_page" data-page="<?php echo $activityList->prevPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">&lt; Prev</a> |&nbsp;Page
 							<?php echo $activityList->currentPage ?> of
 							<?php echo $activityList->maxPage ?>&nbsp|
 							<a href="#" id="pra_next_page" data-page="<?php echo $activityList->nextPage() ?>" data-count="<?php echo $activityList->resultsPerPage ?>">Next &gt;</a>
-							<input style="width:50%" type="text" id="pra_activity_filter" placeholder="Filter list" value="<?php echo @$_GET['pra_filter']?>"/>
+							<input type="text" id="pra_activity_filter" placeholder="Filter list" value="<?php echo @$_GET['pra_filter']?>"/>
 							<button class="button" id="pra_filter_go">Go</button>
 						</div>
 					</div>
@@ -182,16 +182,13 @@ final class PonoRezAdminConfig {
 
 					<div class="clear"></div>
 
-
 					<?php else: ?>
 					<br>
 					<p><em>No activities found.</em>
 					</p>
+					<?php endif; ?>
 				</div>
 			</div>
-	
-		<?php endif; ?>
-		
 		<?php wp_die(); ?>
 
 		<?php
@@ -231,13 +228,13 @@ final class PonoRezAdminConfig {
 
 		</script>
 		
-		<ul class="wp-tab-bar" style="margin-bottom: 15px;">
-			<li><a href="#ponorez-acount-setup">Ponorez Account Setup</a><span style="margin-left: 12px; color: #999999;">|</span></li>
-			<li><a href="#ponorez-forms-settings">Booking Forms Settings</a><span style="margin-left: 12px; color: #999999;">|</span></li>
-			<li><a href="#ponorez-activities-list">Activities List</a><span style="margin-left: 12px; color: #999999;">|</span></li>
-			<li><a href="#ponorez-groups-list">Groups List</a><span style="margin-left: 12px; color: #999999;">|</span></li>
-			<li><a href="#ponorez-guest-types">Guest Types</a><span style="margin-left: 12px; color: #999999;">|</span></li>
-			<li><a href="#ponorez-upgrades">Upgrade Types</a><span style="margin-left: 12px; color: #999999;">|</span></li>
+		<ul class="wp-tab-bar">
+			<li><a href="#ponorez-account-setup">Ponorez Account Setup</a><span>|</span></li>
+			<li><a href="#ponorez-forms-settings">Booking Forms Settings</a><span>|</span></li>
+			<li><a href="#ponorez-activities-list">Activities List</a><span>|</span></li>
+			<li><a href="#ponorez-groups-list">Groups List</a><span>|</span></li>
+			<li><a href="#ponorez-guest-types">Guest Types</a><span>|</span></li>
+			<li><a href="#ponorez-upgrades">Upgrade Types</a><span>|</span></li>
 			<li><a href="#ponorez-google-analytics">Google Analytics Setup</a></li>
 		</ul>
 		
@@ -248,18 +245,18 @@ final class PonoRezAdminConfig {
 			<?php settings_fields('pr-settings'); ?>
 			<?php do_settings_sections('pr-settings'); ?>
 
-			<div class="wp-tab-panel" id="ponorez-acount-setup" style="max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-account-setup">
 
-				<h3 class="hndle" style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;"><span>PonoRez Account Setup</span></h3>
+				<h3 class="hndle"><span>PonoRez Account Setup</span></h3>
 
-				<label for="pr_username" style="display: block; margin-bottom: 5px;"><strong>Your PonoRez Username:</strong></label>
-				<input style="display: block; margin-bottom: 15px;" id="pr_username" type="text" name="pr_username" value="<?php echo esc_attr(get_option('pr_username')); ?>"/>
-				<label for="pr_password" style="display: block; margin-bottom: 5px;"><strong>Your PonoRez Password:</strong></label>
-				<input style="display: block; margin-bottom: 15px;" id="pr_password" type="password" name="pr_password" value="<?php echo esc_attr(get_option('pr_password')); ?>"/>
+				<label for="pr_username"><strong>Your PonoRez Username:</strong></label>
+				<input id="pr_username" type="text" name="pr_username" value="<?php echo esc_attr(get_option('pr_username')); ?>"/>
+				<label for="pr_password"><strong>Your PonoRez Password:</strong></label>
+				<input id="pr_password" type="password" name="pr_password" value="<?php echo esc_attr(get_option('pr_password')); ?>"/>
 
-				<label for="pr_cache_timeout" style="display: block; margin-bottom: 5px;"><strong>Cache Timeout:</strong></label>
-				<em style="display: block; margin-bottom: 5px;">This value determines how often information is retrieved from the Pono Rez servers.</em>
-				<select style="display: block; margin-bottom: 15px;" id="pr_cache_timeout" name="pr_cache_timeout">
+				<label for="pr_cache_timeout"><strong>Cache Timeout:</strong></label>
+				<em>This value determines how often information is retrieved from the Pono Rez servers.</em>
+				<select id="pr_cache_timeout" name="pr_cache_timeout">
 					<option value="0" <?php echo (0==$timeout) ? ' SELECTED' : '' ?>>Disabled</option>
 					<option value="3600" <?php echo (3600==$timeout) ? ' SELECTED' : '' ?>>1 Hour</option>
 					<option value="21600" <?php echo (21600==$timeout) ? ' SELECTED' : '' ?>>6 Hours</option>
@@ -270,12 +267,12 @@ final class PonoRezAdminConfig {
 
 			</div>
 				
-			<div class="wp-tab-panel" id="ponorez-forms-settings" style="display: none; max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-forms-settings">
 
-				<h3 class="hndle" style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;"><span>Booking Forms Type</span></h3>
+				<h3 class="hndle"><span>Booking Forms Type</span></h3>
 
-				<label for="pr_group_default_template" style="display: block; margin-bottom: 5px;"><strong>Single Activity Booking Form Template:</strong></label>
-				<select style="display: block; margin-bottom: 15px;" id="pr_group_default_template" name="pr_default_template">
+				<label for="pr_group_default_template"><strong>Single Activity Booking Form Template:</strong></label>
+				<select id="pr_group_default_template" name="pr_default_template">
 
 					<?php foreach (self::getTemplateList() as $template): ?>
 					<?php printf('<option value="%s"%s>%s</option>', $template, ($defaultTemplate === $template) ? ' SELECTED' : '', $template); ?>
@@ -283,8 +280,8 @@ final class PonoRezAdminConfig {
 
 				</select>
 
-				<label for="pr_group_default_template" style="display: block; margin-bottom: 5px;"><strong>Activities Group Booking Form Template:</strong></label>
-				<select style="display: block; margin-bottom: 15px;" id="pr_group_default_template" name="pr_group_default_template">
+				<label for="pr_group_default_template"><strong>Activities Group Booking Form Template:</strong></label>
+				<select id="pr_group_default_template" name="pr_group_default_template">
 
 					<?php foreach (self::getGroupTemplateList() as $template): ?>
 					<?php printf('<option value="%s"%s>%s</option>', $template, ($defaultGroupTemplate === $template) ? ' SELECTED' : '', $template); ?>
@@ -292,7 +289,7 @@ final class PonoRezAdminConfig {
 
 				</select>
 
-				<h3 class="hndle" style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;"><span>Calendar and Submit Buttons Style Settings</span></h3>
+				<h3 class="hndle"><span>Calendar and Submit Buttons Style Settings</span></h3>
 				
 				<?php
 					add_action( 'admin_enqueue_scripts', 'softlights_color_picker' );
@@ -319,35 +316,35 @@ final class PonoRezAdminConfig {
 
 				</script>
 				
-				<label for="primaryColor" style="display: block; margin-bottom: 5px;"><strong>Primary Color</strong></label>
+				<label for="primaryColor"><strong>Primary Color</strong></label>
 				<input type="text" class="ponorez-color-picker" id="primaryColor" name="primaryColor" value="<?php echo esc_attr(get_option('primaryColor')); ?>"/>
-				<p style="margin-top: 0px; font-style: italic;">This color will be used as default background color for calendar header and Book Now button.</p>
-				<label for="secondaryColor" style="display: block; margin-bottom: 5px;"><strong>Secondary Color</strong></label>
+				<p>This color will be used as default background color for calendar header and Book Now button.</p>
+				<label for="secondaryColor"><strong>Secondary Color</strong></label>
 				<input type="text" class="ponorez-color-picker" id="secondaryColor" name="secondaryColor" value="<?php echo esc_attr(get_option('secondaryColor')); ?>"/>
-				<p style="margin-top: 0px; font-style: italic;">This color will be used as secondary color for the Book Now button mouse over effect.</p>
-				<label for="textColor" style="display: block; margin-bottom: 5px;"><strong>Text Color</strong></label>
+				<p>This color will be used as secondary color for the Book Now button mouse over effect.</p>
+				<label for="textColor"><strong>Text Color</strong></label>
 				<input type="text" class="ponorez-color-picker" id="textColor" name="textColor" value="<?php echo esc_attr(get_option('textColor')); ?>"/>
-				<p style="margin-top: 0px; font-style: italic;">This color will be used for the Book Now button text color.</p>
+				<p>This color will be used for the Book Now button text color.</p>
 				
-				<label for="bookNowText" style="display: block; margin-bottom: 5px;"><strong>Set Book Now Button text</strong></label>
+				<label for="bookNowText"><strong>Set Book Now Button text</strong></label>
 								
-				<input style="display: block; margin-bottom: 15px;" id="bookNowText" type="text" name="bookNowText" value="<?php echo esc_attr(get_option('bookNowText')); ?>"/>
+				<input id="bookNowText" type="text" name="bookNowText" value="<?php echo esc_attr(get_option('bookNowText')); ?>"/>
 			
-				<h3 class="hndle" style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;"><span>Accommodation and Transportation Options</span></h3>
-				<label for="accommodationStatus" style="display: block; margin-bottom: 5px;"><input type="checkbox" id="accommodationStatus" name="accommodationStatus" value="1" <?php checked( get_option('accommodationStatus'), 1 ); ?> /> <strong>Enable Accommodation and Trasportaton</strong></label>
-				<p style="margin-top: 0px; font-style: italic;">Please note that the accommodation and transportation options are working in conjunction and can be configured through the use of the shortcode parameter  <strong>accommodation=""</strong>.<br /> For more information on how to do this please refer to the <a href="<?php echo admin_url( 'admin.php?page=a3h_ponorez_help', '' ); ?>">Help Section of this plugin.</a></p>
+				<h3 class="hndle"><span>Accommodation and Transportation Options</span></h3>
+				<label for="accommodationStatus"><input type="checkbox" id="accommodationStatus" name="accommodationStatus" value="1" <?php checked( get_option('accommodationStatus'), 1 ); ?> /> <strong>Enable Accommodation and Trasportaton</strong></label>
+				<p>Please note that the accommodation and transportation options are working in conjunction and can be configured through the use of the shortcode parameter  <strong>accommodation=""</strong>.<br /> For more information on how to do this please refer to the <a href="<?php echo admin_url( 'admin.php?page=a3h_ponorez_help', '' ); ?>">Help Section of this plugin.</a></p>
 								
-				<h3 class="hndle" style="padding-bottom: 12px; border-bottom: 1px solid #e1e1e1; margin-bottom: 12px;"><span>Other Booking Options</span></h3>
-				<label for="couponsStatus" style="display: block; margin-bottom: 5px;"><input type="checkbox" id="couponsStatus" name="couponsStatus" value="1" <?php checked( get_option('couponsStatus'), 1 ); ?> /> <strong>Enable Promotional Codes</strong></label>
-				<p style="margin-top: 0px; font-style: italic;">By checking this you will enable the global usage of Promo Codes.<br /> To display the promotional field in a booking form you will need to enable it individually through the use of the shortcode parameter <strong>allowdiscounts=""</strong>.<br /> For more information on how to do this please refer to the <a href="<?php echo admin_url( 'admin.php?page=a3h_ponorez_help', '' ); ?>">Help Section of this plugin.</a></p>
+				<h3 class="hndle"><span>Other Booking Options</span></h3>
+				<label for="couponsStatus"><input type="checkbox" id="couponsStatus" name="couponsStatus" value="1" <?php checked( get_option('couponsStatus'), 1 ); ?> /> <strong>Enable Promotional Codes</strong></label>
+				<p>By checking this you will enable the global usage of Promo Codes.<br /> To display the promotional field in a booking form you will need to enable it individually through the use of the shortcode parameter <strong>allowdiscounts=""</strong>.<br /> For more information on how to do this please refer to the <a href="<?php echo admin_url( 'admin.php?page=a3h_ponorez_help', '' ); ?>">Help Section of this plugin.</a></p>
 							
 				<?php submit_button('Save Settings'); ?>
 
 			</div>
 				
-			<div class="wp-tab-panel" id="ponorez-guest-types" style="display: none; max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-guest-types">
 
-				<h3 class="hndle" style="padding-bottom: 10px;"><span>Guest Type Configuration</span> <a class="button button-primary" style="float: right;" id="LoadGuests">Add New Guest Type</a></h3>
+				<h3 class="hndle"><span>Guest Type Configuration</span> <a class="button button-primary" id="LoadGuests">Add New Guest Type</a></h3>
 
 				<?php settings_fields('pr-settings'); ?>
 				<?php do_settings_sections('pr-settings'); ?>
@@ -366,627 +363,43 @@ final class PonoRezAdminConfig {
 						</tr>
 					</thead>
 					<tbody>
-					
 						<?php 
-							
-							$guestType1Status = get_option( 'guestType1ID' );
+							for( $i = 1; $i <= 20; $i++ ){
 
-							if ( empty( $guestType1Status ) ) {
+								//setup naming convention
+								$guestType = 'guestType' . $i;
+								$guestTypeID = $guestType . 'ID';
+								$guestTypeMin = $guestType . 'Min';
+								$guestTypeMax = $guestType . 'Max';
 
-								$guestClass1 = 'guestRow';
+								//check if guest is set
+								$guestStatus = get_option( $guestTypeID );
 
-							} else {
+								if(empty( $guestStatus ) ){
+									?><tr class='guestRow'><?php
+								} else {
+									?><tr class='guestDefined'><?php
+								}
+								?>
+									<td>
+										<input id="<?php print $guestType; ?>" type="text" name="<?php print $guestType; ?>" value="<?php echo esc_attr(get_option($guestType)); ?>"/>
+									</td>
+									<td>
+										<input id="<?php print $guestTypeID; ?>" type="text" name="<?php print $guestTypeID; ?>" value="<?php echo esc_attr(get_option($guestTypeID)); ?>"/>
+									</td>
+									<td>
+										<input id="<?php print $guestTypeMin; ?>" type="text" name="<?php print $guestTypeMin; ?>" value="<?php echo esc_attr(get_option($guestTypeMin)); ?>"/>
+									</td>
+									<td>
+										<input id="<?php print $guestTypeMax; ?>" type="text" name="<?php print $guestTypeMax; ?>" value="<?php echo esc_attr(get_option($guestTypeMax)); ?>"/>
+									</td>
+								</tr>
 
-								$guestClass1 ='guestDefined';
-
+								<?php
 							}
 
 						?>
-					
-						<tr class="<?php print $guestClass1; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType1" type="text" name="guestType1" value="<?php echo esc_attr(get_option('guestType1')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType1ID" type="text" name="guestType1ID" value="<?php echo esc_attr(get_option('guestType1ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType1Min" type="text" name="guestType1Min" value="<?php echo esc_attr(get_option('guestType1Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType1Max" type="text" name="guestType1Max" value="<?php echo esc_attr(get_option('guestType1Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType2Status = get_option( 'guestType2ID' );
-
-							if ( empty( $guestType2Status ) ) {
-
-								$guestClass2 = 'guestRow';
-
-							} else {
-
-								$guestClass2 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass2; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType2" type="text" name="guestType2" value="<?php echo esc_attr(get_option('guestType2')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType2ID" type="text" name="guestType2ID" value="<?php echo esc_attr(get_option('guestType2ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType2Min" type="text" name="guestType2Min" value="<?php echo esc_attr(get_option('guestType2Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType2Max" type="text" name="guestType2Max" value="<?php echo esc_attr(get_option('guestType2Max')); ?>"/>
-							</td>
-						</tr>
-
-						<?php 
-
-							$guestType3Status = get_option( 'guestType3ID' );
-
-							if ( empty( $guestType3Status ) ) {
-
-								$guestClass3 = 'guestRow';
-
-							} else {
-
-								$guestClass3 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass3; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType3" type="text" name="guestType3" value="<?php echo esc_attr(get_option('guestType3')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType3ID" type="text" name="guestType3ID" value="<?php echo esc_attr(get_option('guestType3ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType3Min" type="text" name="guestType3Min" value="<?php echo esc_attr(get_option('guestType3Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType3Max" type="text" name="guestType3Max" value="<?php echo esc_attr(get_option('guestType3Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType4Status = get_option( 'guestType4ID' );
-
-							if ( empty( $guestType4Status ) ) {
-
-								$guestClass4 = 'guestRow';
-
-							} else {
-
-								$guestClass4 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass4; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType4" type="text" name="guestType4" value="<?php echo esc_attr(get_option('guestType4')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType4ID" type="text" name="guestType4ID" value="<?php echo esc_attr(get_option('guestType4ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType4Min" type="text" name="guestType4Min" value="<?php echo esc_attr(get_option('guestType4Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType4Max" type="text" name="guestType4Max" value="<?php echo esc_attr(get_option('guestType4Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType5Status = get_option( 'guestType5ID' );
-
-							if ( empty( $guestType5Status ) ) {
-
-								$guestClass5 = 'guestRow';
-
-							} else {
-
-								$guestClass5 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass5; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType5" type="text" name="guestType5" value="<?php echo esc_attr(get_option('guestType5')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType5ID" type="text" name="guestType5ID" value="<?php echo esc_attr(get_option('guestType5ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType5Min" type="text" name="guestType5Min" value="<?php echo esc_attr(get_option('guestType5Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType5Max" type="text" name="guestType5Max" value="<?php echo esc_attr(get_option('guestType5Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType6Status = get_option( 'guestType6ID' );
-
-							if ( empty( $guestType6Status ) ) {
-
-								$guestClass6 = 'guestRow';
-
-							} else {
-
-								$guestClass6 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass6; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType6" type="text" name="guestType6" value="<?php echo esc_attr(get_option('guestType6')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType6ID" type="text" name="guestType6ID" value="<?php echo esc_attr(get_option('guestType6ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType6Min" type="text" name="guestType6Min" value="<?php echo esc_attr(get_option('guestType6Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType6Max" type="text" name="guestType6Max" value="<?php echo esc_attr(get_option('guestType6Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType7Status = get_option( 'guestType7ID' );
-
-							if ( empty( $guestType7Status ) ) {
-
-								$guestClass7 = 'guestRow';
-
-							} else {
-
-								$guestClass7 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass7; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType7" type="text" name="guestType7" value="<?php echo esc_attr(get_option('guestType7')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType7ID" type="text" name="guestType7ID" value="<?php echo esc_attr(get_option('guestType7ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType7Min" type="text" name="guestType7Min" value="<?php echo esc_attr(get_option('guestType7Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType7Max" type="text" name="guestType7Max" value="<?php echo esc_attr(get_option('guestType7Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType8Status = get_option( 'guestType8ID' );
-
-							if ( empty( $guestType8Status ) ) {
-
-								$guestClass8 = 'guestRow';
-
-							} else {
-
-								$guestClass8 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass8; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType8" type="text" name="guestType8" value="<?php echo esc_attr(get_option('guestType8')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType8ID" type="text" name="guestType8ID" value="<?php echo esc_attr(get_option('guestType8ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType8Min" type="text" name="guestType8Min" value="<?php echo esc_attr(get_option('guestType8Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType8Max" type="text" name="guestType8Max" value="<?php echo esc_attr(get_option('guestType8Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType9Status = get_option( 'guestType9ID' );
-
-							if ( empty( $guestType9Status ) ) {
-
-								$guestClass9 = 'guestRow';
-
-							} else {
-
-								$guestClass9 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass9; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType9" type="text" name="guestType9" value="<?php echo esc_attr(get_option('guestType9')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType9ID" type="text" name="guestType9ID" value="<?php echo esc_attr(get_option('guestType9ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType9Min" type="text" name="guestType9Min" value="<?php echo esc_attr(get_option('guestType9Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType9Max" type="text" name="guestType9Max" value="<?php echo esc_attr(get_option('guestType9Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType10Status = get_option( 'guestType10ID' );
-
-							if ( empty( $guestType10Status ) ) {
-
-								$guestClass10 = 'guestRow';
-
-							} else {
-
-								$guestClass10 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass10; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType10" type="text" name="guestType10" value="<?php echo esc_attr(get_option('guestType10')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType10ID" type="text" name="guestType10ID" value="<?php echo esc_attr(get_option('guestType10ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType10Min" type="text" name="guestType10Min" value="<?php echo esc_attr(get_option('guestType10Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType10Max" type="text" name="guestType10Max" value="<?php echo esc_attr(get_option('guestType10Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType11Status = get_option( 'guestType11ID' );
-
-							if ( empty( $guestType11Status ) ) {
-
-								$guestClass11 = 'guestRow';
-
-							} else {
-
-								$guestClass11 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass11; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType11" type="text" name="guestType11" value="<?php echo esc_attr(get_option('guestType11')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType11ID" type="text" name="guestType11ID" value="<?php echo esc_attr(get_option('guestType11ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType11Min" type="text" name="guestType11Min" value="<?php echo esc_attr(get_option('guestType11Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType11Max" type="text" name="guestType11Max" value="<?php echo esc_attr(get_option('guestType11Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType12Status = get_option( 'guestType12ID' );
-
-							if ( empty( $guestType12Status ) ) {
-
-								$guestClass12 = 'guestRow';
-
-							} else {
-
-								$guestClass12 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass12; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType12" type="text" name="guestType12" value="<?php echo esc_attr(get_option('guestType12')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType12ID" type="text" name="guestType12ID" value="<?php echo esc_attr(get_option('guestType12ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType12Min" type="text" name="guestType12Min" value="<?php echo esc_attr(get_option('guestType12Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType12Max" type="text" name="guestType12Max" value="<?php echo esc_attr(get_option('guestType12Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType13Status = get_option( 'guestType13ID' );
-
-							if ( empty( $guestType13Status ) ) {
-
-								$guestClass13 = 'guestRow';
-
-							} else {
-
-								$guestClass13 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass13; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType13" type="text" name="guestType13" value="<?php echo esc_attr(get_option('guestType13')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType13ID" type="text" name="guestType13ID" value="<?php echo esc_attr(get_option('guestType13ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType13Min" type="text" name="guestType13Min" value="<?php echo esc_attr(get_option('guestType13Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType13Max" type="text" name="guestType13Max" value="<?php echo esc_attr(get_option('guestType13Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType14Status = get_option( 'guestType14ID' );
-
-							if ( empty( $guestType14Status ) ) {
-
-								$guestClass14 = 'guestRow';
-
-							} else {
-
-								$guestClass14 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass14; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType14" type="text" name="guestType14" value="<?php echo esc_attr(get_option('guestType14')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType14ID" type="text" name="guestType14ID" value="<?php echo esc_attr(get_option('guestType14ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType14Min" type="text" name="guestType14Min" value="<?php echo esc_attr(get_option('guestType14Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType14Max" type="text" name="guestType14Max" value="<?php echo esc_attr(get_option('guestType14Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType15Status = get_option( 'guestType15ID' );
-
-							if ( empty( $guestType15Status ) ) {
-
-								$guestClass15 = 'guestRow';
-
-							} else {
-
-								$guestClass15 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass15; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType15" type="text" name="guestType15" value="<?php echo esc_attr(get_option('guestType15')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType15ID" type="text" name="guestType15ID" value="<?php echo esc_attr(get_option('guestType15ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType15Min" type="text" name="guestType15Min" value="<?php echo esc_attr(get_option('guestType15Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType15Max" type="text" name="guestType15Max" value="<?php echo esc_attr(get_option('guestType15Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType16Status = get_option( 'guestType16ID' );
-
-							if ( empty( $guestType16Status ) ) {
-
-								$guestClass16 = 'guestRow';
-
-							} else {
-
-								$guestClass16 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass16; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType16" type="text" name="guestType16" value="<?php echo esc_attr(get_option('guestType16')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType16ID" type="text" name="guestType16ID" value="<?php echo esc_attr(get_option('guestType16ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType16Min" type="text" name="guestType16Min" value="<?php echo esc_attr(get_option('guestType16Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType16Max" type="text" name="guestType16Max" value="<?php echo esc_attr(get_option('guestType16Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType17Status = get_option( 'guestType17ID' );
-
-							if ( empty( $guestType17Status ) ) {
-
-								$guestClass17 = 'guestRow';
-
-							} else {
-
-								$guestClass17 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass17; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType17" type="text" name="guestType17" value="<?php echo esc_attr(get_option('guestType17')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType17ID" type="text" name="guestType17ID" value="<?php echo esc_attr(get_option('guestType17ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType17Min" type="text" name="guestType17Min" value="<?php echo esc_attr(get_option('guestType17Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType17Max" type="text" name="guestType17Max" value="<?php echo esc_attr(get_option('guestType17Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType18Status = get_option( 'guestType18ID' );
-
-							if ( empty( $guestType18Status ) ) {
-
-								$guestClass18 = 'guestRow';
-
-							} else {
-
-								$guestClass18 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass18; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType18" type="text" name="guestType18" value="<?php echo esc_attr(get_option('guestType18')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType18ID" type="text" name="guestType18ID" value="<?php echo esc_attr(get_option('guestType18ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType18Min" type="text" name="guestType18Min" value="<?php echo esc_attr(get_option('guestType18Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType18Max" type="text" name="guestType18Max" value="<?php echo esc_attr(get_option('guestType18Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType19Status = get_option( 'guestType19ID' );
-
-							if ( empty( $guestType19Status ) ) {
-
-								$guestClass19 = 'guestRow';
-
-							} else {
-
-								$guestClass19 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass19; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType19" type="text" name="guestType19" value="<?php echo esc_attr(get_option('guestType19')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType19ID" type="text" name="guestType19ID" value="<?php echo esc_attr(get_option('guestType19ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType19Min" type="text" name="guestType19Min" value="<?php echo esc_attr(get_option('guestType19Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType19Max" type="text" name="guestType19Max" value="<?php echo esc_attr(get_option('guestType19Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$guestType20Status = get_option( 'guestType20ID' );
-
-							if ( empty( $guestType20Status ) ) {
-
-								$guestClass20 = 'guestRow';
-
-							} else {
-
-								$guestClass20 ='guestDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $guestClass20; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType20" type="text" name="guestType20" value="<?php echo esc_attr(get_option('guestType20')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType20ID" type="text" name="guestType20ID" value="<?php echo esc_attr(get_option('guestType20ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType20Min" type="text" name="guestType20Min" value="<?php echo esc_attr(get_option('guestType20Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="guestType20Max" type="text" name="guestType20Max" value="<?php echo esc_attr(get_option('guestType20Max')); ?>"/>
-							</td>
-						</tr>
-						
+											
 						<tr class="guestRow">
 							<td colspan="4">
 								You have added the maximum number of Guest Types.
@@ -1012,9 +425,9 @@ final class PonoRezAdminConfig {
 
 			</div>
 				
-			<div class="wp-tab-panel" id="ponorez-upgrades" style="display: none; max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-upgrades">
 
-				<h3 class="hndle" style="padding-bottom: 10px;"><span>Upgrades Configuration</span> <a class="button button-primary" style="float: right;" id="LoadUpgrades">Add New Upgrade Type</a></h3>
+				<h3 class="hndle"><span>Upgrades Configuration</span> <a class="button button-primary" id="LoadUpgrades">Add New Upgrade Type</a></h3>
 
 				<?php settings_fields('pr-settings'); ?>
 				<?php do_settings_sections('pr-settings'); ?>
@@ -1033,626 +446,42 @@ final class PonoRezAdminConfig {
 						</tr>
 					</thead>
 					<tbody>
-					
 						<?php 
-							
-							$upgradeType1Status = get_option( 'upgradeType1ID' );
+							for( $i = 1; $i <= 20; $i++ ){
 
-							if ( empty( $upgradeType1Status ) ) {
+								//setup naming convention
+								$upgradeType = 'upgradeType' . $i;
+								$upgradeTypeID = $upgradeType . 'ID';
+								$upgradeTypeMin = $upgradeType . 'Min';
+								$upgradeTypeMax = $upgradeType . 'Max';
 
-								$upgradeClass1 = 'upgradeRow';
+								//check if upgrade is set
+								$upgradeStatus = get_option( $upgradeTypeID );
 
-							} else {
+								if(empty( $upgradeStatus ) ){
+									?><tr class='upgradeRow'><?php
+								} else {
+									?><tr class='upgradeDefined'><?php
+								}
+								?>
+									<td>
+										<input id="<?php print $upgradeType; ?>" type="text" name="<?php print $upgradeType; ?>" value="<?php echo esc_attr(get_option($upgradeType)); ?>"/>
+									</td>
+									<td>
+										<input id="<?php print $upgradeTypeID; ?>" type="text" name="<?php print $upgradeTypeID; ?>" value="<?php echo esc_attr(get_option($upgradeTypeID)); ?>"/>
+									</td>
+									<td>
+										<input id="<?php print $upgradeTypeMin; ?>" type="text" name="<?php print $upgradeTypeMin; ?>" value="<?php echo esc_attr(get_option($upgradeTypeMin)); ?>"/>
+									</td>
+									<td>
+										<input id="<?php print $upgradeTypeMax; ?>" type="text" name="<?php print $upgradeTypeMax; ?>" value="<?php echo esc_attr(get_option($upgradeTypeMax)); ?>"/>
+									</td>
+								</tr>
 
-								$upgradeClass1 ='upgradeDefined';
-
+								<?php
 							}
 
 						?>
-					
-						<tr class="<?php print $upgradeClass1; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType1" type="text" name="upgradeType1" value="<?php echo esc_attr(get_option('upgradeType1')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType1ID" type="text" name="upgradeType1ID" value="<?php echo esc_attr(get_option('upgradeType1ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType1Min" type="text" name="upgradeType1Min" value="<?php echo esc_attr(get_option('upgradeType1Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType1Max" type="text" name="upgradeType1Max" value="<?php echo esc_attr(get_option('upgradeType1Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType2Status = get_option( 'upgradeType2ID' );
-
-							if ( empty( $upgradeType2Status ) ) {
-
-								$upgradeClass2 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass2 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass2; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType2" type="text" name="upgradeType2" value="<?php echo esc_attr(get_option('upgradeType2')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType2ID" type="text" name="upgradeType2ID" value="<?php echo esc_attr(get_option('upgradeType2ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType2Min" type="text" name="upgradeType2Min" value="<?php echo esc_attr(get_option('upgradeType2Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType2Max" type="text" name="upgradeType2Max" value="<?php echo esc_attr(get_option('upgradeType2Max')); ?>"/>
-							</td>
-						</tr>
-
-						<?php 
-
-							$upgradeType3Status = get_option( 'upgradeType3ID' );
-
-							if ( empty( $upgradeType3Status ) ) {
-
-								$upgradeClass3 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass3 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass3; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType3" type="text" name="upgradeType3" value="<?php echo esc_attr(get_option('upgradeType3')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType3ID" type="text" name="upgradeType3ID" value="<?php echo esc_attr(get_option('upgradeType3ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType3Min" type="text" name="upgradeType3Min" value="<?php echo esc_attr(get_option('upgradeType3Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType3Max" type="text" name="upgradeType3Max" value="<?php echo esc_attr(get_option('upgradeType3Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType4Status = get_option( 'upgradeType4ID' );
-
-							if ( empty( $upgradeType4Status ) ) {
-
-								$upgradeClass4 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass4 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass4; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType4" type="text" name="upgradeType4" value="<?php echo esc_attr(get_option('upgradeType4')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType4ID" type="text" name="upgradeType4ID" value="<?php echo esc_attr(get_option('upgradeType4ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType4Min" type="text" name="upgradeType4Min" value="<?php echo esc_attr(get_option('upgradeType4Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType4Max" type="text" name="upgradeType4Max" value="<?php echo esc_attr(get_option('upgradeType4Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType5Status = get_option( 'upgradeType5ID' );
-
-							if ( empty( $upgradeType5Status ) ) {
-
-								$upgradeClass5 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass5 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass5; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType5" type="text" name="upgradeType5" value="<?php echo esc_attr(get_option('upgradeType5')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType5ID" type="text" name="upgradeType5ID" value="<?php echo esc_attr(get_option('upgradeType5ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType5Min" type="text" name="upgradeType5Min" value="<?php echo esc_attr(get_option('upgradeType5Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType5Max" type="text" name="upgradeType5Max" value="<?php echo esc_attr(get_option('upgradeType5Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType6Status = get_option( 'upgradeType6ID' );
-
-							if ( empty( $upgradeType6Status ) ) {
-
-								$upgradeClass6 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass6 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass6; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType6" type="text" name="upgradeType6" value="<?php echo esc_attr(get_option('upgradeType6')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType6ID" type="text" name="upgradeType6ID" value="<?php echo esc_attr(get_option('upgradeType6ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType6Min" type="text" name="upgradeType6Min" value="<?php echo esc_attr(get_option('upgradeType6Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType6Max" type="text" name="upgradeType6Max" value="<?php echo esc_attr(get_option('upgradeType6Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType7Status = get_option( 'upgradeType7ID' );
-
-							if ( empty( $upgradeType7Status ) ) {
-
-								$upgradeClass7 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass7 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass7; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType7" type="text" name="upgradeType7" value="<?php echo esc_attr(get_option('upgradeType7')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType7ID" type="text" name="upgradeType7ID" value="<?php echo esc_attr(get_option('upgradeType7ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType7Min" type="text" name="upgradeType7Min" value="<?php echo esc_attr(get_option('upgradeType7Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType7Max" type="text" name="upgradeType7Max" value="<?php echo esc_attr(get_option('upgradeType7Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType8Status = get_option( 'upgradeType8ID' );
-
-							if ( empty( $upgradeType8Status ) ) {
-
-								$upgradeClass8 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass8 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass8; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType8" type="text" name="upgradeType8" value="<?php echo esc_attr(get_option('upgradeType8')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType8ID" type="text" name="upgradeType8ID" value="<?php echo esc_attr(get_option('upgradeType8ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType8Min" type="text" name="upgradeType8Min" value="<?php echo esc_attr(get_option('upgradeType8Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType8Max" type="text" name="upgradeType8Max" value="<?php echo esc_attr(get_option('upgradeType8Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType9Status = get_option( 'upgradeType9ID' );
-
-							if ( empty( $upgradeType9Status ) ) {
-
-								$upgradeClass9 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass9 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass9; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType9" type="text" name="upgradeType9" value="<?php echo esc_attr(get_option('upgradeType9')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType9ID" type="text" name="upgradeType9ID" value="<?php echo esc_attr(get_option('upgradeType9ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType9Min" type="text" name="upgradeType9Min" value="<?php echo esc_attr(get_option('upgradeType9Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType9Max" type="text" name="upgradeType9Max" value="<?php echo esc_attr(get_option('upgradeType9Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType10Status = get_option( 'upgradeType10ID' );
-
-							if ( empty( $upgradeType10Status ) ) {
-
-								$upgradeClass10 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass10 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass10; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType10" type="text" name="upgradeType10" value="<?php echo esc_attr(get_option('upgradeType10')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType10ID" type="text" name="upgradeType10ID" value="<?php echo esc_attr(get_option('upgradeType10ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType10Min" type="text" name="upgradeType10Min" value="<?php echo esc_attr(get_option('upgradeType10Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType10Max" type="text" name="upgradeType10Max" value="<?php echo esc_attr(get_option('upgradeType10Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType11Status = get_option( 'upgradeType11ID' );
-
-							if ( empty( $upgradeType11Status ) ) {
-
-								$upgradeClass11 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass11 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass11; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType11" type="text" name="upgradeType11" value="<?php echo esc_attr(get_option('upgradeType11')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType11ID" type="text" name="upgradeType11ID" value="<?php echo esc_attr(get_option('upgradeType11ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType11Min" type="text" name="upgradeType11Min" value="<?php echo esc_attr(get_option('upgradeType11Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType11Max" type="text" name="upgradeType11Max" value="<?php echo esc_attr(get_option('upgradeType11Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType12Status = get_option( 'upgradeType12ID' );
-
-							if ( empty( $upgradeType12Status ) ) {
-
-								$upgradeClass12 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass12 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass12; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType12" type="text" name="upgradeType12" value="<?php echo esc_attr(get_option('upgradeType12')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType12ID" type="text" name="upgradeType12ID" value="<?php echo esc_attr(get_option('upgradeType12ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType12Min" type="text" name="upgradeType12Min" value="<?php echo esc_attr(get_option('upgradeType12Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType12Max" type="text" name="upgradeType12Max" value="<?php echo esc_attr(get_option('upgradeType12Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType13Status = get_option( 'upgradeType13ID' );
-
-							if ( empty( $upgradeType13Status ) ) {
-
-								$upgradeClass13 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass13 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass13; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType13" type="text" name="upgradeType13" value="<?php echo esc_attr(get_option('upgradeType13')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType13ID" type="text" name="upgradeType13ID" value="<?php echo esc_attr(get_option('upgradeType13ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType13Min" type="text" name="upgradeType13Min" value="<?php echo esc_attr(get_option('upgradeType13Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType13Max" type="text" name="upgradeType13Max" value="<?php echo esc_attr(get_option('upgradeType13Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType14Status = get_option( 'upgradeType14ID' );
-
-							if ( empty( $upgradeType14Status ) ) {
-
-								$upgradeClass14 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass14 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass14; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType14" type="text" name="upgradeType14" value="<?php echo esc_attr(get_option('upgradeType14')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType14ID" type="text" name="upgradeType14ID" value="<?php echo esc_attr(get_option('upgradeType14ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType14Min" type="text" name="upgradeType14Min" value="<?php echo esc_attr(get_option('upgradeType14Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType14Max" type="text" name="upgradeType14Max" value="<?php echo esc_attr(get_option('upgradeType14Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType15Status = get_option( 'upgradeType15ID' );
-
-							if ( empty( $upgradeType15Status ) ) {
-
-								$upgradeClass15 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass15 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass15; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType15" type="text" name="upgradeType15" value="<?php echo esc_attr(get_option('upgradeType15')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType15ID" type="text" name="upgradeType15ID" value="<?php echo esc_attr(get_option('upgradeType15ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType15Min" type="text" name="upgradeType15Min" value="<?php echo esc_attr(get_option('upgradeType15Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType15Max" type="text" name="upgradeType15Max" value="<?php echo esc_attr(get_option('upgradeType15Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType16Status = get_option( 'upgradeType16ID' );
-
-							if ( empty( $upgradeType16Status ) ) {
-
-								$upgradeClass16 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass16 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass16; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType16" type="text" name="upgradeType16" value="<?php echo esc_attr(get_option('upgradeType16')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType16ID" type="text" name="upgradeType16ID" value="<?php echo esc_attr(get_option('upgradeType16ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType16Min" type="text" name="upgradeType16Min" value="<?php echo esc_attr(get_option('upgradeType16Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType16Max" type="text" name="upgradeType16Max" value="<?php echo esc_attr(get_option('upgradeType16Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType17Status = get_option( 'upgradeType17ID' );
-
-							if ( empty( $upgradeType17Status ) ) {
-
-								$upgradeClass17 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass17 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass17; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType17" type="text" name="upgradeType17" value="<?php echo esc_attr(get_option('upgradeType17')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType17ID" type="text" name="upgradeType17ID" value="<?php echo esc_attr(get_option('upgradeType17ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType17Min" type="text" name="upgradeType17Min" value="<?php echo esc_attr(get_option('upgradeType17Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType17Max" type="text" name="upgradeType17Max" value="<?php echo esc_attr(get_option('upgradeType17Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType18Status = get_option( 'upgradeType18ID' );
-
-							if ( empty( $upgradeType18Status ) ) {
-
-								$upgradeClass18 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass18 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass18; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType18" type="text" name="upgradeType18" value="<?php echo esc_attr(get_option('upgradeType18')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType18ID" type="text" name="upgradeType18ID" value="<?php echo esc_attr(get_option('upgradeType18ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType18Min" type="text" name="upgradeType18Min" value="<?php echo esc_attr(get_option('upgradeType18Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType18Max" type="text" name="upgradeType18Max" value="<?php echo esc_attr(get_option('upgradeType18Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType19Status = get_option( 'upgradeType19ID' );
-
-							if ( empty( $upgradeType19Status ) ) {
-
-								$upgradeClass19 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass19 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass19; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType19" type="text" name="upgradeType19" value="<?php echo esc_attr(get_option('upgradeType19')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType19ID" type="text" name="upgradeType19ID" value="<?php echo esc_attr(get_option('upgradeType19ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType19Min" type="text" name="upgradeType19Min" value="<?php echo esc_attr(get_option('upgradeType19Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType19Max" type="text" name="upgradeType19Max" value="<?php echo esc_attr(get_option('upgradeType19Max')); ?>"/>
-							</td>
-						</tr>
-						
-						<?php 
-
-							$upgradeType20Status = get_option( 'upgradeType20ID' );
-
-							if ( empty( $upgradeType20Status ) ) {
-
-								$upgradeClass20 = 'upgradeRow';
-
-							} else {
-
-								$upgradeClass20 ='upgradeDefined';
-
-							}
-
-						?>
-						
-						<tr class="<?php print $upgradeClass20; ?>">
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType20" type="text" name="upgradeType20" value="<?php echo esc_attr(get_option('upgradeType20')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType20ID" type="text" name="upgradeType20ID" value="<?php echo esc_attr(get_option('upgradeType20ID')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType20Min" type="text" name="upgradeType20Min" value="<?php echo esc_attr(get_option('upgradeType20Min')); ?>"/>
-							</td>
-							<td>
-								<input style="display: block; margin-bottom: 0px;" id="upgradeType20Max" type="text" name="upgradeType20Max" value="<?php echo esc_attr(get_option('upgradeType20Max')); ?>"/>
-							</td>
-						</tr>
 						
 						<tr class="upgradeRow">
 							<td colspan="4">
@@ -1679,15 +508,15 @@ final class PonoRezAdminConfig {
 
 			</div>
 				
-			<div class="wp-tab-panel" id="ponorez-google-analytics" style="display: none; max-height: 100%; margin-right: 20px;">
+			<div class="wp-tab-panel" id="ponorez-google-analytics">
 
-				<h3 class="hndle" style="padding-bottom: 10px;"><span>Google Analytics Setup</span></h3>
+				<h3 class="hndle"><span>Google Analytics Setup</span></h3>
 
 					<?php settings_fields('pr-settings'); ?>
 					<?php do_settings_sections('pr-settings'); ?>
 
-					<label for="googleAnalyticsID" style="display: block; margin-bottom: 5px;"><strong>Your Google Analytics ID:</strong></label>
-					<input style="display: block; margin-bottom: 15px;" id="googleAnalyticsID" type="text" name="googleAnalyticsID" placeholder='UA-123456789' value="<?php echo esc_attr(get_option('googleAnalyticsID')); ?>"/>
+					<label for="googleAnalyticsID"><strong>Your Google Analytics ID:</strong></label>
+					<input id="googleAnalyticsID" type="text" name="googleAnalyticsID" placeholder='UA-123456789' value="<?php echo esc_attr(get_option('googleAnalyticsID')); ?>"/>
 
 					<?php submit_button('Save Google Analytics Tracking ID'); ?>
 
@@ -2046,6 +875,7 @@ final class PonoRezAdminConfig {
 		}
 
 		// Non-Ajax admin stuff.
+		wp_enqueue_style( 'pr_style', plugins_url( 'assets/css/pr_admin.css', dirname( __FILE__ ) ) );
 		wp_enqueue_script( 'pr_admin', plugins_url( 'assets/js/pr_admin.js', dirname( __FILE__ ) ), array( 'jquery' ) );
         wp_enqueue_style( 'wp-color-picker');
         wp_enqueue_script( 'wp-color-picker');

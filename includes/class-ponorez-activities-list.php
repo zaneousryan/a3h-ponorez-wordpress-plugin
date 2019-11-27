@@ -8,8 +8,8 @@
  * list can be really huge.
  *
  * @package PonoRezActivityList
- * @version 1.0
- * @author Erik L. Arneson <earneson@arnesonium.com>
+ * @version 2.0
+ * @author Matt S. King <matt@ponorez.com>
  */
 
 final class PonoRezActivityList {

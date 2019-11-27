@@ -44,3 +44,8 @@
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
+
+@media only screen and (max-width: 768px){
+	.ponorezmodal{padding-top: 75px;}
+	.ponorezmodal .modal-content{width: 100%;}
+}

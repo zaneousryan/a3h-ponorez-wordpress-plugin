@@ -2,8 +2,8 @@
 Contributors: ponorez
 Tags: a3h, vacation, ponorez, pono rez, online reservation system, reservation systems, rentals, reservations, booking calendar, booking, booking plugin, reservation calendar, booking system
 Requires at least: 4.0
-Tested up to:  5.2.2
-Stable tag: v3.5.9
+Tested up to:  5.3.0
+Stable tag: v3.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,18 @@ To install this plugin, follow these directions:
 == Screenshots ==
 
 == Changelog ==
+
+= 3.6.0 =
+* Increased loading speed on booking forms.
+
+= 3.5.12 =
+* Compatible with WordPress 5.3 
+
+= 3.5.11 =
+* Fixed single activity MinAvailability errors. 
+
+= 3.5.10 =
+* Fixed saving, updating plugin functionality, and upgrades on single activity bugs. 
 
 = 3.5.9 =
 * Added ability to have up to 14 booking forms on a single page.
