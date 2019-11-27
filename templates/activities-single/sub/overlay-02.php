@@ -134,7 +134,7 @@
 								  }
 								  else {
 								    // Show calendar (only if all guest type counts are correct)
-								    calendar(activityControl, dateControl, false, minAvailable, new Date().getDate()<25?1:2);
+								    calendar(activityControl, dateControl, false, minAvailable);
 								  }
 								}
 							</script>
