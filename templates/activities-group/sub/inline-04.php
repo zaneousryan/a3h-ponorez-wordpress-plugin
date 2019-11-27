@@ -34,7 +34,7 @@
 		}
 
 		//Load the DatePicker Field
-		echo '<label>Choose Date</label>';
+		echo '<label>Choose Pass Pick Up Date</label>';
 		echo do_shortcode('[loadPonorezDatePicker]');
 
 		//Load minAvailability Select

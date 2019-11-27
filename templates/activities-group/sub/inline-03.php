@@ -24,9 +24,28 @@
 				$gMin = ${'guestType' . $i . 'MinGuest'};
 				$gMax = ${'guestType' . $i . 'MaxGuest'};
 
-				if (isset($guestTypes[0]) && $guest == $gID) {
-					$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" name="'.$gType.'" min="'.$gMin.'" max="'.$gMax.'"]');
+				if($i==1){
+					if (isset($guestTypes[0]) && $guest == $gID) {
+						$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" name="'.$gType.' (13yrs +): $49.00 + taxes & fee" min="'.$gMin.'" max="'.$gMax.'"]');
+					}
+				}elseif($i==2){
+					if (isset($guestTypes[0]) && $guest == $gID) {
+						$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" name="'.$gType.' (4-12yrs): $39.00 + taxes & fee" min="'.$gMin.'" max="'.$gMax.'"]');
+					}
+				}elseif ($i==3) {
+					if (isset($guestTypes[0]) && $guest == $gID) {
+						$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" name="'.$gType.' <br/>Please set all above guest types to 0 to see availability.<br/>Max 36 Passengers" min="'.$gMin.'" max="'.$gMax.'"]');
+					}
+				}elseif ($i==4) {
+					if (isset($guestTypes[0]) && $guest == $gID) {
+						$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" name="'.$gType.' <br/>Please set all above guest types to 0 to see availability.<br/>Max 36 Passengers" min="'.$gMin.'" max="'.$gMax.'"]');
+					}
+				}else{
+					if (isset($guestTypes[0]) && $guest == $gID) {
+						$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" name="'.$gType.'" min="'.$gMin.'" max="'.$gMax.'"]');
+					}
 				}
+
 			}
 
 			print $html;
