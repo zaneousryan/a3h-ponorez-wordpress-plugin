@@ -121,7 +121,7 @@ function showCalendar(group) {
   }
   else {
     // Show calendar (only if all guest type counts are correct)
-    calendar(group.activityids, group.datecontrolid, false, minavailability, new Date().getDate()<25?1:2);
+    calendar(group.activityids, group.datecontrolid, false, minavailability);
   }
 }
 
