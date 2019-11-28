@@ -62,9 +62,10 @@
 						foreach ($guestTypes as $guest) { 
 
 							for($i=0; $i<=19; $i++){
+								$x=$i+1;
 
 								if (isset($guestTypes[$i]) && $guest == $guestTypes[$i]) {
-									${'printGT' . $i} = 'addGuests(' . $guestTypes[$i] . ', document.getElementById(\'guests_a' . $myActivityID . '_t' . $guestTypes[$i] .'\').value); ';
+									${'printGT' . $x} = 'addGuests(' . $guestTypes[$i] . ', document.getElementById(\'guests_a' . $myActivityID . '_t' . $guestTypes[$i] .'\').value); ';
 								}
 							}
 

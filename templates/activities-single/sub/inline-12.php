@@ -44,9 +44,10 @@
 		foreach ($guestTypes as $guest) { 
 
 			for($i=0; $i<=19; $i++){
+				$x=$i+1;
 
 				if (isset($guestTypes[$i]) && $guest == $guestTypes[$i]) {
-					${'printGT' . $i} = 'addGuests(' . $guestTypes[$i] . ', document.getElementById(\'guests_a' . $myActivityID . '_t' . $guestTypes[$i] .'\').value); ';
+					${'printGT' . $x} = 'addGuests(' . $guestTypes[$i] . ', document.getElementById(\'guests_a' . $myActivityID . '_t' . $guestTypes[$i] .'\').value); ';
 				}
 			}
 
@@ -88,7 +89,7 @@
 		}
 	?>
 		<script>
-			function showMinAvailable12(){
+			function showMinAvailable3(){
 				var activityControl = <?php echo $myActivityID;?>,
 					dateControl = 'date_a<?php echo $myActivityID; ?>',
 					totalGuestCount = 0,
@@ -120,8 +121,8 @@
 		</script>
 		<label>Choose Date</label>
 		<div class="form-row date-selector">
-			<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable12()'>
-				<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable12();">
+			<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable3()'>
+				<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable3();">
 					<i class="fa fa-calendar" aria-hidden="true"></i>
 				</a>
 		</div>
