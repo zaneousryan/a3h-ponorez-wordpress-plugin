@@ -139,17 +139,12 @@
 				$uID = ${'upgradeType' . $i . 'ID'};
 				$uMin = ${'upgradeType' . $i . 'Min'};
 				$uMax = ${'upgradeType' . $i . 'Max'};
-				$x = $i - 1;
 
-				if($i==1){
-					if (isset($upgradeTypes[$x]) && $upgradeTypes[$x] != null && $upgrade == $uID) {
+				if(isset($upgradeTypes[0]) && $upgradeTypes[0] != null){
+					if ($upgrade == $uID) {
 						$html .= do_shortcode('[loadPonorezUpgradeField id="'.$uID.'" name="'.$uType.'" min="'.$uMin.'" max="'.$uMax.'"]');
 					}
-				}else{
-					if(isset($upgradeTypes[$x]) != null && $upgrade == $uID) {
-						$html .= do_shortcode('[loadPonorezUpgradeField id="'.$uID.'" name="'.$uType.'" min="'.$uMin.'" max="'.$uMax.'"]');
-					}
-				} 
+				}
 			}
 
 			print $html;
@@ -160,14 +155,11 @@
 		foreach ($upgradeTypes as $upgrade) { 
 
 			for($i=0; $i<=19; $i++){
+				$x = $i + 1;
 
-				if($i==0){
-					if (isset($upgradeTypes[$i]) && $upgradeTypes[$i] != null && $upgrade == $upgradeTypes[$i]) {
-						${'printUT' . $i} = 'addUpgrades(' . $upgradeTypes[$i] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_t' . $upgradeTypes[$i] .'\').value); ';
-					}
-				}else{
-					if (isset($upgradeTypes[$i]) && $upgrade == $upgradeTypes[$i]) {
-						${'printUT' . $i} = 'addUpgrades(' . $upgradeTypes[$i] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_t' . $upgradeTypes[$i] .'\').value); ';
+				if(isset($upgradeTypes[0]) && $upgradeTypes[0] != null){
+					if ($upgrade == $upgradeTypes[$i]) {
+						${'printUG' . $x} = 'addUpgrades(' . $upgradeTypes[$i] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[$i] .'\').value); ';
 					}
 				}
 

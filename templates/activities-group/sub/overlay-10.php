@@ -68,17 +68,12 @@
 								$uID = ${'upgradeType' . $i . 'ID'};
 								$uMin = ${'upgradeType' . $i . 'Min'};
 								$uMax = ${'upgradeType' . $i . 'Max'};
-								$x = $i - 1;
 
-								if($i==1){
-									if (isset($upgradeTypes[$x]) && $upgradeTypes[$x] != null && $upgrade == $uID) {
+								if(isset($upgradeTypes[0]) && $upgradeTypes[0] != null){
+									if ($upgrade == $uID) {
 										$html .= do_shortcode('[loadPonorezUpgradeField id="'.$uID.'" name="'.$uType.'" min="'.$uMin.'" max="'.$uMax.'"]');
 									}
-								}else{
-									if(isset($upgradeTypes[$x]) != null && $upgrade == $uID) {
-										$html .= do_shortcode('[loadPonorezUpgradeField id="'.$uID.'" name="'.$uType.'" min="'.$uMin.'" max="'.$uMax.'"]');
-									}
-								} 
+								}
 							}
 
 							print $html;

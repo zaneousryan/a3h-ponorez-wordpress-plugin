@@ -35,6 +35,9 @@ To install this plugin, follow these directions:
 
 == Changelog ==
 
+= 3.6.2 =
+* Fixed bug for displaying upgrade options.
+
 = 3.6.1 =
 * Removed 2 month view on calendar popup.
 
