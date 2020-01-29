@@ -11,7 +11,7 @@ Add PonoRez interfaces, reservations, and tours to your WordPress site through s
 
 == Description ==
 
-[PonoRez](http://ponorezsolutions.com/) is a web based Central Reservation System (CRS) targeting Tours & Attractions. The system comes equipped with a slick Ecommerce solution, customization tools and API messaging. In addition to the scheduling of Tours, Retail Store, Gift Certificates & Transportation are standard modules. The system complies with Payment Card Industry data security standards & credit card standards.
+[PonoRez](https://www.ponorez.com/) is a web based Central Reservation System (CRS) targeting Tours & Attractions. The system comes equipped with a slick Ecommerce solution, customization tools and API messaging. In addition to the scheduling of Tours, Retail Store, Gift Certificates & Transportation are standard modules. The system complies with Payment Card Industry data security standards & credit card standards.
 
 This plugin allows PonoRez users to integrate booking forms for their activities into their WordPress websites using shortcodes. It requires an active PonoRez account to use properly.
 
