@@ -5,9 +5,9 @@
 /*
 Plugin Name: PonoRez Booking System
 Description: Add PonoRez booking forms to your website through shortcodes.
-Version: 3.6.2
+Version: 3.6.3
 Author: PonoRez
-Author URI: http://www.ponorezsolutions.com
+Author URI: http://www.ponorez.com
 License: GPLv2 or later
 
     Copyright 2015-19 Activities & Attractions Association of Hawaii, Inc.
@@ -326,7 +326,7 @@ add_shortcode( 'PonorezActivitiesLoader', 'ponorezActivitiesLoader' );
 // Enable Plugin Auto-Update Functionality
 require 'vendors/plugin-update-checker/plugin-update-checker.php';
 $MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'http://ponorezsolutions.com/plugin-updater/?action=get_metadata&slug=ponorez-booking-system-for-wordpress-plugin',
+	'http://ponorez.com/plugin-updater/?action=get_metadata&slug=ponorez-booking-system-for-wordpress-plugin',
 	__FILE__, 
 	'ponorez-booking-system-for-wordpress-plugin'
 );
