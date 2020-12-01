@@ -136,7 +136,7 @@
                     console.log(group);
                     var res = group.pricecontrolid.split("_");
                     var promoCode = jQuery('#promotionalcode_' + res[1]).val();
-                    if (promoCode == '1') {
+                    if (promoCode == 'BOGO') {
 
                         var adult = jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[0]).val();
                         var child = jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[1]).val();
@@ -190,7 +190,7 @@
                             }
                         }
                     }
-                    else if (promoCode == '2') {
+                    else if (promoCode == 'BOBOHalf') {
                         var adult = jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[0]).val();
                         var child = jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[1]).val();
                         var adultPrice = group.activityprices[activityid][group.guesttypeids[0]];
