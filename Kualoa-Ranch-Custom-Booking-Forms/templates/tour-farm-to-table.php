@@ -132,7 +132,112 @@
 						}
 
 					});
-					
+					////////////////////////////////////////////////
+                    console.log(group);
+                    var res = group.pricecontrolid.split("_");
+                    var promoCode = jQuery('#promotionalcode_' + res[1]).val();
+                    if (promoCode == '1') {
+
+                        var adult = jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[0]).val();
+                        var child = jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[1]).val();
+                        var adultPrice = group.activityprices[activityid][group.guesttypeids[0]];
+                        var childPrice = group.activityprices[activityid][group.guesttypeids[1]];
+                        var freeAdultId = 3672;
+                        // var freeAdultPrice = 0;
+                        var freeAdultCount = 0;
+
+                        var freeChildId = 3674;
+                        // var freeChildPrice = 0;
+                        var freeChildCount = 0;
+
+                        if (child == 0) {
+                            if (adult % 2 == 0) {
+                                price = price/2;
+                                // jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[0]).val(adult / 2);
+                                // alert('hi');
+                                // freeAdultCount = adult / 2;
+                            }
+                            else{
+								price = (price/2) + (adultPrice/2);
+								// jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val(Math.ceil(adult/2));
+								// freeAdultCount = (adult-1)/2;
+					    	}
+                        } else {
+                            if (adult == child) {
+                                price = price - (child * childPrice);
+                                // jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[1]).val(0);
+                                // freeChildCount = child;
+                            }
+                            else if (adult > child) {
+                                var diff = adult - child;
+                                price = price - (child * childPrice);
+                                if (diff % 2 == 0) {
+                                    price = price - ((diff / 2) * adultPrice);
+                                }
+                                else {
+                                    price = price - (((diff - 1) / 2) * adultPrice);
+                                }
+                            }
+                            else if (adult < child) {
+                                var diff = child - adult;
+                                price = price - (adult * childPrice);
+                                if (diff % 2 == 0) {
+                                    price = price - ((diff / 2) * childPrice);
+                                }
+                                else {
+                                    price = price - (((diff - 1) / 2) * childPrice);
+                                }
+                            }
+                        }
+                    }
+                    else if (promoCode == '2') {
+                        var adult = jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[0]).val();
+                        var child = jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[1]).val();
+                        var adultPrice = group.activityprices[activityid][group.guesttypeids[0]];
+                        var childPrice = group.activityprices[activityid][group.guesttypeids[1]];
+
+                        if (child == 0) {
+                            if (adult % 2 == 0) {
+                                price = price - (((adult / 2) * adultPrice) / 2);
+                                // price = price/2;
+                            }
+                            else {
+                                price = price - ((((adult - 1) / 2) * adultPrice) / 2);
+                            }
+
+                        } else {
+                            if (adult == child) {
+                                price = price - ((child * childPrice) / 2);
+                            }
+                            else if (adult > child) {
+                                var diff = adult - child;
+                                price = price - ((child * childPrice) / 2);
+                                if (diff % 2 == 0) {
+                                    price = price - (((diff / 2) * adultPrice) / 2);
+                                }
+                                else {
+                                    price = price - ((((diff - 1) / 2) * adultPrice) / 2);
+                                }
+                            }
+                            else if (adult < child) {
+                                var diff = child - adult;
+                                price = price - ((adult * childPrice) / 2);
+                                if (diff % 2 == 0) {
+                                    price = price - (((diff / 2) * childPrice) / 2);
+                                }
+                                else {
+                                    price = price - ((((diff - 1) / 2) * childPrice) / 2);
+                                }
+                            }
+                        }
+                    }
+
+                    ///////////
+                    // freeChildCount;
+                    // jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).change();
+                    // sessionStorage.setItem("freeAdultCount", freeAdultCount);
+                    // freeAdultCount;
+                    //////////////////////////////////////////////////////////
 
 
 				  // Show total price (only if activity is selected and all guest type counts are correct)
