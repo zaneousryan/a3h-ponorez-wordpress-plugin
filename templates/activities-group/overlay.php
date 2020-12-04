@@ -1,3 +1,18 @@
+<div id="modal_questions" class="ponorezmodal">
+	<div class="modal-content">
+			<div class="modal-body booking-form" style="margin-bottom:0px;">
+				<div class="questions">
+					<p class="text-center"><b>Are all guests in the same household?</b></p>
+					<p class="text-center"><button type="button" id="yes" class="button button-book-now">Yes</button>
+					<button type="button" id="no" class="button button-close">No</button></p>
+				</div>
+				<div class="new_message">
+					<p class="text-center"><b>For special arrangements, call our guest service representatives at <a href="tel:1-800-933-4294">1-800-933-4294</a> or, toll free at <a href="tel:1-844-933-4294">1-844-933-4294</a> , daily 8 am-5 pm HST</b></p>
+					<p class="text-center"><button type="button" id="okay" class="button button-book-now">Okay</button></p>
+				</div>
+			</div>
+		</div>
+	</div>
 <div id="wrapper-<?php echo $a[ 'name' ]; ?>">
 
 	<style>

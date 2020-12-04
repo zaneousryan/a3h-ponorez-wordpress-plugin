@@ -352,9 +352,10 @@ function booknow(group, google) {
   
   return true;
 }
+//////// Snake's Code
 
-//////// Farrukh's Code
-jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3664').parent().addClass('passengers');
+  
+	jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3664').parent().addClass('passengers');
 jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3660').parent().addClass('passengers');
 jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3661').parent().addClass('passengers');
 jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3659').parent().addClass('passengers');
@@ -362,7 +363,6 @@ jQuery(`<div class="form-row">
           <label>Total Passengers</label>
           <select class="form-control" id="total-passenger" >
             <option value="0">0</option>
-            <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -426,14 +426,20 @@ jQuery(`<div class="form-row">
         <div class="form-row">
           <label id="utv">0 UTVs</label></div>`).insertBefore('.ponorezActivity-utv .modal-body .form-row:nth-child(1)');
 
+  
 
-jQuery("#total-passenger").change(function(){
+jQuery("#total-passenger").change(function(e){
 
+  e.preventDefault();
+  jQuery('#modal_questions .new_message').hide();
+  jQuery('.blocker').css('position','unset');
+  jQuery('#modal_questions').modal('show');
+  jQuery('#modal_questions').css('z-index','100000');
   var temp = solo = 0;
   var driver, third, fourth;
   var num = jQuery('#total-passenger').val();
   if(jQuery.inArray( num, [ '5', '9', '10', '13', '14', '15' ] ) != -1){
-  	alert('If you want to seat five people per UTV instead of the default four, please call our office and book directly.');
+   	alert('If you want to seat five people per UTV instead of the default four, please call our office and book directly.');
   }
   if(num % 4 == 1){
     if(num == 1){
@@ -497,4 +503,34 @@ jQuery("#total-passenger").change(function(){
   }
   jQuery('#guests_utv_t3664').change();
 });
+jQuery('#modal_questions #yes').click(function(){
+  jQuery('#modal_questions').modal('hide');
+  		jQuery('.blocker').css('position','fixed');
+		jQuery('#modal_questions').css('z-index','1');
+});
+  jQuery('#modal_questions #no').click(function(){
+  		jQuery('#modal_questions .questions').hide();
+		jQuery('#modal_questions .new_message').show();
+});
+    jQuery('#modal_questions #okay').click(function(){
+  jQuery('#modal_questions').modal('hide');
+  		jQuery('#modal_questions').modal('hide');
+		jQuery('#modal-utv .close').trigger('click');
+      	jQuery('#modal_questions .questions').show();
+		jQuery('#modal_questions .new_message').hide();
+      jQuery('.booking-form').trigger('reset');
+      jQuery('#price_utv').text('');
+});  
+jQuery(`<label>Pricing:</label>
+            <ul>
+                <li> First Two Guests (Driver + Passenger) – $299 +tx</li>
+                <li> Third Guest – $129 +tx</li>
+                <li> Fourth Guest – $109 +tx</li>
+</ul><p>*To request a different number of vehicles, please call our guest service representatives toll free at 1-844-933-4294, daily 8 am-5pm HST. </p>`).insertAfter('.modal-body .form-row:first-child');
+
+jQuery(`<label>Minimum 2 guests required to reserve a vehicle</label>
+            <ul>
+                <li> Number of vehicles assigned is based on maximum 4 guests per vehicle</li>
+                <li> Driver must be at least 21 years old</li>
+</ul>`).insertBefore('.modal-body .form-row:first-child');
 //////////////////////
