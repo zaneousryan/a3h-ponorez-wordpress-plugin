@@ -465,8 +465,8 @@ jQuery("#total-passenger").change(function(e){
       if(num == 2){
           third = fourth = 0;
       }else{
-          third = temp + 1;
-          fourth = temp - 1;
+          third = temp;
+          fourth = temp;
       }
   }
   else if(num % 4 == 3){
