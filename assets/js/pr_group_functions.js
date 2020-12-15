@@ -524,8 +524,8 @@ jQuery('#modal_questions #yes').click(function(){
 jQuery(`<label>Pricing:</label>
             <ul>
                 <li> First Two Guests (Driver + Passenger) – $299 +tx</li>
-                <li> Third Guest – $129 +tx</li>
-                <li> Fourth Guest – $109 +tx</li>
+                <li> Third Guest – $140 +tx</li>
+                <li> Fourth Guest – $120 +tx</li>
 </ul><p>*To request a different number of vehicles, please call our guest service representatives toll free at 1-844-933-4294, daily 8 am-5pm HST. </p>`).insertAfter('.modal-body .form-row:first-child');
 
 jQuery(`<label>Minimum 2 guests required to reserve a vehicle</label>
