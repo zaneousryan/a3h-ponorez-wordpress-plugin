@@ -355,7 +355,7 @@ function booknow(group, google) {
 //////// Snake's Code
 
   
-	jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3664').parent().addClass('passengers');
+jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3664').parent().addClass('passengers');
 jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3660').parent().addClass('passengers');
 jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3661').parent().addClass('passengers');
 jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3659').parent().addClass('passengers');
@@ -439,7 +439,7 @@ jQuery("#total-passenger").change(function(e){
   var driver, third, fourth;
   var num = jQuery('#total-passenger').val();
   if(jQuery.inArray( num, [ '5', '9', '10', '13', '14', '15' ] ) != -1){
-   	alert('If you want to seat five people per UTV instead of the default four, please call our office and book directly.');
+    alert('If you want to seat five people per UTV instead of the default four, please call our office and book directly.');
   }
   if(num % 4 == 1){
     if(num == 1){
@@ -504,23 +504,23 @@ jQuery("#total-passenger").change(function(e){
   jQuery('#guests_utv_t3664').change();
 });
 jQuery('#modal_questions #yes').click(function(){
-  jQuery('#modal_questions').modal('hide');
-  		jQuery('.blocker').css('position','fixed');
-		jQuery('#modal_questions').css('z-index','1');
+    jQuery('#modal_questions').modal('hide');
+  jQuery('.blocker').css('position','fixed');
+  jQuery('#modal_questions').css('z-index','1');
 });
-  jQuery('#modal_questions #no').click(function(){
-  		jQuery('#modal_questions .questions').hide();
-		jQuery('#modal_questions .new_message').show();
+jQuery('#modal_questions #no').click(function(){
+  jQuery('#modal_questions .questions').hide();
+  jQuery('#modal_questions .new_message').show();
 });
-    jQuery('#modal_questions #okay').click(function(){
+jQuery('#modal_questions #okay').click(function(){
+    jQuery('#modal_questions').modal('hide');
   jQuery('#modal_questions').modal('hide');
-  		jQuery('#modal_questions').modal('hide');
-		jQuery('#modal-utv .close').trigger('click');
-      	jQuery('#modal_questions .questions').show();
-		jQuery('#modal_questions .new_message').hide();
-      jQuery('.booking-form').trigger('reset');
-      jQuery('#price_utv').text('');
-});  
+  jQuery('#modal-utv .close').trigger('click');
+  jQuery('#modal_questions .questions').show();
+  jQuery('#modal_questions .new_message').hide();
+    jQuery('.booking-form').trigger('reset');
+    jQuery('#price_utv').text('');
+});
 jQuery(`<label>Pricing:</label>
             <ul>
                 <li> First Two Guests (Driver + Passenger) – $299 +tx</li>
