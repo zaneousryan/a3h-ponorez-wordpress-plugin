@@ -165,11 +165,11 @@
                         var child = jQuery('#guests_' + res[1] + '_t' + group.guesttypeids[1]).val();
                         var adultPrice = group.activityprices[activityid][group.guesttypeids[0]];
                         var childPrice = group.activityprices[activityid][group.guesttypeids[1]];
-                        var freeAdultId = 3672;
+                        var freeAdultId = 3702;
                         // var freeAdultPrice = 0;
                         var freeAdultCount = 0;
 
-                        var freeChildId = 3674;
+                        var freeChildId = 3703;
                         // var freeChildPrice = 0;
                         var freeChildCount = 0;
 
@@ -506,10 +506,10 @@
                         }
                     }
                     if (freeAdultCount) {
-                        addGuests(3672, freeAdultCount);
+                        addGuests(3702, freeAdultCount);
                     }
                     if (freeChildCount) {
-                        addGuests(3674, freeChildCount);
+                        addGuests(3703, freeChildCount);
                     }
                     if (halfAdultCount) {
                         addGuests(3673, halfAdultCount);
@@ -517,7 +517,7 @@
                     if (halfChildCount) {
                         addGuests(3675, halfChildCount);
                     }
-                    
+                    console.log("clearning promo");
                     jQuery('#promotionalcode_g1003').val("");
                     //////////////////////////////////////////////////////////////////////////
                    

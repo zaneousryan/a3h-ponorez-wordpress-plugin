@@ -114,11 +114,11 @@
 						var child = jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val();
 						var adultPrice = group.activityprices[activityid][group.guesttypeids[0]];
 						var childPrice = group.activityprices[activityid][group.guesttypeids[1]];
-						var freeAdultId = 3672;
+						var freeAdultId = 3702;
 						// var freeAdultPrice = 0;
 						var freeAdultCount = 0;
 
-						var freeChildId = 3674;
+						var freeChildId = 3703;
 						// var freeChildPrice = 0;
 						var freeChildCount = 0;
 

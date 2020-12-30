@@ -118,17 +118,18 @@
 					console.log(group);
 					var res = group.pricecontrolid.split("_");
 					var promoCode = jQuery('#promotionalcode_'+res[1]).val();
-					if(promoCode == '1'){
-
+					if(promoCode == 'BOGO')
+					{
+						
 						var adult = jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val();
 						var child = jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val();
 						var adultPrice = group.activityprices[activityid][group.guesttypeids[0]];
 						var childPrice = group.activityprices[activityid][group.guesttypeids[1]];
-						var freeAdultId = 3672;
+						var freeAdultId = 3702;
 						// var freeAdultPrice = 0;
 						var freeAdultCount = 0;
 
-						var freeChildId = 3674;
+						var freeChildId = 3703;
 						// var freeChildPrice = 0;
 						var freeChildCount = 0;
 
@@ -144,7 +145,8 @@
 								jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val(Math.ceil(adult/2));
 								freeAdultCount = (adult-1)/2;
 					    	}
-					    } else {
+					    } 
+						else {
 					        if(adult == child){
 					        	// price = price - (child * childPrice);
 					        	jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val(0);
@@ -172,7 +174,7 @@
 					        } 
 					    }
 					}
-					else if (promoCode == '2'){
+					else if (promoCode == 'BOGOHalf'){
 						var adult = jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val();
 						var child = jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val();
 						var adultPrice = group.activityprices[activityid][group.guesttypeids[0]];
@@ -348,7 +350,7 @@
 				}
 
 				function bookSecretIsland(group) {
-
+				    console.log("bookSecretIsland");
 					var activityid = getSelectedActivityId(group, true);
 					if (activityid == null) return false;
 
@@ -357,6 +359,136 @@
 
 					reservation(group.supplierid, activityid, activitydate, '', 0.0);
 
+					 ////////////////////////////////////////////////
+                    var freeAdultCount, freeChildCount, adultCount, childCount, halfAdultCount, halfChildCount = 0;
+                    console.log(group);
+                    var res = group.pricecontrolid.split("_");
+                    var promoCode = jQuery('#promotionalcode_'+res[1]).val();
+                    var adult = jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val();
+                    var child = jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val();
+					console.log('#promotionalcode_'+res[1]);
+					console.log(promoCode);
+                    if(promoCode == 'BOGO'){
+                        if(child == 0){
+                            if(adult%2 == 0){
+                                    console.log('adults=' ,adult - (diff/2));
+                                jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val(adult/2);
+                                freeAdultCount = adult/2;
+                            }
+                            else{
+                                    console.log('adults=' ,adult - (diff/2));
+                                jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val(Math.ceil(adult/2));
+                                freeAdultCount = (adult-1)/2;
+                            }
+                        } else {
+                            if(adult == child){
+                                jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val(0);
+                                freeChildCount = child;
+                            } 
+                            else if(adult > child){
+                                var diff = adult - child;
+                                jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val(0);
+                                freeChildCount = child;
+                                console.log('freeChildCount=' ,freeChildCount);
+
+                                if(diff%2==0){
+                                    console.log('adults=' ,adult - (diff/2));
+                                    jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val(adult - (diff/2));
+                                    freeAdultCount = diff/2;
+                                }
+                                else{
+                                    console.log('freeAdultCount=' ,(diff-1)/2);
+                                    jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val(adult - (diff-1)/2);
+                                    freeAdultCount = (diff-1)/2;
+                                }
+                            } 
+                            else if(adult < child){
+                                var diff = child - adult;
+                                if(diff%2==0){
+                                    console.log('freeChildCount=',child- (diff/2));
+                                    freeChildCount = child - (diff/2);
+                                    var temp = child - adult - (diff/2);
+                                    jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val(temp);
+                                }
+                                else{
+                                    console.log('freeChildCount=',child - Math.ceil(diff/2));
+                                    freeChildCount = child - Math.ceil(diff/2);
+                                    var temp = child - adult - ((diff-1)/2);
+                                    jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val(temp);
+                                }
+                            } 
+                        }
+                    }
+                    else if (promoCode == 'BOGOHalf'){
+                        if(child == 0){
+                            if(adult%2 == 0){
+                                
+                                jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val(adult/2);
+                                halfAdultCount = adult/2;
+                                console.log('halfAdultCount=' ,halfAdultCount);
+                            }
+                            else{
+                                jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val(Math.ceil(adult/2));
+                                halfAdultCount = (adult-1)/2;
+                                console.log('halfAdultCount=' ,halfAdultCount);
+                            }
+                        } else {
+                            if(adult == child){
+                                jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val(0);
+                                halfChildCount = child;
+                                console.log('halfChildCount=' ,halfChildCount);
+                            } 
+                            else if(adult > child){
+                                var diff = adult - child;
+                                jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val(0);
+                                halfChildCount = child;
+                                console.log('halfChildCount=' ,halfChildCount);
+                                if(diff%2==0){
+                                    
+                                    jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val(adult - (diff/2));
+                                    halfAdultCount = diff/2;
+                                    console.log('halfAdultCount=' , halfAdultCount);
+                                }
+                                else{
+                                    jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[0]).val(adult - (diff-1)/2);
+                                    halfAdultCount = (diff-1)/2;
+                                    console.log('halfAdultCount=' ,halfAdultCount);
+                                }
+                            } 
+                            else if(adult < child){
+                                var diff = child - adult;
+                                if(diff%2==0){
+                                    
+                                    var temp = child - adult - (diff/2);
+                                    jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val(temp);
+                                    halfChildCount = child - (diff/2);
+                                    console.log('halfChildCount=',halfChildCount);
+                                }
+                                else{
+                                    
+                                    var temp = child - adult - ((diff-1)/2);
+                                    jQuery('#guests_'+res[1]+'_t'+group.guesttypeids[1]).val(temp);
+                                    halfChildCount = child - Math.ceil(diff/2);
+                                    console.log('halfChildCount=',halfChildCount);
+                                }
+                            } 
+                        }
+                    }
+                    if (freeAdultCount) {
+                        addGuests(3702, freeAdultCount);
+                    }
+                    if (freeChildCount) {
+                        addGuests(3703, freeChildCount);
+                    }
+                    if (halfAdultCount) {
+                        addGuests(3673, halfAdultCount);
+                    }
+                    if (halfChildCount) {
+                        addGuests(3675, halfChildCount);
+                    }
+                    
+                    //////////////////////////////////////////////////////////////////////////
+
 					$.each(group.guesttypeids, function(key, value) {
 
 						var guesttypeid = value;
@@ -364,8 +496,12 @@
 						addGuests(guesttypeid, guestscount);
 
 					});
+					
+					if(promoCode != 'BOGOHalf' && promoCode != 'BOGO')
+					{
+						setpromotionalcode(document.getElementById('promotionalcode_g1014').value); 
+					}
 
-					setpromotionalcode(document.getElementById('promotionalcode_g1014').value); 
 
 					setgoogleanalytics('UA-12595817-1');
 					
