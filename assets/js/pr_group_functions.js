@@ -360,7 +360,7 @@ jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3660').parent().
 jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3661').parent().addClass('passengers');
 jQuery('.ponorezActivity-utv .modal-body .form-row #guests_utv_t3659').parent().addClass('passengers');
 jQuery(`<div class="form-row">
-          <label>Total Passengers</label>
+          <label>Total Guests</label>
           <select class="form-control" id="total-passenger" >
             <option value="0">0</option>
             <option value="2">2</option>
@@ -424,7 +424,7 @@ jQuery(`<div class="form-row">
             <option value="60">60</option>
           </select></div>
         <div class="form-row">
-          <label id="utv">0 UTVs</label></div>`).insertBefore('.ponorezActivity-utv .modal-body .form-row:nth-child(1)');
+          <label id="utv">0 UTVs Assigned</label></div>`).insertBefore('.ponorezActivity-utv .modal-body .form-row:nth-child(1)');
 
   
 
@@ -496,10 +496,10 @@ jQuery("#total-passenger").change(function(e){
   }).prop('selected', true);
   
   if(num == 1){
-    jQuery('#utv').text(jQuery('#guests_utv_t3659').val()+' UTVs');
+    jQuery('#utv').text(jQuery('#guests_utv_t3659').val()+' UTV Assigned');
   }
   else{
-    jQuery('#utv').text(jQuery('#guests_utv_t3664').val()+' UTVs');
+      jQuery('#utv').text(jQuery('#guests_utv_t3664').val() +' UTVs Assigned');
   }
   jQuery('#guests_utv_t3664').change();
 });
