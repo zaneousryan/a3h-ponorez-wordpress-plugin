@@ -7,7 +7,7 @@ Plugin Name: PonoRez Booking System
 Description: Add PonoRez booking forms to your website through shortcodes.
 Version: 3.6.3
 Author: PonoRez
-Author URI: https://www.ponorez.com
+Author URI: http://www.ponorez.com
 License: GPLv2 or later
 
     Copyright 2015-19 Activities & Attractions Association of Hawaii, Inc.
@@ -326,9 +326,43 @@ add_shortcode( 'PonorezActivitiesLoader', 'ponorezActivitiesLoader' );
 // Enable Plugin Auto-Update Functionality
 require 'vendors/plugin-update-checker/plugin-update-checker.php';
 $MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'https://www.ponorez.com/plugin-updater/?action=get_metadata&slug=ponorez-booking-system-for-wordpress-plugin',
+	'http://ponorez.com/plugin-updater/?action=get_metadata&slug=ponorez-booking-system-for-wordpress-plugin',
 	__FILE__, 
 	'ponorez-booking-system-for-wordpress-plugin'
 );
 
 // End a3h.php
+
+function fixed_date_booking() {
+		
+		global $content;
+	    ob_start();
+	    // echo `abc`;
+		print_r( '<form>
+			    &nbsp;
+			    Passenger <input type="text" id="guests_a13234_t3684" value="0" size="2">
+  				<p></p><input type="checkbox" id="cancellationpolicy_a13234"><label for="cancellationpolicy_a13234">Cancellation Policy: If you find it necessary to cancel your reservation for whatever reason, call our office ASAP so we can get to work filling your spot.  All cancellations must be in writing, signed, and dated and can be faxed.  Emails will not be accepted.  All refunds are subject to a 10% administration fee.
+
+				Trips 1 1/2 days to 5 days: Payment is non-refundable unless cancellation is received 90 days before the departure date.  Cancellation received within 90 days to the departure date is subject to payment forfeiture unless the vacated spot is rebooked.
+
+				â€‹Trips 6 days and longer: Payment is non-refundable unless cancellation is received 180 days before the departure date.  Cancellation received within 180 days before the departure date is subject to payment forfeiture unless the vacated spot is rebooked.</label><p></p>');
+
+
+  		echo		'<input type="button" value="Check availability" onclick="if (!checkcancellation(';
+  		echo "document.getElementById('cancellationpolicy_a13234'))) return false;";
+  		echo " reservation2('13234', 13234, '01/17/2021', '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);";
+  		echo " addGuests(3684, document.getElementById('guests_a13234_t3684').value); ";
+  		echo 'setUpgradesFixed(); setAccommodationFixed();  availability_popup(); return false;">';
+
+		echo	'</form>';
+		
+		$output = ob_get_clean();
+    	return $output;
+	}
+
+add_shortcode( 'Fixed_Date_Booking', 'fixed_date_booking' );
+// add_action( 'init', 'process_post' );
+ 
+// function process_post() {
+//     die();
+// }
