@@ -338,14 +338,14 @@ function fixed_date_booking() {
 		global $content;
 	    ob_start();
 	    // echo `abc`;
-		print_r( '<form>
-			    &nbsp;
-			    Passenger <input type="text" id="guests_a13234_t3684" value="0" size="2">
-  				<p></p><input type="checkbox" id="cancellationpolicy_a13234"><label for="cancellationpolicy_a13234">Cancellation Policy: If you find it necessary to cancel your reservation for whatever reason, call our office ASAP so we can get to work filling your spot.  All cancellations must be in writing, signed, and dated and can be faxed.  Emails will not be accepted.  All refunds are subject to a 10% administration fee.
+		// print_r( '<form>
+		// 	    &nbsp;
+		// 	    Passenger <input type="text" id="guests_a13234_t3684" value="0" size="2">
+  // 				<p></p><input type="checkbox" id="cancellationpolicy_a13234"><label for="cancellationpolicy_a13234">Cancellation Policy: If you find it necessary to cancel your reservation for whatever reason, call our office ASAP so we can get to work filling your spot.  All cancellations must be in writing, signed, and dated and can be faxed.  Emails will not be accepted.  All refunds are subject to a 10% administration fee.
 
-				Trips 1 1/2 days to 5 days: Payment is non-refundable unless cancellation is received 90 days before the departure date.  Cancellation received within 90 days to the departure date is subject to payment forfeiture unless the vacated spot is rebooked.
+		// 		Trips 1 1/2 days to 5 days: Payment is non-refundable unless cancellation is received 90 days before the departure date.  Cancellation received within 90 days to the departure date is subject to payment forfeiture unless the vacated spot is rebooked.
 
-				â€‹Trips 6 days and longer: Payment is non-refundable unless cancellation is received 180 days before the departure date.  Cancellation received within 180 days before the departure date is subject to payment forfeiture unless the vacated spot is rebooked.</label><p></p>');
+		// 		â€‹Trips 6 days and longer: Payment is non-refundable unless cancellation is received 180 days before the departure date.  Cancellation received within 180 days before the departure date is subject to payment forfeiture unless the vacated spot is rebooked.</label><p></p>');
 
 
   		echo		'<input type="button" value="Check availability" onclick="if (!checkcancellation(';
@@ -354,7 +354,7 @@ function fixed_date_booking() {
   		echo " addGuests(3684, document.getElementById('guests_a13234_t3684').value); ";
   		echo 'setUpgradesFixed(); setAccommodationFixed();  availability_popup(); return false;">';
 
-		echo	'</form>';
+		// echo	'</form>';
 		
 		$output = ob_get_clean();
     	return $output;

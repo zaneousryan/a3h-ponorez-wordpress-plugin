@@ -157,6 +157,9 @@ final class PonoRezTransportation {
 			'activityId' => $this->_activityId,
 			'date' => new SoapVar( date( 'Y-m-d', strtotime( '+20 days' ) ), XSD_DATE )
 		) );
+		echo "<pre>";
+		print_r($result);
+		die();
 
 		return ( $this->_transportationOptionsSoap = $result );
 	}
