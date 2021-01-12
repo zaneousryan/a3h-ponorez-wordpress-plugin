@@ -333,7 +333,7 @@ $MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 
 // End a3h.php
 
-function fixed_date_booking() {
+function fixed_date_booking($attr) {
 		
 		global $content;
 	    ob_start();
@@ -348,11 +348,33 @@ function fixed_date_booking() {
 		// 		â€‹Trips 6 days and longer: Payment is non-refundable unless cancellation is received 180 days before the departure date.  Cancellation received within 180 days before the departure date is subject to payment forfeiture unless the vacated spot is rebooked.</label><p></p>');
 
 
-  		echo		'<input type="button" value="Check availability" onclick="if (!checkcancellation(';
-  		echo "document.getElementById('cancellationpolicy_a13234'))) return false;";
-  		echo " reservation2('13234', 13234, '01/17/2021', '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);";
-  		echo " addGuests(3684, document.getElementById('guests_a13234_t3684').value); ";
-  		echo 'setUpgradesFixed(); setAccommodationFixed();  availability_popup(); return false;">';
+  		// echo '<input type="button" value="Check availability" onclick="if (!checkcancellation(';
+  		// echo "document.getElementById('cancellationpolicy_a13234'))) return false;";
+  		// echo " reservation2('13234', 13234, '01/17 
+  		// echo " addGuests(3684, document.getElementById('guests_a13234_t3684').value); ";
+  		// echo 'setUpgradesFixed(); setAccommodationFixed();  availability_popup(); return false;">';
+	    // echo "<pre>";
+	    // print_r($attr);
+	    // echo "</pre>";
+	    // die();
+	    
+  		?>
+  		<form>
+			Passenger 
+			<input id="guests_a13234_t3684" size="2" type="text" value="0" /><br>
+			<input id="cancellationpolicy_a13234" type="checkbox" />
+			<label for="cancellationpolicy_a13234">Cancellation Policy: If you find it necessary to cancel your reservation for whatever reason, call our office ASAP so we can get to work filling your spot. All cancellations must be in writing, signed, and dated and can be faxed. Emails will not be accepted. All refunds are subject to a 10% administration fee. 
+			</label>
+
+			Trips 1 1/2 days to 5 days: Payment is non-refundable unless cancellation is received 90 days before the departure date. Cancellation received within 90 days to the departure date is subject to payment forfeiture unless the vacated spot is rebooked.
+
+			â€‹Trips 6 days and longer: Payment is non-refundable unless cancellation is received 180 days before the departure date. Cancellation received within 180 days before the departure date is subject to payment forfeiture unless the vacated spot is rebooked.
+  			<br>
+  			<input type="button" value="Check availability" onclick="if (!checkcancellation(document.getElementById('cancellationpolicy_a13234'))) return false;reservation2('<?php echo $attr['id'];?>', <?php echo $attr['id'];?>, '<?php echo $attr['date'];?>', '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);addGuests(<?php echo $attr['guests'];?>, document.getElementById('guests_a13234_t3684').value);setUpgradesFixed(); 
+  				<?php if ($attr['accommodation'] == 'fixed'){echo 'setAccommodationFixed();';}?>
+  				availability_popup(); return false;">
+		</form>
+  		<?php
 
 		// echo	'</form>';
 		

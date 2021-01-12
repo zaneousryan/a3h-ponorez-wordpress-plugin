@@ -1,4 +1,4 @@
-var Accommodation = (function() {
+var Accommodation = (function () {
   var dataOfActivityById = {};
   var routeDataBySupplierId = {};
 
@@ -8,48 +8,44 @@ var Accommodation = (function() {
 
   var m;
 
-  var initHotels = function(supplierId, activityId, agencyId, $hotelSelect, routeSelectionContextData) {
+  var initHotels = function (supplierId, activityId, agencyId, $hotelSelect, routeSelectionContextData) {
     $hotelSelect.empty();
 
     var hotelInfosOfActivity = dataOfActivityById[activityId].hotelInfos;
     var localResidenceHotelInfo = null;
     var localResidenceHotelId = null;
-    jQuery.each(hotelInfosOfActivity, function() {
-      if (this.special == 'localResidence')
-      {
+    jQuery.each(hotelInfosOfActivity, function () {
+      if (this.special == 'localResidence') {
         localResidenceHotelInfo = this;
         localResidenceHotelId = this.id;
         return false;
       }
     });
 
-    if (localResidenceHotelInfo != null)
-    {
+    if (localResidenceHotelInfo != null) {
       $hotelSelect.append(jQuery("<option />").attr('value', localResidenceHotelInfo.id).text(''));
     }
-    for (var i = 0; i < hotelInfosOfActivity.length; ++i)
-    {
+    for (var i = 0; i < hotelInfosOfActivity.length; ++i) {
       var hotelInfo = hotelInfosOfActivity[i];
       if (hotelInfo.id == localResidenceHotelId) continue;
 
       $hotelSelect.append(jQuery("<option />").attr('value', hotelInfo.id).text(hotelInfo.name));
     }
 
-    if (routeSelectionContextData)
-    {
+    if (routeSelectionContextData) {
       m.setupTransportationRoutes({ supplierId: supplierId, activityId: activityId, agencyId: agencyId, hotelId: $hotelSelect.val(), routeSelectionContextData: routeSelectionContextData });
     }
   };
 
-  var getPromiseResult = function(promise) {
+  var getPromiseResult = function (promise) {
     var savedResult;
-    promise.done(function(result) { savedResult = result; });
+    promise.done(function (result) { savedResult = result; });
 
     return savedResult;
   };
 
   m = {
-    loadHotels: function(params) {
+    loadHotels: function (params) {
       // params: { supplierId, activityId, agencyId, hotelSelectSelector, (optional) routeSelectionContextData }
 
       // supplierId is assumed to match activityId; that is, we won't be called with the same activityId
@@ -62,8 +58,7 @@ var Accommodation = (function() {
       // this means initiating the JSON request for the data we want, if we don't have this data
       // ready or in process of retrieval.
 
-      if (!activityDeferredById[params.activityId] || activityDeferredById[params.activityId].state() == 'rejected')
-      {
+      if (!activityDeferredById[params.activityId] || activityDeferredById[params.activityId].state() == 'rejected') {
         var activityDeferred = jQuery.Deferred();
 
         var lackRouteData = !routeDataBySupplierId[params.supplierId];
@@ -71,62 +66,57 @@ var Accommodation = (function() {
 
         var assumedTimeout = false;
         // Wait for completion no more than 30 seconds:
-        setTimeout(function() { assumedTimeout = true; activityDeferred.reject(); }, 30 * 1000);
+        setTimeout(function () { assumedTimeout = true; activityDeferred.reject(); }, 30 * 1000);
 
         jQuery.post(baseurl + 'externalservlet?action=GETTRANSPORTATIONDATA_JSONP', postData, null, 'jsonp')
-        .done(function(response) {
-          if (assumedTimeout)
-          {
-            // Too late, we already assumed timeout.
-            return;
-          }
+          .done(function (response) {
+            if (assumedTimeout) {
+              // Too late, we already assumed timeout.
+              return;
+            }
 
-          if (response.errorMessage)
-          {
-            alert('Failed to retrieve hotel list: ' + response.errorMessage);
-            activityDeferred.reject();
-            return;
-          }
+            if (response.errorMessage) {
+              alert('Failed to retrieve hotel list: ' + response.errorMessage);
+              activityDeferred.reject();
+              return;
+            }
 
-          var responseDataOfActivity = response.dataOfActivityById && response.dataOfActivityById[params.activityId];
-          var responseRouteData = response.routeData;
+            var responseDataOfActivity = response.dataOfActivityById && response.dataOfActivityById[params.activityId];
+            var responseRouteData = response.routeData;
+            // console.log('Response ' , responseRouteData);
+            if (!responseDataOfActivity || (lackRouteData && !responseRouteData)) {
+              // We didn't get what we wanted, for some reason.
+              activityDeferred.reject();
+              return;
+            }
 
-          if (!responseDataOfActivity || (lackRouteData && !responseRouteData))
-          {
-            // We didn't get what we wanted, for some reason.
-            activityDeferred.reject();
-            return;
-          }
+            dataOfActivityById[params.activityId] = {
+              hotelInfos: responseDataOfActivity.hotelInfos,
+              routeInfos: responseDataOfActivity.routeInfos
+            };
+            // console.log( 'dataOfActivityById ' , dataOfActivityById );
+            if (lackRouteData) {
+              routeData = {};
+              jQuery.each(responseRouteData, function (routeId) {
+                var dataOfRoute = this;
+                routeData[routeId] = { hotelLinkMap: dataOfRoute.hotelLinkMap, hotelInfoMap: dataOfRoute.hotelInfoMap };
+              });
 
-          dataOfActivityById[params.activityId] = {
-            hotelInfos: responseDataOfActivity.hotelInfos,
-            routeInfos: responseDataOfActivity.routeInfos
-          };
+              routeDataBySupplierId[params.supplierId] = routeData;
+              // This may actually overwrite earlier data (since we can have concurrent
+              // requests with different activityId's but the same supplierId), but it's ok.
+            }
 
-          if (lackRouteData)
-          {
-            routeData = {};
-            jQuery.each(responseRouteData, function(routeId) {
-              var dataOfRoute = this;
-              routeData[routeId] = { hotelLinkMap: dataOfRoute.hotelLinkMap, hotelInfoMap: dataOfRoute.hotelInfoMap };
-            });
+            activityDeferred.resolve(true);
+          });
 
-            routeDataBySupplierId[params.supplierId] = routeData;
-            // This may actually overwrite earlier data (since we can have concurrent
-            // requests with different activityId's but the same supplierId), but it's ok.
-          }
-
-          activityDeferred.resolve(true);
-        });
-
-        activityDeferredById[params.activityId] =  activityDeferred;
+        activityDeferredById[params.activityId] = activityDeferred;
       }
 
       // 2.
       // Tell the user that we are waiting (if we actually are).
 
-      if (activityDeferredById[params.activityId].state() == 'pending')
-      {
+      if (activityDeferredById[params.activityId].state() == 'pending') {
         $hotelSelect.empty();
         $hotelSelect.append(jQuery("<option />").text('-- Loading --'));
         $hotelSelect.prop('disabled', true);
@@ -136,19 +126,18 @@ var Accommodation = (function() {
       // Wait for loading to complete (or don't wait, if we already had data)
       // and then populate the hotels select.
 
-      activityDeferredById[params.activityId].done(function() {
+      activityDeferredById[params.activityId].done(function () {
         initHotels(params.supplierId, params.activityId, params.agencyId, $hotelSelect, params.routeSelectionContextData);
         $hotelSelect.prop('disabled', false);
       });
     },
 
-    setupTransportationRoutes: function(params) {
-      // params: { supplierId, activityId, agencyId, hotelId, routeSelectionContextData }
-
+    setupTransportationRoutes: function (params) {
+      // params: { supplierId, activityId, agencyId, hotelId, routeSelectionContextData }    
       var contextData = params.routeSelectionContextData;
-
+      // console.log(contextData);
       jQuery(contextData.routesContainerSelector).hide();
-      jQuery.each(contextData.routeSelectorMap, function(transportationRouteId, routeSelector) {
+      jQuery.each(contextData.routeSelectorMap, function (transportationRouteId, routeSelector) {
         if (!routeSelector)
           return;
         jQuery(routeSelector).hide();
@@ -163,43 +152,92 @@ var Accommodation = (function() {
       // @DEBUG
       //console.log('dataOfActivity: ' + JSON.stringify(dataOfActivity));
       //console.log('routeData: ' + JSON.stringify(routeData));
-  
+
       var haveRouteSelection = false;
-      jQuery.each(dataOfActivity.routeInfos, function(index, routeInfo) {
+      // jQuery(contextData.routesContainerSelector).find('div').hide();
+      var selectedArray = [];
+      // console.log('params ', params);
+      jQuery.each(dataOfActivity.routeInfos, function (index, routeInfo) {
         if (params.agencyId != 0 && !routeInfo.agencyEnabled)
           return;
 
-        if (routeData[routeInfo.id])
-        {
+        if (routeData[routeInfo.id]) {
           // If this supplier ever has any custom information on this route...
           var pickupHotelId = routeData[routeInfo.id].hotelLinkMap[params.hotelId] || params.hotelId;
-
           var routeInfoForHotel = routeData[routeInfo.id].hotelInfoMap[pickupHotelId];
-          if (routeInfoForHotel)
-          {
+          if (routeInfoForHotel) {
             if (routeInfoForHotel.notServicing)
               return;
             routeInfo = jQuery.extend({}, routeInfo, routeInfoForHotel);
           }
         }
 
-        console.log(' > ELA looking for routeInfo.id: ' + routeInfo.id);
         var routeElementSelector = contextData.routeSelectorMap[routeInfo.id];
-        if (routeElementSelector)
-        {
-          console.log(' > ELA showing selector: ' + routeElementSelector);
+        console.log('routeElementSelector ', routeElementSelector);
+
+        selectedArray.push(routeElementSelector);
+        
+        console.log('selectedArray ', selectedArray);
+        if (routeElementSelector) {
           jQuery(routeElementSelector).show();
           haveRouteSelection = true;
         }
-      });
 
-      if (haveRouteSelection)
-      {
+      });
+      
+
+
+      if (haveRouteSelection) {
         jQuery(contextData.routesContainerSelector).show();
       }
+      var selectedDate = new Date(jQuery('#date_a' + params.activityId).val());
+      var selectedMonth = selectedDate.getMonth() + 1;
+      selectedMonth = String(selectedMonth);
+
+      var finalSelectedArray = [];
+      console.log('before selectedArray ', selectedArray);
+      jQuery.each(selectedArray, function (index, selectedItem) {
+        // if(jQuery(this).hasClass('no-transport')){
+        //   console.log('found no transp');
+        // }
+        var labelText = jQuery("div[id='" + selectedItem + "']").find('label').text();
+        console.log('labelText ', labelText);
+        var labelDate = labelText.split('(');
+        console.log('labelDate ', labelDate);
+        var labelMonth = labelDate[1].split(':');
+        console.log('labelMonth ', labelMonth);
+        var labelMth = labelMonth[1].split(')');
+        console.log('labelMth ', labelMth);
+        var labelM = labelMth[0].split(',');
+        console.log('labelM ', labelM);
+        if (jQuery.inArray(selectedMonth, labelM) == -1) {
+        } else {
+          finalSelectedArray.push(selectedArray[index]);
+        }
+      });
+      // console.log('selected array', selectedArray);
+      console.log('final selected array', finalSelectedArray);
+      jQuery.each(finalSelectedArray, function (index, finalSelectedItem) {
+        var labelText = jQuery("div[id='" + finalSelectedItem + "']").find('label').html();
+        labelText = labelText.replace(/\(([^)]+)\)/g, '');
+        jQuery("div[id='" + finalSelectedItem + "']").find('label').html(labelText);
+      });
+      // jQuery(contextData.routesContainerSelector).find('div:first-child').addClass('.no-transport');
+      finalSelectedArray.push(jQuery(contextData.routesContainerSelector).find('div:first-child').attr('id'));
+      
+      jQuery(contextData.routesContainerSelector).find('div').each(function () {
+        var childId = jQuery(this).attr('id');
+        if (jQuery.inArray(childId, finalSelectedArray) == -1) {
+          jQuery(this).hide();
+        } else {
+          jQuery(this).show();
+        }
+      });
+      selectedArray = [];
+      finalSelectedArray = [];
     }
   };
-
+  // console.log('m ', m);
   return m;
 })();
 

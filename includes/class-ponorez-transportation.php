@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Helper class for Transportation mapping and layout
  *
@@ -8,7 +9,8 @@
  * @author Erik L. Arneson <earneson@arnesonium.com>
  */
 
-final class PonoRezTransportation {
+final class PonoRezTransportation
+{
 	protected $_transportationMap = null;
 	protected $_transportationOptions = null;
 	protected $_transportationOptionsSoap = null;
@@ -21,23 +23,21 @@ final class PonoRezTransportation {
 	 * @param int $supplierId
 	 * @param int $activityId
 	 */
-	public function __construct( $supplierId, $activityId ) {
-		
-		if ( null == $supplierId ) {
-			
-			throw new Exception( "Cannot create PonoRezTransportation with invalid supplierId ($supplierId)" );
-			
+	public function __construct($supplierId, $activityId)
+	{
+
+		if (null == $supplierId) {
+
+			throw new Exception("Cannot create PonoRezTransportation with invalid supplierId ($supplierId)");
 		}
 
-		if ( null == $activityId ) {
-			
-			throw new Exception( "Cannot create PonoRezTransportation with invalid activityId ($activityId)" );
-			
+		if (null == $activityId) {
+
+			throw new Exception("Cannot create PonoRezTransportation with invalid activityId ($activityId)");
 		}
 
 		$this->_supplierId = $supplierId;
 		$this->_activityId = $activityId;
-		
 	}
 
 	/**
@@ -52,13 +52,15 @@ final class PonoRezTransportation {
 	 * @return int Transportation route ID
 	 */
 	public
-	function idFromIdCode( $idCode ) {
-		return substr( $idCode, strpos( $idCode, ':' ) + 1 );
+	function idFromIdCode($idCode)
+	{
+		return substr($idCode, strpos($idCode, ':') + 1);
 	}
 
 	public
-	function cmpIdCode( $id, $idCode ) {
-		return ( substr( $idCode, strpos( $idCode, ':' ) + 1 ) == $id );
+	function cmpIdCode($id, $idCode)
+	{
+		return (substr($idCode, strpos($idCode, ':') + 1) == $id);
 	}
 
 	/**
@@ -69,8 +71,9 @@ final class PonoRezTransportation {
 	 * @return array Transportation map
 	 */
 	public
-	function getTransportationMap() {
-		if ( null == $this->_transportationMap ) {
+	function getTransportationMap()
+	{
+		if (null == $this->_transportationMap) {
 			$this->_transportationMap = $this->_buildTransportationMap();
 		}
 
@@ -85,8 +88,9 @@ final class PonoRezTransportation {
 	 * @return TransportationRouteInfo array Undocumented SOAP class array
 	 */
 	public
-	function getTransportationOptions() {
-		if ( null == $this->_transportationOptions ) {
+	function getTransportationOptions()
+	{
+		if (null == $this->_transportationOptions) {
 			$this->_transportationOptions = $this->_getTransportationOptions();
 		}
 
@@ -101,7 +105,8 @@ final class PonoRezTransportation {
 	 * option. That requires a separate SOAP call. Painful, isn't it?
 	 */
 	public
-	function routeNameById( $id ) {
+	function routeNameById($id)
+	{
 		$serviceCreds = PR()->serviceLogin();
 		$service = PR()->providerService();
 		$name = '';
@@ -110,18 +115,17 @@ final class PonoRezTransportation {
 		// call fails, then we grab info from the option map, which
 		// has a "description" field.
 		try {
-			$result = $service->getTransportationRoute( array(
+			$result = $service->getTransportationRoute(array(
 				'serviceLogin' => $serviceCreds,
 				'supplierId' => $this->_supplierId,
 				'transportationRouteId' => $id
-			) );
+			));
 
-			$name = $result->
-				return ->name;
-		} catch ( Exception $e ) {
+			$name = $result->return->name;
+		} catch (Exception $e) {
 			// Don't report the error. Look for another way.
-			foreach ( $this->getTransportationOptions() as $option ) {
-				if ( $this->cmpIdCode( $id, $option->idCode ) ) {
+			foreach ($this->getTransportationOptions() as $option) {
+				if ($this->cmpIdCode($id, $option->idCode)) {
 					$name = $option->description;
 					break;
 				}
@@ -142,8 +146,9 @@ final class PonoRezTransportation {
 	 * @TODO Catch SOAP exceptions?
 	 */
 	protected
-	function _getTransportationOptionsSoap() {
-		if ( null !== $this->_transportationOptionsSoap )
+	function _getTransportationOptionsSoap()
+	{
+		if (null !== $this->_transportationOptionsSoap)
 			return $this->_transportationOptionsSoap;
 
 		$serviceCreds = PR()->serviceLogin();
@@ -151,22 +156,24 @@ final class PonoRezTransportation {
 
 		// Note that transportation routes aren't available in the Agency service for some reason.
 		//$this->_transportationOptionsSoap
-		$result = $service->getActivityTransportationOptions( array(
+		$result = $service->getActivityTransportationOptions(array(
 			'serviceLogin' => $serviceCreds,
 			'supplierId' => $this->_supplierId,
 			'activityId' => $this->_activityId,
-			'date' => new SoapVar( date( 'Y-m-d', strtotime( '+20 days' ) ), XSD_DATE )
-		) );
-		echo "<pre>";
-		print_r($result);
-		die();
+			'date' => new SoapVar(date('Y-m-d', strtotime('+20 days')), XSD_DATE)
+		));
+		// echo "<pre>";
+		// print_r($result);
+		// die();
 
-		return ( $this->_transportationOptionsSoap = $result );
+
+		return ($this->_transportationOptionsSoap = $result);
 	}
 
 	protected
-	function _getTransportationOptions() {
-		if ( null !== $this->_transportationOptions )
+	function _getTransportationOptions()
+	{
+		if (null !== $this->_transportationOptions)
 			return $this->_transportationOptions;
 
 		$tMapItems = $this->_getTransportationMappingItems();
@@ -183,25 +190,25 @@ final class PonoRezTransportation {
 		// Our goal is to extract the unique set of transportationRouteId values and get the names for them.
 
 		$tIds = array();
-		foreach ( $tMapItems as $item ) {
-			array_push( $tIds, $item->transportationRouteId );
+		foreach ($tMapItems as $item) {
+			array_push($tIds, $item->transportationRouteId);
 		}
-		$tIds = array_unique( $tIds );
+		$tIds = array_unique($tIds);
 
 		$this->_transportationOptions = array();
-		foreach ( $tIds as $id ) {
-			$this->_transportationOptions[ $id ] = $this->routeNameById( $id );
+		foreach ($tIds as $id) {
+			$this->_transportationOptions[$id] = $this->routeNameById($id);
 		}
 
 		return $this->_transportationOptions;
-
 	}
 
 	protected
-	function _getTransportationMappingItems() {
+	function _getTransportationMappingItems()
+	{
 		$toSoap = $this->_getTransportationOptionsSoap();
 
-		if ( isset( $toSoap->out_transportationMappingItems ) )
+		if (isset($toSoap->out_transportationMappingItems))
 			return $toSoap->out_transportationMappingItems;
 
 		return array();
@@ -215,26 +222,32 @@ final class PonoRezTransportation {
 	 * JavaScript code for the frontend.
 	 */
 	protected
-	function _buildTransportationMap() {
+	function _buildTransportationMap()
+	{
 		$tMapItems = $this->_getTransportationMappingItems();
 
 		$tIds = $this->getTransportationOptions();
 
 		$map = array();
-		foreach ( $tIds as $id => $itemName ) {
-			$map[ $id ] = sprintf( '#transportationRouteContainer_a%d_%d',
-				$this->_activityId, $id );
+		// echo '<pre>';
+		// print_r($tIds);
+		foreach ($tIds as $id => $itemName) {
+			$map[$id] = sprintf(
+				'#transportationRouteContainer_a%d_%d',
+				$this->_activityId,
+				$id
+			);
 		}
 
 		// The map needs contain the following elements.
 		//  routesContainerSelector: "#transportationRoutesContainer_a7648",
 		//  routeSelectorMap: 
-		$rval[ 'routesContainerSelector' ] = sprintf( '#transportationRoutesContainer_a%d',
-			$this->_activityId );
-		$rval[ 'routeSelectorMap' ] = $map;
+		$rval['routesContainerSelector'] = sprintf(
+			'#transportationRoutesContainer_a%d',
+			$this->_activityId
+		);
+		$rval['routeSelectorMap'] = $map;
 
 		return $rval;
 	}
-
-
 }
