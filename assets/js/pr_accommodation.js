@@ -35,7 +35,14 @@ var Accommodation = (function () {
     if (routeSelectionContextData) {
       m.setupTransportationRoutes({ supplierId: supplierId, activityId: activityId, agencyId: agencyId, hotelId: $hotelSelect.val(), routeSelectionContextData: routeSelectionContextData });
     }
+    ///////////////////////////////
+    jQuery('#transportationRoutesContainer_a'+activityId).find('div').each(function(){
+        jQuery(this).find('label').attr('name',jQuery(this).find('label').text());
+    });
+    ///////////////////////////////
   };
+
+
 
   var getPromiseResult = function (promise) {
     var savedResult;
@@ -133,6 +140,7 @@ var Accommodation = (function () {
     },
 
     setupTransportationRoutes: function (params) {
+
       // params: { supplierId, activityId, agencyId, hotelId, routeSelectionContextData }    
       var contextData = params.routeSelectionContextData;
       // console.log(contextData);
@@ -186,6 +194,7 @@ var Accommodation = (function () {
       });
       
 
+      
 
       // if (haveRouteSelection) {
         jQuery(contextData.routesContainerSelector).show();
@@ -196,25 +205,48 @@ var Accommodation = (function () {
 
       var finalSelectedArray = [];
       console.log('before selectedArray ', selectedArray);
+      var count=0;
       jQuery.each(selectedArray, function (index, selectedItem) {
+        count++;
         // if(jQuery(this).hasClass('no-transport')){
         //   console.log('found no transp');
         // }
-        var labelText = jQuery("div[id='" + selectedItem + "']").find('label').text();
+        var labelText = jQuery("div[id='" + selectedItem + "']").find('label').attr('name');
         console.log('labelText ', labelText);
-        var labelDate = labelText.split('(');
+        var labelDate, labelMonth, labelMth, labelM;
+        if(labelText){
+          labelDate = labelText.split('(');
+        }
+        if(labelDate && labelDate[1]){
+          labelMonth = labelDate[1].split(':');
+        }
+        if(labelMonth && labelMonth[1]){
+          labelMth = labelMonth[1].split(')');
+        }
+        if(labelMth && labelMth[0]){
+          labelM = labelMth[0].split(',');
+        }
         console.log('labelDate ', labelDate);
-        var labelMonth = labelDate[1].split(':');
+        
         console.log('labelMonth ', labelMonth);
-        var labelMth = labelMonth[1].split(')');
+        
         console.log('labelMth ', labelMth);
-        var labelM = labelMth[0].split(',');
+        
         console.log('labelM ', labelM);
         if (jQuery.inArray(selectedMonth, labelM) == -1) {
         } else {
           finalSelectedArray.push(selectedArray[index]);
         }
       });
+      var temp = jQuery(contextData.routesContainerSelector).find('div')[0];
+      if(count == 0){
+        console.log('i am zero');
+        
+        jQuery(temp).find('input').prop('checked',true);
+      }else{
+
+        jQuery(temp).find('input').prop('checked',false);
+      }
       // console.log('selected array', selectedArray);
       console.log('final selected array', finalSelectedArray);
       jQuery.each(finalSelectedArray, function (index, finalSelectedItem) {
@@ -222,7 +254,7 @@ var Accommodation = (function () {
         labelText = labelText.replace(/\(([^)]+)\)/g, '');
         jQuery("div[id='" + finalSelectedItem + "']").find('label').html(labelText);
       });
-      // jQuery(contextData.routesContainerSelector).find('div:first-child').addClass('.no-transport');
+      
       finalSelectedArray.push(jQuery(contextData.routesContainerSelector).find('div:first-child').attr('id'));
       
       jQuery(contextData.routesContainerSelector).find('div').each(function () {
