@@ -60,6 +60,7 @@ final class PonoRezTemplate {
 			'promocode' => null,
 			'title' => null
 		), $atts));
+		
 
 		$myActivityID = $id;
 		$formTitle = $title;
@@ -100,6 +101,9 @@ final class PonoRezTemplate {
 		}
 		
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
+		// if($atts['date']){
+		// 	// echo $defaultActivityTemplate;
+		// }
 		
 		if ($defaultActivityTemplate == 'inline') {
 			

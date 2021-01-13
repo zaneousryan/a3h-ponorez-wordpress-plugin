@@ -136,7 +136,7 @@ var Accommodation = (function () {
       // params: { supplierId, activityId, agencyId, hotelId, routeSelectionContextData }    
       var contextData = params.routeSelectionContextData;
       // console.log(contextData);
-      jQuery(contextData.routesContainerSelector).hide();
+      // jQuery(contextData.routesContainerSelector).hide();
       jQuery.each(contextData.routeSelectorMap, function (transportationRouteId, routeSelector) {
         if (!routeSelector)
           return;
@@ -187,9 +187,9 @@ var Accommodation = (function () {
       
 
 
-      if (haveRouteSelection) {
+      // if (haveRouteSelection) {
         jQuery(contextData.routesContainerSelector).show();
-      }
+      // }
       var selectedDate = new Date(jQuery('#date_a' + params.activityId).val());
       var selectedMonth = selectedDate.getMonth() + 1;
       selectedMonth = String(selectedMonth);
