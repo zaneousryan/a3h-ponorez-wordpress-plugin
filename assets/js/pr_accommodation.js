@@ -40,6 +40,12 @@ var Accommodation = (function () {
         jQuery(this).find('label').attr('name',jQuery(this).find('label').text());
     });
     ///////////////////////////////
+     /////////////////////////////Options order change///////////////////////////////
+      var temp = jQuery('#transportationRoutesContainer_a'+activityId).find('div')[0];
+      var c = jQuery(temp).clone();
+      jQuery('#transportationRoutesContainer_a'+activityId).append(c);
+      jQuery(temp).remove();
+      /////////////////////////////////////////////////////////////////////////////////
   };
 
 
@@ -194,7 +200,7 @@ var Accommodation = (function () {
       });
       
 
-      
+     
 
       // if (haveRouteSelection) {
         jQuery(contextData.routesContainerSelector).show();
@@ -238,15 +244,28 @@ var Accommodation = (function () {
           finalSelectedArray.push(selectedArray[index]);
         }
       });
-      var temp = jQuery(contextData.routesContainerSelector).find('div')[0];
+      
+      //////////////////////////No transport text change//////////////////////////////
+      var temp = jQuery(contextData.routesContainerSelector).find('div:last-child');
+      var f_label = jQuery(temp).find('label').html();
+      var tag = f_label.split('>');
       if(count == 0){
-        console.log('i am zero');
         
+        tag[1] = ' No pick available at this accommodation. We look forward to seeing you at the designated meeting location.  Directions to follow in your email confirmation.';
+        f_label = tag[0]+'>'+tag[1];
+        jQuery(temp).find('label').html(f_label);
         jQuery(temp).find('input').prop('checked',true);
-      }else{
 
+      }else{
+       
+        tag[1] = " Drive to our meeting location, directions to follow in your email confirmation.";
+        f_label = tag[0]+'>'+tag[1];
+        jQuery(temp).find('label').html(f_label);
         jQuery(temp).find('input').prop('checked',false);
+
       }
+      
+      ///////////////////////////////////////////////////////
       // console.log('selected array', selectedArray);
       console.log('final selected array', finalSelectedArray);
       jQuery.each(finalSelectedArray, function (index, finalSelectedItem) {
@@ -267,6 +286,8 @@ var Accommodation = (function () {
       });
       selectedArray = [];
       finalSelectedArray = [];
+
+
     }
   };
   // console.log('m ', m);
