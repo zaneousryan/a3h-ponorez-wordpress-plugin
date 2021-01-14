@@ -335,57 +335,84 @@ $MyUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
 
 function fixed_date_booking($attr) {
 	global $content;
-	    ob_start();
-	    // echo `abc`;
-		// print_r( '<form>
-		// 	    &nbsp;
-		// 	    Passenger <input type="text" id="guests_a13234_t3684" value="0" size="2">
-  // 				<p></p><input type="checkbox" id="cancellationpolicy_a13234"><label for="cancellationpolicy_a13234">Cancellation Policy: If you find it necessary to cancel your reservation for whatever reason, call our office ASAP so we can get to work filling your spot.  All cancellations must be in writing, signed, and dated and can be faxed.  Emails will not be accepted.  All refunds are subject to a 10% administration fee.
+    ob_start();
+    
+		?>
+		<form>
+		Passenger 
+		<input id="guests_a13234_t3684" size="2" type="text" value="0" /><br>
+		 
+			<br> 
+			<input type="button" value="Check availability" onclick="reservation2('<?php echo $attr['id'];?>', <?php echo $attr['id'];?>, '<?php echo $attr['date'];?>', '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);addGuests(<?php echo $attr['guests'];?>, document.getElementById('guests_a13234_t3684').value);setUpgradesFixed(); 
+				<?php if ($attr['accommodation'] == 'fixed'){echo 'setAccommodationFixed();';}?>
+				availability_popup(); return false;">
+	</form>
+		<?php
+	$output = ob_get_clean();
+	return $output;
+}
+add_shortcode( 'Fixed_Date_Booking', 'fixed_date_booking' );
 
-		// 		Trips 1 1/2 days to 5 days: Payment is non-refundable unless cancellation is received 90 days before the departure date.  Cancellation received within 90 days to the departure date is subject to payment forfeiture unless the vacated spot is rebooked.
-
-		// 		â€‹Trips 6 days and longer: Payment is non-refundable unless cancellation is received 180 days before the departure date.  Cancellation received within 180 days before the departure date is subject to payment forfeiture unless the vacated spot is rebooked.</label><p></p>');
-
-
-  		// echo '<input type="button" value="Check availability" onclick="if (!checkcancellation(';
-  		// echo "document.getElementById('cancellationpolicy_a13234'))) return false;";
-  		// echo " reservation2('13234', 13234, '01/17 
-  		// echo " addGuests(3684, document.getElementById('guests_a13234_t3684').value); ";
-  		// echo 'setUpgradesFixed(); setAccommodationFixed();  availability_popup(); return false;">';
-	    // echo "<pre>";
-	    // print_r($attr);
-	    // echo "</pre>";
-	    // die();
-	    
-  		?>
-  		<form>
-			Passenger 
-			<input id="guests_a13234_t3684" size="2" type="text" value="0" /><br>
-			<!-- <input id="cancellationpolicy_a13234" type="checkbox" />
-			<label for="cancellationpolicy_a13234">Cancellation Policy: If you find it necessary to cancel your reservation for whatever reason, call our office ASAP so we can get to work filling your spot. All cancellations must be in writing, signed, and dated and can be faxed. Emails will not be accepted. All refunds are subject to a 10% administration fee. 
-			</label>
-
-			Trips 1 1/2 days to 5 days: Payment is non-refundable unless cancellation is received 90 days before the departure date. Cancellation received within 90 days to the departure date is subject to payment forfeiture unless the vacated spot is rebooked.
-
-			â€‹Trips 6 days and longer: Payment is non-refundable unless cancellation is received 180 days before the departure date. Cancellation received within 180 days before the departure date is subject to payment forfeiture unless the vacated spot is rebooked.
-  			-->
-  			<br> 
-  			<input type="button" value="Check availability" onclick="reservation2('<?php echo $attr['id'];?>', <?php echo $attr['id'];?>, '<?php echo $attr['date'];?>', '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);addGuests(<?php echo $attr['guests'];?>, document.getElementById('guests_a13234_t3684').value);setUpgradesFixed(); 
-  				<?php if ($attr['accommodation'] == 'fixed'){echo 'setAccommodationFixed();';}?>
-  				availability_popup(); return false;">
-		</form>
-  		<?php
-
-		// echo	'</form>';
+function fixed_date_booking1( $atts = array(), $content = null, $tag ) { 
+	
+		extract(shortcode_atts(array(
+			'id' => null,
+			'guests' => null,
+			'upgrades' => null,
+			'privateid' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null
+		), $atts));
 		
-		$output = ob_get_clean();
-    	return $output;
+
+		$myActivityID = $id;
+		$formTitle = $title;
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $accommodation;
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $promocode;
+		$guestTypes = array($guests);
+		$guestTypes = explode(',', $guests);
+		$upgradeTypes = array($upgrades);
+		$upgradeTypes = explode(',', $upgrades);
+		$privateGuests = array($privateid);
+		$privateGuests = explode(',', $privateid);
+		$promotionalCodesStatus = $allowdiscounts;
+
+		for( $i = 1; $i <= 20; $i++ ){
+
+			$guestType = 'guestType' . $i;
+			$guestTypeID = $guestType . 'ID';
+			$guestTypeMin = $guestType . 'Min';
+			$guestTypeMax = $guestType . 'Max';
+
+			${'guestType' . $i . 'Label'} = get_option( $guestType );
+			${'guestType' . $i . 'ID'} = get_option( $guestTypeID );
+			${'guestType' . $i . 'MinGuest'} = get_option( $guestTypeMin );
+			${'guestType' . $i . 'MaxGuest'} = get_option( $guestTypeMax );
+
+			$upgradeType = 'upgradeType' . $i;
+			$upgradeTypeID = $upgradeType . 'ID';
+			$upgradeTypeMin = $upgradeType . 'Min';
+			$upgradeTypeMax = $upgradeType . 'Max';
+
+			${'upgradeType' . $i . 'Label'} = get_option( $upgradeType );
+			${'upgradeType' . $i . 'ID'} = get_option( $upgradeTypeID );
+			${'upgradeType' . $i . 'Min'} = get_option( $upgradeTypeMin );
+			${'upgradeType' . $i . 'Max'} = get_option( $upgradeTypeMax );
+
+		}
+		
+		// $defaultActivityTemplate = get_option( 'pr_default_template' );
+		// if($atts['date']){
+		// 	// echo $defaultActivityTemplate;
+		// }
+		
+		
+    	return $output;		
 		
 	}
 
-add_shortcode( 'Fixed_Date_Booking', 'fixed_date_booking' );
-// add_action( 'init', 'process_post' );
- 
-// function process_post() {
-//     die();
-// }
+add_shortcode( 'Fixed_Date_Booking1', 'fixed_date_booking1' );
