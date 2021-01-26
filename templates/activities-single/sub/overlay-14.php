@@ -139,10 +139,18 @@
 								  }
 								}
 							</script>
-							<label>Choose Date</label>
-							<div class="form-row date-selector">
-								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable14()'>
-									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable14();">
+							<?php 
+							$selected_date = get_query_var('date');
+							if($selected_date){
+								?>
+								<style type="text/css">.hide-this{display: none;}</style>
+								<?php
+							}
+							?>
+							<label class="hide-this">Choose Date</label>
+							<div class="form-row date-selector hide-this">
+								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable()' value='<?php echo $selected_date;?>'>
+									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable();">
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</a>
 							</div>
