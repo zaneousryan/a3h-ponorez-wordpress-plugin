@@ -34,7 +34,7 @@
 						//Set Activity ID
 						echo do_shortcode('[loadPonorezActivity id="'.$myActivityID.'"]');
 
-						echo '<div id="availableGuests'. $myActivityID . '">';
+						echo '<div id="availableGuests'. $myActivityID . '" class="hide-guest">';
 
 						//Load Guest Types Select Fields
 						foreach ($guestTypes as $guest) { 
@@ -144,6 +144,12 @@
 							if($selected_date){
 								?>
 								<style type="text/css">.hide-this{display: none;}</style>
+								<?php
+							}
+							$fix_guest = get_query_var('fix_guest');
+							if($fix_guest){
+								?>
+								<style type="text/css">.hide-guest{display: none;}</style>
 								<?php
 							}
 							?>
