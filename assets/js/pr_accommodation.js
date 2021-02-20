@@ -10,7 +10,7 @@ var Accommodation = (function () {
 
   var initHotels = function (supplierId, activityId, agencyId, $hotelSelect, routeSelectionContextData) {
     $hotelSelect.empty();
-
+    console.log('xxx - ',routeSelectionContextData,' - xxx');
     var hotelInfosOfActivity = dataOfActivityById[activityId].hotelInfos;
     var localResidenceHotelInfo = null;
     var localResidenceHotelId = null;

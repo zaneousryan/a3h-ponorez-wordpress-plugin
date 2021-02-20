@@ -3090,7 +3090,7 @@ EOT;
 			
 		}
 		
-		$output ='<label>Select from available times</label>';
+		$output ='<label>Select transportation option</label>';
 		$output .= $contain;
 		$output .= $rval;
 		$output .= '</select></div>';
