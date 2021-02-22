@@ -183,6 +183,9 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
+		if($atts['fix_guest']){
+			set_query_var('fix_guest', $atts['fix_guest']);
+		}
 		
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
@@ -261,6 +264,9 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
+		if($atts['fix_guest']){
+			set_query_var('fix_guest', $atts['fix_guest']);
+		}
 		
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
@@ -338,6 +344,9 @@ final class PonoRezTemplate {
 		}
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
+		}
+		if($atts['fix_guest']){
+			set_query_var('fix_guest', $atts['fix_guest']);
 		}
 		
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
