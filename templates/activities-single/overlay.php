@@ -122,7 +122,13 @@
 												if (isset($guestTypes[0]) && $guest == $gID) {
 													?>
 													minAvailable.guests[<?php echo $gID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $gID;?>').value;
-													totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $gID;?>').value);
+													jQuery('.ponorezmodal').each(function(){
+														
+														if(jQuery(this).is(":visible")){
+															jQuery(this).addClass('found');
+														}else{jQuery(this).addClass('Not found');}
+													});
+													totalGuestCount += Number(document.getElementById(' guests_a<?php echo $myActivityID;?>_t<?php echo $gID;?>').value);
 													<?php
 												}
 											} 
