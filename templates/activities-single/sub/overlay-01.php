@@ -34,7 +34,7 @@
 						//Set Activity ID
 						echo do_shortcode('[loadPonorezActivity id="'.$myActivityID.'"]');
 
-						echo '<div id="availableGuests'. $myActivityID . '" class="hide-guest">';
+						echo '<div id="availableGuests'. $myActivityID . '" class="hide-guest'. $myActivityID .'">';
 
 						//Load Guest Types Select Fields
 						foreach ($guestTypes as $guest) { 
@@ -154,33 +154,34 @@
 							}
 							$fix_guest = get_query_var('fix_guest');
 							// echo $fix_guest;
+
 							if($fix_guest == '1'){
 								?>
-								<style type="text/css">.hide-guest{
+								<style type="text/css">.hide-guest<?php echo $myActivityID;?>{
 									display: none;
 								}</style>
 								<script type="text/javascript">
-									jQuery('.hide-guest input[name=guestCheckbox]').click();
-									jQuery('.hide-guest select').val(1);
+									jQuery('.hide-guest'+<?php echo $myActivityID;?>+' input[name=guestCheckbox]').click();
+									jQuery('.hide-guest'+<?php echo $myActivityID;?>+' select').val(1);
 									console.log('i am here');
 								</script>
 								<?php
 							}
-							else{
+							else if($fix_guest != 0){
 								$guest_id = explode(",",$fix_guest);
 								// echo $guest_id[0];
 								if ($guest_id[0] == '2333'){
 									?>
 									<script type="text/javascript">
-										jQuery('.hide-guest input[name=guestCheckbox]').click();
-										jQuery('.hide-guest input[name=guestCheckbox]').parent().css('display','none');
+										jQuery('.hide-guest'+<?php echo $myActivityID;?>+' input[name=guestCheckbox]').click();
+										jQuery('.hide-guest'+<?php echo $myActivityID;?>+' input[name=guestCheckbox]').parent().css('display','none');
 									</script>
 									<?php
 								}else if ($guest_id[0] == '3444'){
 									?>
 									<script type="text/javascript">
-										jQuery('.hide-guest select').val(1);
-										jQuery('.hide-guest select').parent().css('display','none');
+										jQuery('.hide-guest'+<?php echo $myActivityID;?>+' select').val(1);
+										jQuery('.hide-guest'+<?php echo $myActivityID;?>+' select').parent().css('display','none');
 										
 									</script>
 									<?php
