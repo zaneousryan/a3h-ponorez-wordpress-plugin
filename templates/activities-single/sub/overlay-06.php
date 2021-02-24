@@ -135,7 +135,7 @@
 								  }
 								  else {
 								    // Show calendar (only if all guest type counts are correct)
-								    calendar(activityControl, dateControl, false, minAvailable
+								    calendar(activityControl, dateControl, false, minAvailable);
 								}
 							</script>
 							<label>Choose Date</label>
