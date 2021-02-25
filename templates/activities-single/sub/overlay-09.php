@@ -161,23 +161,14 @@
 							}
 							else if($fix_guest != 0){
 								$guest_id = explode(",",$fix_guest);
-								
-								if ($guest_id[0] == '2333'){
-									?>
-									<script type="text/javascript">
-										jQuery('.hide-guest09 input[name=guestCheckbox]').click();
-										jQuery('.hide-guest09 input[name=guestCheckbox]').parent().css('display','none');
-									</script>
-									<?php
-								}else if ($guest_id[0] == '3444'){
-									?>
-									<script type="text/javascript">
-										jQuery('.hide-guest09 select').val(1);
-										jQuery('.hide-guest09 select').parent().css('display','none');
-										
-									</script>
-									<?php
-								}
+								$temp = 'guests_a'.$myActivityID.'_t'.$guest_id[0];
+								?>
+								<script type="text/javascript">
+									jQuery("select#<?php echo $temp; ?>").val(1);
+									jQuery("input#<?php echo $temp; ?>").click();
+									jQuery("#<?php echo $temp; ?>").parent().css('display','none');
+								</script>
+								<?php
 							}
 							
 							?>
