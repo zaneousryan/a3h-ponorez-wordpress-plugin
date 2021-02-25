@@ -34,7 +34,7 @@
 						//Set Activity ID
 						echo do_shortcode('[loadPonorezActivity id="'.$myActivityID.'"]');
 
-						echo '<div id="availableGuests'. $myActivityID . '">';
+						echo '<div id="availableGuests'. $myActivityID . '" class="hide-guest14">';
 
 						//Load Guest Types Select Fields
 						foreach ($guestTypes as $guest) { 
@@ -109,7 +109,7 @@
 						//Load the DatePicker Field
 						?>
 							<script>
-								function showMinAvailable14(){
+								function showMinAvailable(){
 									var activityControl = <?php echo $myActivityID;?>,
 										dateControl = 'date_a<?php echo $myActivityID; ?>',
 										totalGuestCount = 0,
@@ -139,10 +139,52 @@
 								  }
 								}
 							</script>
-							<label>Choose Date</label>
-							<div class="form-row date-selector">
-								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable14()'>
-									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable14();">
+							<?php 
+							$selected_date = get_query_var('date');
+							if($selected_date){
+								?>
+								<style type="text/css">.hide-this{display: none;}</style>
+								<?php
+							}
+							$fix_guest = get_query_var('fix_guest');
+							if($fix_guest == '1'){
+								?>
+								<style type="text/css">.hide-guest14{
+									display: none;
+								}</style>
+								<script type="text/javascript">
+									jQuery('.hide-guest14 input[name=guestCheckbox]').click();
+									jQuery('.hide-guest14 select').val(1);
+									
+								</script>
+								<?php
+							}
+							else if($fix_guest != 0){
+								$guest_id = explode(",",$fix_guest);
+								
+								if ($guest_id[0] == '2333'){
+									?>
+									<script type="text/javascript">
+										jQuery('.hide-guest14 input[name=guestCheckbox]').click();
+										jQuery('.hide-guest14 input[name=guestCheckbox]').parent().css('display','none');
+									</script>
+									<?php
+								}else if ($guest_id[0] == '3444'){
+									?>
+									<script type="text/javascript">
+										jQuery('.hide-guest14 select').val(1);
+										jQuery('.hide-guest14 select').parent().css('display','none');
+										
+									</script>
+									<?php
+								}
+							}
+							
+							?>
+							<label class="hide-this">Choose Date</label>
+							<div class="form-row date-selector hide-this">
+								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable()' value='<?php echo $selected_date;?>'>
+									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable();">
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</a>
 							</div>

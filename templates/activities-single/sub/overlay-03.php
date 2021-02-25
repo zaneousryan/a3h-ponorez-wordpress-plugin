@@ -146,40 +146,40 @@
 								<style type="text/css">.hide-this{display: none;}</style>
 								<?php
 							}
-							echo 3;
-							// $fix_guest = get_query_var('fix_guest');
-							// if($fix_guest == '1'){
+							// echo 3;
+							$fix_guest = get_query_var('fix_guest');
+							if($fix_guest == '1'){
 								?>
 								<style type="text/css">.hide-guest03{
-									/*display: none;*/
+									display: none;
 								}</style>
 								<script type="text/javascript">
-									// jQuery('.hide-guest03 input[name=guestCheckbox]').click();
-									// jQuery('.hide-guest03 select').val(1);
+									jQuery('.hide-guest03 input[name=guestCheckbox]').click();
+									jQuery('.hide-guest03 select').val(1);
 									
 								</script>
 								<?php
-							// }
-							// else if($fix_guest != 0){
-							// 	$guest_id = explode(",",$fix_guest);
+							}
+							else if($fix_guest != 0){
+								$guest_id = explode(",",$fix_guest);
 								
-							// 	if ($guest_id[0] == '2333'){
-							// 		?>
+								if ($guest_id[0] == '2333'){
+									?>
 							 		<script type="text/javascript">
-							// 			jQuery('.hide-guest03 input[name=guestCheckbox]').click();
-							// 			jQuery('.hide-guest03 input[name=guestCheckbox]').parent().css('display','none');
-							// 		</script>
+										jQuery('.hide-guest03 input[name=guestCheckbox]').click();
+										jQuery('.hide-guest03 input[name=guestCheckbox]').parent().css('display','none');
+									</script>
 							 		<?php
-							// 	}else if ($guest_id[0] == '3444'){
-							// 		?>
+								}else if ($guest_id[0] == '3444'){
+									?>
 							 		<script type="text/javascript">
-							// 			jQuery('.hide-guest03 select').val(1);
-							// 			jQuery('.hide-guest03 select').parent().css('display','none');
+										jQuery('.hide-guest03 select').val(1);
+										jQuery('.hide-guest03 select').parent().css('display','none');
 										
-							// 		</script>
+									</script>
 							 		<?php
-							// 	}
-							// }
+								}
+							}
 							?>
 							<label>Choose Date</label>
 							<div class="form-row date-selector">
