@@ -140,6 +140,7 @@
 								}
 							</script>
 							<?php 
+
 							$selected_date = get_query_var('date');
 							if($selected_date){
 								?>
@@ -147,7 +148,9 @@
 								<?php
 							}
 							$fix_guest = get_query_var('fix_guest');
+
 							if($fix_guest == '1'){
+								
 								?>
 								<style type="text/css">.hide-guest04{
 									display: none;
@@ -163,6 +166,7 @@
 								$guest_id = explode(",",$fix_guest);
 								
 								if ($guest_id[0] == '2333'){
+									
 									?>
 									<script type="text/javascript">
 										jQuery('.hide-guest04 input[name=guestCheckbox]').click();
@@ -170,6 +174,7 @@
 									</script>
 									<?php
 								}else if ($guest_id[0] == '3444'){
+									
 									?>
 									<script type="text/javascript">
 										jQuery('.hide-guest04 select').val(1);
