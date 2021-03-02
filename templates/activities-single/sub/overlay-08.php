@@ -1,13 +1,13 @@
 <div id="wrapper-<?php echo $myActivityID; ?>">
 
 	<style>
-		.ui-widget-header { background: none; background-color: <?php echo get_option('primaryColor'); ?> ; border: none; }
-		.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: <?php echo get_option('primaryColor'); ?>; }
-		.button.button-book-now { background: <?php echo get_option('primaryColor'); ?>; color: <?php echo get_option('textColor'); ?> }
-		.button.button-book-now:hover { background: <?php echo get_option('secondaryColor'); ?>; }
-		.booking-form .date-selector a { color: <?php echo get_option('primaryColor'); ?>; }
-		.booking-form .date-selector a:hover { color: <?php echo get_option('secondaryColor'); ?>; }
-	</style>
+	.ui-widget-header { background: none; background-color: <?php echo get_option('primaryColor'); ?>!important ; border: none; }
+	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: <?php echo get_option('primaryColor'); ?>!important; }
+	.button.button-book-now { background: <?php echo get_option('primaryColor'); ?>!important; color: <?php echo get_option('textColor'); ?>!important }
+	.button.button-book-now:hover { background: <?php echo get_option('secondaryColor'); ?>!important; }
+	.booking-form .date-selector a { color: <?php echo get_option('primaryColor'); ?>!important; }
+	.booking-form .date-selector a:hover { color: <?php echo get_option('secondaryColor'); ?>!important; }
+</style>
 
 	<!-- Trigger/Open Modal -->
 	<a class="button button-book-now" href="#modal-<?php echo $myActivityID; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
