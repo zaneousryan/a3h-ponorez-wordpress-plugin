@@ -1,13 +1,13 @@
 <div id="wrapper-<?php echo $myActivityID; ?>">
 
 	<style>
-		.ui-widget-header { background: none; background-color: <?php echo get_option('primaryColor'); ?> ; border: none; }
-		.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: <?php echo get_option('primaryColor'); ?>; }
-		.button.button-book-now { background: <?php echo get_option('primaryColor'); ?>; color: <?php echo get_option('textColor'); ?> }
-		.button.button-book-now:hover { background: <?php echo get_option('secondaryColor'); ?>; }
-		.booking-form .date-selector a { color: <?php echo get_option('primaryColor'); ?>; }
-		.booking-form .date-selector a:hover { color: <?php echo get_option('secondaryColor'); ?>; }
-	</style>
+	.ui-widget-header { background: none; background-color: <?php echo get_option('primaryColor'); ?>!important ; border: none; }
+	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: <?php echo get_option('primaryColor'); ?>!important; }
+	.button.button-book-now { background: <?php echo get_option('primaryColor'); ?>!important; color: <?php echo get_option('textColor'); ?>!important }
+	.button.button-book-now:hover { background: <?php echo get_option('secondaryColor'); ?>!important; }
+	.booking-form .date-selector a { color: <?php echo get_option('primaryColor'); ?>!important; }
+	.booking-form .date-selector a:hover { color: <?php echo get_option('secondaryColor'); ?>!important; }
+</style>
 
 	<!-- Trigger/Open Modal -->
 	<a class="button button-book-now" href="#modal-<?php echo $myActivityID; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
@@ -34,7 +34,7 @@
 						//Set Activity ID
 						echo do_shortcode('[loadPonorezActivity id="'.$myActivityID.'"]');
 
-						echo '<div id="availableGuests'. $myActivityID . '">';
+						echo '<div id="availableGuests'. $myActivityID . '" class="hide-guest08">';
 
 						//Load Guest Types Select Fields
 						foreach ($guestTypes as $guest) { 
@@ -109,7 +109,7 @@
 						//Load the DatePicker Field
 						?>
 							<script>
-								function showMinAvailable8(){
+								function showMinAvailable(){
 									var activityControl = <?php echo $myActivityID;?>,
 										dateControl = 'date_a<?php echo $myActivityID; ?>',
 										totalGuestCount = 0,
@@ -139,10 +139,43 @@
 								  }
 								}
 							</script>
-							<label>Choose Date</label>
-							<div class="form-row date-selector">
-								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable8()'>
-									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable8();">
+							<?php 
+							$selected_date = get_query_var('date');
+							if($selected_date){
+								?>
+								<style type="text/css">.hide-this{display: none;}</style>
+								<?php
+							}
+							$fix_guest = get_query_var('fix_guest');
+							if($fix_guest == '1'){
+								?>
+								<style type="text/css">.hide-guest08{
+									display: none;
+								}</style>
+								<script type="text/javascript">
+									// jQuery('.hide-guest08 input[name=guestCheckbox]').click();
+									jQuery('.hide-guest08 select').val(1);
+									
+								</script>
+								<?php
+							}
+							else if($fix_guest != 0){
+								$guest_id = explode(",",$fix_guest);
+								$temp = 'guests_a'.$myActivityID.'_t'.$guest_id[0];
+								?>
+								<script type="text/javascript">
+									jQuery("select#<?php echo $temp; ?>").val(1);
+									// jQuery("input#<?php echo $temp; ?>").click();
+									jQuery("#<?php echo $temp; ?>").parent().css('display','none');
+								</script>
+								<?php
+							}
+							
+							?>
+							<label class="hide-this">Choose Date</label>
+							<div class="form-row date-selector hide-this">
+								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable()' value='<?php echo $selected_date;?>'>
+									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable();">
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</a>
 							</div>

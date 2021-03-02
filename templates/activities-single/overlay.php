@@ -1,12 +1,12 @@
 <div id="wrapper-<?php echo $myActivityID; ?>">
 
 	<style>
-		.ui-widget-header { background: none; background-color: <?php echo get_option('primaryColor'); ?> ; border: none; }
-		.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: <?php echo get_option('primaryColor'); ?>; }
-		.button.button-book-now { background: <?php echo get_option('primaryColor'); ?>; color: <?php echo get_option('textColor'); ?> }
-		.button.button-book-now:hover { background: <?php echo get_option('secondaryColor'); ?>; }
-		.booking-form .date-selector a { color: <?php echo get_option('primaryColor'); ?>; }
-		.booking-form .date-selector a:hover { color: <?php echo get_option('secondaryColor'); ?>; }
+		.ui-widget-header { background: none; background-color: <?php echo get_option('primaryColor'); ?>!important ; border: none; }
+	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { color: <?php echo get_option('primaryColor'); ?>!important; }
+	.button.button-book-now { background: <?php echo get_option('primaryColor'); ?>!important; color: <?php echo get_option('textColor'); ?>!important }
+	.button.button-book-now:hover { background: <?php echo get_option('secondaryColor'); ?>!important; }
+	.booking-form .date-selector a { color: <?php echo get_option('primaryColor'); ?>!important; }
+	.booking-form .date-selector a:hover { color: <?php echo get_option('secondaryColor'); ?>!important; }
 	</style>
 
 	<!-- Trigger/Open Modal -->
@@ -34,7 +34,11 @@
 						//Set Activity ID
 						echo do_shortcode('[loadPonorezActivity id="'.$myActivityID.'"]');
 
+<<<<<<< HEAD
 						echo '<div id="availableGuests'. $myActivityID . '" class="hide-guest">';
+=======
+						echo '<div id="availableGuests'. $myActivityID . '" class="hide-guest00">';
+>>>>>>> dev
 
 						//Load Guest Types Select Fields
 						foreach ($guestTypes as $guest) { 
@@ -147,11 +151,38 @@
 								<?php
 							}
 							$fix_guest = get_query_var('fix_guest');
+<<<<<<< HEAD
 							if($fix_guest){
 								?>
 								<style type="text/css">.hide-guest{display: none;}</style>
 								<?php
 							}
+=======
+							if($fix_guest == '1'){
+								?>
+								<style type="text/css">.hide-guest00{
+									display: none;
+								}</style>
+								<script type="text/javascript">
+									// jQuery('.hide-guest00 input[name=guestCheckbox]').click();
+									jQuery('.hide-guest00 select').val(1);
+									
+								</script>
+								<?php
+							}
+							else if($fix_guest != 0){
+								$guest_id = explode(",",$fix_guest);
+								$temp = 'guests_a'.$myActivityID.'_t'.$guest_id[0];
+								?>
+								<script type="text/javascript">
+									jQuery("select#<?php echo $temp; ?>").val(1);
+									// jQuery("input#<?php echo $temp; ?>").click();
+									jQuery("#<?php echo $temp; ?>").parent().css('display','none');
+								</script>
+								<?php
+							}
+							
+>>>>>>> dev
 							?>
 							<label class="hide-this">Choose Date</label>
 							<div class="form-row date-selector hide-this">

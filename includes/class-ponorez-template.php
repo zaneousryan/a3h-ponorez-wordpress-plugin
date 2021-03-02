@@ -102,10 +102,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		if($atts['fix_guest']){
-			set_query_var('fix_guest', $atts['fix_guest']);
-		}
 
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+		
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -183,7 +187,16 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			// echo 'x1x';
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			// echo 'x0x';
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -261,7 +274,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -339,7 +359,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -417,7 +444,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -495,7 +529,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -573,7 +614,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -651,7 +699,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -729,7 +784,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -807,7 +869,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -885,7 +954,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -963,7 +1039,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -1041,7 +1124,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -1119,7 +1209,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
@@ -1197,7 +1294,14 @@ final class PonoRezTemplate {
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
 		}
-		
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+
 		$defaultActivityTemplate = get_option( 'pr_default_template' );
 		
 		if ($defaultActivityTemplate == 'inline') {
