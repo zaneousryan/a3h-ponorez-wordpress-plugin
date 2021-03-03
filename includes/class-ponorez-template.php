@@ -451,7 +451,7 @@ final class PonoRezTemplate {
 		}
 
 		if($atts['fixed_guest']){
-			set_query_var('fix_guest', $atts['fixed_guest']);
+			set_query_var('fix_guest', $atts['fixed_guest']); 
 		}
 		else{
 			set_query_var('fix_guest', 0);
