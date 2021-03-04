@@ -1362,7 +1362,7 @@ final class PonoRezTemplate {
 			
 			// Activities group datepicker template.
 			$rval_template = <<<EOT
-				<div class="form-row date-selector"> <input class="form-control" id="XXXX" onclick="showCalendar(GGGG);" onchange="showPriceAndAvailability(GGGG);" readOnly size="18"> <a style="text-decoration: none;" onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showCalendar(GGGG);" style="vertical-align: middle;">
+				<div class="form-row date-selector"> <input class="form-control" id="XXXX" onclick="showCalendar(GGGG);" onchange="showPriceAndAvailability(GGGG,true);" readOnly size="18"> <a style="text-decoration: none;" onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showCalendar(GGGG);" style="vertical-align: middle;">
 EOT;
 			
 			$rval = str_replace( 'XXXX', $this->_currentActivityGroup->dateControlId(), $rval_template );
@@ -1399,7 +1399,7 @@ EOT;
 		if ( $a[ 'max' ] == 1 ) {
 
 			if ( null != $this->_currentActivityGroup ) {
-				$html = sprintf( '<div class="form-row"><label><input type="checkbox" name="guestCheckbox" id="guests_%s_t%d" value="0" onchange="showPriceAndAvailability(GGGG);"/> %s</label>',
+				$html = sprintf( '<div class="form-row"><label><input type="checkbox" name="guestCheckbox" id="guests_%s_t%d" value="0" onchange="showPriceAndAvailability(GGGG,true);"/> %s</label>',
 
 					$htmlIdTagPart,
 					$a[ 'id' ],
@@ -1421,7 +1421,7 @@ EOT;
 		} else {
 
 			if ( null != $this->_currentActivityGroup ) {
-				$html .= sprintf( '<div class="form-row"><label>%s</label><select class="form-control" id="guests_%s_t%d" onchange="showPriceAndAvailability(GGGG);">',
+				$html .= sprintf( '<div class="form-row"><label>%s</label><select class="form-control" id="guests_%s_t%d" onchange="showPriceAndAvailability(GGGG,true);">',
 
 					$a[ 'name' ],
 					$htmlIdTagPart,
@@ -1467,7 +1467,7 @@ EOT;
 		}
 
 		if ( null != $this->_currentActivityGroup ) {
-			$html .= sprintf( '<div class="form-row"><label>%s</label><select class="form-control" id="upgrades_%s_u%d" onchange="showPriceAndAvailability(GGGG);">',
+			$html .= sprintf( '<div class="form-row"><label>%s</label><select class="form-control" id="upgrades_%s_u%d" onchange="showPriceAndAvailability(GGGG,false);">',
 
 				$a[ 'name' ],
 				$htmlIdTagPart,
@@ -3160,7 +3160,7 @@ EOT;
 
 		$g = $this->_currentActivityGroup;
 
-		$contain = sprintf('<div class="form-row"><select class="form-control availability" onclick="showPriceAndAvailability(g_%s);" onchange="showPriceAndAvailability(g_%s);">', $g->groupName, $g->groupName);
+		$contain = sprintf('<div class="form-row"><select class="form-control availability" onclick="showPriceAndAvailability(g_%s,false);" onchange="showPriceAndAvailability(g_%s,false);">', $g->groupName, $g->groupName);
 
 		if ( null == $content ) { 
 			$template = <<<EOT
@@ -3233,7 +3233,7 @@ EOT;
 	public function ponorezGroupAccommodationSelect( $atts = array(), $content = null, $tag ) {
 		
 		$atts[ 'template' ] = <<<EOT
-<select class="pr_hotel_select form-control" id="hotel_aAAAA" onchange="accommodation_setupTransportationRoutes({supplierId: SSSS, activityId: AAAA, agencyId: 0, hotelId: this.value, routeSelectionContextData: g_GGGG.transportation }); showPriceAndAvailability(g_GGGG);"></select>
+<select class="pr_hotel_select form-control" id="hotel_aAAAA" onchange="accommodation_setupTransportationRoutes({supplierId: SSSS, activityId: AAAA, agencyId: 0, hotelId: this.value, routeSelectionContextData: g_GGGG.transportation }); showPriceAndAvailability(g_GGGG,false);"></select>
 <script type="text/javascript">accommodation_loadHotels({ supplierId: SSSS, activityId:  AAAA, agencyId: 0, hotelSelectSelector: "#hotel_aAAAA" });</script>
 EOT;
 		

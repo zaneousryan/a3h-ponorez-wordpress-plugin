@@ -138,7 +138,7 @@ function formatMoney(n) {
     + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
 }
 
-function showPriceAndAvailability(group) {
+function showPriceAndAvailability(group,clearTimes) {
   var activityid = getSelectedActivityId(group, false);
   var activitydate = getActivityDate(group, false);
   var minavailability = { guests: {} };
@@ -209,7 +209,12 @@ function showPriceAndAvailability(group) {
         jQuery('#' + group.activitynotavailablemessagecontrolids[activityid]).toggle(!data[activityid]);
       });
     }, group.activityids, activitydate, minavailability);
-  }
+    }
+    if (clearTimes == true) {
+        jQuery(".ponorezmodal select.form-control.availability").val("");
+        jQuery('.ponorezmodal span').text('');
+    }
+    
 }
 
 function getSelectedActivityId(group, showWarningIfNoActivitySelected) {
