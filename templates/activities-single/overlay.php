@@ -34,9 +34,7 @@
 						//Set Activity ID
 						echo do_shortcode('[loadPonorezActivity id="'.$myActivityID.'"]');
 
-
 						echo '<div id="availableGuests'. $myActivityID . '" class="hide-guest00">';
-
 
 						//Load Guest Types Select Fields
 						foreach ($guestTypes as $guest) { 
@@ -149,14 +147,13 @@
 								<?php
 							}
 							$fix_guest = get_query_var('fix_guest');
-
 							if($fix_guest == '1'){
 								?>
 								<style type="text/css">.hide-guest00{
 									display: none;
 								}</style>
 								<script type="text/javascript">
-									// jQuery('.hide-guest00 input[name=guestCheckbox]').click();
+									jQuery('.hide-guest00 input[name=guestCheckbox]').click();
 									jQuery('.hide-guest00 select').val(1);
 									
 								</script>
@@ -168,13 +165,12 @@
 								?>
 								<script type="text/javascript">
 									jQuery("select#<?php echo $temp; ?>").val(1);
-									// jQuery("input#<?php echo $temp; ?>").click();
+									jQuery("input#<?php echo $temp; ?>").click();
 									jQuery("#<?php echo $temp; ?>").parent().css('display','none');
 								</script>
 								<?php
 							}
 							
-
 							?>
 							<label class="hide-this">Choose Date</label>
 							<div class="form-row date-selector hide-this">

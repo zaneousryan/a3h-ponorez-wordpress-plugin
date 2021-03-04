@@ -3199,7 +3199,8 @@ EOT;
 			
 		}
 		
-		$output ='<label>Select transportation option</label>';
+		//$output ='<label>Select transportation option</label>'; I need to figure out logic for when to switch these. For now I am doing a build based on the client needs
+		$output ='<labe>Select from available times</label>';
 		$output .= $contain;
 		$output .= $rval;
 		$output .= '</select></div>';

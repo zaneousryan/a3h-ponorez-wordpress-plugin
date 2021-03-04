@@ -156,7 +156,7 @@
 									display: none;
 								}</style>
 								<script type="text/javascript">
-									// jQuery('.hide-guest04 input[name=guestCheckbox]').click();
+									jQuery('.hide-guest04 input[name=guestCheckbox]').click();
 									jQuery('.hide-guest04 select').val(1);
 									
 								</script>
@@ -168,7 +168,7 @@
 								?>
 								<script type="text/javascript">
 									jQuery("select#<?php echo $temp; ?>").val(1);
-									// jQuery("input#<?php echo $temp; ?>").click();
+									jQuery("input#<?php echo $temp; ?>").click();
 									jQuery("#<?php echo $temp; ?>").parent().css('display','none');
 								</script>
 								<?php
