@@ -148,6 +148,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-01";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -186,6 +187,7 @@ final class PonoRezTemplate {
 		}
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
+			echo $atts['date'];
 		}
 
 		if($atts['fixed_guest']){
@@ -236,6 +238,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-02";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -323,6 +326,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-03";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -410,6 +414,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-04";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -495,6 +500,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-05";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -580,6 +586,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-06";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -665,6 +672,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-07";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -750,6 +758,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-08";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -835,6 +844,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-09";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -920,6 +930,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-10";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -1005,6 +1016,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-11";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -1090,6 +1102,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-12";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -1175,6 +1188,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-13";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -1260,6 +1274,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$activityModelId = $id . "-14";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
