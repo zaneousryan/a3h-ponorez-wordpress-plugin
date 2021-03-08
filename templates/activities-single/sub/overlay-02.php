@@ -146,7 +146,15 @@
 								<style type="text/css">.hide-this{display: none;}</style>
 								<?php
 							}
-							// echo 2;
+							?>
+							<label class="hide-this">Choose Date</label>
+							<div class="form-row date-selector hide-this">
+								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable()' value='<?php echo $selected_date;?>'>
+									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable1();">
+										<i class="fa fa-calendar" aria-hidden="true"></i>
+									</a>
+							</div>
+							<?php 
 							$fix_guest = get_query_var('fix_guest');
 							if($fix_guest == '1'){
 								?>
@@ -171,14 +179,7 @@
 								</script>
 								<?php
 							}
-							?>
-							<label>Choose Date</label>
-							<div class="form-row date-selector">
-								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable2()'>
-									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable2();">
-										<i class="fa fa-calendar" aria-hidden="true"></i>
-									</a>
-							</div>
+							?>						
 
 						<?php
 
