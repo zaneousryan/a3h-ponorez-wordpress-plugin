@@ -1,4 +1,4 @@
-<div id="wrapper-<?php echo $myActivityID; ?>">
+<div id="wrapper-<?php echo $myActivityID; ?>-04">
 
 	<style>
 	.ui-widget-header { background: none; background-color: <?php echo get_option('primaryColor'); ?>!important ; border: none; }
@@ -10,10 +10,10 @@
 </style>
 
 	<!-- Trigger/Open Modal -->
-	<a class="button button-book-now" href="#modal-<?php echo $myActivityID; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
+	<a class="button button-book-now" href="#modal-<?php echo $myActivityID; ?>-04" rel="modal:open"><?php echo $bookNowText; ?></a>
 	
 	<!-- The Modal -->
-	<div id="modal-<?php echo $myActivityID; ?>" class="ponorezmodal">
+	<div id="modal-<?php echo $myActivityID; ?>-04" class="ponorezmodal">
 
 		<!-- Modal content -->
 		<div class="modal-content">

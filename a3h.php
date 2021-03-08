@@ -5,7 +5,7 @@
 /*
 Plugin Name: PonoRez Booking System
 Description: Add PonoRez booking forms to your website through shortcodes.
-Version: 3.6.13
+Version: 3.6.18
 Author: PonoRez
 Author URI: http://www.ponorez.com
 License: GPLv2 or later
