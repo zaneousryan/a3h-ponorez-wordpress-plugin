@@ -48,7 +48,7 @@
 								$gMax = ${'guestType' . $i . 'MaxGuest'};
 
 								if (isset($guestTypes[0]) && $guest == $gID) {
-									$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" name="'.$gType.'" min="'.$gMin.'" max="'.$gMax.'"]');
+									$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" modalId="'.$activityModelId.'" name="'.$gType.'" min="'.$gMin.'" max="'.$gMax.'"]');
 								}
 							}
 
@@ -154,9 +154,6 @@
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</a>
 							</div>
-							<?php echo $selected_date;?>
-							<br/>
-							<?php echo $activityModelId; ?>
 							<?php 
 							$fix_guest = get_query_var('fix_guest');
 							if($fix_guest == '1'){

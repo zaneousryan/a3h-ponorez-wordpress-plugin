@@ -1,4 +1,4 @@
-<div id="wrapper-<?php echo $myActivityID; ?>-11">
+<div id="wrapper-<?php echo $activityModelId; ?>-11">
 
 	<style>
 	.ui-widget-header { background: none; background-color: <?php echo get_option('primaryColor'); ?>!important ; border: none; }
@@ -10,15 +10,15 @@
 </style>
 
 	<!-- Trigger/Open Modal -->
-	<a class="button button-book-now" href="#modal-<?php echo $myActivityID; ?>-11" rel="modal:open"><?php echo $bookNowText; ?></a>
+	<a class="button button-book-now" href="#modal-<?php echo $activityModelId; ?>-11" rel="modal:open"><?php echo $bookNowText; ?></a>
 	
 	<!-- The Modal -->
-	<div id="modal-<?php echo $myActivityID; ?>-11" class="ponorezmodal">
+	<div id="modal-<?php echo $activityModelId; ?>-11" class="ponorezmodal">
 
 		<!-- Modal content -->
 		<div class="modal-content">
 
-			<form class="booking-form ponorezActivity-<?php echo $myActivityID; ?>">
+			<form class="booking-form ponorezActivity-<?php echo $activityModelId; ?>">
 
 				<div class="modal-header clearfix">
 
@@ -34,7 +34,7 @@
 						//Set Activity ID
 						echo do_shortcode('[loadPonorezActivity id="'.$myActivityID.'"]');
 
-						echo '<div id="availableGuests'. $myActivityID . '" class="hide-guest11">';
+						echo '<div id="availableGuests'. $activityModelId . '" class="hide-guest11">';
 
 						//Load Guest Types Select Fields
 						foreach ($guestTypes as $guest) { 
@@ -48,7 +48,7 @@
 								$gMax = ${'guestType' . $i . 'MaxGuest'};
 
 								if (isset($guestTypes[0]) && $guest == $gID) {
-									$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" name="'.$gType.'" min="'.$gMin.'" max="'.$gMax.'"]');
+									$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" modalId="'.$activityModelId.'" name="'.$gType.'" min="'.$gMin.'" max="'.$gMax.'"]');
 								}
 							}
 
@@ -65,7 +65,7 @@
 								$x=$i+1;
 
 								if (isset($guestTypes[$i]) && $guest == $guestTypes[$i]) {
-									${'printGT' . $x} = 'addGuests(' . $guestTypes[$i] . ', document.getElementById(\'guests_a' . $myActivityID . '_t' . $guestTypes[$i] .'\').value); ';
+									${'printGT' . $x} = 'addGuests(' . $guestTypes[$i] . ', document.getElementById(\'guests_a' . $activityModelId . '_t' . $guestTypes[$i] .'\').value); ';
 								}
 							}
 
@@ -99,8 +99,8 @@
 
 								if (isset($privateGuests[$i]) && $privateGuestID == null) {
 								} elseif (isset($privateGuests[$i]) && $privateGuestID == $privateGuests[$i]) {
-									$printPG1 = 'addGuests(' . $privateGuests[$i] . ', document.getElementById(\'guests_a' . $myActivityID . '_t' . $privateGuests[$i] .'\').value); ';
-									$printPG1js = '#guests_a' . $myActivityID . '_t' . $privateGuests[$i];
+									$printPG1 = 'addGuests(' . $privateGuests[$i] . ', document.getElementById(\'guests_a' . $activityModelId . '_t' . $privateGuests[$i] .'\').value); ';
+									$printPG1js = '#guests_a' . $activityModelId . '_t' . $privateGuests[$i];
 								}
 							}
 							
@@ -110,8 +110,8 @@
 						?>
 							<script>
 								function showMinAvailable(){
-									var activityControl = <?php echo $myActivityID;?>,
-										dateControl = 'date_a<?php echo $myActivityID; ?>',
+									var activityControl = <?php echo $activityModelId;?>,
+										dateControl = 'date_a<?php echo $activityModelId; ?>',
 										totalGuestCount = 0,
 										minAvailable = { guests: {} };
 									<?php
@@ -121,8 +121,8 @@
 
 												if (isset($guestTypes[0]) && $guest == $gID) {
 													?>
-													minAvailable.guests[<?php echo $gID;?>] = document.getElementById('guests_a<?php echo $myActivityID; ?>_t<?php echo $gID;?>').value;
-													totalGuestCount += Number(document.getElementById('guests_a<?php echo $myActivityID;?>_t<?php echo $gID;?>').value);
+													minAvailable.guests[<?php echo $gID;?>] = document.getElementById('guests_a<?php echo $activityModelId; ?>_t<?php echo $gID;?>').value;
+													totalGuestCount += Number(document.getElementById('guests_a<?php echo $activityModelId;?>_t<?php echo $gID;?>').value);
 													<?php
 												}
 											} 
@@ -149,7 +149,7 @@
 							?>
 							<label class="hide-this">Choose Date</label>
 							<div class="form-row date-selector hide-this">
-								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable()' value='<?php echo $selected_date;?>'>
+								<input class="form-control" id='date_a<?php echo $activityModelId; ?>' onclick='showMinAvailable()' value='<?php echo $selected_date;?>'>
 									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable1();">
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</a>
@@ -170,7 +170,7 @@
 							}
 							else if($fix_guest != 0){
 								$guest_id = explode(",",$fix_guest);
-								$temp = 'guests_a'.$myActivityID.'_t'.$guest_id[0];
+								$temp = 'guests_a'.$activityModelId.'_t'.$guest_id[0];
 								?>
 								<script type="text/javascript">
 									jQuery("select#<?php echo $temp; ?>").val(1);
@@ -213,7 +213,7 @@
 
 								if(isset($upgradeTypes[0]) && $upgradeTypes[0] != null){
 									if ($upgrade == $upgradeTypes[$i]) {
-										${'printUG' . $x} = 'addUpgrades(' . $upgradeTypes[$i] . ', document.getElementById(\'upgrades_a' . $myActivityID . '_u' . $upgradeTypes[$i] .'\').value); ';
+										${'printUG' . $x} = 'addUpgrades(' . $upgradeTypes[$i] . ', document.getElementById(\'upgrades_a' . $activityModelId . '_u' . $upgradeTypes[$i] .'\').value); ';
 									}
 								}
 
@@ -224,7 +224,7 @@
 
 						$accommodationStatusCheck = get_option('accommodationStatus');
 						$couponsStatusCheck = get_option('couponsStatus');
-						$promoCodeFieldJS = 'setpromotionalcode(document.getElementById(\'promotionalcode_' . $myActivityID . '\').value);';
+						$promoCodeFieldJS = 'setpromotionalcode(document.getElementById(\'promotionalcode_' . $activityModelId . '\').value);';
 
 						//Load Google Analytics ID
 						$googleAnalyticsID = get_option('googleAnalyticsID');
@@ -252,14 +252,14 @@
 
 									echo '<div class="form-row">';
 									echo '<label>Promotional Code</label>';
-									echo '<input class="form-control" type="text" id="promotionalcode_' . $myActivityID . '" />';
+									echo '<input class="form-control" type="text" id="promotionalcode_' . $activityModelId . '" />';
 									echo '</div>';
 
 								} else {
 
 									echo '<div class="form-row" style="display: none;">';
 									echo '<label>Promotional Code</label>';
-									echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $myActivityID . '" />';
+									echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $activityModelId . '" />';
 									echo '</div>';
 
 								}
@@ -278,14 +278,14 @@
 
 									echo '<div class="form-row">';
 									echo '<label>Promotional Code</label>';
-									echo '<input class="form-control" type="text" id="promotionalcode_' . $myActivityID . '" />';
+									echo '<input class="form-control" type="text" id="promotionalcode_' . $activityModelId . '" />';
 									echo '</div>';
 
 								} else {
 
 									echo '<div class="form-row" style="display: none;">';
 									echo '<label>Promotional Code</label>';
-									echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $myActivityID . '" />';
+									echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $activityModelId . '" />';
 									echo '</div>';
 
 								}
@@ -304,14 +304,14 @@
 
 									echo '<div class="form-row">';
 									echo '<label>Promotional Code</label>';
-									echo '<input class="form-control" type="text" id="promotionalcode_' . $myActivityID . '" />';
+									echo '<input class="form-control" type="text" id="promotionalcode_' . $activityModelId . '" />';
 									echo '</div>';
 
 								} else {
 
 									echo '<div class="form-row" style="display: none;">';
 									echo '<label>Promotional Code</label>';
-									echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $myActivityID . '" />';
+									echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $activityModelId . '" />';
 									echo '</div>';
 
 								}
@@ -330,14 +330,14 @@
 
 									echo '<div class="form-row">';
 									echo '<label>Promotional Code</label>';
-									echo '<input class="form-control" type="text" id="promotionalcode_' . $myActivityID . '" />';
+									echo '<input class="form-control" type="text" id="promotionalcode_' . $activityModelId . '" />';
 									echo '</div>';
 
 								} else {
 
 									echo '<div class="form-row" style="display: none;">';
 									echo '<label>Promotional Code</label>';
-									echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $myActivityID . '" />';
+									echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $activityModelId . '" />';
 									echo '</div>';
 
 								}
@@ -356,14 +356,14 @@
 
 									echo '<div class="form-row">';
 									echo '<label>Promotional Code</label>';
-									echo '<input class="form-control" type="text" id="promotionalcode_' . $myActivityID . '" />';
+									echo '<input class="form-control" type="text" id="promotionalcode_' . $activityModelId . '" />';
 									echo '</div>';
 
 								} else {
 
 									echo '<div class="form-row" style="display: none;">';
 									echo '<label>Promotional Code</label>';
-									echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $myActivityID . '" />';
+									echo '<input class="form-control" name="promoCode" type="text" id="promotionalcode_' . $activityModelId . '" />';
 									echo '</div>';
 
 								}
@@ -391,7 +391,7 @@
 						?>
 
 							<input type="button" class="button button-close" value="Cancel" onClick="jQuery.ponorezmodal.close();">
-							<input type="button" class="button button-book-now" value="<?php echo $bookNowText; ?>" onclick="reservation2('<?php echo $myActivityID; ?>', <?php echo $myActivityID; ?>, document.getElementById('date_a<?php echo $myActivityID; ?>').value, '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); <?php if (isset($printGT1)) { echo $printGT1; } if (isset($printGT2)) { echo $printGT2; } if (isset($printGT3)) {	echo $printGT3; } if (isset($printGT4)) { echo $printGT4; } if (isset($printGT5)) {	echo $printGT5; } if (isset($printGT6)) { echo $printGT6; } if (isset($printGT7)) { echo $printGT7; } if (isset($printGT8)) { echo $printGT8; } if (isset($printGT9)) {	echo $printGT9; } if (isset($printGT10)) { echo $printGT10; } if (isset($printGT11)) { echo $printGT11; } if (isset($printGT12)) { echo $printGT12; } if (isset($printGT13)) { echo $printGT13; } if (isset($printGT14)) { echo $printGT14; } if (isset($printGT15)) { echo $printGT15; } if (isset($printGT16)) { echo $printGT16; } if (isset($printGT17)) { echo $printGT17; } if (isset($printGT18)) { echo $printGT18; } if (isset($printGT19)) { echo $printGT19; } if (isset($printGT20)) { echo $printGT20; } ?> <?php if (isset($printPG1)) { echo $printPG1; } if (isset($printPG2)) { echo $printPG2; } if (isset($printPG3)) {	echo $printPG3; } if (isset($printPG4)) { echo $printPG4; } if (isset($printPG5)) {	echo $printPG5; } if (isset($printPG6)) { echo $printPG6; } if (isset($printPG7)) { echo $printPG7; } if (isset($printPG8)) { echo $printPG8; } if (isset($printPG9)) {	echo $printGT9; } if (isset($printPG10)) { echo $printPG10; } if (isset($printPG11)) { echo $printPG11; } if (isset($printPG12)) { echo $printPG12; } if (isset($printPG13)) { echo $printPG13; } if (isset($printPG14)) { echo $printPG14; } if (isset($printPG15)) { echo $printPG15; } if (isset($printPG16)) { echo $printPG16; } if (isset($printPG17)) { echo $printPG17; } if (isset($printPG18)) { echo $printPG18; } if (isset($printPG19)) { echo $printPG19; } if (isset($printPG20)) { echo $printPG20; } ?> <?php if (isset($printUG1)) { echo $printUG1; } if (isset($printUG2)) { echo $printUG2; } if (isset($printUG3)) {	echo $printUG3; } if (isset($printUG4)) { echo $printUG4; } if (isset($printUG5)) {	echo $printUG5; } if (isset($printUG6)) { echo $printUG6; } if (isset($printUG7)) { echo $printUG7; } if (isset($printUG8)) { echo $printUG8; } if (isset($printUG9)) {	echo $printUG9; } if (isset($printUG10)) { echo $printUG10; } if (isset($printUG11)) { echo $printUG11; } if (isset($printUG12)) { echo $printUG12; } if (isset($printUG13)) { echo $printUG13; } if (isset($printUG14)) { echo $printUG14; } if (isset($printUG15)) { echo $printUG15; } if (isset($printUG16)) { echo $printUG16; } if (isset($printUG17)) { echo $printUG17; } if (isset($printUG18)) { echo $printUG18; } if (isset($printUG19)) { echo $printUG19; } if (isset($printUG20)) { echo $printUG20; } if($upgradeTypes[0] != null){echo "setUpgradesFixed();";} ?> setHotel(jQuery('#hotel_a<?php echo $myActivityID; ?>').val()); setRoom(jQuery('#room_a<?php echo $myActivityID; ?>').val()); setTransportationRoute(jQuery('[name=\'transportationroute_a<?php echo $myActivityID; ?>\']:visible:checked').val()); setAccommodationFixed(); <?php if(!empty( $couponsStatusCheck ) && $promotionalCodesStatus == 'yes') { echo $promoCodeFieldJS; } ?> <?php if (!empty($googleAnalyticsID)) { echo $setGoogleAnalyticsID; } ?> availability_popup(); return false;" />
+							<input type="button" class="button button-book-now" value="<?php echo $bookNowText; ?>" onclick="reservation2('<?php echo $myActivityID; ?>', <?php echo $myActivityID; ?>, document.getElementById('date_a<?php echo $activityModelId; ?>').value, '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); <?php if (isset($printGT1)) { echo $printGT1; } if (isset($printGT2)) { echo $printGT2; } if (isset($printGT3)) {	echo $printGT3; } if (isset($printGT4)) { echo $printGT4; } if (isset($printGT5)) {	echo $printGT5; } if (isset($printGT6)) { echo $printGT6; } if (isset($printGT7)) { echo $printGT7; } if (isset($printGT8)) { echo $printGT8; } if (isset($printGT9)) {	echo $printGT9; } if (isset($printGT10)) { echo $printGT10; } if (isset($printGT11)) { echo $printGT11; } if (isset($printGT12)) { echo $printGT12; } if (isset($printGT13)) { echo $printGT13; } if (isset($printGT14)) { echo $printGT14; } if (isset($printGT15)) { echo $printGT15; } if (isset($printGT16)) { echo $printGT16; } if (isset($printGT17)) { echo $printGT17; } if (isset($printGT18)) { echo $printGT18; } if (isset($printGT19)) { echo $printGT19; } if (isset($printGT20)) { echo $printGT20; } ?> <?php if (isset($printPG1)) { echo $printPG1; } if (isset($printPG2)) { echo $printPG2; } if (isset($printPG3)) {	echo $printPG3; } if (isset($printPG4)) { echo $printPG4; } if (isset($printPG5)) {	echo $printPG5; } if (isset($printPG6)) { echo $printPG6; } if (isset($printPG7)) { echo $printPG7; } if (isset($printPG8)) { echo $printPG8; } if (isset($printPG9)) {	echo $printGT9; } if (isset($printPG10)) { echo $printPG10; } if (isset($printPG11)) { echo $printPG11; } if (isset($printPG12)) { echo $printPG12; } if (isset($printPG13)) { echo $printPG13; } if (isset($printPG14)) { echo $printPG14; } if (isset($printPG15)) { echo $printPG15; } if (isset($printPG16)) { echo $printPG16; } if (isset($printPG17)) { echo $printPG17; } if (isset($printPG18)) { echo $printPG18; } if (isset($printPG19)) { echo $printPG19; } if (isset($printPG20)) { echo $printPG20; } ?> <?php if (isset($printUG1)) { echo $printUG1; } if (isset($printUG2)) { echo $printUG2; } if (isset($printUG3)) {	echo $printUG3; } if (isset($printUG4)) { echo $printUG4; } if (isset($printUG5)) {	echo $printUG5; } if (isset($printUG6)) { echo $printUG6; } if (isset($printUG7)) { echo $printUG7; } if (isset($printUG8)) { echo $printUG8; } if (isset($printUG9)) {	echo $printUG9; } if (isset($printUG10)) { echo $printUG10; } if (isset($printUG11)) { echo $printUG11; } if (isset($printUG12)) { echo $printUG12; } if (isset($printUG13)) { echo $printUG13; } if (isset($printUG14)) { echo $printUG14; } if (isset($printUG15)) { echo $printUG15; } if (isset($printUG16)) { echo $printUG16; } if (isset($printUG17)) { echo $printUG17; } if (isset($printUG18)) { echo $printUG18; } if (isset($printUG19)) { echo $printUG19; } if (isset($printUG20)) { echo $printUG20; } if($upgradeTypes[0] != null){echo "setUpgradesFixed();";} ?> setHotel(jQuery('#hotel_a<?php echo $activityModelId; ?>').val()); setRoom(jQuery('#room_a<?php echo $activityModelId; ?>').val()); setTransportationRoute(jQuery('[name=\'transportationroute_a<?php echo $activityModelId; ?>\']:visible:checked').val()); setAccommodationFixed(); <?php if(!empty( $couponsStatusCheck ) && $promotionalCodesStatus == 'yes') { echo $promoCodeFieldJS; } ?> <?php if (!empty($googleAnalyticsID)) { echo $setGoogleAnalyticsID; } ?> availability_popup(); return false;" />
 
 						<?php	
 
@@ -400,7 +400,7 @@
 						?>
 
 							<input type="button" class="button button-close" value="Cancel" onClick="jQuery.ponorezmodal.close();">
-							<input type="button" class="button button-book-now" value="<?php echo $bookNowText; ?>" onclick="reservation2('<?php echo $myActivityID; ?>', <?php echo $myActivityID; ?>, document.getElementById('date_a<?php echo $myActivityID; ?>').value, '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); <?php if (isset($printGT1)) { echo $printGT1; } if (isset($printGT2)) { echo $printGT2; } if (isset($printGT3)) {	echo $printGT3; } if (isset($printGT4)) { echo $printGT4; } if (isset($printGT5)) {	echo $printGT5; } if (isset($printGT6)) { echo $printGT6; } if (isset($printGT7)) { echo $printGT7; } if (isset($printGT8)) { echo $printGT8; } if (isset($printGT9)) {	echo $printGT9; } if (isset($printGT10)) { echo $printGT10; } if (isset($printGT11)) { echo $printGT11; } if (isset($printGT12)) { echo $printGT12; } if (isset($printGT13)) { echo $printGT13; } if (isset($printGT14)) { echo $printGT14; } if (isset($printGT15)) { echo $printGT15; } if (isset($printGT16)) { echo $printGT16; } if (isset($printGT17)) { echo $printGT17; } if (isset($printGT18)) { echo $printGT18; } if (isset($printGT19)) { echo $printGT19; } if (isset($printGT20)) { echo $printGT20; } ?> <?php if (isset($printPG1)) { echo $printPG1; } if (isset($printPG2)) { echo $printPG2; } if (isset($printPG3)) {	echo $printPG3; } if (isset($printPG4)) { echo $printPG4; } if (isset($printPG5)) {	echo $printPG5; } if (isset($printPG6)) { echo $printPG6; } if (isset($printPG7)) { echo $printPG7; } if (isset($printPG8)) { echo $printPG8; } if (isset($printPG9)) {	echo $printGT9; } if (isset($printPG10)) { echo $printPG10; } if (isset($printPG11)) { echo $printPG11; } if (isset($printPG12)) { echo $printPG12; } if (isset($printPG13)) { echo $printPG13; } if (isset($printPG14)) { echo $printPG14; } if (isset($printPG15)) { echo $printPG15; } if (isset($printPG16)) { echo $printPG16; } if (isset($printPG17)) { echo $printPG17; } if (isset($printPG18)) { echo $printPG18; } if (isset($printPG19)) { echo $printPG19; } if (isset($printPG20)) { echo $printPG20; } ?> <?php if (isset($printUG1)) { echo $printUG1; } if (isset($printUG2)) { echo $printUG2; } if (isset($printUG3)) {	echo $printUG3; } if (isset($printUG4)) { echo $printUG4; } if (isset($printUG5)) {	echo $printUG5; } if (isset($printUG6)) { echo $printUG6; } if (isset($printUG7)) { echo $printUG7; } if (isset($printUG8)) { echo $printUG8; } if (isset($printUG9)) {	echo $printUG9; } if (isset($printUG10)) { echo $printUG10; } if (isset($printUG11)) { echo $printUG11; } if (isset($printUG12)) { echo $printUG12; } if (isset($printUG13)) { echo $printUG13; } if (isset($printUG14)) { echo $printUG14; } if (isset($printUG15)) { echo $printUG15; } if (isset($printUG16)) { echo $printUG16; } if (isset($printUG17)) { echo $printUG17; } if (isset($printUG18)) { echo $printUG18; } if (isset($printUG19)) { echo $printUG19; } if (isset($printUG20)) { echo $printUG20; } if($upgradeTypes[0] != null){echo "setUpgradesFixed();";} ?> setAccommodationFixed(); <?php if(!empty( $couponsStatusCheck ) && $promotionalCodesStatus == 'yes') { echo $promoCodeFieldJS; } ?> <?php if (!empty($googleAnalyticsID)) { echo $setGoogleAnalyticsID; } ?> availability_popup(); return false;" />
+							<input type="button" class="button button-book-now" value="<?php echo $bookNowText; ?>" onclick="reservation2('<?php echo $myActivityID; ?>', <?php echo $myActivityID; ?>, document.getElementById('date_a<?php echo $activityModelId; ?>').value, '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); <?php if (isset($printGT1)) { echo $printGT1; } if (isset($printGT2)) { echo $printGT2; } if (isset($printGT3)) {	echo $printGT3; } if (isset($printGT4)) { echo $printGT4; } if (isset($printGT5)) {	echo $printGT5; } if (isset($printGT6)) { echo $printGT6; } if (isset($printGT7)) { echo $printGT7; } if (isset($printGT8)) { echo $printGT8; } if (isset($printGT9)) {	echo $printGT9; } if (isset($printGT10)) { echo $printGT10; } if (isset($printGT11)) { echo $printGT11; } if (isset($printGT12)) { echo $printGT12; } if (isset($printGT13)) { echo $printGT13; } if (isset($printGT14)) { echo $printGT14; } if (isset($printGT15)) { echo $printGT15; } if (isset($printGT16)) { echo $printGT16; } if (isset($printGT17)) { echo $printGT17; } if (isset($printGT18)) { echo $printGT18; } if (isset($printGT19)) { echo $printGT19; } if (isset($printGT20)) { echo $printGT20; } ?> <?php if (isset($printPG1)) { echo $printPG1; } if (isset($printPG2)) { echo $printPG2; } if (isset($printPG3)) {	echo $printPG3; } if (isset($printPG4)) { echo $printPG4; } if (isset($printPG5)) {	echo $printPG5; } if (isset($printPG6)) { echo $printPG6; } if (isset($printPG7)) { echo $printPG7; } if (isset($printPG8)) { echo $printPG8; } if (isset($printPG9)) {	echo $printGT9; } if (isset($printPG10)) { echo $printPG10; } if (isset($printPG11)) { echo $printPG11; } if (isset($printPG12)) { echo $printPG12; } if (isset($printPG13)) { echo $printPG13; } if (isset($printPG14)) { echo $printPG14; } if (isset($printPG15)) { echo $printPG15; } if (isset($printPG16)) { echo $printPG16; } if (isset($printPG17)) { echo $printPG17; } if (isset($printPG18)) { echo $printPG18; } if (isset($printPG19)) { echo $printPG19; } if (isset($printPG20)) { echo $printPG20; } ?> <?php if (isset($printUG1)) { echo $printUG1; } if (isset($printUG2)) { echo $printUG2; } if (isset($printUG3)) {	echo $printUG3; } if (isset($printUG4)) { echo $printUG4; } if (isset($printUG5)) {	echo $printUG5; } if (isset($printUG6)) { echo $printUG6; } if (isset($printUG7)) { echo $printUG7; } if (isset($printUG8)) { echo $printUG8; } if (isset($printUG9)) {	echo $printUG9; } if (isset($printUG10)) { echo $printUG10; } if (isset($printUG11)) { echo $printUG11; } if (isset($printUG12)) { echo $printUG12; } if (isset($printUG13)) { echo $printUG13; } if (isset($printUG14)) { echo $printUG14; } if (isset($printUG15)) { echo $printUG15; } if (isset($printUG16)) { echo $printUG16; } if (isset($printUG17)) { echo $printUG17; } if (isset($printUG18)) { echo $printUG18; } if (isset($printUG19)) { echo $printUG19; } if (isset($printUG20)) { echo $printUG20; } if($upgradeTypes[0] != null){echo "setUpgradesFixed();";} ?> setAccommodationFixed(); <?php if(!empty( $couponsStatusCheck ) && $promotionalCodesStatus == 'yes') { echo $promoCodeFieldJS; } ?> <?php if (!empty($googleAnalyticsID)) { echo $setGoogleAnalyticsID; } ?> availability_popup(); return false;" />
 
 						<?php
 
@@ -409,7 +409,7 @@
 						?>
 
 							<input type="button" class="button button-close" value="Cancel" onClick="jQuery.ponorezmodal.close();">
-							<input type="button" class="button button-book-now" value="<?php echo $bookNowText; ?>" onclick="reservation2('<?php echo $myActivityID; ?>', <?php echo $myActivityID; ?>, document.getElementById('date_a<?php echo $myActivityID; ?>').value, '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); <?php if (isset($printGT1)) { echo $printGT1; } if (isset($printGT2)) { echo $printGT2; } if (isset($printGT3)) {	echo $printGT3; } if (isset($printGT4)) { echo $printGT4; } if (isset($printGT5)) {	echo $printGT5; } if (isset($printGT6)) { echo $printGT6; } if (isset($printGT7)) { echo $printGT7; } if (isset($printGT8)) { echo $printGT8; } if (isset($printGT9)) {	echo $printGT9; } if (isset($printGT10)) { echo $printGT10; } if (isset($printGT11)) { echo $printGT11; } if (isset($printGT12)) { echo $printGT12; } if (isset($printGT13)) { echo $printGT13; } if (isset($printGT14)) { echo $printGT14; } if (isset($printGT15)) { echo $printGT15; } if (isset($printGT16)) { echo $printGT16; } if (isset($printGT17)) { echo $printGT17; } if (isset($printGT18)) { echo $printGT18; } if (isset($printGT19)) { echo $printGT19; } if (isset($printGT20)) { echo $printGT20; } ?> <?php if (isset($printPG1)) { echo $printPG1; } if (isset($printPG2)) { echo $printPG2; } if (isset($printPG3)) {	echo $printPG3; } if (isset($printPG4)) { echo $printPG4; } if (isset($printPG5)) {	echo $printPG5; } if (isset($printPG6)) { echo $printPG6; } if (isset($printPG7)) { echo $printPG7; } if (isset($printPG8)) { echo $printPG8; } if (isset($printPG9)) {	echo $printGT9; } if (isset($printPG10)) { echo $printPG10; } if (isset($printPG11)) { echo $printPG11; } if (isset($printPG12)) { echo $printPG12; } if (isset($printPG13)) { echo $printPG13; } if (isset($printPG14)) { echo $printPG14; } if (isset($printPG15)) { echo $printPG15; } if (isset($printPG16)) { echo $printPG16; } if (isset($printPG17)) { echo $printPG17; } if (isset($printPG18)) { echo $printPG18; } if (isset($printPG19)) { echo $printPG19; } if (isset($printPG20)) { echo $printPG20; } ?> <?php if (isset($printUG1)) { echo $printUG1; } if (isset($printUG2)) { echo $printUG2; } if (isset($printUG3)) {	echo $printUG3; } if (isset($printUG4)) { echo $printUG4; } if (isset($printUG5)) {	echo $printUG5; } if (isset($printUG6)) { echo $printUG6; } if (isset($printUG7)) { echo $printUG7; } if (isset($printUG8)) { echo $printUG8; } if (isset($printUG9)) {	echo $printUG9; } if (isset($printUG10)) { echo $printUG10; } if (isset($printUG11)) { echo $printUG11; } if (isset($printUG12)) { echo $printUG12; } if (isset($printUG13)) { echo $printUG13; } if (isset($printUG14)) { echo $printUG14; } if (isset($printUG15)) { echo $printUG15; } if (isset($printUG16)) { echo $printUG16; } if (isset($printUG17)) { echo $printUG17; } if (isset($printUG18)) { echo $printUG18; } if (isset($printUG19)) { echo $printUG19; } if (isset($printUG20)) { echo $printUG20; } if($upgradeTypes[0] != null){echo "setUpgradesFixed();";} if(!empty( $couponsStatusCheck ) && $promotionalCodesStatus == 'yes') { echo $promoCodeFieldJS; } ?> <?php if (!empty($googleAnalyticsID)) { echo $setGoogleAnalyticsID; } ?> availability_popup(); return false;" />
+							<input type="button" class="button button-book-now" value="<?php echo $bookNowText; ?>" onclick="reservation2('<?php echo $myActivityID; ?>', <?php echo $myActivityID; ?>, document.getElementById('date_a<?php echo $activityModelId; ?>').value, '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); <?php if (isset($printGT1)) { echo $printGT1; } if (isset($printGT2)) { echo $printGT2; } if (isset($printGT3)) {	echo $printGT3; } if (isset($printGT4)) { echo $printGT4; } if (isset($printGT5)) {	echo $printGT5; } if (isset($printGT6)) { echo $printGT6; } if (isset($printGT7)) { echo $printGT7; } if (isset($printGT8)) { echo $printGT8; } if (isset($printGT9)) {	echo $printGT9; } if (isset($printGT10)) { echo $printGT10; } if (isset($printGT11)) { echo $printGT11; } if (isset($printGT12)) { echo $printGT12; } if (isset($printGT13)) { echo $printGT13; } if (isset($printGT14)) { echo $printGT14; } if (isset($printGT15)) { echo $printGT15; } if (isset($printGT16)) { echo $printGT16; } if (isset($printGT17)) { echo $printGT17; } if (isset($printGT18)) { echo $printGT18; } if (isset($printGT19)) { echo $printGT19; } if (isset($printGT20)) { echo $printGT20; } ?> <?php if (isset($printPG1)) { echo $printPG1; } if (isset($printPG2)) { echo $printPG2; } if (isset($printPG3)) {	echo $printPG3; } if (isset($printPG4)) { echo $printPG4; } if (isset($printPG5)) {	echo $printPG5; } if (isset($printPG6)) { echo $printPG6; } if (isset($printPG7)) { echo $printPG7; } if (isset($printPG8)) { echo $printPG8; } if (isset($printPG9)) {	echo $printGT9; } if (isset($printPG10)) { echo $printPG10; } if (isset($printPG11)) { echo $printPG11; } if (isset($printPG12)) { echo $printPG12; } if (isset($printPG13)) { echo $printPG13; } if (isset($printPG14)) { echo $printPG14; } if (isset($printPG15)) { echo $printPG15; } if (isset($printPG16)) { echo $printPG16; } if (isset($printPG17)) { echo $printPG17; } if (isset($printPG18)) { echo $printPG18; } if (isset($printPG19)) { echo $printPG19; } if (isset($printPG20)) { echo $printPG20; } ?> <?php if (isset($printUG1)) { echo $printUG1; } if (isset($printUG2)) { echo $printUG2; } if (isset($printUG3)) {	echo $printUG3; } if (isset($printUG4)) { echo $printUG4; } if (isset($printUG5)) {	echo $printUG5; } if (isset($printUG6)) { echo $printUG6; } if (isset($printUG7)) { echo $printUG7; } if (isset($printUG8)) { echo $printUG8; } if (isset($printUG9)) {	echo $printUG9; } if (isset($printUG10)) { echo $printUG10; } if (isset($printUG11)) { echo $printUG11; } if (isset($printUG12)) { echo $printUG12; } if (isset($printUG13)) { echo $printUG13; } if (isset($printUG14)) { echo $printUG14; } if (isset($printUG15)) { echo $printUG15; } if (isset($printUG16)) { echo $printUG16; } if (isset($printUG17)) { echo $printUG17; } if (isset($printUG18)) { echo $printUG18; } if (isset($printUG19)) { echo $printUG19; } if (isset($printUG20)) { echo $printUG20; } if($upgradeTypes[0] != null){echo "setUpgradesFixed();";} if(!empty( $couponsStatusCheck ) && $promotionalCodesStatus == 'yes') { echo $promoCodeFieldJS; } ?> <?php if (!empty($googleAnalyticsID)) { echo $setGoogleAnalyticsID; } ?> availability_popup(); return false;" />
 
 						<?php
 
@@ -417,7 +417,7 @@
 						?>
 
 							<input type="button" class="button button-close" value="Cancel" onClick="jQuery.ponorezmodal.close();">
-							<input type="button" class="button button-book-now" value="<?php echo $bookNowText; ?>" onclick="reservation2('<?php echo $myActivityID; ?>', <?php echo $myActivityID; ?>, document.getElementById('date_a<?php echo $myActivityID; ?>').value, '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); <?php if (isset($printGT1)) { echo $printGT1; } if (isset($printGT2)) { echo $printGT2; } if (isset($printGT3)) {	echo $printGT3; } if (isset($printGT4)) { echo $printGT4; } if (isset($printGT5)) {	echo $printGT5; } if (isset($printGT6)) { echo $printGT6; } if (isset($printGT7)) { echo $printGT7; } if (isset($printGT8)) { echo $printGT8; } if (isset($printGT9)) {	echo $printGT9; } if (isset($printGT10)) { echo $printGT10; } if (isset($printGT11)) { echo $printGT11; } if (isset($printGT12)) { echo $printGT12; } if (isset($printGT13)) { echo $printGT13; } if (isset($printGT14)) { echo $printGT14; } if (isset($printGT15)) { echo $printGT15; } if (isset($printGT16)) { echo $printGT16; } if (isset($printGT17)) { echo $printGT17; } if (isset($printGT18)) { echo $printGT18; } if (isset($printGT19)) { echo $printGT19; } if (isset($printGT20)) { echo $printGT20; } ?> <?php if (isset($printPG1)) { echo $printPG1; } if (isset($printPG2)) { echo $printPG2; } if (isset($printPG3)) {	echo $printPG3; } if (isset($printPG4)) { echo $printPG4; } if (isset($printPG5)) {	echo $printPG5; } if (isset($printPG6)) { echo $printPG6; } if (isset($printPG7)) { echo $printPG7; } if (isset($printPG8)) { echo $printPG8; } if (isset($printPG9)) {	echo $printGT9; } if (isset($printPG10)) { echo $printPG10; } if (isset($printPG11)) { echo $printPG11; } if (isset($printPG12)) { echo $printPG12; } if (isset($printPG13)) { echo $printPG13; } if (isset($printPG14)) { echo $printPG14; } if (isset($printPG15)) { echo $printPG15; } if (isset($printPG16)) { echo $printPG16; } if (isset($printPG17)) { echo $printPG17; } if (isset($printPG18)) { echo $printPG18; } if (isset($printPG19)) { echo $printPG19; } if (isset($printPG20)) { echo $printPG20; } ?> <?php if (isset($printUG1)) { echo $printUG1; } if (isset($printUG2)) { echo $printUG2; } if (isset($printUG3)) {	echo $printUG3; } if (isset($printUG4)) { echo $printUG4; } if (isset($printUG5)) {	echo $printUG5; } if (isset($printUG6)) { echo $printUG6; } if (isset($printUG7)) { echo $printUG7; } if (isset($printUG8)) { echo $printUG8; } if (isset($printUG9)) {	echo $printUG9; } if (isset($printUG10)) { echo $printUG10; } if (isset($printUG11)) { echo $printUG11; } if (isset($printUG12)) { echo $printUG12; } if (isset($printUG13)) { echo $printUG13; } if (isset($printUG14)) { echo $printUG14; } if (isset($printUG15)) { echo $printUG15; } if (isset($printUG16)) { echo $printUG16; } if (isset($printUG17)) { echo $printUG17; } if (isset($printUG18)) { echo $printUG18; } if (isset($printUG19)) { echo $printUG19; } if (isset($printUG20)) { echo $printUG20; } if($upgradeTypes[0] != null){echo "setUpgradesFixed();";} ?> setAccommodationFixed(); <?php if(!empty( $couponsStatusCheck ) && $promotionalCodesStatus == 'yes') { echo $promoCodeFieldJS; } ?> <?php if (!empty($googleAnalyticsID)) { echo $setGoogleAnalyticsID; } ?> availability_popup(); return false;" />
+							<input type="button" class="button button-book-now" value="<?php echo $bookNowText; ?>" onclick="reservation2('<?php echo $myActivityID; ?>', <?php echo $myActivityID; ?>, document.getElementById('date_a<?php echo $activityModelId; ?>').value, '', 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0); <?php if (isset($printGT1)) { echo $printGT1; } if (isset($printGT2)) { echo $printGT2; } if (isset($printGT3)) {	echo $printGT3; } if (isset($printGT4)) { echo $printGT4; } if (isset($printGT5)) {	echo $printGT5; } if (isset($printGT6)) { echo $printGT6; } if (isset($printGT7)) { echo $printGT7; } if (isset($printGT8)) { echo $printGT8; } if (isset($printGT9)) {	echo $printGT9; } if (isset($printGT10)) { echo $printGT10; } if (isset($printGT11)) { echo $printGT11; } if (isset($printGT12)) { echo $printGT12; } if (isset($printGT13)) { echo $printGT13; } if (isset($printGT14)) { echo $printGT14; } if (isset($printGT15)) { echo $printGT15; } if (isset($printGT16)) { echo $printGT16; } if (isset($printGT17)) { echo $printGT17; } if (isset($printGT18)) { echo $printGT18; } if (isset($printGT19)) { echo $printGT19; } if (isset($printGT20)) { echo $printGT20; } ?> <?php if (isset($printPG1)) { echo $printPG1; } if (isset($printPG2)) { echo $printPG2; } if (isset($printPG3)) {	echo $printPG3; } if (isset($printPG4)) { echo $printPG4; } if (isset($printPG5)) {	echo $printPG5; } if (isset($printPG6)) { echo $printPG6; } if (isset($printPG7)) { echo $printPG7; } if (isset($printPG8)) { echo $printPG8; } if (isset($printPG9)) {	echo $printGT9; } if (isset($printPG10)) { echo $printPG10; } if (isset($printPG11)) { echo $printPG11; } if (isset($printPG12)) { echo $printPG12; } if (isset($printPG13)) { echo $printPG13; } if (isset($printPG14)) { echo $printPG14; } if (isset($printPG15)) { echo $printPG15; } if (isset($printPG16)) { echo $printPG16; } if (isset($printPG17)) { echo $printPG17; } if (isset($printPG18)) { echo $printPG18; } if (isset($printPG19)) { echo $printPG19; } if (isset($printPG20)) { echo $printPG20; } ?> <?php if (isset($printUG1)) { echo $printUG1; } if (isset($printUG2)) { echo $printUG2; } if (isset($printUG3)) {	echo $printUG3; } if (isset($printUG4)) { echo $printUG4; } if (isset($printUG5)) {	echo $printUG5; } if (isset($printUG6)) { echo $printUG6; } if (isset($printUG7)) { echo $printUG7; } if (isset($printUG8)) { echo $printUG8; } if (isset($printUG9)) {	echo $printUG9; } if (isset($printUG10)) { echo $printUG10; } if (isset($printUG11)) { echo $printUG11; } if (isset($printUG12)) { echo $printUG12; } if (isset($printUG13)) { echo $printUG13; } if (isset($printUG14)) { echo $printUG14; } if (isset($printUG15)) { echo $printUG15; } if (isset($printUG16)) { echo $printUG16; } if (isset($printUG17)) { echo $printUG17; } if (isset($printUG18)) { echo $printUG18; } if (isset($printUG19)) { echo $printUG19; } if (isset($printUG20)) { echo $printUG20; } if($upgradeTypes[0] != null){echo "setUpgradesFixed();";} ?> setAccommodationFixed(); <?php if(!empty( $couponsStatusCheck ) && $promotionalCodesStatus == 'yes') { echo $promoCodeFieldJS; } ?> <?php if (!empty($googleAnalyticsID)) { echo $setGoogleAnalyticsID; } ?> availability_popup(); return false;" />
 
 						<?php
 
@@ -435,18 +435,18 @@
 
 						if( jQuery('<?php if (isset($printPG1js)) { echo $printPG1js; } if (isset($printPG2js)) { echo $printPG2js; } if (isset($printPG3js)) {	echo $printPG3js; } if (isset($printPG4js)) { echo $printPG4js; } if (isset($printPG5js)) {	echo $printPG5js; } if (isset($printPG6js)) { echo $printPG6js; } if (isset($printPG7js)) { echo $printPG7js; } if (isset($printPG8js)) { echo $printPG8js; } if (isset($printPG9js)) {	echo $printGT9js; } if (isset($printPG10js)) { echo $printPG10js; } if (isset($printPG11js)) { echo $printPG11js; } if (isset($printPG12js)) { echo $printPG12js; } if (isset($printPG13js)) { echo $printPG13js; } if (isset($printPG14js)) { echo $printPG14js; } if (isset($printPG15js)) { echo $printPG15js; } if (isset($printPG16js)) { echo $printPG16js; } if (isset($printPG17js)) { echo $printPG17js; } if (isset($printPG18js)) { echo $printPG18js; } if (isset($printPG19js)) { echo $printPG19js; } if (isset($printPG20js)) { echo $printPG20js; } ?>').val() == 0) {
 
-							jQuery('#availableGuests<?php echo $myActivityID; ?>').show();
+							jQuery('#availableGuests<?php echo $activityModelId; ?>').show();
 
 						} else {
 
-							jQuery('#availableGuests<?php echo $myActivityID; ?>').hide();
+							jQuery('#availableGuests<?php echo $activityModelId; ?>').hide();
 						}         
 
 					});
 
 					jQuery('<?php if (isset($printPG1js)) { echo $printPG1js; } if (isset($printPG2js)) { echo $printPG2js; } if (isset($printPG3js)) {	echo $printPG3js; } if (isset($printPG4js)) { echo $printPG4js; } if (isset($printPG5js)) {	echo $printPG5js; } if (isset($printPG6js)) { echo $printPG6js; } if (isset($printPG7js)) { echo $printPG7js; } if (isset($printPG8js)) { echo $printPG8js; } if (isset($printPG9js)) {	echo $printGT9js; } if (isset($printPG10js)) { echo $printPG10js; } if (isset($printPG11js)) { echo $printPG11js; } if (isset($printPG12js)) { echo $printPG12js; } if (isset($printPG13js)) { echo $printPG13js; } if (isset($printPG14js)) { echo $printPG14js; } if (isset($printPG15js)) { echo $printPG15js; } if (isset($printPG16js)) { echo $printPG16js; } if (isset($printPG17js)) { echo $printPG17js; } if (isset($printPG18js)) { echo $printPG18js; } if (isset($printPG19js)) { echo $printPG19js; } if (isset($printPG20js)) { echo $printPG20js; } ?>').click(function() {
 
-						jQuery('#availableGuests<?php echo $myActivityID; ?> select').prop('selectedIndex',0);			
+						jQuery('#availableGuests<?php echo $activityModelId; ?> select').prop('selectedIndex',0);			
 
 						jQuery('<?php if (isset($printPG1js)) { echo $printPG1js; } if (isset($printPG2js)) { echo $printPG2js; } if (isset($printPG3js)) {	echo $printPG3js; } if (isset($printPG4js)) { echo $printPG4js; } if (isset($printPG5js)) {	echo $printPG5js; } if (isset($printPG6js)) { echo $printPG6js; } if (isset($printPG7js)) { echo $printPG7js; } if (isset($printPG8js)) { echo $printPG8js; } if (isset($printPG9js)) {	echo $printGT9js; } if (isset($printPG10js)) { echo $printPG10js; } if (isset($printPG11js)) { echo $printPG11js; } if (isset($printPG12js)) { echo $printPG12js; } if (isset($printPG13js)) { echo $printPG13js; } if (isset($printPG14js)) { echo $printPG14js; } if (isset($printPG15js)) { echo $printPG15js; } if (isset($printPG16js)) { echo $printPG16js; } if (isset($printPG17js)) { echo $printPG17js; } if (isset($printPG18js)) { echo $printPG18js; } if (isset($printPG19js)) { echo $printPG19js; } if (isset($printPG20js)) { echo $printPG20js; } ?>').change(function() {
 
@@ -473,7 +473,7 @@
 				
 				jQuery(document).ready(function() {
 					
-					jQuery("#promotionalcode_<?php echo $myActivityID ?>").val("<?php echo $promotionalCode; ?>"); 
+					jQuery("#promotionalcode_<?php echo $activityModelId ?>").val("<?php echo $promotionalCode; ?>"); 
 				
 				});
 				

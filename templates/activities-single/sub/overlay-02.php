@@ -29,8 +29,7 @@
 
 				<div class="modal-body">
 
-					<?php 
-					echo "UPDATED";
+					<?php 					
 						//Set Activity ID
 						echo do_shortcode('[loadPonorezActivity id="'.$myActivityID.'"]');
 
@@ -48,7 +47,7 @@
 								$gMax = ${'guestType' . $i . 'MaxGuest'};
 
 								if (isset($guestTypes[0]) && $guest == $gID) {
-									$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" name="'.$gType.'" min="'.$gMin.'" max="'.$gMax.'"]');
+									$html .= do_shortcode('[loadPonorezActivityGuestField id="'.$gID.'" modalId="'.$activityModelId.'" name="'.$gType.'" min="'.$gMin.'" max="'.$gMax.'"]');
 								}
 							}
 

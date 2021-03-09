@@ -187,7 +187,6 @@ final class PonoRezTemplate {
 		}
 		if($atts['date']){
 			set_query_var('date', $atts['date']);
-			echo $atts['date'];
 		}
 
 		if($atts['fixed_guest']){
@@ -1399,18 +1398,21 @@ EOT;
 	// Load guest type fields
 	public function loadPonorezActivityGuestField ( $atts = array() ) {
 		
-		$a = shortcode_atts( array( 'id' => 0, 'name' => '', 'min' => 0, 'max' => 20 ), $atts );
-		
+		$a = shortcode_atts( array( 'id' => 0, 'modalid' => '', 'name' => '', 'min' => 0, 'max' => 20 ), $atts );
 		$html = '';
 
-		$htmlIdTagPart = sprintf( 'a%d', $this->_currentActivity->id );
-		
+		if($a[ 'modalid' ] == ''){
+			$htmlIdTagPart = sprintf( 'a%d', $this->_currentActivity->id );
+		}
+		else {
+			$htmlIdTagPart = sprintf( 'a%s', $a[ 'modalid' ]);
+		}
+
 		if ( null != $this->_currentActivityGroup ) {
 			
 			$htmlIdTagPart = $this->_currentActivityGroup->groupName;
 			
 		}
-
 		if ( $a[ 'max' ] == 1 ) {
 
 			if ( null != $this->_currentActivityGroup ) {
