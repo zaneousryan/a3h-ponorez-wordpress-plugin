@@ -3312,11 +3312,11 @@ EOT;
 
 		if ( !$dsTrimmed ) { 
 			
-			$rval = sprintf( '<input type="button" class="button button-book-now" value="' . $bookNowText . '" onclick="booknow(g_%s,\'' . $googleAnalyticsID . '\');" />', $this->_currentActivityGroup->groupName );
+			$rval = sprintf( '<input type="button" class="pr-btn-book-now" value="' . $bookNowText . '" onclick="booknow(g_%s,\'' . $googleAnalyticsID . '\');" />', $this->_currentActivityGroup->groupName );
 			
 		} else {
 			
-			$rval = sprintf( '<input type="button" class="button button-book-now" value="' . $bookNowText . '" onclick="booknow(g_%s,\'' . $googleAnalyticsID . '\');" />',
+			$rval = sprintf( '<input type="button" class="pr-btn-book-now" value="' . $bookNowText . '" onclick="booknow(g_%s,\'' . $googleAnalyticsID . '\');" />',
 			$this->_currentActivityGroup->groupName );
 			
 		}
