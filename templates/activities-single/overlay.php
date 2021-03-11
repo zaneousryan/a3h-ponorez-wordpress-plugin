@@ -10,10 +10,9 @@
 	</style>
 
 	<!-- Trigger/Open Modal -->
-	<a class="button button-book-now" href="#modal-<?php echo $myActivityID; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
-	
+	<a class="button button-book-now" id="ponorez-book-button-<?php echo $overlayId; ?>" href="#modal-<?php echo $myActivityID; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
 	<!-- The Modal -->
-	<div id="modal-<?php echo $myActivityID; ?>" class="ponorezmodal">
+	<div id="pono-rez-booking-modal-<?php echo $overlayId; ?>" class="ponorezmodal">
 
 		<!-- Modal content -->
 		<div class="modal-content">
@@ -109,7 +108,7 @@
 						//Load the DatePicker Field
 						?>
 							<script>
-								function showMinAvailable(){
+								function showMinAvailable0(){
 									var activityControl = <?php echo $myActivityID;?>,
 										dateControl = 'date_a<?php echo $myActivityID; ?>',
 										totalGuestCount = 0,
@@ -149,8 +148,8 @@
 							?>
 							<label class="hide-this">Choose Date</label>
 							<div class="form-row date-selector hide-this">
-								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable()' value='<?php echo $selected_date;?>'>
-									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable1();">
+								<input class="form-control" id='date_a<?php echo $myActivityID; ?>' onclick='showMinAvailable0()' value='<?php echo $selected_date;?>'>
+									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable0();">
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</a>
 							</div>

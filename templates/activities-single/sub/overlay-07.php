@@ -110,7 +110,7 @@
 						?>
 							<script>
 								function showMinAvailable(){
-									var activityControl = <?php echo $activityModelId;?>,
+									var activityControl = '<?php echo $myActivityID;?>',
 										dateControl = 'date_a<?php echo $activityModelId; ?>',
 										totalGuestCount = 0,
 										minAvailable = { guests: {} };

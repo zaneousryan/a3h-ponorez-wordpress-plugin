@@ -1,4 +1,4 @@
-<div id="wrapper-<?php echo $activityModelId; ?>-06">
+<div id="wrapper-<?php echo $activityModelId; ?>">
 
 	<style>
 	.ui-widget-header { background: none; background-color: <?php echo get_option('primaryColor'); ?>!important ; border: none; }
@@ -10,10 +10,10 @@
 </style>
 
 	<!-- Trigger/Open Modal -->
-	<a class="button button-book-now" href="#modal-<?php echo $activityModelId; ?>-06" rel="modal:open"><?php echo $bookNowText; ?></a>
+	<a class="button button-book-now" href="#modal-<?php echo $activityModelId; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
 	
 	<!-- The Modal -->
-	<div id="modal-<?php echo $activityModelId; ?>-06" class="ponorezmodal">
+	<div id="modal-<?php echo $activityModelId; ?>" class="ponorezmodal">
 
 		<!-- Modal content -->
 		<div class="modal-content">
@@ -110,7 +110,7 @@
 						?>
 							<script>
 								function showMinAvailable(){
-									var activityControl = <?php echo $activityModelId;?>,
+									var activityControl = '<?php echo $myActivityID;?>',
 										dateControl = 'date_a<?php echo $activityModelId; ?>',
 										totalGuestCount = 0,
 										minAvailable = { guests: {} };

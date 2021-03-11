@@ -16,6 +16,7 @@ final class PonoRezTransportation
 	protected $_transportationOptionsSoap = null;
 	protected $_supplierId;
 	protected $_activityId;
+	protected $_modalId;
 
 	/**
 	 * Create a transportation object
@@ -23,7 +24,7 @@ final class PonoRezTransportation
 	 * @param int $supplierId
 	 * @param int $activityId
 	 */
-	public function __construct($supplierId, $activityId)
+	public function __construct($supplierId, $activityId, $modalId)
 	{
 
 		if (null == $supplierId) {
@@ -38,6 +39,14 @@ final class PonoRezTransportation
 
 		$this->_supplierId = $supplierId;
 		$this->_activityId = $activityId;
+		
+		if(null != $modalId){
+			$this->_modalId = $modalId;
+		}
+		else{
+			$this->_modalId = '';
+		}
+		
 	}
 
 	/**
@@ -76,7 +85,7 @@ final class PonoRezTransportation
 		if (null == $this->_transportationMap) {
 			$this->_transportationMap = $this->_buildTransportationMap();
 		}
-
+		
 		return $this->_transportationMap;
 	}
 
@@ -226,26 +235,44 @@ final class PonoRezTransportation
 	{
 		$tMapItems = $this->_getTransportationMappingItems();
 
-		$tIds = $this->getTransportationOptions();
-
+		$tIds = $this->getTransportationOptions();		
 		$map = array();
 		// echo '<pre>';
 		// print_r($tIds);
-		foreach ($tIds as $id => $itemName) {
-			$map[$id] = sprintf(
-				'#transportationRouteContainer_a%d_%d',
-				$this->_activityId,
-				$id
-			);
+		if(null == $this->_modalId){
+			foreach ($tIds as $id => $itemName) {
+				$map[$id] = sprintf(
+					'#transportationRouteContainer_a%d_%d',
+					$this->_activityId, 
+					$id
+				);
+			}
+		}
+		else{
+			foreach ($tIds as $id => $itemName) {
+				$map[$id] = sprintf(
+					'#transportationRouteContainer_a%s_%d',
+					$this->_modalId,
+					$id
+				);
+			}
 		}
 
 		// The map needs contain the following elements.
 		//  routesContainerSelector: "#transportationRoutesContainer_a7648",
 		//  routeSelectorMap: 
-		$rval['routesContainerSelector'] = sprintf(
-			'#transportationRoutesContainer_a%d',
-			$this->_activityId
-		);
+		if(null == $this->_modalId){
+			$rval['routesContainerSelector'] = sprintf(
+				'#transportationRoutesContainer_a%d',
+				$this->_activityId
+			);
+		}
+		else{
+			$rval['routesContainerSelector'] = sprintf(
+				'#transportationRoutesContainer_a%s',
+				$this->_modalId
+			);
+		}
 		$rval['routeSelectorMap'] = $map;
 
 		return $rval;

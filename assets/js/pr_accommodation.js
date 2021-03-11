@@ -8,9 +8,11 @@ var Accommodation = (function () {
 
   var m;
 
-  var initHotels = function (supplierId, activityId, agencyId, $hotelSelect, routeSelectionContextData) {
-    $hotelSelect.empty();
-    console.log('xxx - ',routeSelectionContextData,' - xxx');
+  var initHotels = function (supplierId, activityId, agencyId, $hotelSelect, routeSelectionContextData, modalId) {
+      $hotelSelect.empty();
+      if (null == modalId || modalId == '') {
+          modalId = activityId;
+      }
     var hotelInfosOfActivity = dataOfActivityById[activityId].hotelInfos;
     var localResidenceHotelInfo = null;
     var localResidenceHotelId = null;
@@ -35,15 +37,15 @@ var Accommodation = (function () {
     if (routeSelectionContextData) {
       m.setupTransportationRoutes({ supplierId: supplierId, activityId: activityId, agencyId: agencyId, hotelId: $hotelSelect.val(), routeSelectionContextData: routeSelectionContextData });
     }
-    ///////////////////////////////
-    jQuery('#transportationRoutesContainer_a'+activityId).find('div').each(function(){
+      ///////////////////////////////
+      jQuery('#transportationRoutesContainer_a' + modalId).find('div').each(function () {
         jQuery(this).find('label').attr('name',jQuery(this).find('label').text());
     });
     ///////////////////////////////
      /////////////////////////////Options order change///////////////////////////////
-      var temp = jQuery('#transportationRoutesContainer_a'+activityId).find('div')[0];
+      var temp = jQuery('#transportationRoutesContainer_a' + modalId).find('div')[0];
       var c = jQuery(temp).clone();
-      jQuery('#transportationRoutesContainer_a'+activityId).append(c);
+      jQuery('#transportationRoutesContainer_a'+modalId).append(c);
       jQuery(temp).remove();
       /////////////////////////////////////////////////////////////////////////////////
   };
@@ -58,7 +60,7 @@ var Accommodation = (function () {
   };
 
   m = {
-    loadHotels: function (params) {
+      loadHotels: function (params) {
       // params: { supplierId, activityId, agencyId, hotelSelectSelector, (optional) routeSelectionContextData }
 
       // supplierId is assumed to match activityId; that is, we won't be called with the same activityId
@@ -140,12 +142,13 @@ var Accommodation = (function () {
       // and then populate the hotels select.
 
       activityDeferredById[params.activityId].done(function () {
-        initHotels(params.supplierId, params.activityId, params.agencyId, $hotelSelect, params.routeSelectionContextData);
+        initHotels(params.supplierId, params.activityId, params.agencyId, $hotelSelect, params.routeSelectionContextData, params.modalId);
         $hotelSelect.prop('disabled', false);
       });
     },
 
-    setupTransportationRoutes: function (params) {
+      setupTransportationRoutes: function (params) {
+
 
       // params: { supplierId, activityId, agencyId, hotelId, routeSelectionContextData }    
       var contextData = params.routeSelectionContextData;
@@ -187,11 +190,9 @@ var Accommodation = (function () {
         }
 
         var routeElementSelector = contextData.routeSelectorMap[routeInfo.id];
-        console.log('routeElementSelector ', routeElementSelector);
-
+        
         selectedArray.push(routeElementSelector);
         
-        console.log('selectedArray ', selectedArray);
         if (routeElementSelector) {
           jQuery(routeElementSelector).show();
           haveRouteSelection = true;
@@ -199,75 +200,86 @@ var Accommodation = (function () {
 
       });
       
-
-     
-
       // if (haveRouteSelection) {
         jQuery(contextData.routesContainerSelector).show();
       // }
-      var selectedDate = new Date(jQuery('#date_a' + params.activityId).val());
+      if (null == params.modalId || params.modalId == '') {
+          params.modalId = params.activityId;
+      }
+      var selectedDate = new Date(jQuery('#date_a' + params.modalId).val());
       var selectedMonth = selectedDate.getMonth() + 1;
       selectedMonth = String(selectedMonth);
 
       var finalSelectedArray = [];
-      console.log('before selectedArray ', selectedArray);
       var count=0;
       jQuery.each(selectedArray, function (index, selectedItem) {
-        count++;
+          count++;
+
         // if(jQuery(this).hasClass('no-transport')){
         //   console.log('found no transp');
         // }
-        var labelText = jQuery("div[id='" + selectedItem + "']").find('label').attr('name');
-        console.log('labelText ', labelText);
-        var labelDate, labelMonth, labelMth, labelM;
-        if(labelText){
-          labelDate = labelText.split('(');
-        }
-        if(labelDate && labelDate[1]){
-          labelMonth = labelDate[1].split(':');
-        }
-        if(labelMonth && labelMonth[1]){
-          labelMth = labelMonth[1].split(')');
-        }
-        if(labelMth && labelMth[0]){
-          labelM = labelMth[0].split(',');
-        }
-        console.log('labelDate ', labelDate);
-        
-        console.log('labelMonth ', labelMonth);
-        
-        console.log('labelMth ', labelMth);
-        
-        console.log('labelM ', labelM);
-        if (jQuery.inArray(selectedMonth, labelM) == -1) {
-        } else {
-          finalSelectedArray.push(selectedArray[index]);
-        }
+          var labelText = jQuery("div[id='" + selectedItem + "']").find('label').attr('name');
+          if (!labelText.includes("(MONTHS:")) {
+              finalSelectedArray.push(selectedArray[index]);
+          }
+          else {
+              var labelDate, labelMonth, labelMth, labelM;
+              if (labelText) {
+                  labelDate = labelText.split('(');
+              }
+              if (labelDate && labelDate[1]) {
+                  labelMonth = labelDate[1].split(':');
+              }
+              if (labelMonth && labelMonth[1]) {
+                  labelMth = labelMonth[1].split(')');
+              }
+              if (labelMth && labelMth[0]) {
+                  labelM = labelMth[0].split(',');
+              }
+              
+              if (jQuery.inArray(selectedMonth, labelM) == -1) {
+              } else {
+                  finalSelectedArray.push(selectedArray[index]);
+              }
+          }
       });
       
       //////////////////////////No transport text change//////////////////////////////
       var temp = jQuery(contextData.routesContainerSelector).find('div:last-child');
       var f_label = jQuery(temp).find('label').html();
       var tag = f_label.split('>');
-      if(count == 0){
-        
-        tag[1] = ' No pick available at this accommodation. We look forward to seeing you at the designated meeting location.  Directions to follow in your email confirmation.';
-        f_label = tag[0]+'>'+tag[1];
-        jQuery(temp).find('label').html(f_label);
-        jQuery(temp).find('input').prop('checked',true);
+          console.log("count: " + count);
+          console.log("activityId: " + params.activityId);
+          if (params.activityId == 13263 || params.activityId == 13264) {
+              if (count == 0) {
 
-      }else{
-       
-        tag[1] = " Drive to our meeting location, directions to follow in your email confirmation.";
-        f_label = tag[0]+'>'+tag[1];
-        jQuery(temp).find('label').html(f_label);
-        jQuery(temp).find('input').prop('checked',false);
+                  tag[1] = ' No pick available at this accommodation. Please select the drive out no pickup tour on the previous screen. ';
+                  f_label = tag[0] + '>' + tag[1];
+                  jQuery(temp).find('label').html(f_label);
+                  jQuery(temp).find('input').prop('checked', true);
 
-      }
+              }
+          }
+          else {
+              if (count == 0) {
+
+                  tag[1] = ' No pick available at this accommodation. We look forward to seeing you at the designated meeting location.  Directions to follow in your email confirmation.';
+                  f_label = tag[0] + '>' + tag[1];
+                  jQuery(temp).find('label').html(f_label);
+                  jQuery(temp).find('input').prop('checked', true);
+
+              } else {
+
+                  tag[1] = " Drive to our meeting location, directions to follow in your email confirmation.";
+                  f_label = tag[0] + '>' + tag[1];
+                  jQuery(temp).find('label').html(f_label);
+                  jQuery(temp).find('input').prop('checked', false);
+
+              }
+          }
       
       ///////////////////////////////////////////////////////
-      // console.log('selected array', selectedArray);
-      console.log('final selected array', finalSelectedArray);
+       console.log('selected array', selectedArray);
       jQuery.each(finalSelectedArray, function (index, finalSelectedItem) {
         var labelText = jQuery("div[id='" + finalSelectedItem + "']").find('label').html();
         labelText = labelText.replace(/\(([^)]+)\)/g, '');
@@ -275,15 +287,30 @@ var Accommodation = (function () {
       });
       
       finalSelectedArray.push(jQuery(contextData.routesContainerSelector).find('div:first-child').attr('id'));
-      
+          var routeFound = false;
       jQuery(contextData.routesContainerSelector).find('div').each(function () {
         var childId = jQuery(this).attr('id');
-        if (jQuery.inArray(childId, finalSelectedArray) == -1) {
-          jQuery(this).hide();
+          if (jQuery.inArray(childId, finalSelectedArray) == -1) {
+              if (this.id != "#NoTransportationOption") {
+                  jQuery(this).hide();
+                  console.log(this.id);
+              }
+              else if (routeFound == true && (params.activityId == 13263 || params.activityId == 13264) ) {
+                  jQuery(this).hide();
+                  console.log("Hidding " + this.id);
+              }
+              else {
+                  jQuery(this).show();
+                  console.log("showing " + this.id);
+              }
         } else {
-          jQuery(this).show();
+            jQuery(this).show();
+              routeFound = true;
+              console.log("Found");
+            console.log(this.id);
         }
       });
+        
       selectedArray = [];
       finalSelectedArray = [];
 

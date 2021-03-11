@@ -10,10 +10,10 @@
 	</style>
 
 	<!-- Trigger/Open Modal -->
-	<a class="button button-book-now" href="#modal-<?php echo $activityModelId; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
+	<a class="button button-book-now" id="ponorez-book-button-<?php echo $overlayId; ?>" href="#modal-<?php echo $activityModelId; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
 	
 	<!-- The Modal -->
-	<div id="modal-<?php echo $activityModelId; ?>" class="ponorezmodal">
+	<div id="pono-rez-booking-modal-<?php echo $overlayId; ?>" class="ponorezmodal">
 
 		<!-- Modal content -->
 		<div class="modal-content">
@@ -110,7 +110,7 @@
 						?>
 							<script>
 								function showMinAvailable1(){
-									var activityControl = <?php echo $activityModelId;?>,
+									var activityControl = '<?php echo $myActivityID;?>',
 										dateControl = 'date_a<?php echo $activityModelId; ?>',
 										totalGuestCount = 0,
 										minAvailable = { guests: {} };
@@ -149,7 +149,7 @@
 							?>
 							<label class="hide-this">Choose Date</label>
 							<div class="form-row date-selector hide-this">
-								<input class="form-control" id='date_a<?php echo $activityModelId; ?>' onclick='showMinAvailable()' value='<?php echo $selected_date;?>'>
+								<input class="form-control" id='date_a<?php echo $activityModelId; ?>' onclick='showMinAvailable1()' value='<?php echo $selected_date;?>'>
 									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable1();">
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</a>
@@ -197,7 +197,7 @@
 
 								if(isset($upgradeTypes[0]) && $upgradeTypes[0] != null){
 									if ($upgrade == $uID) {
-										$html .= do_shortcode('[loadPonorezUpgradeField id="'.$uID.'" name="'.$uType.'" min="'.$uMin.'" max="'.$uMax.'"]');
+										$html .= do_shortcode('[loadPonorezUpgradeField id="'.$uID.'" modalid="'.$activityModelId.'" name="'.$uType.'" min="'.$uMin.'" max="'.$uMax.'"]');
 									}
 								}
 							}
@@ -237,14 +237,14 @@
 							echo '<div class="form-row">';
 							echo '<label>Select Accommodation</label>';
 							echo '<label style="font-weight: normal; font-size: 12px; display: block;">Select Hotel</label>';
-							echo do_shortcode('[loadPonorezAccommodation]');
+							echo do_shortcode('[loadPonorezAccommodation modalId="' . $activityModelId . '"]');;
 							echo '</div>';
 
 							//Load Hotel Room Number Field
 							echo '<div class="form-row">';
 							echo '<label style="font-weight: normal; font-size: 12px; margin-top: 10px; display: block;">Room number</label>';
-							echo do_shortcode('[loadPonorezHotelRoom]');
-							echo do_shortcode('[loadPonoreztransportation]');
+							echo do_shortcode('[loadPonorezHotelRoom modalId="' . $activityModelId . '"]');
+							echo do_shortcode('[loadPonoreztransportation modalId="' . $activityModelId . '"]');
 							echo '</div>';
 
 							if(!empty( $couponsStatusCheck ) && $promotionalCodesStatus == 'yes') {

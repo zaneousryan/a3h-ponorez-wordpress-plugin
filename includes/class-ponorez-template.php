@@ -62,6 +62,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "00";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -148,7 +149,8 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-01";
+		$activityModelId = $id . "_01";
+		$overlayId = "01";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -237,7 +239,8 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-02";
+		$overlayId = "02";
+		$activityModelId = $id . "_02"; 
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -325,7 +328,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-03";
+		$activityModelId = $id . "_03";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -413,7 +416,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-04";
+		$activityModelId = $id . "_04";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -499,7 +502,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-05";
+		$activityModelId = $id . "_05";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -585,7 +588,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-06";
+		$activityModelId = $id . "_06";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -671,7 +674,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-07";
+		$activityModelId = $id . "_07";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -757,7 +760,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-08";
+		$activityModelId = $id . "_08";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -843,7 +846,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-09";
+		$activityModelId = $id . "_09";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -929,7 +932,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-10";
+		$activityModelId = $id . "_10";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -1015,7 +1018,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-11";
+		$activityModelId = $id . "_11";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -1101,7 +1104,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-12";
+		$activityModelId = $id . "_12";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -1187,7 +1190,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-13";
+		$activityModelId = $id . "_13";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -1273,7 +1276,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
-		$activityModelId = $id . "-14";
+		$activityModelId = $id . "_14";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
 		$accommodationType = $accommodation;
@@ -1471,11 +1474,15 @@ EOT;
 	// Load upgrade fields
 	public function loadPonorezUpgradeField ( $atts = array() ) {
 		
-		$a = shortcode_atts( array( 'id' => 0, 'name' => '', 'min' => 0, 'max' => 20 ), $atts );
+		$a = shortcode_atts( array( 'id' => 0, 'modalid' => '', 'name' => '', 'min' => 0, 'max' => 20 ), $atts );
 		
 		$html = '';
-
-		$htmlIdTagPart = sprintf( 'a%d', $this->_currentActivity->id );
+		if($a[ 'modalid' ] == ''){
+			$htmlIdTagPart = sprintf( 'a%d', $this->_currentActivity->id );
+		}
+		else {
+			$htmlIdTagPart = sprintf( 'a%s', $a[ 'modalid' ]);
+		}		
 		
 		if ( null != $this->_currentActivityGroup ) {
 			
@@ -1569,15 +1576,20 @@ EOT;
 	public function ponorezAccommodationSelect( $atts = array(), $content = null, $tag ) {
 		
 		$defaultTemplate = <<<EOT
-<select id="hotel_aAAAA" onchange="accommodation_setupTransportationRoutes({ supplierId: SSSS, activityId: AAAA, agencyId: 0, hotelId: this.value, routeSelectionContextData: routeSelection_aAAAA_contextData })" class="pr_hotel_select form-control"></select>
-		<script type="text/javascript">accommodation_loadHotels({ supplierId: SSSS, activityId:  AAAA, agencyId: 0, hotelSelectSelector: "#hotel_aAAAA" });</script>
+		<select id="hotel_aMMMM" onchange="accommodation_setupTransportationRoutes({ supplierId: SSSS, activityId: AAAA, agencyId: 0, hotelId: this.value, routeSelectionContextData: routeSelection_aMMMM_contextData, modalId: 'MMMM'  })" class="pr_hotel_select form-control"></select>
+		<script type="text/javascript">accommodation_loadHotels({ supplierId: SSSS, activityId:  AAAA, agencyId: 0, hotelSelectSelector: "#hotel_aMMMM", modalId: "MMMM" });</script>
 EOT;
 
-		$a = shortcode_atts( array( 'id' => null, 'template' => $defaultTemplate, 'group' => false ), $atts );
-
+		$a = shortcode_atts( array( 'id' => null, 'modalid' => '', 'template' => $defaultTemplate, 'group' => false ), $atts );
+		
 		$rval_template = $a[ 'template' ];
+		if($a[ 'modalid' ] == ''){
+			$rval = str_replace( array( 'AAAA', 'MMMM', 'SSSS' ), array( $this->_currentActivity->id, $this->_currentActivity->id, $this->_currentActivity->supplierId ), $rval_template );
+		}
+		else {
+			$rval = str_replace( array( 'AAAA', 'MMMM', 'SSSS' ), array($this->_currentActivity->id,  $a[ 'modalid' ], $this->_currentActivity->supplierId ), $rval_template );
+		}
 
-		$rval = str_replace( array( 'AAAA', 'SSSS' ), array( $this->_currentActivity->id, $this->_currentActivity->supplierId ), $rval_template );
 
 		if ( true == $a[ 'group' ] ) {
 			
@@ -1592,9 +1604,14 @@ EOT;
 	// Set hotel room number
 	public function ponorezHotelRoom ( $atts = array(), $content = null, $tag ) {
 		
-		$a = shortcode_atts( array( 'id' => null ), $atts );
-
-		$rval = sprintf( '<input class="form-control" type="text" id="room_a%d" size="3" />', $this->_currentActivity->id );
+		$a = shortcode_atts( array( 'id' => null,'modalid' => '',  ), $atts );
+		if($a[ 'modalid' ] == ''){
+			$rval = sprintf( '<input class="form-control" type="text" id="room_a%d" size="3" />', $this->_currentActivity->id );
+		}
+		else {
+			$rval = sprintf( '<input class="form-control" type="text" id="room_a%s" size="3" />', $a[ 'modalid' ]);			
+		}
+		
 
 		return $rval;
 		
@@ -1603,15 +1620,23 @@ EOT;
 	// Load transportation routes for a single activity
 	public function loadPonoreztransportation( $atts = array(), $content = null, $tag ) {
 		
-		$a = shortcode_atts( array( 'name' => null, 'message' => 'No transportation.', 'template' => $this->defaultTemplate, 'hidden' => true ), $atts );
-
-		$trans = new PonoRezTransportation( $this->_currentActivity->supplierId, $this->_currentActivity->id );
+		$a = shortcode_atts( array( 'name' => null, 'modalid' => '', 'message' => 'No transportation.', 'template' => $this->defaultTemplate, 'hidden' => true ), $atts );
+		if($a[ 'modalid' ] == ''){
+			$a[ 'modalid' ] = $this->_currentActivity->id;
+		}
+		$trans = new PonoRezTransportation( $this->_currentActivity->supplierId, $this->_currentActivity->id, $a[ 'modalid' ] );
 		$map = $trans->getTransportationMap();
 
-		$javaScript = sprintf( "var routeSelection_a%d_contextData = %s;",
-							  
-			$this->_currentActivity->id,
-			json_encode( $map ) );
+		if($a[ 'modalid' ] == ''){
+			$javaScript = sprintf( "var routeSelection_a%d_contextData = %s;",							  
+				$this->_currentActivity->id,
+				json_encode( $map ) );
+		}
+		else{
+			$javaScript = sprintf( "var routeSelection_a%s_contextData = %s;",							  
+				$a[ 'modalid' ],
+				json_encode( $map ) );
+		}
 
 		$rval = sprintf( "<script type=\"text/javascript\">%s</script>\n", $javaScript );
 
@@ -1624,18 +1649,18 @@ EOT;
 
 		$rval .= sprintf( "<div id=\"%s\" style=\"%s margin-top: 10px;\"><strong>Select a transportation route:</strong><br>\n", substr( $map[ 'routesContainerSelector' ], 1 ), $displayStyle );
 
-		$rval .= sprintf( "<div><label style=\"font-weight: normal; font-size: 12px; margin-top: 10px; \"><input type=\"radio\" name=\"transportationroute_a%d\" value=\"\" /> No Transportation</label></div>\n", $this->_currentActivity->id );
-
-		$routeNameTag = sprintf( 'transportationroute_a%d', $this->_currentActivity->id );
-
-		foreach ( $trans->getTransportationOptions() as $id => $routeName ) {
-			
+		$rval .= sprintf( "<div id=\"#NoTransportationOption\"><label style=\"font-weight: normal; font-size: 12px; margin-top: 10px; \"><input type=\"radio\" name=\"transportationroute_a%s\" value=\"\" /> No Transportation</label></div>\n", $a[ 'modalid' ] );
+		
+		$routeNameTag = sprintf( 'transportationroute_a%s', $a[ 'modalid' ] );
+		$transOptions = $trans->getTransportationOptions();
+		
+		foreach ( $transOptions as $id => $routeName ) {
 			$tmp = sprintf( '<div id="%s"><label style="font-weight: normal; font-size: 12px;"><input name="%s" type="radio" value="%d" /> %s</label></div>', $map[ 'routeSelectorMap' ][ $id ], $routeNameTag, $id, $routeName );
 
 			$rval .= "\n" . $tmp;
 			
 		}
-
+		
 		return $rval . "</div>";
 		
 	}
