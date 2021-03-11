@@ -1,7 +1,7 @@
 .clearfix { display: block; content: ""; clear: both; }
 .booking-form { margin-bottom: 25px; }
 
-.button.button-book-now { padding: 8px 20px; border-radius: 3px; transition: all ease-in-out 0.3s; display: inline-block; margin-bottom: 15px; }
+.pr-btn-book-now { padding: 8px 20px; border-radius: 3px; transition: all ease-in-out 0.3s; display: inline-block; margin-bottom: 15px; }
 
 .booking-form .date-selector { position: relative; }
 .booking-form .date-selector a { text-decoration: none !important; text-decoration-color: transparent !important; text-decoration-line: none !important; position: absolute !important; bottom: 3px !important; right: 10px !important; color: #333333; transition: all ease-in-out 0.3s; }
