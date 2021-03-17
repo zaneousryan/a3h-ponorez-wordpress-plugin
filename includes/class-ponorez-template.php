@@ -1606,10 +1606,10 @@ EOT;
 		
 		$a = shortcode_atts( array( 'id' => null,'modalid' => '',  ), $atts );
 		if($a[ 'modalid' ] == ''){
-			$rval = sprintf( '<input class="form-control" type="text" id="room_a%d" size="3" />', $this->_currentActivity->id );
+			$rval = sprintf( '<input class="form-control" id="room_a%d" size="3" />', $this->_currentActivity->id );
 		}
 		else {
-			$rval = sprintf( '<input class="form-control" type="text" id="room_a%s" size="3" />', $a[ 'modalid' ]);			
+			$rval = sprintf( '<input class="form-control" id="room_a%s" size="3" />', $a[ 'modalid' ]);			
 		}
 		
 
