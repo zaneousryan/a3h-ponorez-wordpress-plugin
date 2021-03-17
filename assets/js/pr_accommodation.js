@@ -260,6 +260,16 @@ var Accommodation = (function () {
 
               }
           }
+          if (params.activityId == 13237){
+              if (count == 0) {
+
+                  tag[1] = 'This tour does not pick up from this location; please call our office (808) 575-9575 (Local) or (888) 922-2453';
+                  f_label = tag[0] + '>' + tag[1];
+                  jQuery(temp).find('label').html(f_label);
+                  jQuery(temp).find('input').prop('checked', true);
+
+              }
+          }
           else {
               if (count == 0) {
 
@@ -295,7 +305,7 @@ var Accommodation = (function () {
                   jQuery(this).hide();
                   console.log(this.id);
               }
-              else if (routeFound == true && (params.activityId == 13263 || params.activityId == 13264) ) {
+              else if (routeFound == true && (params.activityId == 13263 || params.activityId == 13264 || params.activityId == 13237)) {
                   jQuery(this).hide();
                   console.log("Hidding " + this.id);
               }
