@@ -1,10 +1,12 @@
 .clearfix { display: block; content: ""; clear: both; }
 .booking-form { margin-bottom: 25px; }
 
-a.pr-btn-book-now { 
+a.pr-btn-book-now,
+input.pr-btn-book-now { 
     text-decoration: none !important;
     padding: 8px 20px; 
     border-radius: 3px; 
+    border: none;
     transition: all ease-in-out 0.3s; 
     display: inline-block; 
     margin-bottom: 15px;
