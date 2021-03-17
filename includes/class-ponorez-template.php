@@ -3334,6 +3334,7 @@ EOT;
 		$dsTrimmed = str_replace( '-', '', $a[ 'style' ] );
 		$bookNowText = get_option('bookNowText');
 		$googleAnalyticsID = get_option('googleAnalyticsID');
+		
 
 		if ( !$dsTrimmed ) { 
 			

@@ -10,7 +10,7 @@
 </style>
 
 	<!-- Trigger/Open Modal -->
-	<a class="button button-book-now" href="#modal-<?php echo $activityModelId; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
+	<a class="pr-btn-book-now" href="#modal-<?php echo $activityModelId; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
 	
 	<!-- The Modal -->
 	<div id="modal-<?php echo $activityModelId; ?>" class="ponorezmodal">
