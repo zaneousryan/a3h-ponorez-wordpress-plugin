@@ -1667,7 +1667,7 @@ EOT;
 		$transOptions = $trans->getTransportationOptions();
 		
 		foreach ( $transOptions as $id => $routeName ) {
-			$tmp = sprintf( '<div id="%s"><label style="font-weight: normal; font-size: 12px;"><input name="%s" type="radio" value="%d" /> %s</label></div>', $map[ 'routeSelectorMap' ][ $id ], $routeNameTag, $id, $routeName );
+			$tmp = sprintf( '<div id="%s"><label style="font-weight: normal; font-size: 12px;"><input name="%s" type="radio" value="%d" checked/> %s</label></div>', $map[ 'routeSelectorMap' ][ $id ], $routeNameTag, $id, $routeName );
 
 			$rval .= "\n" . $tmp;
 			
@@ -3318,7 +3318,9 @@ EOT;
 			foreach ( $map[ 'routeSelectorMap' ] as $id => $route ) {
 				
 				$result = $service->getTransportationRoute( array( 'serviceLogin' => $serviceCreds, 'supplierId' => $this->_currentActivityGroup->supplierId, 'transportationRouteId' => $id ) );
-				$tmp = sprintf( '<div id="%s"><label><input name="%s" type="radio" value="%d" /> %s</label></div>',
+
+				if(count($result) == 1){
+					$tmp = sprintf( '<div id="%s"><label><input name="%s" type="radio" value="%d" checked/> %s</label></div>',
 							   
 					$route,
 					$routeNameTag,
@@ -3326,6 +3328,17 @@ EOT;
 					$result->return ->name );
 
 				$rval .= "\n" . $tmp;
+				}else{
+					$tmp = sprintf( '<div id="%s"><label><input name="%s" type="radio" value="%d" /> %s</label></div>',
+							   
+					$route,
+					$routeNameTag,
+					$id,
+					$result->return ->name );
+
+				$rval .= "\n" . $tmp;
+				}
+				
 				
 			}
 			
