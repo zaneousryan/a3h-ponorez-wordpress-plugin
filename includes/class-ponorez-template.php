@@ -1665,9 +1665,9 @@ EOT;
 		
 		$routeNameTag = sprintf( 'transportationroute_a%s', $a[ 'modalid' ] );
 		$transOptions = $trans->getTransportationOptions();
-		
+
 		foreach ( $transOptions as $id => $routeName ) {
-			$tmp = sprintf( '<div id="%s"><label style="font-weight: normal; font-size: 12px;"><input name="%s" type="radio" value="%d" /> %s</label></div>', $map[ 'routeSelectorMap' ][ $id ], $routeNameTag, $id, $routeName );
+			$tmp = sprintf( '<div id="%s"><label style="font-weight: normal; font-size: 12px;"><input name="%s" type="radio" value="%d" checked/> %s</label></div>', $map[ 'routeSelectorMap' ][ $id ], $routeNameTag, $id, $routeName );
 
 			$rval .= "\n" . $tmp;
 			
@@ -3318,14 +3318,25 @@ EOT;
 			foreach ( $map[ 'routeSelectorMap' ] as $id => $route ) {
 				
 				$result = $service->getTransportationRoute( array( 'serviceLogin' => $serviceCreds, 'supplierId' => $this->_currentActivityGroup->supplierId, 'transportationRouteId' => $id ) );
-				$tmp = sprintf( '<div id="%s"><label><input name="%s" type="radio" value="%d" /> %s</label></div>',
+
+				if(count($result) == 1){
+					$tmp = sprintf( '<div id="%s"><label><input name="%s" type="radio" value="%d" checked/> %s</label></div>',
 							   
 					$route,
 					$routeNameTag,
 					$id,
 					$result->return ->name );
-
-				$rval .= "\n" . $tmp;
+					$rval .= "\n" . $tmp;
+				}
+				else{
+					$tmp = sprintf( '<div id="%s"><label><input name="%s" type="radio" value="%d" /> %s</label></div>',
+							   
+					$route,
+					$routeNameTag,
+					$id,
+					$result->return ->name );
+					$rval .= "\n" . $tmp;
+				}				
 				
 			}
 			
@@ -3362,6 +3373,13 @@ EOT;
 		return $rval;
 		
 	}
+
+	
+	
+
+		
+
+	
 	
 	// Register shortcodes
 	public function registerShortcodes() {
@@ -3414,7 +3432,8 @@ EOT;
 		add_shortcode( 'loadPonorezGroupTransportation', array( $this, 'loadPonorezGroupTransportation' ) );
 		add_shortcode( 'loadPonorezTotalPrice', array( $this, 'loadPonorezTotalPrice' ) );
 		add_shortcode( 'loadPonorezCheckGroupAvailability', array( $this, 'loadPonorezCheckGroupAvailability' ) );
-				
+			
+		
 	}
 
 	// Load required scripts
@@ -3450,7 +3469,6 @@ EOT;
 			$defaultTemplate = 'inline';
 			
 		}
-
 		$this->defaultTemplate = realpath( dirname( __FILE__ ) . '/../' ) . '/templates/activities-single/' . $defaultTemplate . '.php';
 		
 		$defaultGroupTemplate = get_option( 'pr_group_default_template' );
@@ -3462,7 +3480,8 @@ EOT;
 		}
 
 		$this->defaultGroupTemplate = realpath( dirname( __FILE__ ) . '/../' ) . '/templates/activities-group' . $defaultGroupTemplate . '.php';
-
+		
+		
 	}
 	
 }
