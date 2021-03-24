@@ -328,6 +328,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "03";
 		$activityModelId = $id . "_03";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -416,6 +417,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "04";
 		$activityModelId = $id . "_04";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -502,6 +504,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "05";
 		$activityModelId = $id . "_05";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -588,6 +591,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "06";
 		$activityModelId = $id . "_06";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -674,6 +678,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "07";
 		$activityModelId = $id . "_07";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -760,6 +765,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "08";
 		$activityModelId = $id . "_08";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -846,6 +852,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "09";
 		$activityModelId = $id . "_09";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -932,6 +939,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "10";
 		$activityModelId = $id . "_10";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -1018,6 +1026,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "11";
 		$activityModelId = $id . "_11";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -1104,6 +1113,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "12";
 		$activityModelId = $id . "_12";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -1190,6 +1200,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "13";
 		$activityModelId = $id . "_13";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');
@@ -1276,6 +1287,7 @@ final class PonoRezTemplate {
 		), $atts));
 
 		$myActivityID = $id;
+		$overlayId = "14";
 		$activityModelId = $id . "_14";
 		$formTitle = $title;
 		$bookNowText = get_option('bookNowText');

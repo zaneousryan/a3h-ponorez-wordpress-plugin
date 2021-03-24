@@ -10,10 +10,10 @@
 </style>
 
 	<!-- Trigger/Open Modal -->
-	<a class="pr-btn-book-now" href="#modal-<?php echo $activityModelId; ?>-13" rel="modal:open"><?php echo $bookNowText; ?></a>
+	<a class="pr-btn-book-now" id="ponorez-book-button-<?php echo $overlayId; ?>" href="#pono-rez-booking-modal-<?php echo $overlayId; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
 	
 	<!-- The Modal -->
-	<div id="modal-<?php echo $activityModelId; ?>-13" class="ponorezmodal">
+	<div id="pono-rez-booking-modal-<?php echo $overlayId; ?>" class="ponorezmodal">
 
 		<!-- Modal content -->
 		<div class="modal-content">
