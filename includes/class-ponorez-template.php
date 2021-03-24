@@ -23,6 +23,25 @@ final class PonoRezTemplate {
 
 		$this->_currentActivity = $result->return;
 		
+	}	
+
+	public function ponorezActivityAvailablity ( $atts = array(), $content = null, $tag ) {		
+		$a = shortcode_atts( array( 'id' => null,
+			'date' => null ), $atts );
+		$myActivityID = $a[ 'id' ];
+		$date = $a[ 'date' ];
+		
+		try { 			
+			$psc = PR()->providerService();
+			$serviceCreds = PR()->serviceLogin();		
+			$result = $psc->getActivityAvailability( array( 'serviceLogin' => $serviceCreds, 'activityId' => ( int )$a[ 'id' ], 'date' => new SoapVar( $date, XSD_DATE ) ) );
+			$this->_soapDebug = print_r( $result, true );
+			$rval = $result->return;				
+		} catch ( SoapFault $e ) {			
+			$rval .= sprintf( "<br>\n<pre>\n%s\n</pre>", $this->_soapDebug );
+			$rval = 'Error: '.$e;
+		}
+		return $rval;
 	}
 	
 	// Load current activity
@@ -3378,6 +3397,8 @@ EOT;
 	
 	// Register shortcodes
 	public function registerShortcodes() {
+		// Activity Availability short codes
+		add_shortcode( 'ponorezActivityAvailablity', array( $this, 'ponorezActivityAvailablity' ) );
 		
 		// Single activity shortcodes.
 		add_shortcode( 'ponorezActivityBooking', array( $this, 'ponorezActivityBooking' ) );

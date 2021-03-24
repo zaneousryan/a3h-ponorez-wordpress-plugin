@@ -9,7 +9,7 @@
  *
  * @package PonoRezActivityList
  * @version 2.0
- * @author Matt S. King <matt@ponorez.com>
+ * @author Ryan Richards <ryan@ponorez.com>
  */
 
 final class PonoRezActivityList {

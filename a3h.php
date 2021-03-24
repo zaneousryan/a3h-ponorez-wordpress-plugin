@@ -5,7 +5,7 @@
 /*
 Plugin Name: PonoRez Booking System
 Description: Add PonoRez booking forms to your website through shortcodes.
-Version: 3.6.23
+Version: 3.6.24
 Author: PonoRez
 Author URI: http://www.ponorez.com
 License: GPLv2 or later
@@ -30,7 +30,7 @@ defined( 'ABSPATH' )or die( "No script kiddies please!" );
 
 //For full WSDL/SOAP service documentation, see http://www.ponorez.com/Agency%20Service%20Specifications.pdf
 define( 'PR_PUBLIC_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/PublicService?wsdl' );
-define( 'PR_PROVIDER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/SupplierService?wsdl' );
+define( 'PR_PROVIDER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2020-12-18/SupplierService?wsdl' );
 define( 'PR_WHOLESALER_SERVICE_WSDL', 'https://www.hawaiifun.org/reservation/services/2012-05-10/AgencyService?wsdl' );
 
 /**
