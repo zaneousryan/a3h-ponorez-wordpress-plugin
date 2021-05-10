@@ -1455,6 +1455,18 @@ EOT;
 					$htmlIdTagPart,
 					$a[ 'id' ],
 					$a[ 'name' ] );
+			}else if ($a[ 'id' ] == 3700) {
+				$html = sprintf( '<div class="form-row"><label><input type="checkbox" name="guestCheckbox" id="guests_%s_t%d" value="1" checked disabled/> %s</label>',
+
+					$htmlIdTagPart,
+					$a[ 'id' ],
+					$a[ 'name' ] );
+			}else if ($a[ 'id' ] == 3701 || $a[ 'id' ] == 3699 || $a[ 'id' ] == 3277) {
+				$html = sprintf( '<div class="form-row"><label><input type="checkbox" name="guestCheckbox" id="guests_%s_t%d" value="0" disabled/> %s</label>',
+
+					$htmlIdTagPart,
+					$a[ 'id' ],
+					$a[ 'name' ] );
 			}else{
 				$html = sprintf( '<div class="form-row"><label><input type="checkbox" name="guestCheckbox" id="guests_%s_t%d" value="0"/> %s</label>',
 
@@ -1475,6 +1487,13 @@ EOT;
 				$html .= sprintf( '<div class="form-row"><label>%s</label><select class="form-control" id="guests_%s_t%d" onchange="showPriceAndAvailability(GGGG,true);">',
 
 					$a[ 'name' ],
+					$htmlIdTagPart,
+					$a[ 'id' ] );
+			}else if ($a[ 'id' ] == 3278 ) {
+				$html .= sprintf( '<div class="form-row"><label>%s</label><select class="form-control" id="guests_%s_t%d" onchange="updateHETVehicle(\'guests_%s_t%d\')";>',
+					$a[ 'name' ],
+					$htmlIdTagPart,
+					$a[ 'id' ], 
 					$htmlIdTagPart,
 					$a[ 'id' ] );
 			}else{
@@ -3464,6 +3483,7 @@ EOT;
 		wp_enqueue_script( 'pr_accommodation', plugins_url( 'assets/js/pr_accommodation.js', dirname( __FILE__ ) ), array( 'jquery' ) );
 		wp_enqueue_script( 'pr_modal', plugins_url( 'assets/js/jquery.modal.min.js', dirname( __FILE__ ) ), array( 'jquery' ) );
 		wp_register_script( 'pr_group_functions', plugins_url( 'assets/js/pr_group_functions.js', dirname( __FILE__ ) ), array( 'jquery', 'pr_functions' ), null );
+		wp_register_script( 'pr_custom_functions', plugins_url( 'assets/js/pr_custom_functions.js', dirname( __FILE__ ) ), array( 'jquery', 'pr_functions' ), null );
 
 		//Load CSS files
 		wp_enqueue_style( 'pr_fontAwesome_css', plugins_url( 'assets/css/font-awesome.min.css', dirname( __FILE__ ) ) );

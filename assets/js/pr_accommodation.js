@@ -331,5 +331,55 @@ var Accommodation = (function () {
   return m;
 })();
 
+function updateHETVehicle(id) {
+    var e = document.getElementById(id);    
+    var paxCount = e.options[e.selectedIndex].text;    
+    var strings = id.split('_t');
+    var idTagBase = strings[0];    
+    if (paxCount < 6) {//vehicle 11
+        document.getElementById(idTagBase + '_t3700').checked = true;        
+        //document.getElementById(idTagBase + '_t3701').checked = false;
+        //document.getElementById(idTagBase + '_t3699').checked = false;
+        document.getElementById(idTagBase + '_t3277').checked = false;
+        document.getElementById(idTagBase + '_t3700').click();
+        document.getElementById(idTagBase + '_t3700').value = 1;
+        //document.getElementById(idTagBase + '_t3701').value = 0;
+        //document.getElementById(idTagBase + '_t3699').value = 0;
+        document.getElementById(idTagBase + '_t3277').value = 0;
+    //} else if (paxCount < 13) {//vehicle 12
+    //    document.getElementById(idTagBase + '_t3700').checked = false;
+    //    document.getElementById(idTagBase + '_t3701').checked = true;
+    //    document.getElementById(idTagBase + '_t3699').checked = false;
+    //    document.getElementById(idTagBase + '_t3277').checked = false;
+    //    document.getElementById(idTagBase + '_t3701').click();
+    //    document.getElementById(idTagBase + '_t3700').value = 0;
+    //    document.getElementById(idTagBase + '_t3701').value = 1;
+    //    document.getElementById(idTagBase + '_t3699').value = 0;
+    //    document.getElementById(idTagBase + '_t3277').value = 0;
+
+    //} else if (paxCount < 15) {//vehicle 14
+    //    document.getElementById(idTagBase + '_t3700').checked = false;
+    //    document.getElementById(idTagBase + '_t3701').checked = false;
+    //    document.getElementById(idTagBase + '_t3699').checked = true;
+    //    document.getElementById(idTagBase + '_t3277').checked = false;
+    //    document.getElementById(idTagBase + '_t3699').click();
+    //    document.getElementById(idTagBase + '_t3700').value = 0;
+    //    document.getElementById(idTagBase + '_t3699').value = 0;
+    //    document.getElementById(idTagBase + '_t3699').value = 1;
+    //    document.getElementById(idTagBase + '_t3277').value = 0;
+
+    } else {//vehicle 24
+        document.getElementById(idTagBase + '_t3700').checked = false;
+        //document.getElementById(idTagBase + '_t3701').checked = false;
+        //document.getElementById(idTagBase + '_t3699').checked = false;
+        document.getElementById(idTagBase + '_t3277').checked = true;
+        document.getElementById(idTagBase + '_t3277').click();
+        document.getElementById(idTagBase + '_t3700').value = 0;
+        //document.getElementById(idTagBase + '_t3701').value = 0;
+        //document.getElementById(idTagBase + '_t3699').value = 0;
+        document.getElementById(idTagBase + '_t3277').value = 1;
+
+    }
+}
 var accommodation_loadHotels = Accommodation.loadHotels;
 var accommodation_setupTransportationRoutes = Accommodation.setupTransportationRoutes;
