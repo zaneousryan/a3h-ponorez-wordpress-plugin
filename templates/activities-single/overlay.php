@@ -9,6 +9,11 @@
 	.booking-form .date-selector a:hover { color: <?php echo get_option('secondaryColor'); ?>!important; }
 	</style>
 
+
+<div class="activity-container">
+    <div class="title"><?php echo $title?></div>
+    <div class="activity-image"><img src="<?php echo $image?>"></div>
+    <div class="activity-description"></div>
 	<!-- Trigger/Open Modal -->
 	<a class="pr-btn-book-now" id="ponorez-book-button-<?php echo $overlayId; ?>" href="#pono-rez-booking-modal-<?php echo $overlayId; ?>" rel="modal:open"><?php echo $bookNowText; ?></a>
 	<!-- The Modal -->
@@ -482,4 +487,5 @@
 	
 	</div>
 	
+</div>
 </div>

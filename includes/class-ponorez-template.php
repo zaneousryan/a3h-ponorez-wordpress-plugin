@@ -3413,6 +3413,83 @@ EOT;
 		return $rval;
 		
 	}
+
+
+	//NEW SHORT CODE
+	public function loadPonorezData($atts = array(), $content = null ){
+		extract(shortcode_atts(array(
+			'id' => null,
+			'guests' => null,
+			'upgrades' => null,
+			'privateid' => null,
+			'accommodation' => 'checkout',
+			'allowdiscounts' => null,
+			'promocode' => null,
+			'title' => null,
+			'imageurl' => null
+		), $atts));
+
+		$myActivityID = $id;
+		$overlayId = "00";
+		$formTitle = $title;
+		$bookNowText = get_option('bookNowText');
+		$accommodationType = $accommodation;
+		$accommodationStatus = get_option('accommodationStatus');
+		$promotionalCode = $promocode;
+		$guestTypes = array($guests);
+		$guestTypes = explode(',', $guests);
+		$upgradeTypes = array($upgrades);
+		$upgradeTypes = explode(',', $upgrades);
+		$privateGuests = array($privateid);
+		$privateGuests = explode(',', $privateid);
+		$promotionalCodesStatus = $allowdiscounts;
+		$image = $imageurl;
+
+		for( $i = 1; $i <= 20; $i++ ){
+
+			$guestType = 'guestType' . $i;
+			$guestTypeID = $guestType . 'ID';
+			$guestTypeMin = $guestType . 'Min';
+			$guestTypeMax = $guestType . 'Max';
+
+			${'guestType' . $i . 'Label'} = get_option( $guestType );
+			${'guestType' . $i . 'ID'} = get_option( $guestTypeID );
+			${'guestType' . $i . 'MinGuest'} = get_option( $guestTypeMin );
+			${'guestType' . $i . 'MaxGuest'} = get_option( $guestTypeMax );
+
+			$upgradeType = 'upgradeType' . $i;
+			$upgradeTypeID = $upgradeType . 'ID';
+			$upgradeTypeMin = $upgradeType . 'Min';
+			$upgradeTypeMax = $upgradeType . 'Max';
+
+			${'upgradeType' . $i . 'Label'} = get_option( $upgradeType );
+			${'upgradeType' . $i . 'ID'} = get_option( $upgradeTypeID );
+			${'upgradeType' . $i . 'Min'} = get_option( $upgradeTypeMin );
+			${'upgradeType' . $i . 'Max'} = get_option( $upgradeTypeMax );
+
+		}
+		
+		if($atts['date']){
+			set_query_var('date', $atts['date']);
+		}
+
+		if($atts['fixed_guest']){
+			set_query_var('fix_guest', $atts['fixed_guest']);
+		}
+		else{
+			set_query_var('fix_guest', 0);
+		}
+		
+		$defaultActivityTemplate = get_option( 'pr_default_template' );
+			
+			ob_start();
+
+			include_once( plugin_dir_path( __DIR__ ) . 'templates/activities-single/overlay.php' );
+
+			$output = ob_get_clean();	
+		
+    	return $output;	
+	}
 	
 	// Register shortcodes
 	public function registerShortcodes() {
@@ -3445,6 +3522,8 @@ EOT;
 		add_shortcode( 'loadPonorezHotelRoom', array( $this, 'ponorezHotelRoom' ) );
 		add_shortcode( 'loadPonoreztransportation', array( $this, 'loadPonoreztransportation' ) );	
 		add_shortcode( 'loadPonorezCheckAvailability', array( $this, 'loadPonorezCheckAvailability' ) );
+		add_shortcode( 'loadPonorezData-01', array( $this, 'loadPonorezData' ) );
+		add_shortcode( 'loadPonorezData-02', array( $this, 'loadPonorezData' ) );
 
 		// Activities group shortcodes	
 		add_shortcode( 'ponorezGroupBooking', array( $this, 'prGroupShortcode' ) );	

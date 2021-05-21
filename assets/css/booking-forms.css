@@ -68,3 +68,21 @@ input[type="text"].form-control.pono-res-modal{
 	.ponorezmodal{padding-top: 75px;}
 	.ponorezmodal .modal-content{width: 100%;}
 }
+
+.activity-container{}
+.activity-container .title{
+    font-size: 35px;
+    font-weight: bold;
+}
+.activity-image{
+    margin: 15px 0;
+}
+.activity-image > img{
+    width: 300px;
+    height: 450px;
+    object-fit: cover;
+    object-position: center;
+}
+.activity-description{
+    
+}
