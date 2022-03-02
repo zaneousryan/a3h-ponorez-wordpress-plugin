@@ -149,8 +149,8 @@
 							?>
 							<label class="hide-this">Choose Date</label>
 							<div class="form-row date-selector hide-this">
-								<input class="form-control" id='date_a<?php echo $activityModelId; ?>' onclick='showMinAvailable()' value='<?php echo $selected_date;?>'>
-									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable1();">
+								<input class="form-control" id='date_a<?php echo $activityModelId; ?>' onclick='showMinAvailable3()' value='<?php echo $selected_date;?>'>
+									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable3();">
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</a>
 							</div>

@@ -109,7 +109,7 @@
 						//Load the DatePicker Field
 						?>
 							<script>
-								function showMinAvailable(){
+								function showMinAvailable7(){
 									var activityControl = '<?php echo $myActivityID;?>',
 										dateControl = 'date_a<?php echo $activityModelId; ?>',
 										totalGuestCount = 0,
@@ -149,8 +149,8 @@
 							?>
 							<label class="hide-this">Choose Date</label>
 							<div class="form-row date-selector hide-this">
-								<input class="form-control" id='date_a<?php echo $activityModelId; ?>' onclick='showMinAvailable()' value='<?php echo $selected_date;?>'>
-									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable1();">
+								<input class="form-control" id='date_a<?php echo $activityModelId; ?>' onclick='showMinAvailable7()' value='<?php echo $selected_date;?>'>
+									<a onMouseOver="window.status='Date Picker';return true;" onMouseOut="window.status='';return true;" href="javascript:showMinAvailable7();">
 										<i class="fa fa-calendar" aria-hidden="true"></i>
 									</a>
 							</div>
